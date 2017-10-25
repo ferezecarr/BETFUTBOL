@@ -2,8 +2,8 @@
  * (Ganador, Un jugador que hace un gol, un expulsado, etc...)
  * Existen las siguientes relaciones...
  * 		Partido(1) 	-(Corresponde a)- (N)Evento
+ * 		Evento(1)	-(Tiene)-		  (N)Cuota 	
  * */
-
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.HashSet;
@@ -29,6 +29,9 @@ public class Evento {
 	
 	@OneToMany(mappedBy = "evento")
 	private Set<Apuesta> apuestas = new HashSet<Apuesta>();	
+	
+	@OneToMany(mappedBy = "evento")
+	private Set<Cuota> cuotas = new HashSet<Cuota>();
 	
 	private String nombre;
 
@@ -56,11 +59,19 @@ public class Evento {
 		this.apuestas = apuestas;
 	}
 
+	public Set<Cuota> getCuotas() {
+		return cuotas;
+	}
+
+	public void setCuotas(Set<Cuota> cuotas) {
+		this.cuotas = cuotas;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
+	}	
 }

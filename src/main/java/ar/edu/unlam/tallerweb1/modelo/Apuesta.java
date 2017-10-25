@@ -1,12 +1,11 @@
-package ar.edu.unlam.tallerweb1.modelo;
-
-import javax.persistence.CascadeType;
 /*Esta clase modela una apuesta. Si bien tiene relaciones N-1, actua como la tabla 
  * surgida de una relacion N-N
  * Se crea para modelar la siguientes relacion...  
  * 		Usuario(N) 	-(Apuesta)- (N)Evento
  * */
+package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
