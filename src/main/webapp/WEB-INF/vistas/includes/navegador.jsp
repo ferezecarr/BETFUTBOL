@@ -8,7 +8,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+<<<<<<< HEAD
+                <a class="navbar-brand hoverNav" href="">BetFutbol.com</a>
+=======
                 <a class="navbar-brand hoverNav" href="">BETFUTBOL</a>
+>>>>>>> b6a18acc9255ac45401016eb83f0e21c2ab54cdb
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

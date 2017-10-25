@@ -9,6 +9,7 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	
 	<!-- ACÁ DEBERÍA IR CSS Y JS PROPIOS -->
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	
 	<!-- TÍTULO DEL PROYECTO -->
-	<title>Bienvenido a BETFUTBOL</title>
+	<title>BetFutbol.com - Home</title>
