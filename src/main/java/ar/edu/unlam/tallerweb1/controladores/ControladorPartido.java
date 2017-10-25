@@ -4,7 +4,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Partido;
@@ -23,6 +25,17 @@ public class ControladorPartido {
 		modelo.put("partido", partido);
 		return new ModelAndView("partido" , modelo);
 		
+	}
+	
+	@RequestMapping(path = "/validar-partido" , method = RequestMethod.POST)
+	public ModelAndView validarPartido(@ModelAttribute("partido") Partido partido) {
+		ModelMap modelo = new ModelMap();
+		if(servicioPartido.consultarPartido(partido) != null) {
+			return new ModelAndView("redirect:/partido");
+		} else {
+			modelo.put("error", "No hay ningun partido con ese id");
+		}
+		return new ModelAndView("partido" , modelo);
 	}
 		
 	

@@ -9,4 +9,5 @@ public interface ServicioPartido {
 	List<Partido> listarTodosLosPartidos(Partido partido);
 	void guardarPartido(Partido partido);
 	Partido buscarPorId(Long id);
+	Partido consultarPartido(Partido partido);
 }

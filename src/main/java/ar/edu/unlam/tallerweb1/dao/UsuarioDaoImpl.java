@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.hibernate.Session;
@@ -24,5 +26,24 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
 	}
+
+	@Override
+	public void save(Usuario usuario) {
+		sessionFactory.getCurrentSession().save(usuario);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Usuario> findAll() {
+		return (List<Usuario>) sessionFactory.getCurrentSession().createCriteria(Usuario.class).list();
+	}
+
+	@Override
+	public Usuario findById(Long id) {
+		return sessionFactory.getCurrentSession().get(Usuario.class, id);
+	}
+
+
 
 }

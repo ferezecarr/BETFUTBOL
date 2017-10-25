@@ -34,7 +34,12 @@ public class ServicioPartidoImpl implements ServicioPartido {
 	public Partido buscarPorId(Long id) {
 		return partidoDao.findById(id);
 	}
-	
+
+	@Override
+	public Partido consultarPartido(Partido partido) {
+		return null;
+	}
+
 
 
 }

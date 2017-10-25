@@ -9,4 +9,5 @@ public interface PartidoDao {
 	List<Partido> findAll();
 	void save(Partido partido);
 	Partido findById(Long id);
+	Partido findByMatch(Partido partido);
 }

@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +34,14 @@ public class PartidoDaoImpl implements PartidoDao {
 	@Override
 	public Partido findById(Long id) {
 		return sessionFactory.getCurrentSession().get(Partido.class, id);
+	}
+
+	@Override
+	public Partido findByMatch(Partido partido) {
+		final Session session = sessionFactory.openSession();
+		return (Partido) session.createCriteria(Partido.class)
+				.add(Restrictions.eq("partido", partido.getId()));
+				
 	}
 
 }
