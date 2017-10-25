@@ -5,6 +5,10 @@
 <head><%@ include file="includes/cabecera.jsp"%>
 </head>
 <body>
+	<%@ include file="includes/navegador.jsp"%>
 	<h1 class="col-sm-offset-4 col-sm-4">¡¡Bienvenido a Betfutbol!!</h1>
+
+
+	<%@ include file="includes/modales.jsp"%>
 </body>
 </html>
