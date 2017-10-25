@@ -1,7 +1,9 @@
 /*HashCode()/Equals() implementando para distinguir entre id, local y visitante a la vez. 
  * Hay una doble relacion entre Equipo y Partido...
  * 		Equipo(1) 	-(Hace de local en)- 		(N)Partido
- * 		Equipo(1) 	-(Hace de visitante en)- 	(N)Partido*/
+ * 		Equipo(1) 	-(Hace de visitante en)- 	(N)Partido
+ * Tambien tiene una relacion 1-N con Evento (Modelada en esa clase)
+ * */
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;

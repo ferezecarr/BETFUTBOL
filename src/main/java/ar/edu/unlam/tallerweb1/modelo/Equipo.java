@@ -1,4 +1,6 @@
-/*HashCode()/Equals() implementando para distinguir entre nombres*/
+/*HashCode()/Equals() implementando para distinguir entre nombres.
+ * Tiene una doble relacion 1-N con Partido para determinar local y visitante
+ * (Modelada en la clase Partido)*/
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
