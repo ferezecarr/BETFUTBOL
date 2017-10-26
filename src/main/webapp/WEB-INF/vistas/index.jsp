@@ -13,7 +13,12 @@
 	<div class="col-md-12 main">
 	<div class="row">
 	
-	<div class="col-md-2">Panel Lateral Izquierdo</div>
+	<div class="col-md-2">  
+	
+	<!--  Panel Lateral Izquierdo  -->
+	
+	
+	 </div>
 	
 	<div class="col-md-8">
 	
@@ -90,7 +95,7 @@
 	
 	</div>
 	
-	<div class="col-md-2">Panel Lateral Derecho</div>	
+	<div class="col-md-2"><!--  Panel Lateral derecho  --></div>	
 	
 	</div>
 	

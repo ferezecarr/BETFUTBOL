@@ -95,7 +95,7 @@
 								</div>
 							</div>
 						</div>
-
+<br><br/>
 						<div class="form-group ">
 <!-- 							<a href="http://deepak646.blogspot.in" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Register</a> -->
 						 <button type="submit" class="btn btn-success">Registrar</button>

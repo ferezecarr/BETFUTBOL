@@ -14,8 +14,8 @@
 	        <input type="password" class="col-sm-6 form-control" placeholder="Repita Password" required><br>
 	      </div>
 	      <div class="modal-footer col-sm-12">
-	        <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
-	        <input type="submit" class="btn btn-primary" value="Cargar">
+	        <input type="button" class="btn btn-primary" data-dismiss="modal" value="Cancelar">
+	        <input type="submit" class="btn btn-success" value="Cargar">
 	      </div>
 	    </div>
 	  </div>
@@ -31,13 +31,16 @@
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	        </button>
 	      </div>
+	     
 	      <div class="modal-body col-sm-12">
-	        <input type="email" class="col-sm-6 form-control" placeholder="E-mail" required><br>
+	        <input type="email" class="col-sm-6 form-control" placeholder="E-mail" required>
+	        <br><br/>
 	        <input type="password" class="col-sm-6 form-control" placeholder="Password" required><br>
 	      </div>
+	      
 	      <div class="modal-footer col-sm-12">
-	        <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
-	        <input type="submit" class="btn btn-primary" value="Cargar">
+	        <input type="button" class="btn btn-primary" data-dismiss="modal" value="Cancelar">
+	        <input type="submit" class="btn btn-success" value="Cargar">
 	      </div>
 	    </div>
 	  </div>

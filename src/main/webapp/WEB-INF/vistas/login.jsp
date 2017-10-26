@@ -16,6 +16,7 @@
 					<hr class="colorgraph"><br>
 					
 					<form:input path="email" id="email" type="email" class="form-control" />
+					
 					<form:input path="password" type="password" id="password" class="form-control"/>     		  
 					
 					<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>  			
