@@ -1,10 +1,12 @@
-package ar.edu.unlam.tallerweb1;
+package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.*;
 
 public class ApuestaTest extends SpringTest{	
