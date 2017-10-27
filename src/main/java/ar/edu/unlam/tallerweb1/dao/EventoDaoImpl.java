@@ -27,18 +27,26 @@ public class EventoDaoImpl implements EventoDao{
 		return evento;
 	}
 
-	@Override
-	public void guardar(Evento evento) {
-	}
+	
 
 	@Override
-	public Void actualizar(Evento evento) {
+	public Evento findById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
+
 	@Override
-	public Evento findById(Long id) {
+	public void save(Evento evento) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public Void update(Evento evento) {
 		// TODO Auto-generated method stub
 		return null;
 	}

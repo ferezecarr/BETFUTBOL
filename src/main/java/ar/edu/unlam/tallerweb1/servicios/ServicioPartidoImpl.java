@@ -12,6 +12,7 @@ import ar.edu.unlam.tallerweb1.dao.PartidoDao;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
 
 @Service("servicioPartido")
+//Solo necesita leer , no escribir , y no tiene prioridad de generacion
 @Transactional(readOnly = true , propagation = Propagation.SUPPORTS)
 public class ServicioPartidoImpl implements ServicioPartido {
 	
