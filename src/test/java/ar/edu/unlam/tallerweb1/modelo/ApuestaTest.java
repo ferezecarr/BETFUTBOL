@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1;
+package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.HashSet;
 import java.util.Set;
