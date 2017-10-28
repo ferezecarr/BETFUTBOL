@@ -1,8 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -47,29 +45,15 @@ public class ApuestaTest extends SpringTest{
 		victoriaVisitante.setValor(2.76d);
 		empate.setNombre("Empate");
 		empate.setValor(1.81d);
-		
-		//Creando un set de cuotas con las opciones recien creadas
-		Set<Cuota> cuotas = new HashSet<Cuota>();
-		cuotas.add(victoriaLocal);
-		cuotas.add(empate);
-		cuotas.add(victoriaVisitante);
-		
-		//Asignando las cuotas creadas al evento creado anteriormente
-		evento.setCuotas(cuotas);
+		victoriaLocal.setEvento(evento);
+		victoriaVisitante.setEvento(evento);
+		empate.setEvento(evento);
 		
 		//Creando una apuesta que realiza pepe para el evento denominado superclasico
 		Apuesta apuesta = new Apuesta();
 		apuesta.setApostador(pepe);
 		apuesta.setCantidadApostada(10.00d);
 		apuesta.setEvento(evento);
-		
-		/*Suponiendo que se le presenta las opciones al usuario y el elige "Gana Boca"
-		 * - Selecciona el evento en el que quiere apostar (el del superclasico)
-		 * - Se le ofrecen las cuotas correspondientes*/
-		for (Cuota cuota : cuotas) {
-			if(cuota.getNombre().equals("Gana Boca"))
-				apuesta.setCuotaApostada(cuota.getValor());
-		}		
 		
 		//Guardando en la BDD el usuario
 		getSession().save(pepe);
@@ -126,11 +110,13 @@ public class ApuestaTest extends SpringTest{
 			assertThat(e.getNombre()).isEqualTo("Resultado");
 		}
 		
-		/*Obteniendo todos los eventos de tipo "Resultado" donde "River Plate" es visitante
+		/*Obteniendo todos los eventos de tipo "Resultado" donde hay un partido en el 
+		 * que "River Plate" es visitante.
 		 * NOTA: Notese que hay dos 'createCriteria'. Usar tres 'createAlias' no funciona
 		 * (Me gustaria entender porque)*/
 		List<Evento> eventosDeTipoResultadoDondeRiverEsVisitante;
 		eventosDeTipoResultadoDondeRiverEsVisitante = getSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("nombre", "Resultado"))
 				.createCriteria("partido")
 				.createAlias("visitante", "v")
 				.add(Restrictions.eq("v.nombre", "River Plate"))
@@ -138,6 +124,28 @@ public class ApuestaTest extends SpringTest{
 		for (Evento e : eventosDeTipoResultadoDondeRiverEsVisitante) {
 			assertThat(e.getNombre()).isEqualTo("Resultado");
 			assertThat(e.getPartido().getVisitante().getNombre()).isEqualTo("River Plate");
-		}		
+		}
+		
+		/*Obteniendo las cuotas correspondientes a un evento de una determinada id, 
+		 * que sean de tipo "Resultado" y que el nombre de la cuota sea "Empate"*/		
+		List<Cuota> eventosResultadoQueTienenCuotaEmpate;
+		Long determinadaId = 1L;
+		eventosResultadoQueTienenCuotaEmpate = getSession().createCriteria(Cuota.class)
+				.add(Restrictions.eq("nombre", "Empate"))
+				.createAlias("evento", "e")
+				.add(Restrictions.eq("e.id", determinadaId))
+				.add(Restrictions.eq("e.nombre", "Resultado"))
+				.list();
+		assertThat(eventosResultadoQueTienenCuotaEmpate).hasSize(1);
+		assertThat(eventosResultadoQueTienenCuotaEmpate.get(0).getEvento().getId()).isEqualTo(determinadaId);
+		assertThat(eventosResultadoQueTienenCuotaEmpate.get(0).getNombre()).isEqualTo("Empate");
+		assertThat(eventosResultadoQueTienenCuotaEmpate.get(0).getEvento().getNombre()).isEqualTo("Resultado");
+
+		
+		
+		//ToDo: Traer las cuotas de un evento, en el que hay un partido donde juega River		
+		
+		
+				
 	}
 }
