@@ -1,7 +1,9 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +16,8 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
 	
-	@OneToMany(mappedBy = "apostador")
-	private Set<Apuesta> apuestas = new HashSet<Apuesta>();
+	@OneToMany(mappedBy = "apostador", cascade = CascadeType.ALL)
+	private List<Apuesta> apuestas = new LinkedList<Apuesta>();
 	
 	private String nombreYApellido;
 	private String email;
@@ -29,11 +31,11 @@ public class Usuario {
 		this.id = id;
 	}
 	
-	public Set<Apuesta> getApuestas() {
+	public List<Apuesta> getApuestas() {
 		return apuestas;
 	}
 	
-	public void setApuestas(Set<Apuesta> apuestas) {
+	public void setApuestas(List<Apuesta> apuestas) {
 		this.apuestas = apuestas;
 	}
 	

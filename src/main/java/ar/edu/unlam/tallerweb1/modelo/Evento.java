@@ -6,8 +6,9 @@
  * */
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,11 +28,11 @@ public class Evento {
 	@JoinColumn(name = "id_partido")	
 	private Partido partido;
 	
-	@OneToMany(mappedBy = "evento")
-	private Set<Apuesta> apuestas = new HashSet<Apuesta>();	
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+	private List<Apuesta> apuestas = new LinkedList<Apuesta>();	
 	
-	@OneToMany(mappedBy = "evento")
-	private Set<Cuota> cuotas = new HashSet<Cuota>();
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+	private List<Cuota> cuotas = new LinkedList<Cuota>();
 	
 	private String nombre;
 
@@ -51,19 +52,19 @@ public class Evento {
 		this.partido = partido;
 	}
 
-	public Set<Apuesta> getApuestas() {
+	public List<Apuesta> getApuestas() {
 		return apuestas;
 	}
 
-	public void setApuestas(Set<Apuesta> apuestas) {
+	public void setApuestas(List<Apuesta> apuestas) {
 		this.apuestas = apuestas;
 	}
 
-	public Set<Cuota> getCuotas() {
+	public List<Cuota> getCuotas() {
 		return cuotas;
 	}
 
-	public void setCuotas(Set<Cuota> cuotas) {
+	public void setCuotas(List<Cuota> cuotas) {
 		this.cuotas = cuotas;
 	}
 
