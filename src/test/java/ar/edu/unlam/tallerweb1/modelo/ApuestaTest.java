@@ -96,13 +96,15 @@ public class ApuestaTest extends SpringTest{
 				 *COMIENZO DE ALGUNOS ASSERTS DE PRUEBA!!
 				 *======================================*/
 		
-		//Obteniendo las id de los partidos donde juega "Boca Juniors" de local
+		//Obteniendo los partidos donde juega "Boca Juniors" de local
 		List<Partido> idDePartidosDondeJuegaBocaDeLocal;
 		idDePartidosDondeJuegaBocaDeLocal = getSession().createCriteria(Partido.class)
 				.createAlias("local", "l")
 				.add(Restrictions.eq("l.nombre", "Boca Juniors"))
 				.list();		
-		assertThat(idDePartidosDondeJuegaBocaDeLocal.get(0).getId()).isEqualTo(1L);		
+		for (Partido p : idDePartidosDondeJuegaBocaDeLocal) {
+			assertThat(p.getLocal().getNombre()).isEqualTo("Boca Juniors");
+		}
 		
 		//Obteniendo los equipos que juegan un partido segun una id dada
 		Partido comprobandoPartido = new Partido();
@@ -112,5 +114,30 @@ public class ApuestaTest extends SpringTest{
 				.uniqueResult();
 		assertThat(comprobandoPartido.getLocal().getNombre()).isEqualTo("Boca Juniors");
 		assertThat(comprobandoPartido.getVisitante().getNombre()).isEqualTo("River Plate");
+		assertThat(comprobandoPartido.getGolesLocal()).isEqualTo(0);
+		assertThat(comprobandoPartido.getGolesVisitante()).isEqualTo(0);
+		
+		//Obteniendo todos los eventos de tipo "Resultado"
+		List<Evento> eventosDeTipoResultado;
+		eventosDeTipoResultado = getSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("nombre", "Resultado"))
+				.list();		
+		for (Evento e : eventosDeTipoResultado) {
+			assertThat(e.getNombre()).isEqualTo("Resultado");
+		}
+		
+		//Obteniendo todos los eventos de tipo "Resultado" donde "River Plate" es visitante
+		/*List<Evento> eventosDeTipoResultadoDondeRiverEsVisitante;
+		eventosDeTipoResultadoDondeRiverEsVisitante = getSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("nombre", "Resultado"))
+				.createAlias("partido", "p")
+				.createAlias("p.visitante", "v")
+				.createAlias("v.nombre", "River Plate")
+				.list();		
+		for (Evento e : eventosDeTipoResultadoDondeRiverEsVisitante) {
+			assertThat(e.getNombre()).isEqualTo("Resultado");
+			assertThat(e.getPartido().getVisitante().getNombre()).isEqualTo("River Plate");
+		}*/		
+		
 	}
 }
