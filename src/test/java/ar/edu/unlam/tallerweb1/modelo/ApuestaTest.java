@@ -147,11 +147,23 @@ public class ApuestaTest extends SpringTest{
 		assertThat(listaQueTraeLoDeArriba.get(0).getEvento().getPartido().getVisitante().getNombre()).isEqualTo("River Plate");
 
 		
+		//Traer las apuestas realizadas en un evento en el que exista una cuota llamada "Empate"
+		List<Apuesta> apuestasDondeHayCuotaEmpate;
+		apuestasDondeHayCuotaEmpate = getSession().createCriteria(Apuesta.class)
+				.createAlias("evento", "e")
+				.createAlias("e.cuotas", "c")
+				.add(Restrictions.eq("c.nombre", "Empate"))
+				.list();
+		assertThat(apuestasDondeHayCuotaEmpate).hasSize(1);
 		
-		//Llegamos a la apuestas W_W
-		//ToDo: Traer los usuarios que apostaron en un partido donde juega Boca por el empate
+		/*Traer usuarios de un determinado nombre que apostaron en un evento de una 
+		 * determinada id*/
 		
+		/*Traer los usuarios que realizaron apuestas en un evento de tipo resultado, donde 
+		 * juega Boca de local realizadas por un determinado usuario, en el que existe una 
+		 * cuota llamada "Gana River"*/
 		
+
 				
 	}
 }
