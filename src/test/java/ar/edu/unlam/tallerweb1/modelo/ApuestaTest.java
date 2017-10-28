@@ -5,9 +5,7 @@ import java.util.Set;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
 import ar.edu.unlam.tallerweb1.SpringTest;
-import ar.edu.unlam.tallerweb1.modelo.*;
 
 public class ApuestaTest extends SpringTest{	
 	@Test
@@ -40,8 +38,11 @@ public class ApuestaTest extends SpringTest{
 		Cuota victoriaVisitante = new Cuota();
 		Cuota empate = new Cuota();
 		victoriaLocal.setNombre("Gana Boca");
+		victoriaLocal.setValor(2.35d);
 		victoriaVisitante.setNombre("Gana River");
+		victoriaVisitante.setValor(2.76d);
 		empate.setNombre("Empate");
+		empate.setValor(1.81d);
 		
 		//Creando un set de cuotas con las opciones recien creadas
 		Set<Cuota> cuotas = new HashSet<Cuota>();
@@ -85,6 +86,12 @@ public class ApuestaTest extends SpringTest{
 		getSession().save(empate);
 		
 		//Guardando en la BDD la apuesta
-		getSession().save(apuesta);		
+		getSession().save(apuesta);	
+		
+				/*=======================================
+				 *COMIENZO DE ALGUNOS ASSERTS DE PRUEBA!!
+				 *======================================*/
+		
+		
 	}
 }
