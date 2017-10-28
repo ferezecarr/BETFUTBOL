@@ -126,18 +126,18 @@ public class ApuestaTest extends SpringTest{
 			assertThat(e.getNombre()).isEqualTo("Resultado");
 		}
 		
-		//Obteniendo todos los eventos de tipo "Resultado" donde "River Plate" es visitante
-		/*List<Evento> eventosDeTipoResultadoDondeRiverEsVisitante;
+		/*Obteniendo todos los eventos de tipo "Resultado" donde "River Plate" es visitante
+		 * NOTA: Notese que hay dos 'createCriteria'. Usar tres 'createAlias' no funciona
+		 * (Me gustaria entender porque)*/
+		List<Evento> eventosDeTipoResultadoDondeRiverEsVisitante;
 		eventosDeTipoResultadoDondeRiverEsVisitante = getSession().createCriteria(Evento.class)
-				.add(Restrictions.eq("nombre", "Resultado"))
-				.createAlias("partido", "p")
-				.createAlias("p.visitante", "v")
-				.createAlias("v.nombre", "River Plate")
-				.list();		
+				.createCriteria("partido")
+				.createAlias("visitante", "v")
+				.add(Restrictions.eq("v.nombre", "River Plate"))
+				.list();	
 		for (Evento e : eventosDeTipoResultadoDondeRiverEsVisitante) {
 			assertThat(e.getNombre()).isEqualTo("Resultado");
 			assertThat(e.getPartido().getVisitante().getNombre()).isEqualTo("River Plate");
-		}*/		
-		
+		}		
 	}
 }
