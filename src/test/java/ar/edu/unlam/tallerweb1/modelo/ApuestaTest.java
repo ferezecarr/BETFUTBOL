@@ -1,8 +1,11 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.SpringTest;
@@ -10,7 +13,8 @@ import ar.edu.unlam.tallerweb1.SpringTest;
 public class ApuestaTest extends SpringTest{	
 	@Test
 	@Transactional
-	@Rollback(true)	
+	@Rollback(true)
+	@SuppressWarnings("unchecked")
 	public void testApuesta() {		
 		//Creando un usuario
 		Usuario pepe = new Usuario();
@@ -92,6 +96,21 @@ public class ApuestaTest extends SpringTest{
 				 *COMIENZO DE ALGUNOS ASSERTS DE PRUEBA!!
 				 *======================================*/
 		
+		//Obteniendo las id de los partidos donde juega "Boca Juniors" de local
+		List<Partido> idDePartidosDondeJuegaBocaDeLocal;
+		idDePartidosDondeJuegaBocaDeLocal = getSession().createCriteria(Partido.class)
+				.createAlias("local", "l")
+				.add(Restrictions.eq("l.nombre", "Boca Juniors"))
+				.list();		
+		assertThat(idDePartidosDondeJuegaBocaDeLocal.get(0).getId()).isEqualTo(1L);		
 		
+		//Obteniendo los equipos que juegan un partido segun una id dada
+		Partido comprobandoPartido = new Partido();
+		Long idDadaComprobarPartido = 1L;
+		comprobandoPartido = (Partido)getSession().createCriteria(Partido.class)
+				.add(Restrictions.eq("id", idDadaComprobarPartido))
+				.uniqueResult();
+		assertThat(comprobandoPartido.getLocal().getNombre()).isEqualTo("Boca Juniors");
+		assertThat(comprobandoPartido.getVisitante().getNombre()).isEqualTo("River Plate");
 	}
 }
