@@ -35,7 +35,7 @@ public class ApuestaTest extends SpringTest{
 		evento.setNombre("Resultado");
 		evento.setPartido(superClasico);
 		
-		//Creando las cuotas que se pueden elegir en un evento
+		//Creando las cuotas y asignandolas a un evento
 		Cuota victoriaLocal = new Cuota();
 		Cuota victoriaVisitante = new Cuota();
 		Cuota empate = new Cuota();
@@ -127,23 +127,29 @@ public class ApuestaTest extends SpringTest{
 		}
 		
 		/*Obteniendo las cuotas correspondientes a un evento de una determinada id, 
-		 * que sean de tipo "Resultado" y que el nombre de la cuota sea "Empate"*/		
-		List<Cuota> eventosResultadoQueTienenCuotaEmpate;
+		 * que sean de tipo "Resultado" y que el nombre de la cuota sea "Empate". 
+		 * Siempre y cuando, en el partido del evento juege River de visitante*/		
+		List<Cuota> listaQueTraeLoDeArriba;
 		Long determinadaId = 1L;
-		eventosResultadoQueTienenCuotaEmpate = getSession().createCriteria(Cuota.class)
+		listaQueTraeLoDeArriba = getSession().createCriteria(Cuota.class)
 				.add(Restrictions.eq("nombre", "Empate"))
 				.createAlias("evento", "e")
 				.add(Restrictions.eq("e.id", determinadaId))
 				.add(Restrictions.eq("e.nombre", "Resultado"))
+				.createCriteria("e.partido")
+				.createAlias("visitante", "v")
+				.add(Restrictions.eq("v.nombre", "River Plate"))
 				.list();
-		assertThat(eventosResultadoQueTienenCuotaEmpate).hasSize(1);
-		assertThat(eventosResultadoQueTienenCuotaEmpate.get(0).getEvento().getId()).isEqualTo(determinadaId);
-		assertThat(eventosResultadoQueTienenCuotaEmpate.get(0).getNombre()).isEqualTo("Empate");
-		assertThat(eventosResultadoQueTienenCuotaEmpate.get(0).getEvento().getNombre()).isEqualTo("Resultado");
+		assertThat(listaQueTraeLoDeArriba).hasSize(1);
+		assertThat(listaQueTraeLoDeArriba.get(0).getEvento().getId()).isEqualTo(determinadaId);
+		assertThat(listaQueTraeLoDeArriba.get(0).getNombre()).isEqualTo("Empate");
+		assertThat(listaQueTraeLoDeArriba.get(0).getEvento().getNombre()).isEqualTo("Resultado");
+		assertThat(listaQueTraeLoDeArriba.get(0).getEvento().getPartido().getVisitante().getNombre()).isEqualTo("River Plate");
 
 		
 		
-		//ToDo: Traer las cuotas de un evento, en el que hay un partido donde juega River		
+		//Llegamos a la apuestas W_W
+		//ToDo: Traer los usuarios que apostaron en un partido donde juega Boca por el empate
 		
 		
 				
