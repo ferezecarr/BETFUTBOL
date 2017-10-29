@@ -176,16 +176,17 @@ public class ApuestaTest extends SpringTest{
 		assertThat(apuestasDondeHayCuotaEmpate).hasSize(1);
 		
 		/*Traer usuarios de un determinado nombre que apostaron en un evento de una 
-		 * determinada id*/
-		List<Apuesta> loDeArriba;
-		loDeArriba = getSession().createCriteria(Apuesta.class)
-				.createAlias("apostador", "a")
-				.add(Restrictions.eq("a.nombreYApellido", "Pepe Pompin"))
-				.createAlias("evento", "e")
+		 * determinada id*/		
+		List<Usuario> alo;
+		alo = getSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("nombreYApellido", "Pepe Pompin"))
+				.createAlias("apuestas", "a")
+				.createAlias("a.evento", "e")
 				.add(Restrictions.eq("e.id", 1L))
 				.list();
-		assertThat(loDeArriba.get(0).getApostador().getNombreYApellido()).isEqualTo("Pepe Pompin");
-		assertThat(loDeArriba.get(0).getEvento().getId()).isEqualTo(1L);
+		assertThat(alo).hasSize(1);
+		assertThat(alo.get(0).getNombreYApellido()).isEqualTo("Pepe Pompin");
+		assertThat(alo.get(0).getApuestas().get(0).getEvento().getId()).isEqualTo(1L);
 		
 		/*Traer los usuarios que realizaron apuestas en un evento de tipo resultado, donde 
 		 * juega Boca de local realizadas por un determinado usuario, en el que existe una 
