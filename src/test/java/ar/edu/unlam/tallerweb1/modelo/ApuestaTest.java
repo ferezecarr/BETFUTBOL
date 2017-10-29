@@ -177,21 +177,35 @@ public class ApuestaTest extends SpringTest{
 		
 		/*Traer usuarios de un determinado nombre que apostaron en un evento de una 
 		 * determinada id*/		
-		List<Usuario> alo;
-		alo = getSession().createCriteria(Usuario.class)
+		List<Usuario> loDeArriba;
+		loDeArriba = getSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("nombreYApellido", "Pepe Pompin"))
 				.createAlias("apuestas", "a")
 				.createAlias("a.evento", "e")
 				.add(Restrictions.eq("e.id", 1L))
 				.list();
-		assertThat(alo).hasSize(1);
-		assertThat(alo.get(0).getNombreYApellido()).isEqualTo("Pepe Pompin");
-		assertThat(alo.get(0).getApuestas().get(0).getEvento().getId()).isEqualTo(1L);
+		assertThat(loDeArriba).hasSize(1);
+		assertThat(loDeArriba.get(0).getNombreYApellido()).isEqualTo("Pepe Pompin");
+		assertThat(loDeArriba.get(0).getApuestas().get(0).getEvento().getId()).isEqualTo(1L);
 		
 		/*Traer los usuarios que realizaron apuestas en un evento de tipo resultado, donde 
-		 * juega Boca de local realizadas por un determinado usuario, en el que existe una 
-		 * cuota llamada "Gana River"*/
+		 * juega Boca de local, en el que existe una cuota llamada "Gana River"*/
+		List<Usuario> estaEsHeavy;
+		estaEsHeavy = getSession().createCriteria(Usuario.class)
+				.createAlias("apuestas", "a")
+				.createAlias("a.evento", "e")
+				.add(Restrictions.eq("e.nombre", "Resultado"))
+				.createAlias("e.partido", "p")
+				.createAlias("p.local", "l")
+				.add(Restrictions.eq("l.nombre", "Boca Juniors"))
+				.createAlias("e.cuotas", "c")
+				.add(Restrictions.eq("c.nombre", "Gana River"))
+				.list();
 		
+		assertThat(estaEsHeavy).hasSize(1);
+		assertThat(estaEsHeavy.get(0).getApuestas().get(0).getEvento().getNombre()).isEqualTo("Resultado");
+		assertThat(estaEsHeavy.get(0).getApuestas().get(0).getEvento().getPartido().getLocal().getNombre()).isEqualTo("Boca Juniors");
+		assertThat(estaEsHeavy.get(0).getApuestas().get(0).getEvento().getCuotas().get(1).getNombre()).isEqualTo("Gana River");
 
 				
 	}
