@@ -5,208 +5,295 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.SpringTest;
 
+@SuppressWarnings("unchecked")
 public class ApuestaTest extends SpringTest{	
+	private Usuario usuario1, usuario2;
+	private Equipo equipo1, equipo2, equipo3;
+	private Partido partido1, partido2;
+	private Evento evento1, evento2;
+	private Cuota cuota1, cuota2, cuota3, cuota4;
+	private @SuppressWarnings("rawtypes")List lCuotas1, lCuotas2;
+	private Apuesta apuesta1, apuesta2;
+	private @SuppressWarnings("rawtypes")List lApuestas1, lApuestas2;
+	
+	@Before
+	public void inicializacionAntesDeCadaTest(){
+		usuario1	=		new Usuario();
+		usuario2	=		new Usuario();
+		equipo1		=		new Equipo();
+		equipo2		=		new Equipo();
+		equipo3		=		new Equipo();
+		partido1	=		new Partido();
+		partido2	=		new Partido();
+		evento1		=		new Evento();
+		evento2		=		new Evento();
+		cuota1		=		new Cuota();
+		cuota2		=		new Cuota();
+		cuota3		=		new Cuota();
+		cuota4		=		new Cuota();
+		apuesta1	=		new Apuesta();
+		apuesta2	=		new Apuesta();
+		lCuotas1 	=		new LinkedList<Cuota>();
+		lCuotas2	=		new LinkedList<Cuota>();
+		lApuestas1	=		new LinkedList<Apuesta>();
+		lApuestas2	=		new LinkedList<Apuesta>();
+	}
+	
 	@Test
 	@Transactional
 	@Rollback(true)
-	@SuppressWarnings("unchecked")
-	public void testApuesta() {		
-		//Creando un usuario
-		Usuario pepe = new Usuario();
-		pepe.setNombreYApellido("Pepe Pompin");
+	public void testQueTraeLosPartidosDondeArgentinaJuegaDeLocal(){
+		equipo1.setNombre("Argentina");
+		equipo2.setNombre("Brasil");
+		partido1.setLocal(equipo1);
+		partido1.setVisitante(equipo2);
+		partido2.setLocal(equipo2);
+		partido2.setVisitante(equipo1);
 		
-		//Creando dos equipos de futbol
-		Equipo Boca = new Equipo();
-		Equipo River = new Equipo();
-		Boca.setNombre("Boca Juniors");
-		River.setNombre("River Plate");
+		/*Si se obvian los saves del equipos, no se puede armar la lista cuando se trae 
+		 * desde criteria los partidos*/
+		getSession().save(equipo1);
+		getSession().save(equipo2);		
+		getSession().save(partido1);
+		getSession().save(partido2);
 		
-		//Creando un partido
-		Partido superClasico = new Partido();
-		superClasico.setLocal(Boca);
-		superClasico.setVisitante(River);
+		List<Equipo> listaEquipos = getSession().createCriteria(Equipo.class)
+				.list();
 		
-		//Creando un evento por el que se puede apostar
-		Evento evento = new Evento();
-		evento.setNombre("Resultado");
-		evento.setPartido(superClasico);
-		
-		//Creando las cuotas y asignandolas a un evento
-		Cuota victoriaLocal = new Cuota();
-		Cuota victoriaVisitante = new Cuota();
-		Cuota empate = new Cuota();
-		victoriaLocal.setNombre("Gana Boca");
-		victoriaLocal.setValor(2.35d);
-		victoriaVisitante.setNombre("Gana River");
-		victoriaVisitante.setValor(2.76d);
-		empate.setNombre("Empate");
-		empate.setValor(1.81d);
-		victoriaLocal.setEvento(evento);
-		victoriaVisitante.setEvento(evento);
-		empate.setEvento(evento);
-		
-		/*Esto es porque la relacion es bidireccional. Si no lo hago, cuando criteria 
-		 * traiga los objetos, el evento.getCuotas() no va tener nada.
-		 * Es lo mismo con las relaciones 'apuesta-relacion'/'apuesta-usuario'*/
-		List<Cuota> aux1 = new LinkedList<Cuota>();
-		aux1.add(victoriaLocal);
-		aux1.add(victoriaVisitante);
-		aux1.add(empate);
-		evento.setCuotas(aux1);
-		
-		//Creando una apuesta que realiza pepe para el evento denominado superclasico
-		Apuesta apuesta = new Apuesta();
-		apuesta.setApostador(pepe);
-		apuesta.setCantidadApostada(10.00d);
-		apuesta.setCuotaApostada(empate.getValor());
-		apuesta.setEvento(evento);
-		
-		//Por la bidireccionalidad
-		List<Apuesta> aux2 = new LinkedList<Apuesta>();
-		aux2.add(apuesta);
-		pepe.setApuestas(aux2);
-		evento.setApuestas(aux2);
-		
-		//Guardando en la BDD el usuario
-		getSession().save(pepe);
-		
-		//Guardando en la BDD los equipos
-		getSession().save(Boca);
-		getSession().save(River);
-		
-		//Guardando en la BDD el partido
-		getSession().save(superClasico);
-		
-		//Guardando en la BDD el evento
-		getSession().save(evento);
-		
-		//Guardando en la BDD las cuotas
-		getSession().save(victoriaLocal);
-		getSession().save(victoriaVisitante);
-		getSession().save(empate);
-		
-		//Guardando en la BDD la apuesta
-		getSession().save(apuesta);	
-		
-				/*=======================================
-				 *COMIENZO DE ALGUNOS ASSERTS DE PRUEBA!!
-				 *======================================*/
-		
-		//Obteniendo los partidos donde juega "Boca Juniors" de local
-		List<Partido> idDePartidosDondeJuegaBocaDeLocal;
-		idDePartidosDondeJuegaBocaDeLocal = getSession().createCriteria(Partido.class)
+		List<Partido> listaPartidos = getSession().createCriteria(Partido.class)
 				.createAlias("local", "l")
-				.add(Restrictions.eq("l.nombre", "Boca Juniors"))
-				.list();		
-		for (Partido p : idDePartidosDondeJuegaBocaDeLocal) {
-			assertThat(p.getLocal().getNombre()).isEqualTo("Boca Juniors");
-		}
+				.add(Restrictions.eq("l.nombre", "Argentina"))
+				.list();
 		
-		//Obteniendo los equipos que juegan un partido segun una id dada
-		Partido comprobandoPartido = new Partido();
-		Long idDadaComprobarPartido = 1L;
-		comprobandoPartido = (Partido)getSession().createCriteria(Partido.class)
-				.add(Restrictions.eq("id", idDadaComprobarPartido))
-				.uniqueResult();
-		assertThat(comprobandoPartido.getLocal().getNombre()).isEqualTo("Boca Juniors");
-		assertThat(comprobandoPartido.getVisitante().getNombre()).isEqualTo("River Plate");
-		assertThat(comprobandoPartido.getGolesLocal()).isEqualTo(0);
-		assertThat(comprobandoPartido.getGolesVisitante()).isEqualTo(0);
+		assertThat(listaPartidos).hasSize(1);
+		assertThat(listaPartidos.get(0).getLocal().getNombre()).isEqualTo("Argentina");
+		assertThat(listaPartidos.get(0).getVisitante().getNombre()).isEqualTo("Brasil");
+		assertThat(listaEquipos).hasSize(2);
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testQueTraeLosEquiposQueSeEnfrentanEnUnEventoDeTipoResultado(){
+		equipo1.setNombre("Mexico");
+		equipo2.setNombre("Costa Rica");
+		equipo3.setNombre("Panama");
+		getSession().save(equipo1);
+		getSession().save(equipo2);
+		getSession().save(equipo3);
 		
-		//Obteniendo todos los eventos de tipo "Resultado"
-		List<Evento> eventosDeTipoResultado;
-		eventosDeTipoResultado = getSession().createCriteria(Evento.class)
+		partido1.setLocal(equipo1);
+		partido1.setVisitante(equipo2);
+		partido2.setLocal(equipo3);
+		partido2.setVisitante(equipo1);
+		getSession().save(partido1);
+		getSession().save(partido2);
+		
+		evento1.setPartido(partido1);
+		evento1.setNombre("Resultado Especifico");
+		evento2.setPartido(partido2);
+		evento2.setNombre("Resultado");
+		getSession().save(evento1);
+		getSession().save(evento2);
+		
+		//Asegurandome de que se crean la cantidad de cosas que espero
+		assertThat(getSession().createCriteria(Equipo.class).list()).hasSize(3);
+		assertThat(getSession().createCriteria(Partido.class).list()).hasSize(2);
+		assertThat(getSession().createCriteria(Evento.class).list()).hasSize(2);
+		
+		List<Evento> lista = getSession().createCriteria(Evento.class)
 				.add(Restrictions.eq("nombre", "Resultado"))
-				.list();		
-		for (Evento e : eventosDeTipoResultado) {
-			assertThat(e.getNombre()).isEqualTo("Resultado");
-		}
+				.list();
 		
-		/*Obteniendo todos los eventos de tipo "Resultado" donde hay un partido en el 
-		 * que "River Plate" es visitante.
-		 * NOTA: Notese que hay dos 'createCriteria'. Usar tres 'createAlias' no funciona
-		 * (Me gustaria entender porque)*/
-		List<Evento> eventosDeTipoResultadoDondeRiverEsVisitante;
-		eventosDeTipoResultadoDondeRiverEsVisitante = getSession().createCriteria(Evento.class)
-				.add(Restrictions.eq("nombre", "Resultado"))
-				.createCriteria("partido")
-				.createAlias("visitante", "v")
-				.add(Restrictions.eq("v.nombre", "River Plate"))
-				.list();	
-		for (Evento e : eventosDeTipoResultadoDondeRiverEsVisitante) {
-			assertThat(e.getNombre()).isEqualTo("Resultado");
-			assertThat(e.getPartido().getVisitante().getNombre()).isEqualTo("River Plate");
-		}
+		assertThat(lista).hasSize(1);
+		assertThat(lista.get(0).getPartido().getLocal().getNombre()).isEqualTo("Panama");
+		assertThat(lista.get(0).getPartido().getVisitante().getNombre()).isEqualTo("Mexico");
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testQueTraeLasCuotasDeUnEventoDeTipoResultado(){
+		//Seteo equipos y los guardo
+		equipo1.setNombre("Barcelona");
+		equipo2.setNombre("Real Madrid");
+		equipo3.setNombre("Milan");
+		getSession().save(equipo1);
+		getSession().save(equipo2);
+		getSession().save(equipo3);
 		
-		/*Obteniendo las cuotas correspondientes a un evento de una determinada id, 
-		 * que sean de tipo "Resultado" y que el nombre de la cuota sea "Empate". 
-		 * Siempre y cuando, en el partido del evento juege River de visitante*/		
-		List<Cuota> listaQueTraeLoDeArriba;
-		Long determinadaId = 1L;
-		listaQueTraeLoDeArriba = getSession().createCriteria(Cuota.class)
-				.add(Restrictions.eq("nombre", "Empate"))
+		//Seteo partidos y los guardo
+		partido1.setLocal(equipo1);
+		partido1.setVisitante(equipo2);
+		partido2.setLocal(equipo2);
+		partido2.setVisitante(equipo3);
+		getSession().save(partido1);
+		getSession().save(partido2);
+		
+		//Seteo cuotas
+		cuota1.setNombre("Gana el local");
+		cuota1.setValor(2.05d);
+		cuota2.setNombre("Empate");
+		cuota2.setValor(2.63d);
+		cuota3.setNombre("Gana el visitante");
+		cuota3.setValor(2.99d);
+		cuota4.setNombre("Gana Milan");
+		cuota4.setValor(2.33d);
+		
+		//Asigno un evento a cada cuota
+		cuota1.setEvento(evento2);
+		cuota2.setEvento(evento2);
+		cuota3.setEvento(evento2);
+		cuota4.setEvento(evento1);
+		
+		//Seteo eventos
+		evento1.setNombre("Jugador hace un gol");
+		evento2.setNombre("Resultado");
+		evento1.setPartido(partido1);
+		evento2.setPartido(partido2);
+		
+		//Asigno una lista de cuotas a cada evento
+		lCuotas1.add(cuota4);
+		lCuotas2.add(cuota1);
+		lCuotas2.add(cuota2);
+		lCuotas2.add(cuota3);				
+		evento1.setCuotas(lCuotas1);
+		evento2.setCuotas(lCuotas2);
+		
+		//Guardo cuotas
+		getSession().save(cuota1);
+		getSession().save(cuota2);
+		getSession().save(cuota3);
+		getSession().save(cuota4);
+		
+		//Guardo eventos
+		getSession().save(evento1);
+		getSession().save(evento2);
+		
+		//Asegurando que las cosas se guardaron como esperaba
+		assertThat(getSession().createCriteria(Equipo.class).list()).hasSize(3);
+		assertThat(getSession().createCriteria(Partido.class).list()).hasSize(2);
+		assertThat(getSession().createCriteria(Evento.class).list()).hasSize(2);
+		assertThat(getSession().createCriteria(Cuota.class).list()).hasSize(4);
+		
+		List<Cuota> lista;
+		lista = getSession().createCriteria(Cuota.class)
 				.createAlias("evento", "e")
-				.add(Restrictions.eq("e.id", determinadaId))
 				.add(Restrictions.eq("e.nombre", "Resultado"))
-				.createCriteria("e.partido")
-				.createAlias("visitante", "v")
-				.add(Restrictions.eq("v.nombre", "River Plate"))
-				.list();
-		assertThat(listaQueTraeLoDeArriba).hasSize(1);
-		assertThat(listaQueTraeLoDeArriba.get(0).getEvento().getId()).isEqualTo(determinadaId);
-		assertThat(listaQueTraeLoDeArriba.get(0).getNombre()).isEqualTo("Empate");
-		assertThat(listaQueTraeLoDeArriba.get(0).getEvento().getNombre()).isEqualTo("Resultado");
-		assertThat(listaQueTraeLoDeArriba.get(0).getEvento().getPartido().getVisitante().getNombre()).isEqualTo("River Plate");
-
+				.list();		
+	
+		assertThat(lista).hasSize(3);
+		assertThat(lista.get(0).getNombre()).isEqualTo("Gana el local");
+		assertThat(lista.get(1).getNombre()).isEqualTo("Empate");
+		assertThat(lista.get(2).getNombre()).isEqualTo("Gana el visitante");
+		for (Cuota cuota : lista) {
+			assertThat(cuota.getEvento().getNombre()).isEqualTo("Resultado");
+		}	
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testQueTraeUsuariosQueApostaronPorUnEmpateEnUnEventoDondeEnElPartidoBarcelonaEsLocal(){
+		//Seteo usuarios y los guardo		
+		usuario1.setNombreYApellido("Pepe Pompin");
+		usuario2.setNombreYApellido("Juan Perez");
+		getSession().save(usuario1);
+		getSession().save(usuario2);		
 		
-		//Traer las apuestas realizadas en un evento en el que exista una cuota llamada "Empate"
-		List<Apuesta> apuestasDondeHayCuotaEmpate;
-		apuestasDondeHayCuotaEmpate = getSession().createCriteria(Apuesta.class)
-				.createAlias("evento", "e")
-				.createAlias("e.cuotas", "c")
-				.add(Restrictions.eq("c.nombre", "Empate"))
-				.list();
-		assertThat(apuestasDondeHayCuotaEmpate).hasSize(1);
+		//Seteo equipos y los guardo
+		equipo1.setNombre("Barcelona");
+		equipo2.setNombre("Real Madrid");
+		getSession().save(equipo1);
+		getSession().save(equipo2);
 		
-		/*Traer usuarios de un determinado nombre que apostaron en un evento de una 
-		 * determinada id*/		
-		List<Usuario> loDeArriba;
-		loDeArriba = getSession().createCriteria(Usuario.class)
-				.add(Restrictions.eq("nombreYApellido", "Pepe Pompin"))
+		//Seteo partidos y los guardo
+		partido1.setLocal(equipo1);
+		partido1.setVisitante(equipo2);
+		getSession().save(partido1);
+		
+		//Seteo cuotas
+		cuota1.setNombre("Gana el local");
+		cuota1.setValor(2.05d);
+		cuota2.setNombre("Empate");
+		cuota2.setValor(2.63d);
+		cuota3.setNombre("Gana el visitante");
+		cuota3.setValor(2.99d);
+		
+		//Asigno un evento a cada cuota
+		cuota1.setEvento(evento1);
+		cuota2.setEvento(evento1);
+		cuota3.setEvento(evento1);
+		
+		//Seteo eventos
+		evento1.setNombre("Resultado");
+		evento1.setPartido(partido1);
+		
+		//Asigno una lista de cuotas a cada evento
+		lCuotas1.add(cuota1);
+		lCuotas1.add(cuota2);
+		lCuotas1.add(cuota3);				
+		evento1.setCuotas(lCuotas1);
+		
+		//Guardo cuotas
+		getSession().save(cuota1);
+		getSession().save(cuota2);
+		getSession().save(cuota3);
+		
+		//Guardo eventos
+		getSession().save(evento1);	
+		
+		//Seteo apuestas (Tambien del lado del usuario, por la bidireccionalidad)
+		apuesta1.setApostador(usuario1);
+		apuesta1.setEvento(evento1);
+		apuesta1.setCuotaNombre("Empate");
+		apuesta1.setCantidadApostada(100d);
+		apuesta1.setCuotaValor(2.63d);	
+		
+		apuesta2.setApostador(usuario2);		
+		apuesta2.setEvento(evento1);		
+		apuesta2.setCuotaNombre("Gana el visitante");		
+		apuesta2.setCantidadApostada(25d);		
+		apuesta2.setCuotaValor(2.99d);
+		
+		lApuestas1.add(apuesta1);
+		lApuestas2.add(apuesta2);
+		usuario1.setApuestas(lApuestas1);
+		usuario2.setApuestas(lApuestas2);
+		
+		//Guardo apuestas		
+		getSession().save(apuesta1);
+		getSession().save(apuesta2);
+		
+		List<Usuario> lista;
+		lista = getSession().createCriteria(Usuario.class)
 				.createAlias("apuestas", "a")
 				.createAlias("a.evento", "e")
-				.add(Restrictions.eq("e.id", 1L))
-				.list();
-		assertThat(loDeArriba).hasSize(1);
-		assertThat(loDeArriba.get(0).getNombreYApellido()).isEqualTo("Pepe Pompin");
-		assertThat(loDeArriba.get(0).getApuestas().get(0).getEvento().getId()).isEqualTo(1L);
-		
-		/*Traer los usuarios que realizaron apuestas en un evento de tipo resultado, donde 
-		 * juega Boca de local, en el que existe una cuota llamada "Gana River"*/
-		List<Usuario> estaEsHeavy;
-		estaEsHeavy = getSession().createCriteria(Usuario.class)
-				.createAlias("apuestas", "a")
-				.createAlias("a.evento", "e")
-				.add(Restrictions.eq("e.nombre", "Resultado"))
+				.add(Restrictions.eq("a.cuotaNombre", "Empate"))
 				.createAlias("e.partido", "p")
 				.createAlias("p.local", "l")
-				.add(Restrictions.eq("l.nombre", "Boca Juniors"))
-				.createAlias("e.cuotas", "c")
-				.add(Restrictions.eq("c.nombre", "Gana River"))
+				.add(Restrictions.eq("l.nombre", "Barcelona"))				
 				.list();
 		
-		assertThat(estaEsHeavy).hasSize(1);
-		assertThat(estaEsHeavy.get(0).getApuestas().get(0).getEvento().getNombre()).isEqualTo("Resultado");
-		assertThat(estaEsHeavy.get(0).getApuestas().get(0).getEvento().getPartido().getLocal().getNombre()).isEqualTo("Boca Juniors");
-		assertThat(estaEsHeavy.get(0).getApuestas().get(0).getEvento().getCuotas().get(1).getNombre()).isEqualTo("Gana River");
-
-				
+		assertThat(getSession().createCriteria(Usuario.class).list()).hasSize(2);
+		assertThat(lista).hasSize(1);
+		assertThat(lista.get(0).getApuestas()).hasSize(1);
+		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas()).hasSize(3);
+		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas().get(0).getNombre()).isEqualTo("Gana el local");
+		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas().get(1).getNombre()).isEqualTo("Empate");
+		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas().get(2).getNombre()).isEqualTo("Gana el visitante");
+		assertThat(lista.get(0).getNombreYApellido()).isEqualTo("Pepe Pompin");
+		assertThat(lista.get(0).getApuestas().get(0).getCuotaNombre()).isEqualTo("Empate");
 	}
 }

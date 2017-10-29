@@ -28,7 +28,8 @@ public class Apuesta {
 	private Usuario apostador;
     
 	private Double cantidadApostada = 0.00d;
-	private Double cuotaApostada = 0.00d;
+	private Double cuotaValor = 0.00d;
+	private String cuotaNombre;
 	
 	public Long getId() {
 		return id;
@@ -62,11 +63,19 @@ public class Apuesta {
 		this.cantidadApostada = cantidadApostada;
 	}
 	
-	public Double getCuotaApostada() {
-		return cuotaApostada;
+	public Double getCuotaValor() {
+		return cuotaValor;
 	}
 	
-	public void setCuotaApostada(Double cuotaApostada) {
-		this.cuotaApostada = cuotaApostada;
+	public void setCuotaValor(Double cuotaValor) {
+		this.cuotaValor = cuotaValor;
+	}
+
+	public String getCuotaNombre() {
+		return cuotaNombre;
+	}
+
+	public void setCuotaNombre(String cuotaNombre) {
+		this.cuotaNombre = cuotaNombre;
 	}
 }
