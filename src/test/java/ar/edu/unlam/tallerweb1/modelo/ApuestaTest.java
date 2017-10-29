@@ -283,7 +283,6 @@ public class ApuestaTest extends SpringTest{
 				.add(Restrictions.eq("l.nombre", "Barcelona"))				
 				.list();
 		
-		assertThat(getSession().createCriteria(Usuario.class).list()).hasSize(2);
 		assertThat(lista).hasSize(1);
 		assertThat(lista.get(0).getApuestas()).hasSize(1);
 		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas()).hasSize(3);
