@@ -6,7 +6,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,12 +27,8 @@ public class Apuesta {
     @JoinColumn(name = "apostador_id")	
 	private Usuario apostador;
     
-    @Column(columnDefinition = "DECIMAL(5, 2) DEFAULT 1.00")
-    private Double cantidadApostada = 1.00d;
-    
-    @Column(columnDefinition = "DECIMAL(5, 2) DEFAULT 1.00")
-	private Double cuotaValor = 1.00d;
-	
+    private Double cantidadApostada = 1.00d;    
+	private Double cuotaValor = 1.00d;	
     private String cuotaNombre;
 	
 	public Long getId() {

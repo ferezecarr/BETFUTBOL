@@ -3,7 +3,6 @@
  * un jugador por el que se apueste (hace un gol/es expulsado), etc...*/
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,12 +21,8 @@ public class Cuota {
 	@JoinColumn(name = "evento_id")
 	private Evento evento;
 	
-	@Column(columnDefinition = "DECIMAL(5, 2) DEFAULT 1.00")
-	private Double valor = 1.00d;
-	
-	@Column(columnDefinition = "BIGINT DEFAULT 0")
-	private Long cantidadVotos = 0L;
-	
+	private Double valor = 1.00d;	
+	private Long cantidadVotos = 0L;	
 	private String nombre;
 	
 	public Long getId() {
