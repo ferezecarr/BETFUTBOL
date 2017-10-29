@@ -7,6 +7,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,9 +31,13 @@ public class Partido {
 	@JoinColumn(name = "id_equipo_visitante")
 	private Equipo visitante;	
 	
-	private Date fecha;
+	@Column(columnDefinition = "TINYINT UNSIGNED DEFAULT 0")
 	private Integer golesLocal = 0;
+	
+	@Column(columnDefinition = "TINYINT UNSIGNED DEFAULT 0")
 	private Integer golesVisitante = 0;
+	
+	private Date fecha;
 
 	public Long getId() {
 		return id;
