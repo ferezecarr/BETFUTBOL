@@ -23,6 +23,7 @@ public class Cuota {
 	
 	private String nombre;
 	private Double valor = 0.00d;
+	private Long cantidadVotos = 0L;
 	
 	public Long getId() {
 		return id;
@@ -54,5 +55,13 @@ public class Cuota {
 	
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public Long getCantidadVotos() {
+		return cantidadVotos;
+	}
+
+	public void setCantidadVotos(Long cantidadVotos) {
+		this.cantidadVotos = cantidadVotos;
 	}	
 }
