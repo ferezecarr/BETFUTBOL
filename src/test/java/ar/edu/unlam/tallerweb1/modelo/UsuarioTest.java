@@ -45,8 +45,8 @@ public class UsuarioTest extends SpringTest {
 		usuario2.setPassword("123456");
 		
 		
-		if(this.usuario1.getEmail().equals(this.usuario2)) {
-			throw new Exception("Ya existe un usuario con ese email , por favor elija otro");
+		if(this.usuario1.getEmail().equals(this.usuario2.getEmail()) || this.usuario1.getPassword().equals(this.usuario2.getPassword())) {
+			throw new Exception("Ya existe un usuario con ese email y esa password , por favor elija otro");
 		} else {
 			System.out.println("Usuario valido");
 		}
@@ -66,8 +66,44 @@ public class UsuarioTest extends SpringTest {
 	@Test(expected = Exception.class)
 	@Transactional
 	@Rollback(true)
-	public void testQueAlCrearUnUsuarioNoEscribaSuPasswordYDevuelvaUnError() throws Exception {
-		Usuario usuario1 = new Usuario();
+	public void testQueAlIngresarUnUsuarioNoEscribaSuPasswordYDevuelvaUnError() throws Exception {
+		usuario1.setNombreYApellido("Juan Perez");
+		usuario1.setEmail("juanp@hotmail.com");
+		usuario1.setPassword(null);
+		
+		if(this.usuario1.getPassword() == null) {
+			throw new Exception("Por favor escriba una contraseña");
+		} else {
+			this.usuario1.getPassword();
+		}
+		
+		getSession().save(usuario1);
+		
+		listaDeUsuarios = sesion.createCriteria(Usuario.class)
+							.add(Restrictions.isNull("password")).list();
+		
+		assertThat(listaDeUsuarios.get(0).getPassword()).isNull();
+		assertThat(listaDeUsuarios).hasSize(1);
+			
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test(expected = Exception.class)
+	@Transactional
+	@Rollback(true)
+	public void testQueAlIngresarUnUsuarioEscribaSuPasswordDeFormaIncorrectaYDevuelvaUnError() throws Exception{
+		usuario1.setNombreYApellido("Juan Perez");
+		usuario1.setEmail("juanp@hotmail.com");
+		usuario1.setPassword("123456");
+		
+		if(this.usuario1.getPassword().equals(this.usuario1.getPassword())) {
+			throw new Exception("password incorrecta");
+		} else {
+			this.usuario1.getPassword();
+		}
+		
+		getSession().save(usuario1);
+		
 		
 	}
 
