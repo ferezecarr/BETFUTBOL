@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -21,6 +22,7 @@ public class UsuarioTest extends SpringTest {
 	
 	private Usuario usuario1 , usuario2;
 	private List<Usuario> listaDeUsuarios;
+	private HashSet<Usuario> hashSetDeUsuarios;
 	private Session sesion;
 	
 	@Before
@@ -46,7 +48,7 @@ public class UsuarioTest extends SpringTest {
 		
 		
 		if(this.usuario1.getEmail().equals(this.usuario2.getEmail()) || this.usuario1.getPassword().equals(this.usuario2.getPassword())) {
-			throw new Exception("Ya existe un usuario con ese email y esa password , por favor elija otro");
+			throw new Exception("Ya existe un usuario con ese email , por favor elija otro");
 		} else {
 			System.out.println("Usuario valido");
 		}
