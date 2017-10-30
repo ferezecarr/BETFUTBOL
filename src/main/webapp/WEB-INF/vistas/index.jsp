@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -89,6 +91,24 @@
             </a>
           </div>
         </div>
+        
+        <table class="table table-striped">
+
+<thead>
+
+<tr>
+		<th>Nombre EQUIPO 1</th>
+		<th>Nombre EQUIPO 2</th>
+
+</tr>
+</thead>
+<tbody>
+	<c:forEach items="${equipo}" var="e">
+	
+		<p>${e.nombre}</p>
+
+	</c:forEach>
+	
 
 	
 		

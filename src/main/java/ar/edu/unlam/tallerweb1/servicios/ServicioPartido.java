@@ -6,7 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.Partido;
 
 public interface ServicioPartido {
 
-	List<Partido> listarTodosLosPartidos(Partido partido);
+	List<Partido> listarTodosLosPartidos();
 	void guardarPartido(Partido partido);
 	Partido buscarPorId(Long id);
 	Partido consultarPartido(Partido partido);

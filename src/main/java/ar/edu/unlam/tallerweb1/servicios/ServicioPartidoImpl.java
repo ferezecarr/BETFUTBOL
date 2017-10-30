@@ -27,7 +27,7 @@ public class ServicioPartidoImpl implements ServicioPartido {
 	}
 
 	@Override
-	public List<Partido> listarTodosLosPartidos(Partido partido) {
+	public List<Partido> listarTodosLosPartidos() {
 		return partidoDao.findAll();
 	}
 
