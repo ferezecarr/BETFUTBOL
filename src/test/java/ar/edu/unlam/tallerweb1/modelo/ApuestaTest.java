@@ -292,4 +292,86 @@ public class ApuestaTest extends SpringTest{
 		assertThat(lista.get(0).getNombreYApellido()).isEqualTo("Pepe Pompin");
 		assertThat(lista.get(0).getApuestas().get(0).getCuotaNombre()).isEqualTo("Empate");
 	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testQueTraeEventosDeTipoResultadoYAccedeATodasLasRelaciones(){
+		//Seteo equipos y los guardo
+		equipo1.setNombre("Nueva Zelanda");
+		equipo2.setNombre("Peru");
+		getSession().save(equipo1);
+		getSession().save(equipo2);
+		
+		//Seteo partidos y los guardo
+		partido1.setLocal(equipo1);
+		partido1.setVisitante(equipo2);
+		getSession().save(partido1);
+		getSession().save(partido2);
+		
+		//Seteo cuotas
+		cuota1.setNombre("Gana el local");
+		cuota1.setValor(2.99d);
+		cuota2.setNombre("Empate");
+		cuota2.setValor(2.63d);
+		cuota3.setNombre("Gana el visitante");
+		cuota3.setValor(2.05d);
+		
+		//Asigno un evento a cada cuota (seria como setear el evento_id en la tabla Cuota)
+		cuota1.setEvento(evento1);
+		cuota2.setEvento(evento1);
+		cuota3.setEvento(evento1);
+		
+		//Seteo eventos
+		evento1.setNombre("Resultado");
+		evento1.setPartido(partido1);
+		
+		/*Asigno una lista de cuotas a cada evento...
+		 * (Por la bidireccionalidad, si no hago esto, no puedo acceder a las cuotas 
+		 * desde un evento -la lista de cuotas vendria vacia-. Si se podria al reves, 
+		 * haciendo una lista de Cuotas y filtrando por eventos, pero la idea era 
+		 * traer una lista de Eventos, no de Cuotas -ademas de que suena raro-)*/
+		lCuotas1.add(cuota1);
+		lCuotas1.add(cuota2);
+		lCuotas1.add(cuota3);				
+		evento1.setCuotas(lCuotas1);
+		
+		//Guardo cuotas
+		getSession().save(cuota1);
+		getSession().save(cuota2);
+		getSession().save(cuota3);
+		
+		//Guardo eventos
+		getSession().save(evento1);
+		
+		List<Evento> lista = getSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("nombre", "Resultado"))
+				.list();
+		
+		//Demostrando que se puede accerder
+		assertThat(lista).hasSize(1);
+		assertThat(lista.get(0).getCuotas()).hasSize(3);
+		assertThat(lista.get(0).getCuotas().get(0).getNombre()).isEqualTo("Gana el local");
+		assertThat(lista.get(0).getCuotas().get(1).getNombre()).isEqualTo("Empate");
+		assertThat(lista.get(0).getCuotas().get(2).getNombre()).isEqualTo("Gana el visitante");
+		assertThat(lista.get(0).getPartido().getLocal().getNombre()).isEqualTo("Nueva Zelanda");
+		assertThat(lista.get(0).getPartido().getVisitante().getNombre()).isEqualTo("Peru");
+		assertThat(lista.get(0).getCuotas().get(0).getValor()).isEqualTo(2.99d);
+		assertThat(lista.get(0).getCuotas().get(1).getValor()).isEqualTo(2.63d);
+		assertThat(lista.get(0).getCuotas().get(2).getValor()).isEqualTo(2.05d);
+		
+		//Eso es solo para imprimir en consola y ver que los datos se pueden formatear
+		System.out.println("==============================================");
+		for (Evento e : lista) {
+			System.out.print(e.getPartido().getLocal().getNombre() + 
+					" Vs " + 
+					e.getPartido().getVisitante().getNombre() +
+					" - ");
+			for (Cuota c : e.getCuotas()) {
+				System.out.print(c.getNombre() + ": " + c.getValor() + ". ");
+			}
+			System.out.println();	//Para dejar una linea
+		}
+		System.out.println("==============================================");
+	}		
 }
