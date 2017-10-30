@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JOptionPane;
 
@@ -22,7 +24,7 @@ public class UsuarioTest extends SpringTest {
 	
 	private Usuario usuario1 , usuario2;
 	private List<Usuario> listaDeUsuarios;
-	private HashSet<Usuario> hashSetDeUsuarios;
+	private Set<Usuario> setDeUsuarios;
 	private Session sesion;
 	
 	@Before
@@ -31,6 +33,7 @@ public class UsuarioTest extends SpringTest {
 		usuario2 = new Usuario();
 		sesion = getSession();
 		listaDeUsuarios = new ArrayList<Usuario>();
+		setDeUsuarios = new HashSet<Usuario>();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -108,5 +111,7 @@ public class UsuarioTest extends SpringTest {
 		
 		
 	}
+	
+	
 
 }
