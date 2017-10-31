@@ -15,19 +15,25 @@ import ar.edu.unlam.tallerweb1.modelo.Partido;
 
 @Service("EventoDao")
 @Transactional
+@SuppressWarnings("unchecked")
 public class EventoDaoImpl implements EventoDao{
 	
 	@Inject
-	private SessionFactory sessionFactory;
-	
-	@SuppressWarnings("unchecked")
+	private SessionFactory sessionFactory;	
+
 	@Override
 	public List<Evento> findAll() {
 		List<Evento> evento =  sessionFactory.getCurrentSession().createCriteria(Evento.class).list();
 		return evento;
 	}
 
-	
+	@Override
+	public List<Evento> findByNombre(String nombreDado){
+		List<Evento> evento = sessionFactory.getCurrentSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("nombre", nombreDado))
+				.list();
+		return evento;
+	}
 
 	@Override
 	public Evento findById(Long id) {

@@ -8,5 +8,5 @@ public interface ServicioEvento {
 	Evento consultarEvento (Evento evento);
 	void guardar (Evento evento);
 	List<Evento> listarEventos();
-
+	List<Evento> listarEventosPorNombre(String nombreDado);
 }

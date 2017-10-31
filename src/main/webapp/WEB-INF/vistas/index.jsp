@@ -103,10 +103,13 @@
 </tr>
 </thead>
 <tbody>
-	<c:forEach items="${equipo}" var="e">
-	
-		<p>${e.nombre}</p>
-
+	<c:forEach items="${evento}" var="e">	
+		<p>
+			${e.partido.local.nombre} Vs. ${e.partido.visitante.nombre} | 
+			<c:forEach items="${e.cuotas}" var="c">
+				${c.nombre}: ${c.valor}
+			</c:forEach>
+		</p>
 	</c:forEach>
 	
 
