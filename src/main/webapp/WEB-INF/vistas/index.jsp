@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,116 +13,28 @@
 	
 	
 	<div class="container-fluid">
-	<div class="col-md-12 main">
-	<div class="row">
-	
-	<div class="col-md-2">  
-	
-	<!--  Panel Lateral Izquierdo  -->
-	
-	
-	 </div>
-	
-	<div class="col-md-8">
-	
-	 <ol class="breadcrumb">
-          <li class="breadcrumb-item active">Partidos de la semana</li>
-          <li class="breadcrumb-item active">Apueste al equipo ganador o por un empate entre ambos.</li>
-     </ol>
-	
-
-
-         <div class="panel panel-primary">
-            <div class="panel-heading text-center">CA River Plate - CA Boca Juniors | Superliga Argentina - Fecha 8 - 18:05hs</div>
-
-            <div class="panel-body text-center">
-            
-            <a href="" class="btn btn-default">
-              <span class="glyphicon glyphicon-th-large"></span> River Plate 4.70
-            </a>
-            
-            <a href="" class="btn btn-default">
-            Empate 1.40
-            </a>
-            
-            <a href="" class="btn btn-default">
-              <span class="glyphicon glyphicon-th-large"></span> Boca Juniors 2.25
-            </a>
-          </div>
-        </div>
-    
-
-	
-         <div class="panel panel-primary">
-            <div class="panel-heading text-center">Racing Club - Talleres (Cba.) | Superliga Argentina - Fecha 8 - 20:05hs</div>
-
-            <div class="panel-body text-center">
-            
-            <a href="" class="btn btn-default">
-              <span class="glyphicon glyphicon-th-large"></span> Racing Club 4.70
-            </a>
-            
-            <a href="" class="btn btn-default">
-            Empate 1.40
-            </a>
-            
-            <a href="" class="btn btn-default">
-              <span class="glyphicon glyphicon-th-large"></span> Talleres (Cba.) 3.80
-            </a>
-          </div>
-        </div>
-
-	
-
-         <div class="panel panel-primary">
-            <div class="panel-heading text-center">Velez Sarfield - Unión de Sta. Fe | Superliga Argentina - Fecha 8 - 21:05hs</div>
-
-            <div class="panel-body text-center">
-            
-            <a href="" class="btn btn-default">
-              <span class="glyphicon glyphicon-th-large"></span> Velez Sarfield 3.50
-            </a>
-            
-            <a href="" class="btn btn-default">
-            Empate 2.10
-            </a>
-            
-            <a href="" class="btn btn-default">
-              <span class="glyphicon glyphicon-th-large"></span> Unión (Sta. Fe) 2.25
-            </a>
-          </div>
-        </div>
-        
-        <table class="table table-striped">
-
-<thead>
-
-<tr>
-		<th>Nombre EQUIPO 1</th>
-		<th>Nombre EQUIPO 2</th>
-
-</tr>
-</thead>
-<tbody>
-	<c:forEach items="${evento}" var="e">	
-		<p>
-			<strong>${e.descripcion}</strong><br/>
-			${e.partido.local.nombre} Vs. ${e.partido.visitante.nombre} | 
-			<c:forEach items="${e.cuotas}" var="c">
-				${c.nombre}: ${c.valor}
-			</c:forEach>
-		</p>
-	</c:forEach>
-	
-
-	
+		<div class="col-md-12 main">
+			<div class="row">
 		
-	
-	</div>
-	
-	<div class="col-md-2"><!--  Panel Lateral derecho  --></div>	
-	
-	</div>
-	
-	</div>
+				<div class="col-md-8 col-md-offset-2">
+		 			<ol class="breadcrumb">
+	          			<li class="breadcrumb-item active">Partidos de la semana</li>
+	         			<li class="breadcrumb-item active">Apueste al equipo ganador o por un empate entre ambos.</li>
+	     			</ol>
+					<c:forEach items="${evento}" var="e">
+			         <div class="panel panel-primary">
+			            <div class="panel-heading text-center">${e.partido.local.nombre} Vs.${e.partido.visitante.nombre} ${e.descripcion}</div>
+			            <div class="panel-body text-center">
+			          	<c:forEach items="${e.cuotas}" var="c">
+					            <a href="" class="btn btn-default">
+					              <span class="glyphicon glyphicon-th-large"></span>
+					              	${c.nombre}: ${c.valor} 
+					            </a>  
+			       		</c:forEach>
+			          </div>
+			        </div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
 	</div>
