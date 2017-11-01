@@ -43,7 +43,6 @@ public class ServicioEventoImpl implements ServicioEvento{
 	public List<Evento> listarEventosPorNombre(String nombreDado){
 		List<Evento> evento = eventoServicioDao.findByNombre(nombreDado);
 		for (Evento e : evento) {
-			Hibernate.initialize(e.getApuestas());
 			Hibernate.initialize(e.getCuotas());
 			Hibernate.initialize(e.getPartido());
 			Hibernate.initialize(e.getPartido().getLocal());

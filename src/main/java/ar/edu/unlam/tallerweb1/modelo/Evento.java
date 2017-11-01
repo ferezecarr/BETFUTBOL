@@ -34,7 +34,8 @@ public class Evento {
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
 	private List<Cuota> cuotas = new LinkedList<Cuota>();
 	
-	private String nombre;
+	private String nombre;			//Resultado, Resultado Especifico, Jugador hace gol, etc..
+	private String descripcion;		//"Boca Vs River - Domingo - 18.00hs"
 
 	public Long getId() {
 		return id;
@@ -74,5 +75,13 @@ public class Evento {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}	
 }

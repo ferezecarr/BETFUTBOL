@@ -105,6 +105,7 @@
 <tbody>
 	<c:forEach items="${evento}" var="e">	
 		<p>
+			<strong>${e.descripcion}</strong><br/>
 			${e.partido.local.nombre} Vs. ${e.partido.visitante.nombre} | 
 			<c:forEach items="${e.cuotas}" var="c">
 				${c.nombre}: ${c.valor}

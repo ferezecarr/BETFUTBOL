@@ -20,17 +20,17 @@ INSERT INTO Equipo (nombre) VALUES ("Brasil");
 
 -- Creando cinco partidos
 INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (1,2,'2017-11-05 13:00:00');
-INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (3,4,'2017-11-05 13:00:00');
-INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (5,6,'2017-11-05 16:00:00');
-INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (7,8,'2017-11-05 16:00:00');
-INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (9,10,'2017-11-05 18:30:00');
+INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (3,4,'2017-11-06 13:00:00');
+INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (5,6,'2017-11-07 16:00:00');
+INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (7,8,'2017-11-07 16:00:00');
+INSERT INTO Partido (id_equipo_local, id_equipo_visitante, fecha) VALUES (9,10,'2017-11-08 18:30:00');
 
 -- Creando cinco eventos
-INSERT INTO Evento (id_partido, nombre) VALUES (1, "Resultado");
-INSERT INTO Evento (id_partido, nombre) VALUES (2, "Resultado");
-INSERT INTO Evento (id_partido, nombre) VALUES (3, "Resultado");
-INSERT INTO Evento (id_partido, nombre) VALUES (4, "Resultado");
-INSERT INTO Evento (id_partido, nombre) VALUES (5, "Resultado");
+INSERT INTO Evento (id_partido, nombre, descripcion) VALUES (1, "Resultado", "| Amistoso internacional | 05/11 - 13:00hs");
+INSERT INTO Evento (id_partido, nombre, descripcion) VALUES (2, "Resultado", "| Amistoso internacional | 06/11 - 13:00hs" );
+INSERT INTO Evento (id_partido, nombre, descripcion) VALUES (3, "Resultado", "| Amistoso internacional | 07/11 - 16:00hs" );
+INSERT INTO Evento (id_partido, nombre, descripcion) VALUES (4, "Resultado", "| Amistoso internacional | 07/11 - 16:00hs" );
+INSERT INTO Evento (id_partido, nombre, descripcion) VALUES (5, "Resultado", "| Amistoso internacional | 08/11 - 18:30hs" );
 
 -- Creando muchas cuotas
 INSERT INTO Cuota (evento_id, nombre, valor) VALUES (1, "Gana Argentina", 1.44);
