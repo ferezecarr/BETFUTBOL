@@ -4,7 +4,7 @@
 -- ============================================================================================
 
 -- Creando un usuario
-INSERT INTO Usuario (nombreYApellido, email, password) VALUES ('test','test@test.com','test')
+INSERT INTO Usuario (id,nombreYApellido, email, password) VALUES (1,'test','test@test.com','test')
 
 -- Creando diez equipos
 INSERT INTO Equipo (nombre) VALUES ("Argentina");
