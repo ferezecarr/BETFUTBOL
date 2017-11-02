@@ -15,7 +15,7 @@ public class ServicioApuestaImpl implements ServicioApuesta {
 	private ApuestaDao apuestaServicioDao;		
 	
 	@Override
-	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public void guardar(Apuesta apuesta)
 	{
 	

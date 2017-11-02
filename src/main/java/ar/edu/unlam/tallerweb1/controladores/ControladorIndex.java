@@ -31,22 +31,22 @@ public class ControladorIndex {
 		ModelMap modelo = new ModelMap();
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
 		modelo.put("evento", misEventos);	
-		Apuesta apu= new Apuesta();
+		Apuesta apuesta= new Apuesta();
 		
 		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
 		 * Después cuando exista login, esto se saca*/
 		Usuario usuarioDefault = new Usuario();
 		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
-		apu.setApostador(usuarioDefault);		
+		apuesta.setApostador(usuarioDefault);		
 		
-		modelo.put("apuesta",apu);
+		modelo.put("apuesta",apuesta);
 		modelo.put("usuario", usuarioDefault);
 		
 		return new ModelAndView("index", modelo);
 	}
 
 
-	@RequestMapping(path="/procesar-apuesta}", method=RequestMethod.POST)
+	@RequestMapping(path="/procesar-apuesta", method=RequestMethod.POST)
 	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta)
 	{
 		ModelMap model = new ModelMap();

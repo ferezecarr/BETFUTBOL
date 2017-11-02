@@ -28,7 +28,7 @@
 			            <div class="panel-body text-center">
 			            <p id="descripcion">${e.descripcion}</p>
 			          	<c:forEach items="${e.cuotas}" var="c">
-					            <a data-toggle="modal" href="#myModal" class="btn btn-default">
+					            <a data-toggle="modal" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" onclick="pickOption(this)" href="#myModal" class="btn btn-default">
 					              <span class="glyphicon glyphicon"></span>
 					              	${c.nombre}: ${c.valor} 
 					            </a>  
@@ -57,11 +57,18 @@
           </div>
           <div class="modal-footer">
             <div class="form-group text-center">
-
-              <button class="btn btn-success" data-dismiss="modal" type="submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
+	            <form:form action="procesar-apuesta" method="POST" modelAttribute="apuesta">	
+					<form:hidden path="cuotaNombre" id="cuotaNombre"/>
+					<form:hidden path="cuotaValor" id="cuotaValor"/>
+					<form:hidden path="evento.id" id="evento.id"/>
+					<form:input path="cantidadApostada"/>
+					<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Confirmar" type="Submit">Confirmar</button> 
+					<!-- 
+					<button class="btn btn-success" data-dismiss="modal" name="Submit" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
+					-->
+				</form:form>              
             </div>
           </div>
-
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dalog -->
     </div><!-- /.modal -->
@@ -72,5 +79,15 @@
 <!-- Bootstrap -->
 <script src="./stylesheets/bootstrap/js/bootstrap.min.js"></script>
 
+
+
+
+<script>
+function pickOption(opcion){	
+	document.getElementById("cuotaNombre").value = opcion.getAttribute("name");
+	document.getElementById("cuotaValor").value = opcion.getAttribute("value");
+	document.getElementById("evento.id").value = opcion.getAttribute("eventoId");
+}
+</script>
 </body>
 </html>
