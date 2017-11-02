@@ -27,11 +27,11 @@
 			            <p id="descripcion"> ${e.descripcion}</p>
 			          	<c:forEach items="${e.cuotas}" var="c">
 			          	
-					            <a style="text-decoration:none" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}">
+					            <a style="text-decoration:none" >
 					            <!--  se quita  onclick="pickOption(this)" del <a> para que no desaparesca el panel del partido seleccionado-->
 					           	${c.nombre}: 
 					           	
-					           	<a data-toggle="modal" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}"  href="#myModal" class="btn btn-success">
+					           	<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModal" class="btn btn-success">
 					           	${c.valor}
 					           	</a>
 					           	-
@@ -61,9 +61,9 @@
           <div class="modal-footer">
             <div class="form-group text-center">
 	            <form:form action="procesar-apuesta" method="POST" modelAttribute="apuesta">	
-					<form:hidden path="cuotaNombre" id="cuotaNombre"/>
-					<form:hidden path="cuotaValor" id="cuotaValor"/>
-					<form:hidden path="evento.id" id="evento.id"/>
+					<form:hidden path="cuotaNombre" class="text-info"/>
+					<form:hidden path="cuotaValor" class="text-info"/>
+					<form:hidden path="evento.id" class="text-info"/>
 					
 					<div class="col-md-5">
    					<div class="input-group">
@@ -72,7 +72,7 @@
  					</div>
 					</div>
 
-					<button class="btn btn-success"  name="submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Apostar</button>
+					<button class="btn btn-success" name="submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Apostar</button>
 					<button class="btn btn-default"  data-dismiss="modal" value="Cancelar" type="Submit">Cancelar</button> 
 				</form:form>              
             </div>
