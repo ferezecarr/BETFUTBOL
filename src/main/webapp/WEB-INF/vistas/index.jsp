@@ -26,7 +26,8 @@
 			            <div class="panel-body text-center">
 			            <p id="descripcion">${e.descripcion}</p>
 			          	<c:forEach items="${e.cuotas}" var="c">
-					            <a data-toggle="modal" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" onclick="pickOption(this)" href="#myModal" class="btn btn-default">
+					            <a data-toggle="modal" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}"  href="#myModal" class="btn btn-default">
+					            <!--  se quita  onclick="pickOption(this)" del <a> para que no desaparesca el panel del partido seleccionado-->
 					              <span class="glyphicon glyphicon"></span>
 					              	${c.nombre}: ${c.valor} 
 					            </a>  
@@ -47,11 +48,10 @@
         <div class="modal-content">
 
           <div class="modal-header">
-            <a class="btn" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
             <h3 class="modal-title">Confirmación de apuesta</h3>
           </div>
           <div class="modal-body">
-            <h4>aa</h4>
+            <h5 id="descripcion">Indique la cantidad de dinero que sea apostar. Luego confirme su apuesta</h5>
           </div>
           <div class="modal-footer">
             <div class="form-group text-center">
@@ -59,8 +59,18 @@
 					<form:hidden path="cuotaNombre" id="cuotaNombre"/>
 					<form:hidden path="cuotaValor" id="cuotaValor"/>
 					<form:hidden path="evento.id" id="evento.id"/>
-					<form:input path="cantidadApostada" class="text-info"/>
-					<button class="btn btn-success"  name="Submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Confirmar</button> 
+					
+					<div class="col-md-5">
+					<div class="form-group">
+   					<div class="input-group">
+       				<span class="input-group-addon">AR$</span>
+    				<form:input class="form-control" path="cantidadApostada"/>
+ 					</div>
+					</div>
+					</div>
+
+					<button class="btn btn-success"  name="submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Confirmar</button>
+					<button class="btn btn-default"  data-dismiss="modal" value="Cancelar" type="Submit">Cancelar</button> 
 				</form:form>              
             </div>
           </div>
