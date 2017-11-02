@@ -11,26 +11,37 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Apuesta;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioApuesta;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorIndex {	
 	//Si no se lo injecta, no lo reconoce como servicio, sino como una clase normal
 	@Inject
 	private ServicioEvento servicioEvento;
-
+	@Inject
 	private ServicioApuesta servicioApuesta;
+	@Inject
+	private ServicioUsuario servicioUsuario;
 	
 	@RequestMapping("/index")
 	public ModelAndView index() {		
 		ModelMap modelo = new ModelMap();
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
 		modelo.put("evento", misEventos);	
+		Apuesta apu= new Apuesta();
 		
-		/*Apuesta apu= new Apuesta();
-		apu.setApostador(servicioApuesta.traerUsuarioDeId1(1L));
-		modelo.put("apuesta",apu);*/
+		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
+		 * Después cuando exista login, esto se saca*/
+		Usuario usuarioDefault = new Usuario();
+		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
+		apu.setApostador(usuarioDefault);		
+		
+		modelo.put("apuesta",apu);
+		modelo.put("usuario", usuarioDefault);
+		
 		return new ModelAndView("index", modelo);
 	}
 
