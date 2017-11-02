@@ -109,13 +109,14 @@ public class CalculadorDeCuotas {
 		 * si el nuevo valor no es menor al minimo que puede tener una cuota -seteado arriba-).
 		 * - Si no es la cuota mas votada, se le suma una parte de la diferencia (se divide 
 		 * entre las cuotas restantes). Por ejemplo, si la diferencia es de 0.02d y hay dos 
-		 * cuotas que no son las mas votadas, cada una recibe 0.01d*/
+		 * cuotas que no son las mas votadas, cada una recibe 0.01d.
+		 * El uso del Math.round y el '*100/100' es para redondear siempre a dos decimales*/
 		for(int i = 0; i < cuotas.size(); i++){
 			if(cuotas.get(i).getNombre().equals(nombreCuota)){
 				if((cuotas.get(i).getValor() - d) >= min)
-					cuotas.get(i).setValor(cuotas.get(i).getValor() - d);
+					cuotas.get(i).setValor(Math.round((cuotas.get(i).getValor() - d) * 100.0) / 100.0);
 			}else{
-				cuotas.get(i).setValor(cuotas.get(i).getValor() + (d/(cuotas.size() - 1)));
+				cuotas.get(i).setValor(Math.round((cuotas.get(i).getValor() + (d/(cuotas.size()  - 1))) * 100.0) / 100.0);
 			}
 		}		
 		
