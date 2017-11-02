@@ -31,29 +31,22 @@ public class ControladorIndex {
 		ModelMap modelo = new ModelMap();
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
 		modelo.put("evento", misEventos);	
-		Apuesta apuesta= new Apuesta();
-		
-		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
-		 * Después cuando exista login, esto se saca*/
-		Usuario usuarioDefault = new Usuario();
-		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
-		apuesta.setApostador(usuarioDefault);		
-		
-		modelo.put("apuesta",apuesta);
-		modelo.put("usuario", usuarioDefault);
-		
+		Apuesta apuesta= new Apuesta();			
+		modelo.put("apuesta",apuesta);		
 		return new ModelAndView("index", modelo);
 	}
 
 
 	@RequestMapping(path="/procesar-apuesta", method=RequestMethod.POST)
-	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta)
-	{
-		ModelMap model = new ModelMap();
-		servicioApuesta.guardar(apuesta);
-		
-		model.put("usuarioId1",apuesta);
-		return new ModelAndView("index",model);
+	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta){		
+		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
+		 * Después cuando exista login, esto se saca*/
+		Usuario usuarioDefault = new Usuario();
+		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
+		apuesta.setApostador(usuarioDefault);			
+		servicioApuesta.guardar(apuesta);		
+
+		return new ModelAndView("redirect:/index");
 	}
 	
 }

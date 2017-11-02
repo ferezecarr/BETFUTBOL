@@ -11,8 +11,6 @@
 <%@ include file="includes/navegador.jsp"%>
 <%@ include file="includes/modales.jsp"%>
 	
-	<!-- De prueba, se borra luego -->
-	<strong>Hola ${usuario.nombreYApellido}</strong>
 	<div class="container-fluid">
 		<div class="col-md-12 main">
 			<div class="row">
