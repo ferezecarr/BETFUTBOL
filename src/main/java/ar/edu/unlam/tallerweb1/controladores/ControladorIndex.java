@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.modelo.Apuesta;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -42,12 +41,16 @@ public class ControladorIndex {
 		 * Después cuando exista login, esto se saca*/
 		Usuario usuarioDefault = new Usuario();
 		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
-		apuesta.setApostador(usuarioDefault);			
+		apuesta.setApostador(usuarioDefault);		
+
+		/*Recalcular Cuotas*/
+		Evento e = servicioEvento.consultarEvento(apuesta.getEvento().getId());
+		e.setCuotas(servicioCuota.recalcularCuotas(e.getCuotas(), apuesta.getCuotaNombre()));	
+		servicioEvento.actualizar(e);
+		
+		//Guardando la apuesta
 		servicioApuesta.guardar(apuesta);
 		
-		/*Recalcular Cuotas*/
-		//servicioCuota.recalcularCuotas(apuesta.getEvento().getCuotas(), apuesta.getCuotaNombre());
-
 		return new ModelAndView("redirect:/index");
 	}
 	

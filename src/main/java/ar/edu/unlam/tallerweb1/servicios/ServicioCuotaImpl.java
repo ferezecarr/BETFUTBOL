@@ -19,10 +19,10 @@ public class ServicioCuotaImpl implements ServicioCuota {
 	
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void recalcularCuotas(List<Cuota> cuotas, String cuotaNombreVotada)
+	public List<Cuota> recalcularCuotas(List<Cuota> cuotas, String cuotaNombreVotada)
 	{
 	
-		cuotaServicioDao.adjust(cuotas, cuotaNombreVotada);
+		return cuotaServicioDao.adjust(cuotas, cuotaNombreVotada);
 		
 	}
 

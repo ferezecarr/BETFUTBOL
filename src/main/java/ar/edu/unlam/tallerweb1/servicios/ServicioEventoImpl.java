@@ -22,13 +22,20 @@ public class ServicioEventoImpl implements ServicioEvento{
 	private EventoDao eventoServicioDao;
 	
 	@Override
-	public Evento consultarEvento(Evento evento) {
-		return null;
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})	
+	public Evento consultarEvento(Long id) {
+		Evento e = eventoServicioDao.findById(id);
+		Hibernate.initialize(e.getCuotas());
+		Hibernate.initialize(e.getPartido());
+		Hibernate.initialize(e.getPartido().getLocal());
+		Hibernate.initialize(e.getPartido().getVisitante());
+		return e;
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public void guardar(Evento evento) {
-		// TODO Auto-generated method stub
+		eventoServicioDao.save(evento);
 		
 	}
 
@@ -49,5 +56,11 @@ public class ServicioEventoImpl implements ServicioEvento{
 			Hibernate.initialize(e.getPartido().getVisitante());
 		}
 		return evento;
+	}
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
+	public void actualizar(Evento evento) {
+		eventoServicioDao.update(evento);		
 	}
 }

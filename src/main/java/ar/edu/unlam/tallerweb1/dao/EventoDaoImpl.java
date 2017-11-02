@@ -33,24 +33,25 @@ public class EventoDaoImpl implements EventoDao{
 
 	@Override
 	public Evento findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Evento evento = (Evento)sessionFactory.getCurrentSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
+		return evento;
 	}
 
 
 
 	@Override
 	public void save(Evento evento) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(evento);
 		
 	}
 
 
 
 	@Override
-	public Void update(Evento evento) {
-		// TODO Auto-generated method stub
-		return null;
+	public void update(Evento evento) {
+		sessionFactory.getCurrentSession().update(evento);
 	}
 
 }

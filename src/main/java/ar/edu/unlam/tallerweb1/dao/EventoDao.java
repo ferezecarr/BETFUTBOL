@@ -8,6 +8,6 @@ public interface EventoDao {
 	List<Evento> findAll();
 	List<Evento> findByNombre(String nombreDado);
 	void save(Evento evento);
-	Void update(Evento evento);
+	void update(Evento evento);
 	Evento findById(Long id);
 }

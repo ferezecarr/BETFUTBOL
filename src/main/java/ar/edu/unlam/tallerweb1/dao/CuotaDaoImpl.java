@@ -21,9 +21,9 @@ public class CuotaDaoImpl implements CuotaDao{
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void adjust(List<Cuota> cuotas, String cuotaNombreVotada) {
-		cuotas = CalculadorDeCuotas.calcular(cuotas, cuotaNombreVotada);		
-		sessionFactory.getCurrentSession().save(cuotas);	
+	public List<Cuota> adjust(List<Cuota> cuotas, String cuotaNombreVotada) {
+		return CalculadorDeCuotas.calcular(cuotas, cuotaNombreVotada);
+
 	}
 
 	@Override

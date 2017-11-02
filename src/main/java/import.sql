@@ -52,4 +52,3 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (12, 4, "
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (13, 5, "Gana Jamaica", 3.01, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (14, 5, "Empate", 2.23, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (15, 5, "Gana Brasil", 1.67, 0);
-

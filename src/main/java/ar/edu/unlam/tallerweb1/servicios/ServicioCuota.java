@@ -6,5 +6,5 @@ import ar.edu.unlam.tallerweb1.modelo.Evento;
 
 public interface ServicioCuota { 
 	List<Cuota> traerCuotasSegunEvento(Evento evento); 
-	void recalcularCuotas(List<Cuota> cuotas, String cuotaNombreVotada);
+	List<Cuota> recalcularCuotas(List<Cuota> cuotas, String cuotaNombreVotada);
 }

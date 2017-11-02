@@ -24,7 +24,8 @@ public class CalculadorDeCuotas {
 		apuesta (Solo se recalcula cuando se vota a la opcion mas votada). Si esto no se 
 		cumple, se devuelve la misma lista*/
 		nombreCuota = obtenerCuotaNombreMasVotada(cuotas);
-		if(!nombreCuota.equals(cuotaNombreVotada))
+		if(nombreCuota == null)
+		//if(!nombreCuota.equals(cuotaNombreVotada))
 			return cuotas;
 		
 		//Solo se aplica el calculo si hay una unica opcion que es la mas votada
