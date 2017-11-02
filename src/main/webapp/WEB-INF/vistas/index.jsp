@@ -60,10 +60,7 @@
 					<form:hidden path="cuotaValor" id="cuotaValor"/>
 					<form:hidden path="evento.id" id="evento.id"/>
 					<form:input path="cantidadApostada"/>
-					<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Confirmar" type="Submit">Confirmar</button> 
-					<!-- 
-					<button class="btn btn-success" data-dismiss="modal" name="Submit" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
-					-->
+					<button class="btn btn-success"  name="Submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Confirmar</button> 
 				</form:form>              
             </div>
           </div>
@@ -76,16 +73,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="./stylesheets/bootstrap/js/bootstrap.min.js"></script>
-
-
-
-
-<script>
-function pickOption(opcion){	
-	document.getElementById("cuotaNombre").value = opcion.getAttribute("name");
-	document.getElementById("cuotaValor").value = opcion.getAttribute("value");
-	document.getElementById("evento.id").value = opcion.getAttribute("eventoId");
-}
-</script>
+<script src="js/seleccionApuesta.js"></script>
 </body>
 </html>
