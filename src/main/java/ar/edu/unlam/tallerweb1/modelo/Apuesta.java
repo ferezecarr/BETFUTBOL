@@ -78,4 +78,8 @@ public class Apuesta {
 	public void setCuotaNombre(String cuotaNombre) {
 		this.cuotaNombre = cuotaNombre;
 	}
+	
+	public Double calcularGanacia(){
+		return cantidadApostada * cuotaValor;
+	}
 }
