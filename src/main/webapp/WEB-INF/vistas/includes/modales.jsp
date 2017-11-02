@@ -28,11 +28,15 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content col-sm-12">
 	      <div class="modal-header">
-	        <h2 class="modal-title" id="exampleModalLabel">Login</h2>
+	        <h2 class="modal-title" id="exampleModalLabel">Iniciar sesión</h2>
 	        
 	      </div>
 	     
 	      <div class="modal-body col-sm-12">
+	      
+	      
+	      
+	      
 	        <input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail" required/>
 	        <br><br/>
 	        <input path="password" type="password" class="col-sm-6 form-control" placeholder="Password" required/><br>

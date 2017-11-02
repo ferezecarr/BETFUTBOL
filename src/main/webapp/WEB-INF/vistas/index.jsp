@@ -14,7 +14,7 @@
 	<div class="container-fluid">
 		<div class="col-md-12 main">
 			<div class="row">
-					
+				
 				<div class="col-md-8 col-md-offset-2">
 		 			<ol class="breadcrumb">
 	          			<li class="breadcrumb-item active">Partidos de la semana</li>
@@ -24,12 +24,17 @@
 			         <div class="panel panel-primary">
 			            <div class="panel-heading text-center">${e.partido.local.nombre} - ${e.partido.visitante.nombre}</div>
 			            <div class="panel-body text-center">
-			            <p id="descripcion">${e.descripcion}</p>
+			            <p id="descripcion"> ${e.descripcion}</p>
 			          	<c:forEach items="${e.cuotas}" var="c">
-					            <a data-toggle="modal" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}"  href="#myModal" class="btn btn-default">
+			          	
+					            <a style="text-decoration:none" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}">
 					            <!--  se quita  onclick="pickOption(this)" del <a> para que no desaparesca el panel del partido seleccionado-->
-					              <span class="glyphicon glyphicon"></span>
-					              	${c.nombre}: ${c.valor} 
+					           	${c.nombre}: 
+					           	
+					           	<a data-toggle="modal" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}"  href="#myModal" class="btn btn-success">
+					           	${c.valor}
+					           	</a>
+					           	-
 					            </a>  
 			       		</c:forEach>
 			          </div>
@@ -48,10 +53,10 @@
         <div class="modal-content">
 
           <div class="modal-header">
-            <h3 class="modal-title">Confirmación de apuesta</h3>
+            <h3 class="modal-title">Apuesta en curso</h3>
           </div>
           <div class="modal-body">
-            <h5 id="descripcion">Indique la cantidad de dinero que sea apostar. Luego confirme su apuesta</h5>
+            <h5 id="descripcion">Indique la cantidad de dinero que sea apostar.</h5>
           </div>
           <div class="modal-footer">
             <div class="form-group text-center">
@@ -61,15 +66,13 @@
 					<form:hidden path="evento.id" id="evento.id"/>
 					
 					<div class="col-md-5">
-					<div class="form-group">
    					<div class="input-group">
        				<span class="input-group-addon">AR$</span>
     				<form:input class="form-control" path="cantidadApostada"/>
  					</div>
 					</div>
-					</div>
 
-					<button class="btn btn-success"  name="submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Confirmar</button>
+					<button class="btn btn-success"  name="submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Apostar</button>
 					<button class="btn btn-default"  data-dismiss="modal" value="Cancelar" type="Submit">Cancelar</button> 
 				</form:form>              
             </div>
