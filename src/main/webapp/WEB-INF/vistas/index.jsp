@@ -59,7 +59,7 @@
 					<form:hidden path="cuotaNombre" id="cuotaNombre"/>
 					<form:hidden path="cuotaValor" id="cuotaValor"/>
 					<form:hidden path="evento.id" id="evento.id"/>
-					<form:input path="cantidadApostada"/>
+					<form:input path="cantidadApostada" class="text-info"/>
 					<button class="btn btn-success"  name="Submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Confirmar</button> 
 				</form:form>              
             </div>

@@ -13,18 +13,17 @@ import ar.edu.unlam.tallerweb1.modelo.Apuesta;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioApuesta;
+import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorIndex {	
 	//Si no se lo injecta, no lo reconoce como servicio, sino como una clase normal
-	@Inject
-	private ServicioEvento servicioEvento;
-	@Inject
-	private ServicioApuesta servicioApuesta;
-	@Inject
-	private ServicioUsuario servicioUsuario;
+	@Inject	private ServicioEvento servicioEvento;
+	@Inject	private ServicioApuesta servicioApuesta;
+	@Inject	private ServicioUsuario servicioUsuario;
+	@Inject	private ServicioCuota servicioCuota;
 	
 	@RequestMapping("/index")
 	public ModelAndView index() {		
@@ -44,7 +43,10 @@ public class ControladorIndex {
 		Usuario usuarioDefault = new Usuario();
 		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
 		apuesta.setApostador(usuarioDefault);			
-		servicioApuesta.guardar(apuesta);		
+		servicioApuesta.guardar(apuesta);
+		
+		/*Recalcular Cuotas*/
+		//servicioCuota.recalcularCuotas(apuesta.getEvento().getCuotas(), apuesta.getCuotaNombre());
 
 		return new ModelAndView("redirect:/index");
 	}
