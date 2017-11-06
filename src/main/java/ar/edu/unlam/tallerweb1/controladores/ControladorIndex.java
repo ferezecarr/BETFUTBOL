@@ -43,6 +43,9 @@ public class ControladorIndex {
 		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
 		apuesta.setApostador(usuarioDefault);		
 
+		//Aumentando los votos de la apuesta seleccionada
+		servicioCuota.agregarVoto(apuesta.getEvento().getId(), apuesta.getCuotaNombre());
+		
 		/*Recalcular Cuotas*/
 		Evento e = servicioEvento.consultarEvento(apuesta.getEvento().getId());
 		e.setCuotas(servicioCuota.recalcularCuotas(e.getCuotas(), apuesta.getCuotaNombre()));	
