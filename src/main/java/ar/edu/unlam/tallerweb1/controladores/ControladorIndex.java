@@ -29,8 +29,8 @@ public class ControladorIndex {
 		ModelMap modelo = new ModelMap();
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
 		modelo.put("evento", misEventos);	
-		Apuesta apuesta= new Apuesta();			
-		modelo.put("apuesta",apuesta);		
+		Apuesta apuesta= new Apuesta();		
+		modelo.put("apuesta",apuesta);	
 		return new ModelAndView("index", modelo);
 	}
 
@@ -53,6 +53,12 @@ public class ControladorIndex {
 		servicioApuesta.guardar(apuesta);
 		
 		return new ModelAndView("redirect:/index");
+	}
+	
+	@RequestMapping(path="/Error",method=RequestMethod.GET)
+	public ModelAndView pruebaError()
+	{
+		return new ModelAndView("Error");
 	}
 	
 }

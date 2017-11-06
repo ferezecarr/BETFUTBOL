@@ -23,7 +23,7 @@
 
 
 
-    <form action="/validar-login" method="POST" modelAttribute="usuario">
+    <form action="validar-login" method="POST" modelAttribute="usuario">
 	<div class="modal fade" data-backdrop="static" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content col-sm-12">

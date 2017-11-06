@@ -26,7 +26,7 @@ public class ControladorLogin {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
-		return new ModelAndView("login", modelo);
+		return new ModelAndView("redirect:/validar-login", modelo);
 	}
 
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
@@ -38,7 +38,7 @@ public class ControladorLogin {
 		} else {
 			model.put("error", "Usuario o clave incorrecta");
 		}
-		return new ModelAndView("login", model);
+		return new ModelAndView("index", model);
 	}
 	
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
