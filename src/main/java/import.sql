@@ -20,17 +20,17 @@ INSERT INTO Equipo (id, nombre) VALUES (10, "Brasil");
 
 -- Creando cinco partidos
 INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (1,1,2,'2017-11-05 13:00:00', 0, 0);
-INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (2,3,4,'2017-11-06 13:00:00', 0, 0);
-INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (3,5,6,'2017-11-07 16:00:00', 0, 0);
-INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (4,7,8,'2017-11-07 16:00:00', 0, 0);
-INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (5,9,10,'2017-11-08 18:30:00', 0, 0);
+INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (2,3,4,'2017-11-11 13:00:00', 0, 0);
+INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (3,5,6,'2017-11-12 16:00:00', 0, 0);
+INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (4,7,8,'2017-11-13 16:00:00', 0, 0);
+INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante) VALUES (5,9,10,'2017-11-14 18:30:00', 0, 0);
 
 -- Creando cinco eventos
-INSERT INTO Evento (id, id_partido, nombre, descripcion) VALUES (1, 1, "Resultado", "| Amistoso internacional | 05/11 - 13:00hs");
-INSERT INTO Evento (id, id_partido, nombre, descripcion) VALUES (2, 2, "Resultado", "| Amistoso internacional | 06/11 - 13:00hs" );
-INSERT INTO Evento (id, id_partido, nombre, descripcion) VALUES (3, 3, "Resultado", "| Amistoso internacional | 07/11 - 16:00hs" );
-INSERT INTO Evento (id, id_partido, nombre, descripcion) VALUES (4, 4, "Resultado", "| Amistoso internacional | 07/11 - 16:00hs" );
-INSERT INTO Evento (id, id_partido, nombre, descripcion) VALUES (5, 5, "Resultado", "| Amistoso internacional | 08/11 - 18:30hs" );
+INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (1, 1, "Resultado", "| Amistoso internacional | 05/11 - 13:00hs", FALSE);
+INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (2, 2, "Resultado", "| Amistoso internacional | 11/11 - 13:00hs", FALSE);
+INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (3, 3, "Resultado", "| Amistoso internacional | 12/11 - 16:00hs", FALSE);
+INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (4, 4, "Resultado", "| Amistoso internacional | 13/11 - 16:00hs", FALSE);
+INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (5, 5, "Resultado", "| Amistoso internacional | 14/11 - 18:30hs", FALSE);
 
 -- Creando muchas cuotas
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (1, 1, "Gana Argentina", 1.44, 0);
@@ -52,3 +52,8 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (12, 4, "
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (13, 5, "Gana Jamaica", 3.01, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (14, 5, "Empate", 2.23, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (15, 5, "Gana Brasil", 1.67, 0);
+
+-- Evento que setea los partidos finalizados (hay que dropear, No lo maneja hibernate)
+DROP EVENT IF EXISTS TERMINAR_PARTIDO;
+SET GLOBAL event_scheduler = ON;
+CREATE EVENT TERMINAR_PARTIDO ON SCHEDULE EVERY 1 MINUTE DO UPDATE Evento E SET E.isTerminado=TRUE WHERE E.isTerminado=FALSE AND EXISTS(SELECT P.id FROM Partido P WHERE P.id=E.id_partido AND TIMESTAMPDIFF(SECOND, P.fecha, NOW()) >= 0);

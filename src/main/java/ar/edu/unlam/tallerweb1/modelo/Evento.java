@@ -36,6 +36,7 @@ public class Evento {
 	
 	private String nombre;			//Resultado, Resultado Especifico, Jugador hace gol, etc..
 	private String descripcion;		//"Boca Vs River - Domingo - 18.00hs"
+	private Boolean isTerminado = false;
 
 	public Long getId() {
 		return id;
@@ -83,5 +84,13 @@ public class Evento {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public Boolean getIsTerminado() {
+		return isTerminado;
+	}
+
+	public void setIsTerminado(Boolean isTerminado) {
+		this.isTerminado = isTerminado;
 	}	
 }
