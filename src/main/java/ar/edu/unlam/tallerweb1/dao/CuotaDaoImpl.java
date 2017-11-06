@@ -33,4 +33,15 @@ public class CuotaDaoImpl implements CuotaDao{
 				.add(Restrictions.eq("evento", evento))
 				.list();
 	}
+
+	@Override
+	public void addVote(Long eventoId, String cuotaVotada) {
+		Cuota cuota = (Cuota)sessionFactory.getCurrentSession().createCriteria(Cuota.class)
+				.createAlias("evento", "e")
+				.add(Restrictions.eq("e.id", eventoId))
+				.add(Restrictions.eq("nombre", cuotaVotada))
+				.uniqueResult();
+		cuota.setCantidadVotos(cuota.getCantidadVotos() + 1L);
+		sessionFactory.getCurrentSession().update(cuota);		
+	}
 }

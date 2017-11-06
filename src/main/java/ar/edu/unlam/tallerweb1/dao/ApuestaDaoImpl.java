@@ -29,6 +29,6 @@ public class ApuestaDaoImpl implements ApuestaDao{
 	@Override 
 	 public void save(Apuesta apu)
 	 {	
-		sessionFactory.getCurrentSession().save(apu);		
+		sessionFactory.getCurrentSession().save(apu);
 	 }
 }

@@ -8,5 +8,5 @@ public interface CuotaDao {
 
 	 List<Cuota> adjust(List<Cuota> cuotas, String cuotaNombreVotada);
 	 List<Cuota> findByEvent(Evento evento);
-	
+	 void addVote(Long eventoId, String cuotaVotada);	
 }

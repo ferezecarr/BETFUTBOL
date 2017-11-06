@@ -31,4 +31,10 @@ public class ServicioCuotaImpl implements ServicioCuota {
 	public List<Cuota> traerCuotasSegunEvento(Evento evento) {
 		return cuotaServicioDao.findByEvent(evento);
 	}
+
+	@Override
+	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})	
+	public void agregarVoto(Long eventoId, String cuotaVotada) {
+		cuotaServicioDao.addVote(eventoId, cuotaVotada);		
+	}
 }

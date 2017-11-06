@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CalculadorDeCuotas {
 	public static List<Cuota> calcular(List<Cuota> cuotas, String cuotaNombreVotada){
-		String nombreCuota;		//Guarda el nombre de la cuota ma votada
+		String nombreCuota;		//Guarda el nombre de la cuota mas votada
 		
 		/*Si no existe una cuota con el nombre que se da en el segundo parametro, se devuelve 
 		la misma lista*/
@@ -24,8 +24,7 @@ public class CalculadorDeCuotas {
 		apuesta (Solo se recalcula cuando se vota a la opcion mas votada). Si esto no se 
 		cumple, se devuelve la misma lista*/
 		nombreCuota = obtenerCuotaNombreMasVotada(cuotas);
-		if(nombreCuota == null)
-		//if(!nombreCuota.equals(cuotaNombreVotada))
+		if(nombreCuota == null || !(nombreCuota.equals(cuotaNombreVotada)))
 			return cuotas;
 		
 		//Solo se aplica el calculo si hay una unica opcion que es la mas votada
@@ -54,7 +53,7 @@ public class CalculadorDeCuotas {
 				votos = cuota.getCantidadVotos();
 				nombre = cuota.getNombre();
 			}				
-		}		
+		}
 		return nombre;
 	}
 	
