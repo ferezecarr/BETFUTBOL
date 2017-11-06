@@ -52,7 +52,6 @@ public class ControladorIndex {
 		servicioEvento.actualizar(e);
 		
 		//Guardando la apuesta
-		apuesta.setEvento(e);
 		servicioApuesta.guardar(apuesta);
 		
 		return new ModelAndView("redirect:/index");
