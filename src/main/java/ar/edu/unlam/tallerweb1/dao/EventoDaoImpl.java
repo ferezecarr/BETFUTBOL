@@ -27,6 +27,7 @@ public class EventoDaoImpl implements EventoDao{
 	public List<Evento> findByNombre(String nombreDado){
 		List<Evento> evento = sessionFactory.getCurrentSession().createCriteria(Evento.class)
 				.add(Restrictions.eq("nombre", nombreDado))
+				.add(Restrictions.eq("isTerminado", false))
 				.list();
 		return evento;
 	}
