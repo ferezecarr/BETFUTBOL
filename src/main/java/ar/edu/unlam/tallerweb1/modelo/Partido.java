@@ -32,6 +32,14 @@ public class Partido {
 	private Integer golesLocal = 0;	
 	private Integer golesVisitante = 0;	
 	private Date fecha;
+	
+	/*Lo veo util para saber si los valores de 'golesLocal'/'golesVisitante' son los 
+	 * otorgados cuando se escribe el resultado. Sin esto, se asumiria que el resultado 
+	 * de todos los partidos es 0-0. Mi idea es que en el AMB de partidos, el admin ponga 
+	 * el resultado y al pulsar confirmar, se seteen 'golesLocal', 'golesVisitante' y este 
+	 * booleano en TRUE. Entonces después se puede traer una lista ya filtrada de partidos 
+	 * con el resultado definido usando este atributo*/
+	private Boolean isResultadoFinal = false; 
 
 	public Long getId() {
 		return id;
@@ -84,6 +92,14 @@ public class Partido {
 	public String mostrarResultado(){
 		return local.getNombre() + " " + golesLocal + " - " + golesVisitante + 
 				" " + visitante.getNombre();
+	}
+
+	public Boolean getIsResultadoFinal() {
+		return isResultadoFinal;
+	}
+
+	public void setIsResultadoFinal(Boolean isResultadoFinal) {
+		this.isResultadoFinal = isResultadoFinal;
 	}
 
 	@Override

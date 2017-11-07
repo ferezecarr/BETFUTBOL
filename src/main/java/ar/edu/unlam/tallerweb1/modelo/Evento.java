@@ -36,6 +36,10 @@ public class Evento {
 	
 	private String nombre;			//Resultado, Resultado Especifico, Jugador hace gol, etc..
 	private String descripcion;		//"Boca Vs River - Domingo - 18.00hs"
+	
+	/*Indica si el evento esta terminado. Esto se setea automaticamente por el evento 
+	 * puesto en el import.sql. Util para filtrar, si se quiere traer eventos sin finalizar, 
+	 * eventos finalizados...*/
 	private Boolean isTerminado = false;
 
 	public Long getId() {
