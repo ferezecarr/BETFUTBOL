@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import org.hibernate.SessionFactory;
@@ -25,9 +26,13 @@ public class EventoDaoImpl implements EventoDao{
 
 	@Override
 	public List<Evento> findByNombre(String nombreDado){
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.HOUR, +1);
 		List<Evento> evento = sessionFactory.getCurrentSession().createCriteria(Evento.class)
 				.add(Restrictions.eq("nombre", nombreDado))
 				.add(Restrictions.eq("isTerminado", false))
+				.createAlias("partido", "p")
+				.add(Restrictions.ge("p.fecha", c.getTime()))
 				.list();
 		return evento;
 	}
