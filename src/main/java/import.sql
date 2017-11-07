@@ -56,4 +56,4 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (15, 5, "
 -- Evento que setea los partidos finalizados (hay que dropear, No lo maneja hibernate)
 DROP EVENT IF EXISTS TERMINAR_PARTIDO;
 SET GLOBAL event_scheduler = ON;
-CREATE EVENT TERMINAR_PARTIDO ON SCHEDULE EVERY 1 MINUTE DO UPDATE Evento E SET E.isTerminado=TRUE WHERE E.isTerminado=FALSE AND EXISTS(SELECT P.id FROM Partido P WHERE P.id=E.id_partido AND TIMESTAMPDIFF(SECOND, P.fecha, NOW()) >= 0);
+CREATE EVENT TERMINAR_PARTIDO ON SCHEDULE EVERY 1 MINUTE DO UPDATE Evento E SET E.isTerminado=TRUE WHERE E.isTerminado=FALSE AND EXISTS(SELECT P.id FROM Partido P WHERE P.id=E.id_partido AND TIMESTAMPDIFF(MINUTE, P.fecha, NOW()) >= 120);
