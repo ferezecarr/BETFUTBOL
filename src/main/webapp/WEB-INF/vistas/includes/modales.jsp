@@ -14,7 +14,7 @@
 	      </div>
 	      <div class="modal-footer col-sm-12">
 	        <input type="button" class="btn btn-primary" data-dismiss="modal" value="Cancelar">
-	        <input type="submit" class="btn btn-success" value="Cargar">
+	        <input type="submit" class="btn btn-success" value="Enviar">
 	      </div>
 	    </div>
 	  </div>
@@ -44,7 +44,7 @@
 	      
 	      <div class="modal-footer col-sm-12">
 	        <input type="button" class="btn btn-primary" data-dismiss="modal" value="Cancelar">
-	        <input type="submit" class="btn btn-success" value="Cargar">
+	        <input type="submit" class="btn btn-success" value="Enviar">
 	      </div>
 	    </div>
 	  </div>
