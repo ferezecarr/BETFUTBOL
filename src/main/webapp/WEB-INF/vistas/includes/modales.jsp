@@ -1,4 +1,4 @@
-    <form action="Registro-usuario" method="POST" modelAttribute="registroUsuario">
+    <form:form action="registro-usuario" method="POST" modelAttribute="registroUsuario">
 	<div class="modal fade" data-backdrop="static" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content col-sm-12">
@@ -19,11 +19,15 @@
 	    </div>
 	  </div>
 	</div>
-   	</form>
+   	</form:form>
+   	
+   	<c:if test="${not empty error}">
+   		<h4><span>${error}</span></h4>
+   	</c:if>
 
 
 
-    <form action="validar-login" method="POST" modelAttribute="usuario">
+    <form:form action="validar-login" method="POST" modelAttribute="usuario">
 	<div class="modal fade" data-backdrop="static" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content col-sm-12">
@@ -49,7 +53,11 @@
 	    </div>
 	  </div>
 	</div>
-   	</form>
+   	</form:form>
+   	
+   	<c:if test="${not empty error}">
+   		<h4><span>${error}</span></h4>
+   	</c:if>
    	
    	
    	
