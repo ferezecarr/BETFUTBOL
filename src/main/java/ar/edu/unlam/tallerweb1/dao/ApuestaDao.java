@@ -7,5 +7,5 @@ public interface ApuestaDao {
 
 	 Usuario findById(Long id);
 	 void  save(Apuesta apu);
-	
+	 Apuesta findByApuesta (Usuario apostador);	
 }

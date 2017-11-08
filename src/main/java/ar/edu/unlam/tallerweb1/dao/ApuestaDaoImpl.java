@@ -31,4 +31,13 @@ public class ApuestaDaoImpl implements ApuestaDao{
 	 {	
 		sessionFactory.getCurrentSession().save(apu);
 	 }
+	
+	@Override
+	public Apuesta findByApuesta(Usuario apostador){
+		
+		Apuesta misApuestas = (Apuesta) sessionFactory.getCurrentSession().createCriteria(Apuesta.class).add(Restrictions.eq("apostador", apostador));
+		
+		return misApuestas;
+		
+	}
 }

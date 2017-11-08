@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.ApuestaDao;
 import ar.edu.unlam.tallerweb1.modelo.Apuesta;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 
 @Service
@@ -21,5 +22,12 @@ public class ServicioApuestaImpl implements ServicioApuesta {
 	
 		apuestaServicioDao.save(apuesta);
 		
+	}
+	
+	@Override
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	public Apuesta buscarPorApuesta (Usuario apostador){
+		
+		return apuestaServicioDao.findByApuesta(apostador);
 	}
 }
