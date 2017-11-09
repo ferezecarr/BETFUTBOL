@@ -24,7 +24,8 @@
 			            <div class="panel-heading text-center"></div>
 			            <div class="panel-body text-center"> 
 			            
-			            ${apuestas};
+			            <p id="descripcion"> ${a.cuotaNombre}</p>
+			            
 			          
  			          </div> 
  			        </div> 

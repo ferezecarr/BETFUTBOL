@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -33,9 +35,10 @@ public class ApuestaDaoImpl implements ApuestaDao{
 	 }
 	
 	@Override
-	public Apuesta findByApuesta(Usuario apostador){
+	public List <Apuesta> findByApuesta(Usuario apostador){
 		
-		Apuesta misApuestas = (Apuesta) sessionFactory.getCurrentSession().createCriteria(Apuesta.class).add(Restrictions.eq("apostador", apostador));
+		
+		List<Apuesta> misApuestas = sessionFactory.getCurrentSession().createCriteria(Apuesta.class).add(Restrictions.eq("apostador", apostador)).list();
 		
 		return misApuestas;
 		

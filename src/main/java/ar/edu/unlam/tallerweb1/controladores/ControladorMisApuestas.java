@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,9 +36,9 @@ public class ControladorMisApuestas {
 		apuesta.setApostador(usuario1);
 		
 		ModelMap modelo = new ModelMap();
-		apuesta = servicioApuesta.buscarPorApuesta(usuario1);
+		List<Apuesta> apuestas = servicioApuesta.buscarPorApuesta(usuario1);
 
-		modelo.put("apuestas", apuesta);
+		modelo.put("apuestas", apuestas);
 
 		return new ModelAndView("mis-apuestas", modelo);
 	}
