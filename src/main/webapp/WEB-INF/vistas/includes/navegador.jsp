@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand hoverNav" href="#"><img src="img/bf.png" class="logo">
+                <a class="navbar-brand hoverNav" href="http://localhost:8080/proyecto-limpio-spring/index"><img src="img/bf.png" class="logo">
                 </a>
 
             </div>
@@ -16,8 +16,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="hoverNav"><a href="#">Info</a></li>
-                    <li class="hoverNav"><a href="#">Contacto</a></li>
+                	<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/index">Inicio</a></li>
+                    <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/mis-apuestas">Mis Apuestas</a></li>
+                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

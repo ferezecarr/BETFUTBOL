@@ -3,8 +3,6 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Apuesta;
+import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioApuesta;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
@@ -36,6 +35,8 @@ public class ControladorMisApuestas {
 		apuesta.setApostador(usuario1);
 		
 		ModelMap modelo = new ModelMap();
+		
+		
 		List<Apuesta> apuestas = servicioApuesta.buscarPorApuesta(usuario1);
 
 		modelo.put("apuestas", apuestas);
