@@ -43,6 +43,7 @@ public class ControladorLogin {
 	@RequestMapping(path = "/validar-login" , method = RequestMethod.POST)
 	public ModelAndView solicitarLoginParaApostar(@ModelAttribute("usuario") Usuario usuario) {
 		ModelMap modelo = new ModelMap();
+		Evento evento = new Evento();
 		if(servicioLogin.consultarUsuario(usuario) == null) {
 			modelo.put("error", "Necesita Ingresar para poder apostar");
 		} else {
