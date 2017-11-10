@@ -27,10 +27,21 @@ public class ControladorIndex {
 	@RequestMapping("/index")
 	public ModelAndView index() {		
 		ModelMap modelo = new ModelMap();
+		
+		/*
+		 * 
+		 * al ir a validar-login, solo retorna un usuario, y jode el campo apuesta (modales, linea 18)..,
+		 *  asique pasé la lista de evento y las apuestas a validar login para que retorne el usuario con la apuesta y el evento*/
+		/*aunque al no estar terminado lo de unir al usuario loguado con la apuesta y el evento, 
+		 * no puedo sacar el evento y la apuesta de acá, por eso lo dejé*/
+		 
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
 		modelo.put("evento", misEventos);	
 		Apuesta apuesta= new Apuesta();		
 		modelo.put("apuesta",apuesta);	
+		
+		Usuario usuario = new Usuario();
+		modelo.put("usuario",usuario);
 		return new ModelAndView("index", modelo);
 	}
 

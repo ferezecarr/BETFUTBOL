@@ -22,13 +22,33 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entrar<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        
+                      <c:if test="${not empty nombre}">
+   						<span>${nombre}</span>
+   					</c:if>
+   					
+                     <c:if test="${empty nombre}">
+   					<span>Entrar</span>
+   					</c:if>
+                        
+                        <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></li>
+                            <li><c:if test="${not empty nombre}">
+		   						<a href="#" >salir</a>
+		   						</c:if></li>
+		   						
+                            <li><c:if test="${empty nombre}"><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></c:if></li>
+                            
                             <li><a href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a></li>
                         </ul>
                     </li>
                 </ul>
+                
+                
+                
+                
+                
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>

@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,14 +44,26 @@ public class ControladorLogin {
 	
 	@RequestMapping(path = "/validar-login" , method = RequestMethod.POST)
 	public ModelAndView solicitarLoginParaApostar(@ModelAttribute("usuario") Usuario usuario) {
+		
 		ModelMap modelo = new ModelMap();
-		Evento evento = new Evento();
+		
+		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
+		modelo.put("evento", misEventos);	
+		Apuesta apuesta= new Apuesta();		
+		modelo.put("apuesta",apuesta);	
+		
 		if(servicioLogin.consultarUsuario(usuario) == null) {
 			modelo.put("error", "Necesita Ingresar para poder apostar");
 		} else {
-			return new ModelAndView("redirect:/index");
+			
+			Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
+			
+			modelo.put("usuario",usuarioBuscado);
+			modelo.put("nombre",usuarioBuscado.getNombreYApellido());
+		
+			return new ModelAndView("index",modelo);
 		}
-		return new ModelAndView("index",modelo);
+		return new ModelAndView("Error",modelo);
 	}
 	
 	@RequestMapping(path = "/registro-usuario" , method = RequestMethod.POST)
