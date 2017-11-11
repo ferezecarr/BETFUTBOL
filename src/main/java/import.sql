@@ -19,7 +19,7 @@ INSERT INTO Equipo (id, nombre) VALUES (9, "Jamaica");
 INSERT INTO Equipo (id, nombre) VALUES (10, "Brasil");
 
 -- Creando seis partidos
-INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isResultadoFinal) VALUES (2,2,1,'2017-11-01 15:30:00', 0, 4, TRUE);
+INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isResultadoFinal) VALUES (1,2,1,'2017-11-01 15:30:00', 0, 4, TRUE);
 INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isResultadoFinal) VALUES (2,1,2,'2017-11-05 13:00:00', 0, 0, FALSE);
 INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isResultadoFinal) VALUES (3,3,4,'2017-11-18 13:00:00', 0, 0, FALSE);
 INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isResultadoFinal) VALUES (4,5,6,'2017-11-19 16:00:00', 0, 0, FALSE);
