@@ -39,25 +39,25 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (1, 1, "G
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (2, 1, "Empate", 2.32, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (3, 1, "Gana Argentina", 1.44, 0);
 
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (1, 2, "Gana Argentina", 1.44, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (2, 2, "Empate", 2.32, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (3, 2, "Gana China", 4.90, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (4, 2, "Gana Argentina", 1.44, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (5, 2, "Empate", 2.32, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (6, 2, "Gana China", 4.90, 0);
 
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (4, 3, "Gana Inglaterra", 1.89, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (5, 3, "Empate", 2.5, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (6, 3, "Gana Corea del Sur", 2.5, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (7, 3, "Gana Inglaterra", 1.89, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (8, 3, "Empate", 2.5, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (9, 3, "Gana Corea del Sur", 2.5, 0);
 
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (7, 4, "Gana Belgica", 2.01, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (8, 4, "Empate", 2.93, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (9, 4, "Gana Uruguay", 2.44, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (10, 4, "Gana Belgica", 2.01, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (11, 4, "Empate", 2.93, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (12, 4, "Gana Uruguay", 2.44, 0);
 
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (10, 5, "Gana Nigeria", 2.51, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (11, 5, "Empate", 2.28, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (12, 5, "Gana Alemania", 1.94, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (13, 5, "Gana Nigeria", 2.51, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (14, 5, "Empate", 2.28, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (15, 5, "Gana Alemania", 1.94, 0);
 
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (13, 6, "Gana Jamaica", 3.01, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (14, 6, "Empate", 2.23, 0);
-INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (15, 6, "Gana Brasil", 1.67, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (16, 6, "Gana Jamaica", 3.01, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (17, 6, "Empate", 2.23, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (18, 6, "Gana Brasil", 1.67, 0);
 
 -- Evento que setea los partidos finalizados (hay que dropear, No lo maneja hibernate)
 DROP EVENT IF EXISTS TERMINAR_PARTIDO;
