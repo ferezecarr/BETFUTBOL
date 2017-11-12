@@ -6,6 +6,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,19 +16,20 @@ import ar.edu.unlam.tallerweb1.SpringTest;
 
 @SuppressWarnings("unchecked")
 public class ApuestaTest extends SpringTest{	
-	private Usuario usuario1, usuario2;
+	private Usuario usuario1, usuario2, usuario3;
 	private Equipo equipo1, equipo2, equipo3;
 	private Partido partido1, partido2;
 	private Evento evento1, evento2;
 	private Cuota cuota1, cuota2, cuota3, cuota4;
 	private @SuppressWarnings("rawtypes")List lCuotas1, lCuotas2;
-	private Apuesta apuesta1, apuesta2;
-	private @SuppressWarnings("rawtypes")List lApuestas1, lApuestas2;
+	private Apuesta apuesta1, apuesta2, apuesta3;
+	private @SuppressWarnings("rawtypes")List lApuestas1, lApuestas2, lApuestas3;
 	
 	@Before
 	public void inicializacionAntesDeCadaTest(){
 		usuario1	=		new Usuario();
 		usuario2	=		new Usuario();
+		usuario3	=		new Usuario();
 		equipo1		=		new Equipo();
 		equipo2		=		new Equipo();
 		equipo3		=		new Equipo();
@@ -41,10 +43,12 @@ public class ApuestaTest extends SpringTest{
 		cuota4		=		new Cuota();
 		apuesta1	=		new Apuesta();
 		apuesta2	=		new Apuesta();
+		apuesta3	=		new Apuesta();
 		lCuotas1 	=		new LinkedList<Cuota>();
 		lCuotas2	=		new LinkedList<Cuota>();
 		lApuestas1	=		new LinkedList<Apuesta>();
 		lApuestas2	=		new LinkedList<Apuesta>();
+		lApuestas3	=		new LinkedList<Apuesta>();
 	}
 	
 	@Test
@@ -373,5 +377,141 @@ public class ApuestaTest extends SpringTest{
 			System.out.println();	//Para dejar una linea
 		}
 		System.out.println("==============================================");
-	}		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testQueTraeRankingDeGanadoresPorResultado(){
+		Usuario usuario4 = new Usuario();
+		Apuesta apuesta4 = new Apuesta();
+		Apuesta apuesta5 = new Apuesta();
+		List<Apuesta> lApuestas4 = new LinkedList<Apuesta>();
+		List<Apuesta> lApuestas5 = new LinkedList<Apuesta>();
+		
+		//Seteo usuarios y los guardo		
+		usuario1.setNombreYApellido("Yo acierto");
+		usuario2.setNombreYApellido("Yo pierdo");
+		usuario3.setNombreYApellido("Aposte otra cosa");
+		usuario4.setNombreYApellido("Yo gano mas");
+		getSession().save(usuario1);
+		getSession().save(usuario2);
+		getSession().save(usuario3);
+		getSession().save(usuario4);
+		
+		//Seteo equipos y los guardo
+		equipo1.setNombre("Honduras");
+		equipo2.setNombre("Australia");
+		getSession().save(equipo1);
+		getSession().save(equipo2);
+		
+		//Seteo el partido y lo guardo
+		partido1.setLocal(equipo1);
+		partido1.setVisitante(equipo2);
+		getSession().save(partido1);
+		getSession().save(partido2);
+		
+		//Seteo cuotas
+		cuota1.setNombre("Gana el local");
+		cuota1.setValor(2.33d);
+		cuota2.setNombre("Empate");
+		cuota2.setValor(2.63d);
+		cuota3.setNombre("Gana el visitante");
+		cuota3.setValor(2.55d);
+		
+		//Asigno un evento a cada cuota (seria como setear el evento_id en la tabla Cuota)
+		cuota1.setEvento(evento1);
+		cuota2.setEvento(evento1);
+		cuota3.setEvento(evento1);
+		
+		//Seteo eventos
+		evento1.setNombre("Resultado");
+		evento1.setPartido(partido1);
+		evento2.setNombre("Otra cosa");
+		evento2.setPartido(partido1);
+		
+		//Guardo cuotas y eventos
+		lCuotas1.add(cuota1);
+		lCuotas1.add(cuota2);
+		lCuotas1.add(cuota3);				
+		evento1.setCuotas(lCuotas1);
+		getSession().save(cuota1);
+		getSession().save(cuota2);
+		getSession().save(cuota3);
+		getSession().save(evento1);	
+		getSession().save(evento2);
+		
+		//Genero apuestas y las guardo
+		apuesta1.setApostador(usuario1);
+		apuesta1.setCantidadApostada(100.00d);
+		apuesta1.setCuotaNombre("Gana el local");
+		apuesta1.setCuotaValor(2.33d);
+		apuesta1.setEvento(evento1);
+		
+		apuesta2.setApostador(usuario2);
+		apuesta2.setCantidadApostada(100.00d);
+		apuesta2.setCuotaNombre("Empate");
+		apuesta2.setCuotaValor(2.63d);
+		apuesta2.setEvento(evento1);
+		
+		apuesta3.setApostador(usuario3);
+		apuesta3.setCantidadApostada(100.00d);
+		apuesta3.setCuotaNombre("Cualquier cosa");
+		apuesta3.setCuotaValor(1.00d);
+		apuesta3.setEvento(evento2);
+		
+		apuesta4.setApostador(usuario4);
+		apuesta4.setCantidadApostada(200.00d);
+		apuesta4.setCuotaNombre("Gana el local");
+		apuesta4.setCuotaValor(1.00d);
+		apuesta4.setEvento(evento1);
+		
+		apuesta5.setApostador(usuario4);
+		apuesta5.setCantidadApostada(50.00d);
+		apuesta5.setCuotaNombre("Gana el local");
+		apuesta5.setCuotaValor(1.00d);
+		apuesta5.setEvento(evento1);
+		
+		lApuestas1.add(apuesta1);
+		lApuestas2.add(apuesta2);
+		lApuestas3.add(apuesta3);
+		lApuestas4.add(apuesta4);
+		lApuestas5.add(apuesta5);
+		usuario1.setApuestas(lApuestas1);
+		usuario2.setApuestas(lApuestas2);
+		usuario3.setApuestas(lApuestas3);
+		usuario4.setApuestas(lApuestas4);
+		usuario4.setApuestas(lApuestas5);
+		
+		getSession().save(apuesta1);
+		getSession().save(apuesta2);
+		getSession().save(apuesta3);
+		getSession().save(apuesta4);
+		getSession().save(apuesta5);		
+		
+		//Falta filtar por si tiene premio o no
+		String filtro = "Resultado";
+		String sql = 	"SELECT "
+					+ 		"U.nombreYApellido AS Usuario, "
+					+ 		"SUM(A.cantidadApostada * A.cuotaValor) AS Ganancia "
+					+ 	"FROM Usuario U "
+					+ 		"JOIN Apuesta A ON U.id=A.apostador_id "
+					+ 		"JOIN Evento E ON A.evento_id=E.id "
+					+ 	"WHERE E.nombre='" + filtro + "' "
+					+ 	"GROUP BY U.id "
+					+ 	"ORDER BY Ganancia DESC "
+					+	"LIMIT 5";
+		
+		List<RankingDTO> rankings = getSession().createSQLQuery(sql)
+				.addScalar("usuario")
+				.addScalar("ganancia")
+				.setResultTransformer(Transformers.aliasToBean(RankingDTO.class))				
+				.list();
+		
+		for (RankingDTO ranking : rankings) {
+			System.out.println("==="+ranking.getUsuario()+"/"+ranking.getGanancia());
+		}
+		
+		assertThat(rankings).hasSize(3);
+	}
 }
