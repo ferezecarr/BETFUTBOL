@@ -5,6 +5,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -14,9 +15,15 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class UsuarioTest extends SpringTest {
+	
+	
 	
 	private Usuario usuario1 , usuario2;
 	private List<Usuario> listaDeUsuarios;
@@ -29,7 +36,27 @@ public class UsuarioTest extends SpringTest {
 		sesion = getSession();
 		listaDeUsuarios = new ArrayList<Usuario>();
 	}
-
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testQueAlPasarUsuarioYPasswordInvalidoDeberiaLlevarAlIndex() {
+		Usuario primerUsuario = mock(Usuario.class);
+		ServicioLogin servicioLogin = mock(ServicioLogin.class);
+		HttpServletRequest request = mock(HttpServletRequest.class);
+		
+		when(primerUsuario.getEmail()).thenReturn("usuario@mock.com");
+		when(primerUsuario.getPassword()).thenReturn("mock");
+		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(primerUsuario);
+		when(request.getSession().getAttribute("ROL"));
+		
+		ControladorLogin controladorLogin = new ControladorLogin();
+		
+		assertThat(controladorLogin.irAHome().equals(primerUsuario)).isNotNull();
+		
+		verify(servicioLogin.consultarUsuario(primerUsuario) , times(1));
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Test(expected = Exception.class)
 	@Transactional
