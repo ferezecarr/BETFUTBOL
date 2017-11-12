@@ -43,16 +43,14 @@ public class UsuarioTest extends SpringTest {
 	public void testQueAlPasarUsuarioYPasswordInvalidoDeberiaLlevarAlIndex() {
 		Usuario primerUsuario = mock(Usuario.class);
 		ServicioLogin servicioLogin = mock(ServicioLogin.class);
-		HttpServletRequest request = mock(HttpServletRequest.class);
 		
 		when(primerUsuario.getEmail()).thenReturn("usuario@mock.com");
 		when(primerUsuario.getPassword()).thenReturn("mock");
 		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(primerUsuario);
-		when(request.getSession().getAttribute("ROL"));
 		
 		ControladorLogin controladorLogin = new ControladorLogin();
 		
-		assertThat(controladorLogin.irAHome().equals(primerUsuario)).isNotNull();
+		assertThat(controladorLogin.inicio().equals(primerUsuario)).isNotNull();
 		
 		verify(servicioLogin.consultarUsuario(primerUsuario) , times(1));
 	}
