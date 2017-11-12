@@ -18,14 +18,14 @@ public class RankingDaoImpl implements RankingDao{
 
 	@Override
 	public List<RankingDTO> findAll() {
-		String sql =			"SELECT "
-							+ 		"U.nombreYApellido AS Usuario, "
-							+ 		"SUM(A.cantidadApostada * A.cuotaValor) AS Ganancia "
-							+ 	"FROM Usuario U "
-							+ 		"JOIN Apuesta A ON U.id=A.apostador_id "
-							+ 	"GROUP BY U.id "
-							+ 	"ORDER BY Ganancia DESC "
-							+	"LIMIT 5";
+		String sql =		"SELECT "
+						+ 		"U.nombreYApellido AS Usuario, "
+						+ 		"ROUND(SUM(A.cantidadApostada * A.cuotaValor), 2) AS Ganancia "
+						+ 	"FROM Usuario U "
+						+ 		"JOIN Apuesta A ON U.id=A.apostador_id "
+						+ 	"GROUP BY U.id "
+						+ 	"ORDER BY Ganancia DESC "
+						+	"LIMIT 5";
 		return sessionFactory.getCurrentSession().createSQLQuery(sql)
 				.addScalar("usuario")
 				.addScalar("ganancia")
@@ -35,16 +35,16 @@ public class RankingDaoImpl implements RankingDao{
 
 	@Override
 	public List<RankingDTO> findByEventName(String filtro) {
-		String sql =			"SELECT "
-							+ 		"U.nombreYApellido AS Usuario, "
-							+ 		"SUM(A.cantidadApostada * A.cuotaValor) AS Ganancia "
-							+ 	"FROM Usuario U "
-							+ 		"JOIN Apuesta A ON U.id=A.apostador_id "
-							+ 		"JOIN Evento E ON A.evento_id=E.id "
-							+ 	"WHERE E.nombre='" + filtro + "' "
-							+ 	"GROUP BY U.id "
-							+ 	"ORDER BY Ganancia DESC "
-							+	"LIMIT 5";
+		String sql =		"SELECT "
+						+ 		"U.nombreYApellido AS Usuario, "
+						+ 		"ROUND(SUM(A.cantidadApostada * A.cuotaValor), 2) AS Ganancia "
+						+ 	"FROM Usuario U "
+						+ 		"JOIN Apuesta A ON U.id=A.apostador_id "
+						+ 		"JOIN Evento E ON A.evento_id=E.id "
+						+ 	"WHERE E.nombre='" + filtro + "' "
+						+ 	"GROUP BY U.id "
+						+ 	"ORDER BY Ganancia DESC "
+						+	"LIMIT 5";
 		return sessionFactory.getCurrentSession().createSQLQuery(sql)
 				.addScalar("usuario")
 				.addScalar("ganancia")

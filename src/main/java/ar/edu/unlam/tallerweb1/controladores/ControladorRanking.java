@@ -19,9 +19,12 @@ public class ControladorRanking {
 	@RequestMapping(path = "/ranking", method = RequestMethod.GET)
 	public ModelAndView irARanking(@RequestParam(value = "filtro", required = false) String filtro) {		
 		ModelMap modelo = new ModelMap();
-		List<RankingDTO> ranking;
-		if(filtro == null)	ranking = servicioRanking.traerRankingGeneral();		
-		else				ranking = servicioRanking.traerRankingGeneralPorNombreDeEvento(filtro);
+		if(filtro == null){
+			List<RankingDTO> ranking = servicioRanking.traerRankingGeneral();
+			modelo.put("ranking", ranking);
+			return new ModelAndView("ranking", modelo);			
+		}
+		List<RankingDTO> ranking = servicioRanking.traerRankingGeneralPorNombreDeEvento(filtro);
 		modelo.put("ranking", ranking);
 		return new ModelAndView("ranking", modelo);
 	}	
