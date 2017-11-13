@@ -62,6 +62,10 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public void addApuesta(Apuesta apuesta){
+		apuestas.add(apuesta);
+	}
 
 	@Override
 	public int hashCode() {

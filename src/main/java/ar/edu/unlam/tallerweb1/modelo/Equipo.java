@@ -1,19 +1,27 @@
 /*HashCode()/Equals() implementando para distinguir entre nombres.
  * Tiene una doble relacion 1-N con Partido para determinar local y visitante
- * (Modelada en la clase Partido)*/
+ * (Modelada en la clase Partido)
+ * Tiene una relacion 1-N con Jugador (Un equipo tiene N jugadores y a un jugador, 
+ * lo tiene un solo equipo)*/
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.LinkedList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Equipo {
-	
+public class Equipo {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
+	private List<Jugador> jugadores = new LinkedList<Jugador>();
 	
 	private String nombre;
 	
@@ -31,6 +39,18 @@ public class Equipo {
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(List<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+	
+	public void addJugador(Jugador jugador){
+		jugadores.add(jugador);
 	}
 
 	@Override

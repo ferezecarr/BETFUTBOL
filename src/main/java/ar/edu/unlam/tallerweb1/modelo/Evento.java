@@ -96,5 +96,13 @@ public class Evento {
 
 	public void setIsTerminado(Boolean isTerminado) {
 		this.isTerminado = isTerminado;
-	}	
+	}
+	
+	public void addApuesta(Apuesta apuesta){
+		apuestas.add(apuesta);
+	}
+	
+	public void addCuota(Cuota cuota){
+		cuotas.add(cuota);
+	}
 }
