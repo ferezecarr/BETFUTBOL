@@ -4,20 +4,15 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
