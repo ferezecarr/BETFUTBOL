@@ -18,6 +18,7 @@
                 <ul class="nav navbar-nav">
                 	<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/index">Inicio</a></li>
                     <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/mis-apuestas">Mis Apuestas</a></li>
+                    <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/ranking">Ranking de apostadores</a></li>
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

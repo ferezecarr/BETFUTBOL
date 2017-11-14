@@ -17,11 +17,15 @@
 		
 	   	
 				<div class="col-md-8 col-md-offset-2">
-		 			<ol class="breadcrumb">
+		 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Partidos de la semana</li>
-	         			<li class="breadcrumb-item active">Apueste al equipo ganador o por un empate entre ambos.</li>
 	     			</ol>
-					<c:forEach items="${evento}" var="e">
+	     			
+	     			<ol class="breadcrumb text-center">
+	     			<li class="breadcrumb-item active">Apueste al equipo ganador o por un empate entre ambos.</li>
+	     			</ol>
+	     			
+					<c:forEach items="${evento_apostarPorGanadorEmpate}" var="e">
 			         <div class="panel panel-primary">
 			            <div class="panel-heading text-center">${e.partido.local.nombre} - ${e.partido.visitante.nombre}</div>
 			            <div class="panel-body text-center">
@@ -41,6 +45,32 @@
 			          </div>
 			        </div>
 					</c:forEach>
+					
+					
+					<ol class="breadcrumb text-center">
+	         			<li class="breadcrumb-item active">Apueste a la cantidad de goles que anote un equipo.</li>
+	     			</ol>
+				 <c:forEach items="${evento_apostarPorGoles}" var="e">
+			         <div class="panel panel-primary">
+			            <div class="panel-heading text-center">${e.partido.local.nombre} - ${e.partido.visitante.nombre}</div>
+			            <div class="panel-body text-center">
+			            <p id="descripcion"> ${e.descripcion}</p>
+			          	<c:forEach items="${e.cuotas}" var="c">
+			          	
+					            <a style="text-decoration:none" >
+					            <!--  se quita  onclick="pickOption(this)" del <a> para que no desaparesca el panel del partido seleccionado-->
+					           	${c.nombre}: 
+					           	
+					           	<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModal" class="btn btn-success">
+					           	${c.valor}
+					           	</a>
+					           	-
+					            </a>  
+			       		</c:forEach>
+			          </div>
+			        </div>
+					</c:forEach>
+					
 				</div>
 				
 			</div>

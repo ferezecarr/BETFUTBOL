@@ -36,12 +36,20 @@ public class ControladorIndex {
 		 * no puedo sacar el evento y la apuesta de acá, por eso lo dejé*/
 		 
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
-		modelo.put("evento", misEventos);	
-		Apuesta apuesta= new Apuesta();		
+		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
+		
+		List<Evento> misEventos2 = servicioEvento.listarEventosPorNombre("Cuantos goles hace un equipo");
+		modelo.put("evento_apostarPorGoles", misEventos2);
+		
+		Apuesta apuesta= new Apuesta();	
+		
+		
 		modelo.put("apuesta",apuesta);	
+		
 		
 		Usuario usuario = new Usuario();
 		modelo.put("usuario",usuario);
+		
 		return new ModelAndView("index", modelo);
 	}
 

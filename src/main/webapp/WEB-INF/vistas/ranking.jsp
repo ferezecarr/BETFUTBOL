@@ -8,18 +8,17 @@
 <head><%@ include file="includes/cabecera.jsp"%>
 </head>
 <body>
-<%-- 
-<%@ include file="includes/navegador.jsp"%>
-<%@ include file="includes/modales.jsp"%>
---%>
+  <%@include file="includes/navegador.jsp"%>
+
 	<div class="container-fluid">
 		<div class="col-md-12 main">
 			<div class="row">				
 				<div class="col-md-8 col-md-offset-2">
 		 			<ol class="breadcrumb">
-	          			<li class="breadcrumb-item active">
-	          				Rankings<br/><br/>
-								<c:url value="/ranking" var="url"/>
+	          			<li class="breadcrumb-item active">Ranking de Apostadores - Seleccione el ranking que desea ver:</li>
+	     			</ol>
+	     				
+	     						<c:url value="/ranking" var="url"/>
  								<a href="<c:out value='${url}'/>" class="btn btn-default">General</a>
  									
 								<c:url value="/ranking?filtro=Resultado" var="url"/>
