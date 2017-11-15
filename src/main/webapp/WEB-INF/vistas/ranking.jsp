@@ -9,6 +9,7 @@
 </head>
 <body>
   <%@include file="includes/navegador.jsp"%>
+<%-- <%@ include file="includes/modales.jsp"%> --%>
 
 	<div class="container-fluid">
 		<div class="col-md-12 main">
