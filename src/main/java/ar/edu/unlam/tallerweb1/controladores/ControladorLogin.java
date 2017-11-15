@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,17 +34,45 @@ public class ControladorLogin {
 	@Inject
 	private ServicioCuota servicioCuota;
 	
-	@RequestMapping("/login")
-	public ModelAndView irALogin() {
-
+	
+	
+	
+	@RequestMapping(path="/login", method = RequestMethod.POST)
+	public ModelAndView irALogin(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request) {
+		
 		ModelMap modelo = new ModelMap();
-		Usuario usuario = new Usuario();
-		modelo.put("usuario", usuario);
-		return new ModelAndView("redirect:/validar-login", modelo);
+		
+		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
+		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
+		List<Evento> misEventos2 = servicioEvento.listarEventosPorNombre("Cuantos goles hace un equipo");
+		modelo.put("evento_apostarPorGoles", misEventos2);
+		Apuesta apuesta= new Apuesta();	
+		modelo.put("apuesta",apuesta);	
+		
+		
+		if(servicioLogin.consultarUsuario(usuario) != null)
+		{	
+			request.getSession().setAttribute("userLogin", usuario);
+			
+			Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
+			modelo.put("usuario",usuarioBuscado);
+			modelo.put("nombre",usuarioBuscado.getNombreYApellido());
+		}
+		else
+		{
+			modelo.put("error", "no se encuentra registrado");
+			return new ModelAndView("Error",modelo);
+		}
+		
+		
+		return new ModelAndView("index", modelo);
+		
 	}
 	
+	
+	
 	@RequestMapping(path = "/validar-login" , method = RequestMethod.POST)
-	public ModelAndView solicitarLoginParaApostar(@ModelAttribute("usuario") Usuario usuario) {
+	public ModelAndView solicitarLoginParaApostar(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request) {
 		
 		ModelMap modelo = new ModelMap();
 		
@@ -56,6 +85,9 @@ public class ControladorLogin {
 			modelo.put("error", "Necesita Ingresar para poder apostar");
 		} else {
 			
+			request.getSession().setAttribute("userLogin", usuario);
+			
+		
 			Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
 			
 			modelo.put("usuario",usuarioBuscado);
@@ -65,6 +97,9 @@ public class ControladorLogin {
 		}
 		return new ModelAndView("Error",modelo);
 	}
+	
+	
+	
 	
 	@RequestMapping(path = "/registro-usuario" , method = RequestMethod.POST)
 	public ModelAndView registrarUsuario(@ModelAttribute("registroUsuario") Long id) {

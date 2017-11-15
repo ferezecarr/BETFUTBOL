@@ -25,11 +25,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         
-                      <c:if test="${not empty nombre}">
+                      <c:if test="${not empty userLogin}">
    						<span>${nombre}</span>
    					</c:if>
    					
-                     <c:if test="${empty nombre}">
+                     <c:if test="${empty userLogin}">
    					<span>Entrar</span>
    					</c:if>
                         
