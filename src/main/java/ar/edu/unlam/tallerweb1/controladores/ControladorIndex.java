@@ -54,11 +54,12 @@ public class ControladorIndex {
 			modelo.put("usuario",usuarioLogeado);
 			return new ModelAndView("index", modelo);
 		}
+		else if(request.getSession().getAttribute("userId") == null){
+			Usuario usuario = new Usuario();
+			modelo.put("usuario",usuario);
+		}
 		
-		Usuario usuario = new Usuario();
-		modelo.put("usuario",usuario);
-		
-		return new ModelAndView("index", modelo);
+		return new ModelAndView("index", modelo);			
 		
 	}
 

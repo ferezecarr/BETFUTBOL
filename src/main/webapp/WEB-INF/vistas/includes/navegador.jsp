@@ -53,18 +53,9 @@
 	                            <li><a href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a></li>
                             </c:otherwise>                            
 	                    </c:choose>
-                            <li><c:if test="${not empty userLogin}">
-		   						<a href="/proyecto-limpio-spring/cerrarlogin" >salir</a>
-		   						</c:if></li>
-		   						
-                            <li><c:if test="${empty userLogin}"><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></c:if></li>
                         </ul>
                     </li>
                 </ul>
-                
-                
-                
-                
                 
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
