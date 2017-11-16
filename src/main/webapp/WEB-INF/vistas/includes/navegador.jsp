@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-=======
+
  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
->>>>>>> 29d35725444938fa938d7a3b4365d908c0e1373e
+
  <nav class="navbar navbar-default navegador">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -41,7 +40,7 @@
                         
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-<<<<<<< HEAD
+
                         <c:choose>
                             <c:when test="${userId != null}">
 		   						<li>
@@ -52,16 +51,13 @@
                             <c:otherwise>
                             	<li><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></li>
 	                            <li><a href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a></li>
-                            </c:otherwise>
-=======
+                            </c:otherwise>                            
+	                    </c:choose>
                             <li><c:if test="${not empty userLogin}">
 		   						<a href="/proyecto-limpio-spring/cerrarlogin" >salir</a>
 		   						</c:if></li>
 		   						
                             <li><c:if test="${empty userLogin}"><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></c:if></li>
->>>>>>> 29d35725444938fa938d7a3b4365d908c0e1373e
-                            
-	                    </c:choose>
                         </ul>
                     </li>
                 </ul>

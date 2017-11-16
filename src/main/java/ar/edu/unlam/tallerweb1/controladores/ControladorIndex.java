@@ -32,7 +32,7 @@ public class ControladorIndex {
 	@Inject	private ServicioLogin servicioLogin;
 	
 	@RequestMapping("/index")
-	public ModelAndView index() {		
+	public ModelAndView index(HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();
 		
 		/*
@@ -41,29 +41,32 @@ public class ControladorIndex {
 		 *  asique pasé la lista de evento y las apuestas a validar login para que retorne el usuario con la apuesta y el evento*/
 		/*aunque al no estar terminado lo de unir al usuario loguado con la apuesta y el evento, 
 		 * no puedo sacar el evento y la apuesta de acá, por eso lo dejé*/
-
 		
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
 		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
 		List<Evento> misEventos2 = servicioEvento.listarEventosPorNombre("Cuantos goles hace un equipo");
 		modelo.put("evento_apostarPorGoles", misEventos2);
 		Apuesta apuesta= new Apuesta();	
-		modelo.put("apuesta",apuesta);	
+		modelo.put("apuesta",apuesta);
+		if(request.getSession().getAttribute("userId") != null) {
+			
+			Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+			modelo.put("usuario",usuarioLogeado);
+			return new ModelAndView("index", modelo);
+		}
+		
 		Usuario usuario = new Usuario();
 		modelo.put("usuario",usuario);
 		
 		return new ModelAndView("index", modelo);
+		
 	}
 
 
 	
 	
 	@RequestMapping(path="/procesar-apuesta", method=RequestMethod.POST)
-<<<<<<< HEAD
 	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request/*, HttpServletResponse response*/){	
-=======
-	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request, HttpServletResponse response,Usuario usuario){	
->>>>>>> 29d35725444938fa938d7a3b4365d908c0e1373e
 		
 		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
 		 * Después cuando exista login, esto se saca*/
@@ -81,16 +84,13 @@ public class ControladorIndex {
 		Usuario usuarioDefault = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
 		
 		//al usarlo me tira un error 
-<<<<<<< HEAD
 		//Usuario usuarioDefault=(Usuario)session.getAttribute("userLogin");
 				
-=======
 		//usuarioDefault=(Usuario)session.getAttribute("userLogin");
 		//Long idUsuario=(Long) session.getAttribute("idUsuario");
 		
 		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
 		
->>>>>>> 29d35725444938fa938d7a3b4365d908c0e1373e
 		
 		
 		apuesta.setApostador(usuarioDefault);		
@@ -108,7 +108,7 @@ public class ControladorIndex {
 		
 		
 		
-		return new ModelAndView("redirect:/index");
+		return new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping(path="/Error",method=RequestMethod.GET)
