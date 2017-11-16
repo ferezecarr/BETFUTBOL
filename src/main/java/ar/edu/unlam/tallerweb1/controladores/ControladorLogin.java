@@ -108,10 +108,10 @@ public class ControladorLogin {
 	}*/
 	
 	//Cierro la sesion del login
-	@RequestMapping(path = "/cerrarlogin" , method = RequestMethod.POST)
+	@RequestMapping(path = "/cerrarlogin")
 	public ModelAndView cerrarLogin(HttpServletRequest request) {
 		request.getSession().invalidate();
-		return new ModelAndView("redirect:index");
+		return new ModelAndView("redirect:/index");
 	}
 	
 	

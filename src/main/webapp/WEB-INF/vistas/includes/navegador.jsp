@@ -1,3 +1,5 @@
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <nav class="navbar navbar-default navegador">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,8 +37,8 @@
                         
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><c:if test="${not empty cerrarLogin}">
-		   						<a href="#" >salir</a>
+                            <li><c:if test="${not empty userLogin}">
+		   						<a href="/proyecto-limpio-spring/cerrarlogin" >salir</a>
 		   						</c:if></li>
 		   						
                             <li><c:if test="${empty nombre}"><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></c:if></li>
