@@ -1,3 +1,5 @@
 /target/
 src/main/resources/hibernateContext.xml
 target/classes/META-INF/MANIFEST.MF
+target/classes/META-INF/MANIFEST.MF
+src/main/resources/hibernateContext.xml

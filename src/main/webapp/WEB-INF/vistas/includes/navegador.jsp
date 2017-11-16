@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <nav class="navbar navbar-default navegador">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -24,24 +25,30 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        
-                      <c:if test="${not empty userLogin}">
-   						<span>${nombre}</span>
-   					</c:if>
-   					
-                     <c:if test="${empty userLogin}">
-   					<span>Entrar</span>
-   					</c:if>
+                    <c:choose>
+                    	<c:when test="${userId != null}">
+		   						<span>Bienvenido ${nombre}</span>
+		  				</c:when>
+	                	<c:otherwise>
+	   						<span>Entrar</span>
+	   					</c:otherwise>
+                    </c:choose>
                         
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><c:if test="${not empty nombre}">
-		   						<a href="#" >salir</a>
-		   						</c:if></li>
-		   						
-                            <li><c:if test="${empty nombre}"><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></c:if></li>
+                        <c:choose>
+                            <c:when test="${userId != null}">
+		   						<li>
+		   						<a href="#" data-toggle="modal" data-target="#logout">salir</a>
+		   						</li>
+		   					</c:when>	   						
+	                    
+                            <c:otherwise>
+                            	<li><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></li>
+	                            <li><a href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a></li>
+                            </c:otherwise>
                             
-                            <li><a href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a></li>
+	                    </c:choose>
                         </ul>
                     </li>
                 </ul>

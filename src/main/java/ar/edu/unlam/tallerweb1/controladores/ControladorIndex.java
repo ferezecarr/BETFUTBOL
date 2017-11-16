@@ -58,7 +58,7 @@ public class ControladorIndex {
 	
 	
 	@RequestMapping(path="/procesar-apuesta", method=RequestMethod.POST)
-	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request, HttpServletResponse response){	
+	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request/*, HttpServletResponse response*/){	
 		
 		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
 		 * Después cuando exista login, esto se saca*/
@@ -68,19 +68,16 @@ public class ControladorIndex {
 		
 	
 		
-		HttpSession session= (HttpSession) request.getSession();
-		if(session.getAttribute("userLogin")==null)
+		if(request.getSession().getAttribute("userId") == null)
 		{
 			return new ModelAndView("Error");
 		}
 		
-		Usuario usuarioDefault =new Usuario();
+		Usuario usuarioDefault = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
 		
 		//al usarlo me tira un error 
 		//Usuario usuarioDefault=(Usuario)session.getAttribute("userLogin");
-		
-		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
-		
+				
 		
 		
 		apuesta.setApostador(usuarioDefault);		

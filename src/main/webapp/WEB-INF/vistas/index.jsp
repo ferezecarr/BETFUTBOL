@@ -35,10 +35,18 @@
 					            <a style="text-decoration:none" >
 					            <!--  se quita  onclick="pickOption(this)" del <a> para que no desaparesca el panel del partido seleccionado-->
 					           	${c.nombre}: 
-					           	
-					           	<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModal" class="btn btn-success">
-					           	${c.valor}
-					           	</a>
+					          <c:choose>
+					           	<c:when test="${userId != null}">
+						           	<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModal" class="btn btn-success">
+						           	${c.valor}
+						           	</a>
+					           	</c:when>
+					           	<c:otherwise>
+						           	<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModalApostar" class="btn btn-success">
+						           	${c.valor}
+						           	</a>
+					           	</c:otherwise>
+					          </c:choose>
 					           	-
 					            </a>  
 			       		</c:forEach>
@@ -60,10 +68,18 @@
 					            <a style="text-decoration:none" >
 					            <!--  se quita  onclick="pickOption(this)" del <a> para que no desaparesca el panel del partido seleccionado-->
 					           	${c.nombre}: 
-					           	
-					           	<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModal" class="btn btn-success">
-					           	${c.valor}
-					           	</a>
+					          <c:choose>
+					           	<c:when test="${userId != null }">
+						           	<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModal" class="btn btn-success">
+						           	${c.valor}
+						           	</a>
+					           	</c:when>
+					           	<c:otherwise>
+						           	<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModalApostar" class="btn btn-success">
+						           	${c.valor}
+						           	</a>
+					           	</c:otherwise>
+					          </c:choose>
 					           	-
 					            </a>  
 			       		</c:forEach>
