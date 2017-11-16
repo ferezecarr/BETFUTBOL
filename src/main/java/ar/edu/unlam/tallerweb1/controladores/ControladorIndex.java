@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Apuesta;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
@@ -58,7 +59,7 @@ public class ControladorIndex {
 	
 	
 	@RequestMapping(path="/procesar-apuesta", method=RequestMethod.POST)
-	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request, HttpServletResponse response){	
+	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request, HttpServletResponse response,Usuario usuario){	
 		
 		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
 		 * Después cuando exista login, esto se saca*/
@@ -77,7 +78,8 @@ public class ControladorIndex {
 		Usuario usuarioDefault =new Usuario();
 		
 		//al usarlo me tira un error 
-		//Usuario usuarioDefault=(Usuario)session.getAttribute("userLogin");
+		//usuarioDefault=(Usuario)session.getAttribute("userLogin");
+		//Long idUsuario=(Long) session.getAttribute("idUsuario");
 		
 		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
 		
@@ -95,7 +97,6 @@ public class ControladorIndex {
 		
 		//Guardando la apuesta
 		servicioApuesta.guardar(apuesta);
-		
 		
 		
 		
