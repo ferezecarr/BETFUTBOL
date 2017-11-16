@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Apuesta;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
@@ -58,7 +59,11 @@ public class ControladorIndex {
 	
 	
 	@RequestMapping(path="/procesar-apuesta", method=RequestMethod.POST)
+<<<<<<< HEAD
 	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request/*, HttpServletResponse response*/){	
+=======
+	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request, HttpServletResponse response,Usuario usuario){	
+>>>>>>> 29d35725444938fa938d7a3b4365d908c0e1373e
 		
 		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
 		 * Después cuando exista login, esto se saca*/
@@ -76,8 +81,16 @@ public class ControladorIndex {
 		Usuario usuarioDefault = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
 		
 		//al usarlo me tira un error 
+<<<<<<< HEAD
 		//Usuario usuarioDefault=(Usuario)session.getAttribute("userLogin");
 				
+=======
+		//usuarioDefault=(Usuario)session.getAttribute("userLogin");
+		//Long idUsuario=(Long) session.getAttribute("idUsuario");
+		
+		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
+		
+>>>>>>> 29d35725444938fa938d7a3b4365d908c0e1373e
 		
 		
 		apuesta.setApostador(usuarioDefault);		
@@ -92,7 +105,6 @@ public class ControladorIndex {
 		
 		//Guardando la apuesta
 		servicioApuesta.guardar(apuesta);
-		
 		
 		
 		

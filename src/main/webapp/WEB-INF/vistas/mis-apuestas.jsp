@@ -9,11 +9,13 @@
 </head>
 <body>
 <%@ include file="includes/navegador.jsp"%>
-<%--  <%@ include file="includes/modales.jsp"%> --%>
+ <%@ include file="includes/modales.jsp"%> 
+  <%@ include file="includes/modal-Apuesta.jsp"%> 
 	
 	<div class="container-fluid">
 		<div class="col-md-12 main">
 			<div class="row">
+			
 				
 				<div class="col-md-8 col-md-offset-2">
 		 			<ol class="breadcrumb">

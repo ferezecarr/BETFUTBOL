@@ -111,7 +111,12 @@ public class ControladorLogin {
 		return new ModelAndView("Error",modelo);
 	}*/
 	
-	
+	//Cierro la sesion del login
+	@RequestMapping(path = "/cerrarlogin")
+	public ModelAndView cerrarLogin(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return new ModelAndView("redirect:/index");
+	}
 	
 	
 	@RequestMapping(path = "/registro-usuario" , method = RequestMethod.POST)
