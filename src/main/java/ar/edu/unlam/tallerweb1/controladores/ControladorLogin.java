@@ -36,23 +36,32 @@ public class ControladorLogin {
 	
 	
 	
+	//lo cambie  que responda a "Index" porque sino, cuando el usuario se logueaba,
+	//en la url aparecia como login en vez de index, 
 	
-	@RequestMapping(path="/login", method = RequestMethod.POST)
-	public ModelAndView irALogin(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request) {
+	@RequestMapping(path="/index", method = RequestMethod.POST)
+	public ModelAndView irALogin(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request, HttpServletResponse response) {
 		
 		ModelMap modelo = new ModelMap();
 		
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
-		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
+		modelo.put("evento_apostarPorGanadorEmpate", misEventos);
+		
 		List<Evento> misEventos2 = servicioEvento.listarEventosPorNombre("Cuantos goles hace un equipo");
 		modelo.put("evento_apostarPorGoles", misEventos2);
+		
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);	
 		
 		
 		if(servicioLogin.consultarUsuario(usuario) != null)
 		{	
-			request.getSession().setAttribute("userLogin", usuario);
+			
+			//request.getSession().setAttribute("userLogin", usuario);
+	
+			HttpSession session = request.getSession (true);  
+	        session.setAttribute ("userLogin", usuario);  
+			
 			
 			Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
 			modelo.put("usuario",usuarioBuscado);
@@ -65,12 +74,12 @@ public class ControladorLogin {
 		}
 		
 		
-		return new ModelAndView("index", modelo);
-		
+	
+		return new ModelAndView("index",modelo);
 	}
 	
-	
-	
+	//al verificar si existe la session en procesar apuesta, no se cesesita del validar-login, luego se verá si se lo deja o saca
+	/*
 	@RequestMapping(path = "/validar-login" , method = RequestMethod.POST)
 	public ModelAndView solicitarLoginParaApostar(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request) {
 		
@@ -96,7 +105,7 @@ public class ControladorLogin {
 			return new ModelAndView("index",modelo);
 		}
 		return new ModelAndView("Error",modelo);
-	}
+	}*/
 	
 	
 	

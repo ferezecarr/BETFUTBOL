@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioApuesta;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
@@ -26,6 +28,7 @@ public class ControladorIndex {
 	@Inject	private ServicioApuesta servicioApuesta;
 	@Inject	private ServicioUsuario servicioUsuario;
 	@Inject	private ServicioCuota servicioCuota;
+	@Inject	private ServicioLogin servicioLogin;
 	
 	@RequestMapping("/index")
 	public ModelAndView index() {		
@@ -37,10 +40,7 @@ public class ControladorIndex {
 		 *  asique pasé la lista de evento y las apuestas a validar login para que retorne el usuario con la apuesta y el evento*/
 		/*aunque al no estar terminado lo de unir al usuario loguado con la apuesta y el evento, 
 		 * no puedo sacar el evento y la apuesta de acá, por eso lo dejé*/
-	
-		
-		
-		
+
 		
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
 		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
@@ -48,15 +48,17 @@ public class ControladorIndex {
 		modelo.put("evento_apostarPorGoles", misEventos2);
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);	
-		Usuario usuario =new Usuario();
+		Usuario usuario = new Usuario();
 		modelo.put("usuario",usuario);
 		
 		return new ModelAndView("index", modelo);
 	}
 
 
+	
+	
 	@RequestMapping(path="/procesar-apuesta", method=RequestMethod.POST)
-	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request){	
+	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request, HttpServletResponse response){	
 		
 		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
 		 * Después cuando exista login, esto se saca*/
@@ -64,16 +66,23 @@ public class ControladorIndex {
 		
 		//con ésto evita que apueste sin loguearse
 		
-		/*
-		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("userLogin") == null) {
-		  return new ModelAndView("Error");
-		}
-		*/
+	
 		
-		Usuario usuarioDefault = new Usuario();
+		HttpSession session= (HttpSession) request.getSession();
+		if(session.getAttribute("userLogin")==null)
+		{
+			return new ModelAndView("Error");
+		}
+		
+		Usuario usuarioDefault =new Usuario();
+		
+		//al usarlo me tira un error 
+		//Usuario usuarioDefault=(Usuario)session.getAttribute("userLogin");
 		
 		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
+		
+		
+		
 		apuesta.setApostador(usuarioDefault);		
 
 		//Aumentando los votos de la apuesta seleccionada
@@ -86,6 +95,9 @@ public class ControladorIndex {
 		
 		//Guardando la apuesta
 		servicioApuesta.guardar(apuesta);
+		
+		
+		
 		
 		return new ModelAndView("redirect:/index");
 	}
