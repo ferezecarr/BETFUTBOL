@@ -35,7 +35,7 @@
                         
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><c:if test="${not empty nombre}">
+                            <li><c:if test="${not empty cerrarLogin}">
 		   						<a href="#" >salir</a>
 		   						</c:if></li>
 		   						
