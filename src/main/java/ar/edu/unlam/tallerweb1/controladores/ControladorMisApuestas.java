@@ -36,6 +36,9 @@ public class ControladorMisApuestas {
 		
 		ModelMap modelo = new ModelMap();
 		
+		//al no agregarle un usaurio al modelo, lanza una error, 
+		//por no rellenar el fomulario de login y registro en el modal. 
+		modelo.put("usuario",usuario1);
 		
 		List<Apuesta> apuestas = servicioApuesta.buscarPorApuesta(usuario1);
 
