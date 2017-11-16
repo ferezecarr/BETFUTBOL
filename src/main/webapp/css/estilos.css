@@ -26,3 +26,36 @@ body{
 {
 height:20px;	
 }
+
+
+.rc
+{
+	display:flex;
+	flex-direction:row;
+	justify-content:space-around;
+	
+}
+.recuadro
+{
+	display:flex;
+	flex-direction:column;
+	width:210px;	
+	min-width: 210px;
+}
+.recuadro2
+{
+	width:700px;
+		min-width: 300px;
+}
+
+.b
+{
+	margin-bottom:3%;
+}
+
+
+
+
+
+
+
