@@ -46,6 +46,7 @@ public class ControladorMisApuestas {
 		//al no agregarle un usaurio al modelo, lanza una error, 
 		//por no rellenar el fomulario de login y registro en el modal. 
 		modelo.put("usuario",usuario);
+		modelo.put("nombre",usuario.getNombreYApellido());
 		
 		List<Apuesta> apuestas = servicioApuesta.buscarPorApuesta(usuario);
 

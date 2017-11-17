@@ -40,7 +40,7 @@ public class ControladorLogin {
 	//en la url aparecia como login en vez de index, 
 	
 	@RequestMapping(path="/login", method = RequestMethod.POST)
-	public ModelAndView irALogin(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request/*, HttpServletResponse response*/) {
+	public ModelAndView irALogin(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request) {
 		
 		ModelMap modelo = new ModelMap();
 		
@@ -55,20 +55,13 @@ public class ControladorLogin {
 		if(servicioLogin.consultarUsuario(usuario) != null)
 		{	
 			Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
-			
-			//request.getSession().setAttribute("userLogin", usuario);
-	
-//			HttpSession session = request.getSession (true);
-//	        session.setAttribute ("userLogin", usuario);  
 			request.getSession().setAttribute("userId", usuarioBuscado.getId());
-			
 			
 			modelo.put("usuario",usuarioBuscado);
 			modelo.put("nombre",usuarioBuscado.getNombreYApellido());
 		}
 		else
 		{
-			modelo.put("error", "no se encuentra registrado");
 			return new ModelAndView("Error",modelo);
 		}
 			
@@ -81,35 +74,6 @@ public class ControladorLogin {
 		request.getSession().invalidate();
 		return new ModelAndView("redirect:/");
 	}
-	
-	//al verificar si existe la session en procesar apuesta, no se cesesita del validar-login, luego se verá si se lo deja o saca
-	/*
-	@RequestMapping(path = "/validar-login" , method = RequestMethod.POST)
-	public ModelAndView solicitarLoginParaApostar(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request) {
-		
-		ModelMap modelo = new ModelMap();
-		
-		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
-		modelo.put("evento", misEventos);	
-		Apuesta apuesta= new Apuesta();		
-		modelo.put("apuesta",apuesta);	
-		
-		if(servicioLogin.consultarUsuario(usuario) == null) {
-			modelo.put("error", "Necesita Ingresar para poder apostar");
-		} else {
-			
-			request.getSession().setAttribute("userLogin", usuario);
-			
-		
-			Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
-			
-			modelo.put("usuario",usuarioBuscado);
-			modelo.put("nombre",usuarioBuscado.getNombreYApellido());
-		
-			return new ModelAndView("index",modelo);
-		}
-		return new ModelAndView("Error",modelo);
-	}*/
 	
 	
 	@RequestMapping(path = "/registro-usuario" , method = RequestMethod.POST)

@@ -41,12 +41,14 @@ public class ControladorRanking {
 			modelo.put("ranking", ranking);
 			
 			modelo.put("usuario",usuario);
+			modelo.put("nombre",usuario.getNombreYApellido());
 			return new ModelAndView("ranking", modelo);			
 		}
 		List<RankingDTO> ranking = servicioRanking.traerRankingGeneralPorNombreDeEvento(filtro);
 		modelo.put("ranking", ranking);
 	
 		modelo.put("usuario",usuario);
+		modelo.put("nombre",usuario.getNombreYApellido());
 	
 		
 		return new ModelAndView("ranking", modelo);

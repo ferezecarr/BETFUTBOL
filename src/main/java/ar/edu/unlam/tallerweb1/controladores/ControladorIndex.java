@@ -53,6 +53,7 @@ public class ControladorIndex {
 			
 			Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
 			modelo.put("usuario",usuarioLogeado);
+			modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 			
 			return new ModelAndView("index", modelo);
 		}
