@@ -6,6 +6,7 @@ import java.util.*;
 public interface UsuarioDao {
 	
 	Usuario consultarUsuario (Usuario usuario);
+	Usuario consultarUsuarioPorMail (Usuario usuario);
 	void save(Usuario usuario);
 	List<Usuario> findAll();
 	Usuario findById(Long id);

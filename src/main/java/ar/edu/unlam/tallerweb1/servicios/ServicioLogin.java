@@ -6,6 +6,7 @@ import java.util.*;
 public interface ServicioLogin {
 
 	Usuario consultarUsuario(Usuario usuario);
+	Usuario consultarUsuarioPorMail(Usuario usuario);
 	void guardar(Usuario usuario);
 	List<Usuario> listarTodos();
 	Usuario buscarPorId(Long id);

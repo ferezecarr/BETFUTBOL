@@ -76,16 +76,50 @@ public class ControladorLogin {
 	}
 	
 	
+	
+	
 	@RequestMapping(path = "/registro-usuario" , method = RequestMethod.POST)
-	public ModelAndView registrarUsuario(@ModelAttribute("registroUsuario") Long id) {
-		ModelMap modelo = new ModelMap();
-		if(servicioLogin.buscarPorId(id) == null){
-			modelo.put("error", "Por favor ingrese sus datos");
-		} else {
-			return new ModelAndView("redirect:/index");
+	public ModelAndView registrarUsuario(@ModelAttribute("usuario") Usuario usuario,HttpServletRequest request) {
+		
+		ModelMap modelo= new ModelMap();
+		
+		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
+		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
+		List<Evento> misEventos2 = servicioEvento.listarEventosPorNombre("Cuantos goles hace un equipo");
+		modelo.put("evento_apostarPorGoles", misEventos2);
+		Apuesta apuesta= new Apuesta();	
+		modelo.put("apuesta",apuesta);	
+		
+		
+		Usuario usuarioAguardar= new Usuario();
+		
+		if(servicioLogin.consultarUsuarioPorMail(usuario)==null)
+		{
+			
+			usuarioAguardar.setEmail(usuario.getEmail());
+			usuarioAguardar.setNombreYApellido(usuario.getNombreYApellido());
+			usuarioAguardar.setPassword(usuario.getPassword());
+			servicioLogin.guardar(usuarioAguardar);
+			
+			request.getSession().setAttribute("userId", usuarioAguardar.getId());
+			
+			modelo.put("usuario",usuarioAguardar);
+			modelo.put("nombre",usuarioAguardar.getNombreYApellido());
+		
 		}
+		else
+		{
+			return new ModelAndView("Error");
+		}
+		
+		modelo.put("usuario",usuarioAguardar);
+		modelo.put("registro","registro Exitoso");
+		modelo.put("nombre",usuarioAguardar.getNombreYApellido());
+		
 		return new ModelAndView("index",modelo);
 	}
+	
+	
 	
 	
 	@RequestMapping(path = "/", method = RequestMethod.GET)

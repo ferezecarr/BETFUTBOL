@@ -24,6 +24,11 @@ public class ServicioLoginImpl implements ServicioLogin {
 	}
 
 	@Override
+	public Usuario consultarUsuarioPorMail (Usuario usuario) {
+		return servicioLoginDao.consultarUsuarioPorMail(usuario);
+	}
+	
+	@Override
 	public void guardar(Usuario usuario) {
 		servicioLoginDao.save(usuario);
 		

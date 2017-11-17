@@ -20,17 +20,27 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public Usuario consultarUsuario(Usuario usuario) {
 
-		//final Session session = sessionFactory.openSession();
+		
 		return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
+				.uniqueResult();
+	}
+	@Override
+	public Usuario consultarUsuarioPorMail(Usuario usuario) {
+
+		
+		return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("email", usuario.getEmail()))
 				.uniqueResult();
 	}
 
 	@Override
 	public void save(Usuario usuario) {
 		sessionFactory.getCurrentSession().save(usuario);
+		String sql="INSERT INTO Usuario (nombreYApellido, email, password) VALUES ('"+usuario.getNombreYApellido()+"','"+usuario.getEmail()+"','"+usuario.getPassword()+"')";
 		
+		 sessionFactory.getCurrentSession().createSQLQuery(sql);
 	}
 
 	@SuppressWarnings("unchecked")

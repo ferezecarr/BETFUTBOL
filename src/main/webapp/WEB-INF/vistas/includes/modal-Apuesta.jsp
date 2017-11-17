@@ -10,7 +10,7 @@
             <h3 class="modal-title">Apuesta en curso</h3>
           </div>
           <div class="modal-body">
-            <h5 id="descripcion">Indique la cantidad de dinero que sea apostar.</h5>
+            <h5 id="descripcion">Indique la cantidad de dinero que desea apostar.</h5>
           </div>
           <div class="modal-footer">
             <div class="form-group text-center">

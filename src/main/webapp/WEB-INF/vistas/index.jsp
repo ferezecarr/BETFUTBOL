@@ -17,6 +17,12 @@
 		
 	   	
 				<div class="col-md-8 col-md-offset-2">
+				<c:if test="${not empty registro}">
+				<ol class="breadcrumb text-center">				
+	          			<li class="breadcrumb-item active"><h2>${registro}</h2></li>
+	          			
+	     			</ol>
+				</c:if>
 		 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Partidos de la semana</li>
 	     			</ol>
