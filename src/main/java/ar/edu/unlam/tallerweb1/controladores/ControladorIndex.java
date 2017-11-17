@@ -48,10 +48,12 @@ public class ControladorIndex {
 		modelo.put("evento_apostarPorGoles", misEventos2);
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);
+		
 		if(request.getSession().getAttribute("userId") != null) {
 			
 			Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
 			modelo.put("usuario",usuarioLogeado);
+			
 			return new ModelAndView("index", modelo);
 		}
 		else if(request.getSession().getAttribute("userId") == null){
@@ -83,16 +85,6 @@ public class ControladorIndex {
 		}
 		
 		Usuario usuarioDefault = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
-		
-		//al usarlo me tira un error 
-		//Usuario usuarioDefault=(Usuario)session.getAttribute("userLogin");
-				
-		//usuarioDefault=(Usuario)session.getAttribute("userLogin");
-		//Long idUsuario=(Long) session.getAttribute("idUsuario");
-		
-		usuarioDefault = servicioUsuario.traerUsuarioDeId1();	
-		
-		
 		
 		apuesta.setApostador(usuarioDefault);		
 

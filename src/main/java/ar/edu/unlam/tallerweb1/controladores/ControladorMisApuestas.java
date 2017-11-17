@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioApuesta;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
@@ -25,22 +28,26 @@ public class ControladorMisApuestas {
 	@Inject	private ServicioApuesta servicioApuesta;
 	@Inject	private ServicioUsuario servicioUsuario;
 	@Inject	private ServicioCuota servicioCuota;
+	@Inject	private ServicioLogin servicioLogin;
 	
 	
 	@RequestMapping("/mis-apuestas")
-	public ModelAndView irAMisApuestas(@ModelAttribute("apuesta") Apuesta apuesta){
+	public ModelAndView irAMisApuestas(@ModelAttribute("apuesta") Apuesta apuesta, HttpServletRequest request){
 		
-		Usuario usuario1 = new Usuario();
-		usuario1 = servicioUsuario.traerUsuarioDeId1();
-		apuesta.setApostador(usuario1);
+		if(request.getSession().getAttribute("userId") == null) {
+			return new ModelAndView("redirect:/");
+		}
+		Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+		
+		apuesta.setApostador(usuario);
 		
 		ModelMap modelo = new ModelMap();
 		
 		//al no agregarle un usaurio al modelo, lanza una error, 
 		//por no rellenar el fomulario de login y registro en el modal. 
-		modelo.put("usuario",usuario1);
+		modelo.put("usuario",usuario);
 		
-		List<Apuesta> apuestas = servicioApuesta.buscarPorApuesta(usuario1);
+		List<Apuesta> apuestas = servicioApuesta.buscarPorApuesta(usuario);
 
 		modelo.put("apuestas", apuestas);
 
