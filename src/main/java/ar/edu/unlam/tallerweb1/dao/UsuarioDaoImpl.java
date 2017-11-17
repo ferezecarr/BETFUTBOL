@@ -38,9 +38,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public void save(Usuario usuario) {
 		sessionFactory.getCurrentSession().save(usuario);
-		String sql="INSERT INTO Usuario (nombreYApellido, email, password) VALUES ('"+usuario.getNombreYApellido()+"','"+usuario.getEmail()+"','"+usuario.getPassword()+"')";
 		
-		 sessionFactory.getCurrentSession().createSQLQuery(sql);
 	}
 
 	@SuppressWarnings("unchecked")
