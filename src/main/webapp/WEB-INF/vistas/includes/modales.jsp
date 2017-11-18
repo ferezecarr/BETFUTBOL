@@ -95,7 +95,7 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content col-sm-12">
 	      <div class="modal-header col-sm-8 col-sm-offset-2">
-	        <h2 class="modal-title" id="exampleModalLabel">¿Desea delogearse?</h2>
+	        <h2 class="modal-title" id="exampleModalLabel">¿Desea deslogearse?</h2>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	        </button>
 		      </div>

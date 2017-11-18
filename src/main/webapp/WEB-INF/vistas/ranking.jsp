@@ -56,31 +56,23 @@
 
 					
 	     			</div>
-	     			
 	     			<div class="recuadro2">
-	     			<c:forEach items="${ranking}" var="r">
-						<div class="panel panel-primary">
-							<div class="panel-heading text-center">
-								Top 5<br/>														
-							</div>
-							<div class="panel-body text-center">
+	     				<div class="panel panel-primary">
+						<div class="panel-heading text-center">
+							Top 5<br/>														
+						</div>
+						<div class="panel-body text-center">
+	     				<c:forEach items="${ranking}" var="r">
 								<p class="text-info">
 									Usuario: <c:out value="${r.usuario}"/>, 
 									Cantidad ganada: <c:out value="${r.ganancia}"/>
 								</p>
-							</div>
-						</div>
-					</c:forEach>
-	     			</div>
-	     			
-	     			
-	     			
-					
-					</div>
-					
-					
-					
 						
+					</c:forEach>
+						</div>
+					</div>
+	     			</div>					
+					</div>						
 		
 		</div>	
 	</div>
