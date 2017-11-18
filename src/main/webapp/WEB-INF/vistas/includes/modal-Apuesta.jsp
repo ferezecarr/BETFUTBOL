@@ -25,9 +25,9 @@
     				<form:input class="form-control" path="cantidadApostada"/>
  					</div>
 					</div>
-
+					<button class="btn btn-primary"  data-dismiss="modal" value="Cancelar">Cancelar</button> 
 					<button class="btn btn-success" name="submit" value="Confirmar" type="Submit" data-toggle="page-alert" data-delay="5000" data-toggle-id="10">Apostar</button>
-					<button class="btn btn-default"  data-dismiss="modal" value="Cancelar" type="Submit">Cancelar</button> 
+					
 				</form:form>              
             </div>
           </div>
