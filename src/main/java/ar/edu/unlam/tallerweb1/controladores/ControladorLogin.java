@@ -36,9 +36,6 @@ public class ControladorLogin {
 	
 	
 	
-	//lo cambie  que responda a "Index" porque sino, cuando el usuario se logueaba,
-	//en la url aparecia como login en vez de index, 
-	
 	@RequestMapping(path="/login", method = RequestMethod.POST)
 	public ModelAndView irALogin(@ModelAttribute("usuario") Usuario usuario ,HttpServletRequest request) {
 		
@@ -62,7 +59,8 @@ public class ControladorLogin {
 		}
 		else
 		{
-			return new ModelAndView("Error",modelo);
+			modelo.put("errorLogin","Usuario inexistente");
+			return new ModelAndView("index",modelo);
 		}
 			
 		return new ModelAndView("index",modelo);
@@ -91,30 +89,26 @@ public class ControladorLogin {
 		modelo.put("apuesta",apuesta);	
 		
 		
-		Usuario usuarioAguardar= new Usuario();
+		Usuario usuarioDefault= new Usuario();
 		
 		if(servicioLogin.consultarUsuarioPorMail(usuario)==null)
 		{
 			
-			usuarioAguardar.setEmail(usuario.getEmail());
-			usuarioAguardar.setNombreYApellido(usuario.getNombreYApellido());
-			usuarioAguardar.setPassword(usuario.getPassword());
-			servicioLogin.guardar(usuarioAguardar);
+			servicioLogin.guardar(usuario);
 			
-			request.getSession().setAttribute("userId", usuarioAguardar.getId());
+			request.getSession().setAttribute("userId", usuario.getId());
 			
-			modelo.put("usuario",usuarioAguardar);
-			modelo.put("nombre",usuarioAguardar.getNombreYApellido());
+			modelo.put("usuario",usuario);
+			modelo.put("nombre",usuario.getNombreYApellido());
+			modelo.put("registro","Registro exitoso");
 		
 		}
 		else
 		{
-			return new ModelAndView("Error");
+			modelo.put("error","El E-mail ya se encuentra en uso");
+			modelo.put("usuario",usuarioDefault);
+			return new ModelAndView("index",modelo);
 		}
-		
-		modelo.put("usuario",usuarioAguardar);
-		modelo.put("registro","registro Exitoso");
-		modelo.put("nombre",usuarioAguardar.getNombreYApellido());
 		
 		return new ModelAndView("index",modelo);
 	}

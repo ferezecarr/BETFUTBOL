@@ -5,7 +5,7 @@
    
    
    
-    <form:form action="registro-usuario" method="POST" modelAttribute="usuario"  name="f1">
+    <form:form action="registro-usuario" method="POST" modelAttribute="usuario"  >
 	<div class="modal fade" data-backdrop="static" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content col-sm-12">
@@ -14,14 +14,14 @@
 	      
 	      </div>
 	      <div class="modal-body col-sm-12">
-   	        <form:input path="nombreYApellido" type="text" class="col-sm-6 form-control" placeholder="Nombre y Apellido" /><br>
-	        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail"/><br>
-	        <form:input path="password" type="password" class="col-sm-6 form-control" name="clave1" placeholder="Password"/><br>
+   	        <form:input path="nombreYApellido" type="text" class="col-sm-6 form-control" placeholder="Nombre y Apellido" required="required"/><br>
+	        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail" required="required"/><br>
+	        <form:input path="password" type="password" class="col-sm-6 form-control" name="clave1" placeholder="Password" required="required"/><br>
 	      <!-- <form:input path="password" type="password" class="col-sm-6 form-control" name="clave2" placeholder="Repita Password"/><br> -->  
 	      </div>
 	      <div class="modal-footer col-sm-12">
-	        <button type="submit" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
-	        <button type="submit" class="btn btn-success" onClick="comprobarClave()">enviar</button>
+	        <button  class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
+	        <button type="submit" class="btn btn-success" >enviar</button>
 	      </div>
 	    </div>
 	  </div>
@@ -33,10 +33,6 @@
    	
    	
    	
-   	
-   	<c:if test="${not empty error}">
-   		<h4><span>${error}</span></h4>
-   	</c:if>
     <form:form action="login" method="POST" modelAttribute="usuario">
 	<div class="modal fade" data-backdrop="static" id="myModalApostar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -49,13 +45,13 @@
 	      <div class="modal-body col-sm-12">
 	      
 	      
-	        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail" />
+	        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail" required="required"/>
 	        <br><br/>
-	        <form:input path="password" type="password" class="col-sm-6 form-control" placeholder="Password" /><br>
+	        <form:input path="password" type="password" class="col-sm-6 form-control" placeholder="Password" required="required" /><br>
 	      </div>
 	      
 	      <div class="modal-footer col-sm-12">
-	        <button type="submit" class="btn btn-primary" data-dismiss="modal" value="Cancelar">Cancelar</button>
+	        <button class="btn btn-primary" data-dismiss="modal" value="Cancelar">Cancelar</button>
 	        <button type="submit" class="btn btn-success" value="Enviar">Enviar</button>
 	      </div>
 	    </div>
@@ -76,13 +72,13 @@
 	      <div class="modal-body col-sm-12">
 	      
 	      
-	        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail" />
+	        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail" required="required"/>
 	        <br><br/>
-	        <form:input path="password" type="password" class="col-sm-6 form-control" placeholder="Password" /><br>
+	        <form:input path="password" type="password" class="col-sm-6 form-control" placeholder="Password" required="required"/><br>
 	      </div>
 	      
 	      <div class="modal-footer col-sm-12">
-	        <button type="submit" class="btn btn-primary" data-dismiss="modal" value="Cancelar">Cancelar</button>
+	        <button  class="btn btn-primary" data-dismiss="modal" value="Cancelar">Cancelar</button>
 	        <button type="submit" class="btn btn-success" value="Enviar">Enviar</button>
 	      </div>
 	    </div>
@@ -100,7 +96,7 @@
 	        </button>
 		      </div>
 	      <div class="modal-footer col-sm-12">
-	        <button type="submit" class="btn btn-primary" data-dismiss="modal" value="Cancelar">Cancelar</button>
+	        <button class="btn btn-primary" data-dismiss="modal" value="Cancelar">Cancelar</button>
 	        <button type="submit" class="btn btn-success" value="Enviar">Enviar</button>
 	      </div>
 	    </div>
@@ -108,9 +104,5 @@
 	</div>
 	</form:form>
 	
-   	<c:if test="${not empty error}">
-   		<h4><span>${error}</span></h4>
-   	</c:if>
-   	
-   	
+
    	
