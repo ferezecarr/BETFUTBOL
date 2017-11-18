@@ -24,14 +24,11 @@ public class Evento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_partido")	
 	private Partido partido;
 	
-	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
-	private List<Apuesta> apuestas = new LinkedList<Apuesta>();	
-	
-	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evento", cascade = CascadeType.ALL)
 	private List<Cuota> cuotas = new LinkedList<Cuota>();
 	
 	private String nombre;			//Resultado, Resultado Especifico, Jugador hace gol, etc..
@@ -56,14 +53,6 @@ public class Evento {
 
 	public void setPartido(Partido partido) {
 		this.partido = partido;
-	}
-
-	public List<Apuesta> getApuestas() {
-		return apuestas;
-	}
-
-	public void setApuestas(List<Apuesta> apuestas) {
-		this.apuestas = apuestas;
 	}
 
 	public List<Cuota> getCuotas() {
@@ -98,11 +87,36 @@ public class Evento {
 		this.isTerminado = isTerminado;
 	}
 	
-	public void addApuesta(Apuesta apuesta){
+	/*public void addApuesta(Apuesta apuesta){
 		apuestas.add(apuesta);
-	}
+	}*/
 	
 	public void addCuota(Cuota cuota){
 		cuotas.add(cuota);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Evento other = (Evento) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}	
 }

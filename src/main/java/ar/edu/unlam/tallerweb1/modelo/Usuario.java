@@ -1,23 +1,16 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.LinkedList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Usuario {	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
-	
-	@OneToMany(mappedBy = "apostador", cascade = CascadeType.ALL)
-	private List<Apuesta> apuestas = new LinkedList<Apuesta>();
 	
 	private String nombreYApellido;
 	private String email;
@@ -29,14 +22,6 @@ public class Usuario {
 	
 	public void setId(Long id) {
 		this.id = id;
-	}
-	
-	public List<Apuesta> getApuestas() {
-		return apuestas;
-	}
-	
-	public void setApuestas(List<Apuesta> apuestas) {
-		this.apuestas = apuestas;
 	}
 	
 	public String getNombreYApellido() {
@@ -63,15 +48,10 @@ public class Usuario {
 		this.password = password;
 	}
 	
-	public void addApuesta(Apuesta apuesta){
-		apuestas.add(apuesta);
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((apuestas == null) ? 0 : apuestas.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombreYApellido == null) ? 0 : nombreYApellido.hashCode());
@@ -88,11 +68,6 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (apuestas == null) {
-			if (other.apuestas != null)
-				return false;
-		} else if (!apuestas.equals(other.apuestas))
-			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -115,6 +90,4 @@ public class Usuario {
 			return false;
 		return true;
 	}	
-	
-	
 }

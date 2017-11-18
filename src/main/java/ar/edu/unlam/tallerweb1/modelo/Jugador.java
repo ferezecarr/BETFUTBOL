@@ -16,7 +16,7 @@ public class Jugador {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne/*(fetch = FetchType.LAZY)*/
 	@JoinColumn(name = "id_equipo")
 	private Equipo equipo;
 	

@@ -5,6 +5,8 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.junit.Before;
@@ -21,7 +23,7 @@ public class ApuestaTest extends SpringTest{
 	private Partido partido1, partido2;
 	private Evento evento1, evento2;
 	private Cuota cuota1, cuota2, cuota3, cuota4;
-	private @SuppressWarnings("rawtypes")List lCuotas1, lCuotas2;
+	private @SuppressWarnings("rawtypes")List lCuotas1;
 	private Apuesta apuesta1, apuesta2, apuesta3;
 	private @SuppressWarnings("rawtypes")List lApuestas1, lApuestas2, lApuestas3;
 	
@@ -45,7 +47,6 @@ public class ApuestaTest extends SpringTest{
 		apuesta2	=		new Apuesta();
 		apuesta3	=		new Apuesta();
 		lCuotas1 	=		new LinkedList<Cuota>();
-		lCuotas2	=		new LinkedList<Cuota>();
 		lApuestas1	=		new LinkedList<Apuesta>();
 		lApuestas2	=		new LinkedList<Apuesta>();
 		lApuestas3	=		new LinkedList<Apuesta>();
@@ -152,44 +153,37 @@ public class ApuestaTest extends SpringTest{
 		cuota4.setNombre("Gana Milan");
 		cuota4.setValor(2.33d);
 		
-		//Asigno un evento a cada cuota
-		cuota1.setEvento(evento2);
-		cuota2.setEvento(evento2);
-		cuota3.setEvento(evento2);
-		cuota4.setEvento(evento1);
-		
 		//Seteo eventos
 		evento1.setNombre("Jugador hace un gol");
 		evento2.setNombre("Resultado");
 		evento1.setPartido(partido1);
 		evento2.setPartido(partido2);
 		
-		//Asigno una lista de cuotas a cada evento
-		lCuotas1.add(cuota4);
-		lCuotas2.add(cuota1);
-		lCuotas2.add(cuota2);
-		lCuotas2.add(cuota3);				
-		evento1.setCuotas(lCuotas1);
-		evento2.setCuotas(lCuotas2);
+
+		//Asigno eventos a cuotas
+		cuota1.setEvento(evento2);
+		cuota2.setEvento(evento2);
+		cuota3.setEvento(evento2);
+		cuota4.setEvento(evento1);
 		
-		//Guardo cuotas
+		//Guardo eventos (La cascada guarda las cuotas)
+		getSession().save(evento1);
+		getSession().save(evento2);
 		getSession().save(cuota1);
 		getSession().save(cuota2);
 		getSession().save(cuota3);
 		getSession().save(cuota4);
 		
-		//Guardo eventos
-		getSession().save(evento1);
-		getSession().save(evento2);
 		
 		//Asegurando que las cosas se guardaron como esperaba
 		assertThat(getSession().createCriteria(Equipo.class).list()).hasSize(3);
 		assertThat(getSession().createCriteria(Partido.class).list()).hasSize(2);
-		assertThat(getSession().createCriteria(Evento.class).list()).hasSize(2);
+		assertThat(getSession().createCriteria(Evento.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list()).hasSize(2);
 		assertThat(getSession().createCriteria(Cuota.class).list()).hasSize(4);
 		
 		List<Cuota> lista;
 		lista = getSession().createCriteria(Cuota.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.createAlias("evento", "e")
 				.add(Restrictions.eq("e.nombre", "Resultado"))
 				.list();		
@@ -206,7 +200,7 @@ public class ApuestaTest extends SpringTest{
 	@Test
 	@Transactional
 	@Rollback(true)
-	public void testQueTraeUsuariosQueApostaronPorUnEmpateEnUnEventoDondeEnElPartidoBarcelonaEsLocal(){
+	public void testQueTraeApuestasPorUnEmpateEnUnEventoDondeEnElPartidoBarcelonaEsLocal(){
 		//Seteo usuarios y los guardo		
 		usuario1.setNombreYApellido("Pepe Pompin");
 		usuario2.setNombreYApellido("Juan Perez");
@@ -232,27 +226,16 @@ public class ApuestaTest extends SpringTest{
 		cuota3.setNombre("Gana el visitante");
 		cuota3.setValor(2.99d);
 		
-		//Asigno un evento a cada cuota
-		cuota1.setEvento(evento1);
-		cuota2.setEvento(evento1);
-		cuota3.setEvento(evento1);
-		
 		//Seteo eventos
 		evento1.setNombre("Resultado");
 		evento1.setPartido(partido1);
 		
-		//Asigno una lista de cuotas a cada evento
-		lCuotas1.add(cuota1);
-		lCuotas1.add(cuota2);
-		lCuotas1.add(cuota3);				
-		evento1.setCuotas(lCuotas1);
+		//Asigno cuotas a un evento
+		evento1.addCuota(cuota1);
+		evento1.addCuota(cuota2);
+		evento1.addCuota(cuota3);
 		
-		//Guardo cuotas
-		getSession().save(cuota1);
-		getSession().save(cuota2);
-		getSession().save(cuota3);
-		
-		//Guardo eventos
+		//Guardo eventos (La cascada guarda las cuotas)
 		getSession().save(evento1);	
 		
 		//Seteo apuestas (Tambien del lado del usuario, por la bidireccionalidad)
@@ -268,33 +251,27 @@ public class ApuestaTest extends SpringTest{
 		apuesta2.setCantidadApostada(25d);		
 		apuesta2.setCuotaValor(2.99d);
 		
-		lApuestas1.add(apuesta1);
-		lApuestas2.add(apuesta2);
-		usuario1.setApuestas(lApuestas1);
-		usuario2.setApuestas(lApuestas2);
-		
 		//Guardo apuestas		
 		getSession().save(apuesta1);
 		getSession().save(apuesta2);
 		
-		List<Usuario> lista;
-		lista = getSession().createCriteria(Usuario.class)
-				.createAlias("apuestas", "a")
-				.createAlias("a.evento", "e")
-				.add(Restrictions.eq("a.cuotaNombre", "Empate"))
+		
+		List<Apuesta> lista;
+		lista = getSession().createCriteria(Apuesta.class)
+				.add(Restrictions.eq("cuotaNombre", "Empate"))
+				.createAlias("evento", "e")
 				.createAlias("e.partido", "p")
 				.createAlias("p.local", "l")
-				.add(Restrictions.eq("l.nombre", "Barcelona"))				
+				.add(Restrictions.eq("l.nombre", "Barcelona"))
 				.list();
 		
 		assertThat(lista).hasSize(1);
-		assertThat(lista.get(0).getApuestas()).hasSize(1);
-		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas()).hasSize(3);
-		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas().get(0).getNombre()).isEqualTo("Gana el local");
-		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas().get(1).getNombre()).isEqualTo("Empate");
-		assertThat(lista.get(0).getApuestas().get(0).getEvento().getCuotas().get(2).getNombre()).isEqualTo("Gana el visitante");
-		assertThat(lista.get(0).getNombreYApellido()).isEqualTo("Pepe Pompin");
-		assertThat(lista.get(0).getApuestas().get(0).getCuotaNombre()).isEqualTo("Empate");
+		assertThat(lista.get(0).getEvento().getCuotas()).hasSize(3);
+		assertThat(lista.get(0).getEvento().getCuotas().get(0).getNombre()).isEqualTo("Gana el local");
+		assertThat(lista.get(0).getEvento().getCuotas().get(1).getNombre()).isEqualTo("Empate");
+		assertThat(lista.get(0).getEvento().getCuotas().get(2).getNombre()).isEqualTo("Gana el visitante");	
+		assertThat(lista.get(0).getApostador().getNombreYApellido()).isEqualTo("Pepe Pompin");
+		assertThat(lista.get(0).getCuotaNombre()).isEqualTo("Empate");
 	}
 	
 	@Test
@@ -477,11 +454,11 @@ public class ApuestaTest extends SpringTest{
 		lApuestas3.add(apuesta3);
 		lApuestas4.add(apuesta4);
 		lApuestas5.add(apuesta5);
-		usuario1.setApuestas(lApuestas1);
-		usuario2.setApuestas(lApuestas2);
-		usuario3.setApuestas(lApuestas3);
-		usuario4.setApuestas(lApuestas4);
-		usuario4.setApuestas(lApuestas5);
+		//usuario1.setApuestas(lApuestas1);
+		//usuario2.setApuestas(lApuestas2);
+		//usuario3.setApuestas(lApuestas3);
+		//usuario4.setApuestas(lApuestas4);
+		//usuario4.setApuestas(lApuestas5);
 		
 		getSession().save(apuesta1);
 		getSession().save(apuesta2);

@@ -2,8 +2,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 import javax.inject.Inject;
-
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +22,7 @@ public class ServicioEventoImpl implements ServicioEvento{
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})	
 	public Evento consultarEvento(Long id) {
-		Evento e = eventoServicioDao.findById(id);
-		Hibernate.initialize(e.getCuotas());
-		Hibernate.initialize(e.getPartido());
-		Hibernate.initialize(e.getPartido().getLocal());
-		Hibernate.initialize(e.getPartido().getVisitante());
-		return e;
+		return eventoServicioDao.findById(id);
 	}
 
 	@Override
@@ -48,14 +41,7 @@ public class ServicioEventoImpl implements ServicioEvento{
 	@Override
 	@Transactional(readOnly = true, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
 	public List<Evento> listarEventosPorNombre(String nombreDado){
-		List<Evento> evento = eventoServicioDao.findByNombre(nombreDado);
-		for (Evento e : evento) {
-			Hibernate.initialize(e.getCuotas());
-			Hibernate.initialize(e.getPartido());
-			Hibernate.initialize(e.getPartido().getLocal());
-			Hibernate.initialize(e.getPartido().getVisitante());
-		}
-		return evento;
+		return eventoServicioDao.findByNombre(nombreDado);
 	}
 
 	@Override

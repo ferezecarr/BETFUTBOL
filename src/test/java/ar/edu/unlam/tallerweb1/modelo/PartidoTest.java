@@ -1,12 +1,17 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import org.hibernate.criterion.Restrictions;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.SpringTest;
 
+@SuppressWarnings("unchecked")
 public class PartidoTest extends SpringTest{	
 	private Jugador jugador1, jugador2, jugador3, jugador4;
 	private Partido partido;
@@ -42,15 +47,11 @@ public class PartidoTest extends SpringTest{
 		jugador4.setNombre("Dario Benedetto");
 		jugador4.setPosicion("Delantero");
 		
-		//Indico equipo de cada jugador y agrego los jugadores al equipo (Bidireccionalidad)
+		//Indico equipo de cada jugador
 		jugador1.setEquipo(local);
 		jugador2.setEquipo(local);
 		jugador3.setEquipo(visitante);
 		jugador4.setEquipo(visitante);		
-		local.addJugador(jugador1);
-		local.addJugador(jugador2);
-		visitante.addJugador(jugador3);
-		visitante.addJugador(jugador4);
 		
 		//Seteo el partido
 		partido.setLocal(local);
@@ -73,11 +74,20 @@ public class PartidoTest extends SpringTest{
 		assertThat(partido.getIsResultadoFinal()).isFalse();
 		assertThat(partido.getLocal().getNombre()).isEqualTo("River Plate");
 		assertThat(partido.getVisitante().getNombre()).isEqualTo("Boca Juniors");
-		assertThat(partido.getLocal().getJugadores()).hasSize(2);
-		assertThat(partido.getVisitante().getJugadores()).hasSize(2);
-		assertThat(partido.getLocal().getJugadores().get(0).getNombre()).isEqualTo("German Lux");
-		assertThat(partido.getLocal().getJugadores().get(1).getNombre()).isEqualTo("Rodrigo Mora");
-		assertThat(partido.getVisitante().getJugadores().get(0).getNombre()).isEqualTo("Guillermo Sara");
-		assertThat(partido.getVisitante().getJugadores().get(1).getNombre()).isEqualTo("Dario Benedetto");		
+		
+		//Traigo jugadores que jugaron el partido
+		List<Jugador> jugadoresLocal = getSession().createCriteria(Jugador.class)
+				.add(Restrictions.eq("equipo", partido.getLocal()))
+				.list();
+		List<Jugador> jugadoresVisitante = getSession().createCriteria(Jugador.class)
+				.add(Restrictions.eq("equipo", partido.getVisitante()))
+				.list();
+		
+		assertThat(jugadoresLocal).hasSize(2);
+		assertThat(jugadoresVisitante).hasSize(2);
+		assertThat(jugadoresLocal.get(0).getNombre()).isEqualTo("German Lux");
+		assertThat(jugadoresLocal.get(1).getNombre()).isEqualTo("Rodrigo Mora");
+		assertThat(jugadoresVisitante.get(0).getNombre()).isEqualTo("Guillermo Sara");
+		assertThat(jugadoresVisitante.get(1).getNombre()).isEqualTo("Dario Benedetto");		
 	}
 }

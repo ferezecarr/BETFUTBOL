@@ -8,7 +8,6 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,11 +20,11 @@ public class Partido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_equipo_local")
 	private Equipo local;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_equipo_visitante")
 	private Equipo visitante;	
 	

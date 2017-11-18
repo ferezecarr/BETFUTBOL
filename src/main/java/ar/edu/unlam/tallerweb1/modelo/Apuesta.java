@@ -6,7 +6,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,11 +18,11 @@ public class Apuesta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "evento_id")	
     private Evento evento;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "apostador_id")	
 	private Usuario apostador;
     

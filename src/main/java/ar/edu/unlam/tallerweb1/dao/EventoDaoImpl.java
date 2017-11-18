@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.dao;
 import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
+
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,9 @@ public class EventoDaoImpl implements EventoDao{
 
 	@Override
 	public List<Evento> findAll() {
-		List<Evento> evento =  sessionFactory.getCurrentSession().createCriteria(Evento.class).list();
+		List<Evento> evento =  sessionFactory.getCurrentSession().createCriteria(Evento.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
 		return evento;
 	}
 
@@ -33,6 +37,7 @@ public class EventoDaoImpl implements EventoDao{
 				.add(Restrictions.eq("isTerminado", false))
 				.createAlias("partido", "p")
 				.add(Restrictions.ge("p.fecha", c.getTime()))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
 		return evento;
 	}

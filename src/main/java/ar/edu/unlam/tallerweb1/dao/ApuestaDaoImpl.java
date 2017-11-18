@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.dao;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
@@ -35,10 +37,14 @@ public class ApuestaDaoImpl implements ApuestaDao{
 	 }
 	
 	@Override
+	@SuppressWarnings("unchecked")
 	public List <Apuesta> findByApuesta(Usuario apostador){
 		
 		
-		List<Apuesta> misApuestas = sessionFactory.getCurrentSession().createCriteria(Apuesta.class).add(Restrictions.eq("apostador", apostador)).list();
+		List<Apuesta> misApuestas = sessionFactory.getCurrentSession().createCriteria(Apuesta.class)
+				.add(Restrictions.eq("apostador", apostador))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
 		
 		return misApuestas;
 		
