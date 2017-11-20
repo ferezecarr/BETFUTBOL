@@ -23,6 +23,7 @@ public class RankingDaoImpl implements RankingDao{
 						+ 		"ROUND(SUM(A.cantidadApostada * A.cuotaValor), 2) AS Ganancia "
 						+ 	"FROM Usuario U "
 						+ 		"JOIN Apuesta A ON U.id=A.apostador_id "
+						+	"WHERE A.isGanadora IS TRUE "
 						+ 	"GROUP BY U.id "
 						+ 	"ORDER BY Ganancia DESC "
 						+	"LIMIT 5";
@@ -42,6 +43,7 @@ public class RankingDaoImpl implements RankingDao{
 						+ 		"JOIN Apuesta A ON U.id=A.apostador_id "
 						+ 		"JOIN Evento E ON A.evento_id=E.id "
 						+ 	"WHERE E.nombre='" + filtro + "' "
+						+	"	AND A.isGanadora IS TRUE "						
 						+ 	"GROUP BY U.id "
 						+ 	"ORDER BY Ganancia DESC "
 						+	"LIMIT 5";

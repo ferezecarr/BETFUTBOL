@@ -32,26 +32,12 @@
 								<c:url value="/ranking?filtro=Cuantos goles hace un equipo" var="url"/>
  								<a href="<c:out value='${url}'/>" class="btn btn-default b">Cuantos goles hace un equipo</a> 
  								
-								<c:url value="/ranking?filtro=Equipo anota primero" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Equipo anota primero</a>
+								<c:url value="/ranking?filtro=Cantidad de goles en un partido" var="url"/>
+ 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Cantidad de goles en un partido</a>
  								
-								<c:url value="/ranking?filtro=Equipo anota ultimo" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Equipo anota último</a> 								
- 								
-								<c:url value="/ranking?filtro=Lesion" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Lesion</a>  								
-	
- 								<c:url value="/ranking?filtro=Equipo hace gol" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Equipo hace gol</a>
- 								
-								<c:url value="/ranking?filtro=Gol" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Gol</a> 								
- 								
-								<c:url value="/ranking?filtro=Gol al minuto" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Gol al minuto</a>
- 								
-								<c:url value="/ranking?filtro=Expulsion al minuto" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Expulsión al minuto</a> 								 								 								 																 																 	          				
+								<c:url value="/ranking?filtro=Cantidad de goles par o impar" var="url"/>
+ 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Cantidad de goles par o impar</a> 								
+								 								 								 																 																 	          				
 	          			</li>
 
 					

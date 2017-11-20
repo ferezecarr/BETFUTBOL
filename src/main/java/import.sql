@@ -6,6 +6,7 @@
 -- Creando un usuario
 INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (1,'test','test@test.com','test', 'ADMIN');
 INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (2,'Fernando Carreño','ferezecarr@gmail.com','12345', 'USER');
+
 -- Creando diez equipos
 INSERT INTO Equipo (id, nombre) VALUES (1, "Argentina");
 INSERT INTO Equipo (id, nombre) VALUES (2, "China");
@@ -85,6 +86,10 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (31, 10, 
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (32, 10, "1", 2.63, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (33, 10, "2", 1.77, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (34, 10, "+2", 1.38, 0);
+
+-- Hardcodeando apuestas
+INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (1, 1, 2, 20.50, 1.44, "Gana Argentina", TRUE);
+INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (2, 2, 1, 100.00, 1.44, "Gana Argentina", FALSE);
 
 -- Evento que setea los partidos finalizados (hay que dropear, No lo maneja hibernate)
 DROP EVENT IF EXISTS TERMINAR_PARTIDO;
