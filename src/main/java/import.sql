@@ -91,7 +91,11 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (34, 10, 
 INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (1, 1, 2, 20.50, 1.44, "Gana Argentina", TRUE);
 INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (2, 2, 1, 100.00, 1.44, "Gana Argentina", FALSE);
 
--- Evento que setea los partidos finalizados (hay que dropear, No lo maneja hibernate)
+-- Evento que setea los partidos finalizados (hay que dropear, no lo maneja Hibernate)
 DROP EVENT IF EXISTS TERMINAR_PARTIDO;
 SET GLOBAL event_scheduler = ON;
 CREATE EVENT TERMINAR_PARTIDO ON SCHEDULE EVERY 1 MINUTE DO UPDATE Partido P SET P.isTerminado=TRUE WHERE P.isTerminado=FALSE AND TIMESTAMPDIFF(MINUTE, P.fecha, NOW()) >= 120;
+
+-- Trigger que setea las apuestas que tienen premio (hay que dropear, no lo maneja Hibernate)
+DROP TRIGGER IF EXISTS PREMIAR_APUESTAS;
+CREATE TRIGGER PREMIAR_APUESTAS AFTER UPDATE ON EVENTO FOR EACH ROW BEGIN IF(NEW.isTerminado IS TRUE) THEN UPDATE Apuesta A JOIN Evento E ON A.evento_id=E.id SET A.isGanadora=TRUE WHERE A.isGanadora=FALSE AND A.cuotaNombre=E.cuotaGanadora; END IF; END; 
