@@ -32,10 +32,16 @@ public class Partido {
 	private Integer golesVisitante = 0;	
 	private Date fecha;
 	
+	/*Esto se setea automaticamente a TRUE cuando pasan dos horas de la fecha del 
+	 * partido. En el ABM se podra terminar abruptamente. La utilidad es que al 
+	 * finalizar eventos, vendran los partidos 'terminados' para colocar y setear el 
+	 * resultado final*/
+	private Boolean isTerminado = false;
+	
 	/*Lo veo util para saber si los valores de 'golesLocal'/'golesVisitante' son los 
 	 * otorgados cuando se escribe el resultado. Sin esto, se asumiria que el resultado 
-	 * de todos los partidos es 0-0. Mi idea es que en el AMB de partidos, el admin ponga 
-	 * el resultado y al pulsar confirmar, se seteen 'golesLocal', 'golesVisitante' y este 
+	 * de todos los partidos es 0-0. En el AMB de partidos, el admin pondra el resultado  
+	 * y al pulsar confirmar, se seteen 'golesLocal', 'golesVisitante' y este 
 	 * booleano en TRUE. Entonces después se puede traer una lista ya filtrada de partidos 
 	 * con el resultado definido usando este atributo*/
 	private Boolean isResultadoFinal = false; 
@@ -88,6 +94,14 @@ public class Partido {
 		this.golesVisitante = golesVisitante;
 	}
 	
+	public Boolean getIsTerminado() {
+		return isTerminado;
+	}
+
+	public void setIsTerminado(Boolean isTerminado) {
+		this.isTerminado = isTerminado;
+	}
+
 	public String mostrarResultado(){
 		return local.getNombre() + " " + golesLocal + " - " + golesVisitante + 
 				" " + visitante.getNombre();

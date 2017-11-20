@@ -1,8 +1,6 @@
 /*HashCode()/Equals() implementando para distinguir entre nombres.
  * Tiene una doble relacion 1-N con Partido para determinar local y visitante
- * (Modelada en la clase Partido)
- * Tiene una relacion 1-N con Jugador (Un equipo tiene N jugadores y a un jugador, 
- * lo tiene un solo equipo)*/
+ * (Modelada en la clase Partido)*/
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;

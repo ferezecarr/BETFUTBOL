@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +14,10 @@ public class Usuario {
 	private String nombreYApellido;
 	private String email;
 	private String password;
+	
+	/*Segun el rol se pueden mostrar distintas cosas. Como no esta normalizado usamos 
+	 * 'USER' y 'ADMIN'*/
+	private String rol = "USER";
 	
 	public Long getId() {
 		return id;
@@ -48,6 +51,14 @@ public class Usuario {
 		this.password = password;
 	}
 	
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

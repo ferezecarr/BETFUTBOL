@@ -38,6 +38,10 @@ public class Evento {
 	 * puesto en el import.sql. Util para filtrar, si se quiere traer eventos sin finalizar, 
 	 * eventos finalizados...*/
 	private Boolean isTerminado = false;
+	
+	/*En el ABM, el admin elige entre el listado de cuotas correspondientes al evento cual es 
+	 * la que tiene premio. Al confirmar, se setea este atributo con el nombre de esa cuota*/
+	private String cuotaGanadora;
 
 	public Long getId() {
 		return id;
@@ -87,12 +91,16 @@ public class Evento {
 		this.isTerminado = isTerminado;
 	}
 	
-	/*public void addApuesta(Apuesta apuesta){
-		apuestas.add(apuesta);
-	}*/
-	
 	public void addCuota(Cuota cuota){
 		cuotas.add(cuota);
+	}
+
+	public String getCuotaGanadora() {
+		return cuotaGanadora;
+	}
+
+	public void setCuotaGanadora(String cuotaGanadora) {
+		this.cuotaGanadora = cuotaGanadora;
 	}
 
 	@Override

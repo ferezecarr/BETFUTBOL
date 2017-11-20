@@ -28,7 +28,13 @@ public class Apuesta {
     
     private Double cantidadApostada = 1.00d;    
 	private Double cuotaValor = 1.00d;	
-    private String cuotaNombre;
+    
+	//Nombre de la cuota por la que se aposto (Se usa para comparar luego si existe premio)
+	private String cuotaNombre;
+	
+	/*Flag que dice si la apuesta tiene premio. Si tiene se usa el valor de la cuota y la 
+	 * cantidad apostada para determinar premio*/
+	private Boolean isGanadora = false;
 	
 	public Long getId() {
 		return id;
@@ -78,6 +84,14 @@ public class Apuesta {
 		this.cuotaNombre = cuotaNombre;
 	}
 	
+	public Boolean getIsGanadora() {
+		return isGanadora;
+	}
+
+	public void setIsGanadora(Boolean isGanadora) {
+		this.isGanadora = isGanadora;
+	}
+
 	public Double calcularGanacia(){
 		return cantidadApostada * cuotaValor;
 	}
