@@ -3,11 +3,16 @@
 
 -- ============================================================================================
 
--- Creando un usuario
+-- Creando usuarios
 INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (1,'test','test@test.com','test', 'ADMIN');
-INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (2,'Fernando Carreño','ferezecarr@gmail.com','12345', 'USER');
+INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (2,'admin','admin@betfutbol.com','admin', 'ADMIN');
+INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (3,'Fernando Carreño','ferezecarr@gmail.com','12345', 'USER');
+INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (4,'Mauro Ledesma','mauro@betfutbol.com','mauro', 'USER');
+INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (5,'Ignacio Castiñeira','ignacio@betfutbol.com','ignacio', 'USER');
+INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (6,'Ariel Rivero','ariel@betfutbol.com','ariel', 'USER');
+INSERT INTO Usuario (id, nombreYApellido, email, password, rol) VALUES (7,'Jonatan Gimenez','jonatan@betfutbol.com','jonatan', 'USER');
 
--- Creando diez equipos
+-- Creando doce equipos
 INSERT INTO Equipo (id, nombre) VALUES (1, "Argentina");
 INSERT INTO Equipo (id, nombre) VALUES (2, "China");
 INSERT INTO Equipo (id, nombre) VALUES (3, "Napoli");
@@ -96,7 +101,7 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (36, 11, 
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (37, 11, "+2", 3.43, 0);
 
 -- Hardcodeando apuestas
-INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (1, 1, 2, 20.50, 1.44, "Gana Argentina", TRUE);
+INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (1, 1, 3, 20.50, 1.44, "Gana Argentina", TRUE);
 INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (2, 2, 1, 100.00, 1.44, "Gana Argentina", FALSE);
 
 -- Evento que setea los partidos finalizados (hay que dropear, no lo maneja Hibernate)
