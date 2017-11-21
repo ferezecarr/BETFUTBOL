@@ -22,7 +22,7 @@
 					<div class="col-md-5">
    					<div class="input-group">
        				<span class="input-group-addon">AR$</span>
-    				<form:input class="form-control" path="cantidadApostada"/>
+    				<form:input class="form-control" type="number" min="1" path="cantidadApostada"/>
  					</div>
 					</div>
 					<button class="btn btn-primary"  data-dismiss="modal" value="Cancelar">Cancelar</button> 

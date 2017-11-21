@@ -70,16 +70,10 @@ public class ControladorIndex {
 	
 	
 	@RequestMapping(path="/procesar-apuesta", method=RequestMethod.POST)
-	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request/*, HttpServletResponse response*/){	
-		
-		/*Estamos haciendo que todas las apuestas pertenezcan al usuario de id 1.
-		 * Después cuando exista login, esto se saca*/
-		
-		
-		//con ésto evita que apueste sin loguearse
-		
+	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request){	
 	
 		
+		//con ésto evita que apueste sin loguearse
 		if(request.getSession().getAttribute("userId") == null)
 		{
 			return new ModelAndView("Error");

@@ -26,7 +26,7 @@
                 	<c:if test="${userId != null}">
 		   				 <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/mis-apuestas">Mis Apuestas</a></li>
 		  			</c:if>
-                    <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/ranking">Ranking de apostadores</a></li>
+                    <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/ranking">Ranking de Apostadores</a></li>
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -47,7 +47,7 @@
                         <c:choose>
                             <c:when test="${userId != null}">
 		   						<li>
-		   						<a href="#" data-toggle="modal" data-target="#logout">salir</a>
+		   						<a href="#" data-toggle="modal" data-target="#logout">Salir</a>
 		   						</li>
 		   					</c:when>	   						
 	                    
