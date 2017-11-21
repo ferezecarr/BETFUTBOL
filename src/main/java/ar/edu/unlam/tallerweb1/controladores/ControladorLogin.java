@@ -17,8 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Apuesta;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.servicios.ServicioApuesta;
-import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
@@ -27,12 +25,10 @@ public class ControladorLogin {
 
 	@Inject
 	private ServicioLogin servicioLogin;
-	@Inject
-	private ServicioApuesta servicioApuesta;
+	
 	@Inject
 	private ServicioEvento servicioEvento;
-	@Inject
-	private ServicioCuota servicioCuota;
+	
 	
 	
 	
@@ -52,10 +48,20 @@ public class ControladorLogin {
 		if(servicioLogin.consultarUsuario(usuario) != null)
 		{	
 			Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
-			request.getSession().setAttribute("userId", usuarioBuscado.getId());
+		
 			
 			modelo.put("usuario",usuarioBuscado);
 			modelo.put("nombre",usuarioBuscado.getNombreYApellido());
+			
+			
+			/*al ser un rol: admin, le redirije a otra vista, y cambia los botones en la barra de navegacion */
+			if(usuarioBuscado.getRol().equals("ADMIN"))
+			{	
+				request.getSession().setAttribute("AdminId", usuarioBuscado.getId());
+				return new ModelAndView("ABM-Equipo",modelo);
+			}
+			
+			request.getSession().setAttribute("userId", usuarioBuscado.getId());
 		}
 		else
 		{

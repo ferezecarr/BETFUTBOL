@@ -12,17 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Apuesta;
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
-import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
-import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
-import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
-public class ControladorABMEquipos {
+public class ControladorABMEvento {
 	
 	@Inject
 	private ServicioEquipo servicioEquipo;
@@ -32,19 +28,10 @@ public class ControladorABMEquipos {
 	
 
 	
-	/*@RequestMapping(path = "añadir-equipo" , method = RequestMethod.POST)
-	public ModelAndView añadirEquipo(@ModelAttribute("equipo") Equipo equipo) {
-		ModelMap modelo = new ModelMap();
-		equipo = servicioEquipo.guardarEquipo(equipo);
-		return new ModelAndView("equipos" , modelo);
-	}
 	
-	public ModelAndView actualizarEquipo() {
-		
-	}*/
 
 	
-	@RequestMapping(path = "ABM-Equipo")
+	@RequestMapping(path = "ABM-Evento")
 	public ModelAndView añadirEquipo(HttpServletRequest request) {
 
 		
@@ -60,7 +47,7 @@ public class ControladorABMEquipos {
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
 		
-		return new ModelAndView("ABM-Equipo",modelo);
+		return new ModelAndView("ABM-Evento",modelo);
 	}
 	
 	
