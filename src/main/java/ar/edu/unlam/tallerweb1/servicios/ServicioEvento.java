@@ -10,4 +10,6 @@ public interface ServicioEvento {
 	void actualizar (Evento evento);
 	List<Evento> listarEventos();
 	List<Evento> listarEventosPorNombre(String nombreDado);
+	List<Evento> listarEventosModificables();
+	List<Evento> listarEventosFinalizables();
 }

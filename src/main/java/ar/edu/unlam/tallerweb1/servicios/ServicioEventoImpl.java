@@ -49,4 +49,15 @@ public class ServicioEventoImpl implements ServicioEvento{
 	public void actualizar(Evento evento) {
 		eventoServicioDao.update(evento);		
 	}
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})	
+	public List<Evento> listarEventosModificables() {
+		return eventoServicioDao.findModificables();
+	}
+
+	@Override
+	public List<Evento> listarEventosFinalizables() {
+		return eventoServicioDao.findFinalizables();
+	}
 }

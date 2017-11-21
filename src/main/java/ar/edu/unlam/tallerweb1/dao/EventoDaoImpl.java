@@ -37,6 +37,7 @@ public class EventoDaoImpl implements EventoDao{
 				.add(Restrictions.eq("isTerminado", false))
 				.createAlias("partido", "p")
 				.add(Restrictions.ge("p.fecha", c.getTime()))
+				.add(Restrictions.eq("p.isTerminado", false))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
 		return evento;
@@ -65,4 +66,23 @@ public class EventoDaoImpl implements EventoDao{
 		sessionFactory.getCurrentSession().update(evento);
 	}
 
+	@Override
+	public List<Evento> findModificables() {
+		return sessionFactory.getCurrentSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("isTerminado", false))
+				.createAlias("partido", "p")
+				.add(Restrictions.eq("p.isTerminado", false))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
+	}
+
+	@Override
+	public List<Evento> findFinalizables() {
+		return sessionFactory.getCurrentSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("isTerminado", false))
+				.createAlias("partido", "p")
+				.add(Restrictions.eq("p.isTerminado", true))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
+	}
 }

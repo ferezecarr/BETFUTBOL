@@ -8,6 +8,8 @@ public interface PartidoDao {
 
 	List<Partido> findAll();
 	void save(Partido partido);
+	void update(Partido partido);
+	void delete(Partido partido);
 	Partido findById(Long id);
 	Partido findByMatch(Partido partido);
 }

@@ -27,8 +27,7 @@ public class EquipoDaoImpl implements EquipoDao{
 
 	@Override
 	public void save(Equipo equipo) {
-		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().save(equipo);		
 	}
 
 	@Override
@@ -41,6 +40,11 @@ public class EquipoDaoImpl implements EquipoDao{
 	public Equipo findByMatch(Equipo equipo) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void delete(Equipo equipo) {
+		sessionFactory.getCurrentSession().delete(equipo);		
 	}
 
 }

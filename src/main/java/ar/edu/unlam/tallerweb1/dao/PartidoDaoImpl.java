@@ -44,4 +44,14 @@ public class PartidoDaoImpl implements PartidoDao {
 				
 	}
 
+	@Override
+	public void update(Partido partido) {
+		sessionFactory.getCurrentSession().update(partido);		
+	}
+
+	@Override
+	public void delete(Partido partido) {
+		sessionFactory.getCurrentSession().delete(partido);		
+	}
+
 }

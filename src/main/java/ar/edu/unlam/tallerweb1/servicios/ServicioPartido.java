@@ -8,6 +8,8 @@ public interface ServicioPartido {
 
 	List<Partido> listarTodosLosPartidos();
 	void guardarPartido(Partido partido);
+	void actualizarPartido(Partido partido);
+	void eliminarPartido(Partido partido);
 	Partido buscarPorId(Long id);
 	Partido consultarPartido(Partido partido);
 }
