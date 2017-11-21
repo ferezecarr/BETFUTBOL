@@ -27,7 +27,15 @@
 		   				 <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/mis-apuestas">Mis Apuestas</a></li>
 		  			</c:if>
                     <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/ranking">Ranking de Apostadores</a></li>
-                    
+                    <c:if test="${userId != null }">
+                    	<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/equipo">Equipos</a></li>
+                    </c:if>
+                    <c:if test="${userId != null }">
+                    	<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/partido">Partidos</a></li>
+                    </c:if>
+                    <c:if test="${userId != null }">
+                    	<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/evento">Eventos</a></li>
+                    </c:if>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
