@@ -17,7 +17,7 @@ public class Usuario {
 	
 	/*Segun el rol se pueden mostrar distintas cosas. Como no esta normalizado usamos 
 	 * 'USER' y 'ADMIN'*/
-	private String rol = "USER";
+	private String rol;
 	
 	public Long getId() {
 		return id;

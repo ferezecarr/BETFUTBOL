@@ -1,10 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
@@ -37,6 +34,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public void save(Usuario usuario) {
+		usuario.setRol("USER");	//Intente usar @PrePersist pero nunca llamaba al metodo
 		sessionFactory.getCurrentSession().save(usuario);
 		
 	}
