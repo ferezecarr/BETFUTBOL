@@ -50,6 +50,12 @@ INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (9,
 INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (10, 6, "Cuantos goles hace un equipo", "| Primera División Argentina | Goles de Independiente ante Rosario Central | 02/12 - 19:15hs", FALSE);
 INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (11, 6, "Cuantos goles hace un equipo", "| Primera División Argentina | Goles de Rosario Central ante Independiente | 02/12 - 19:15hs", FALSE);
 
+-- Creando un evento de tipo "Cantidad de goles en un partido" (0, 1, 2, 3, 4, +4)
+INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (12, 6, "Cantidad de goles en un partido", "| Primera División Argentina | 02/12 - 19:15hs", FALSE);
+
+-- Creando un evento de tipo "Cantidad de goles par o impar" (Par, Impar)
+INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (13, 7, "Cantidad de goles par o impar", "| Primera División Argentina | 02/12 - 19:15hs", FALSE);
+
 -- Creando cuotas que son asignadas a los eventos de tipo "Resultado"
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (1, 1, "Gana China", 4.90, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (2, 1, "Empate", 2.32, 0);
@@ -99,6 +105,18 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (34, 11, 
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (35, 11, "1", 2.00, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (36, 11, "2", 2.65, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (37, 11, "+2", 3.43, 0);
+
+-- Creando cuotas que son asignadas a los eventos de tipo "Cantidad de goles en un partido"
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (38, 12, "0", 1.65, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (39, 12, "1", 1.90, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (40, 12, "2", 2.03, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (41, 12, "3", 2.24, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (42, 12, "4", 2.61, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (43, 12, "+4", 2.72, 0);
+
+-- Creando cuotas que son asignadas a los eventos de tipo "Cantidad de goles par o impar"
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (44, 13, "Par", 2.00, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (45, 13, "Impar", 2.00, 0);
 
 -- Hardcodeando apuestas
 INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (1, 1, 3, 20.50, 1.44, "Gana Argentina", TRUE);
