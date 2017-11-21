@@ -21,24 +21,24 @@
 	     			</div>		
 	     			</div>
 	     			
-	     			<div class="rc">
+	     			<div class="contenedorCentarl">
 	     				<div class="recuadro">
 	     						<c:url value="/ranking" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">General</a>
+ 								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">General</a>
  								
 								<c:url value="/ranking?filtro=Resultado" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Resultado</a>
+ 								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Resultado</a>
  								
 								<c:url value="/ranking?filtro=Cuantos goles hace un equipo" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Cuantos goles hace un equipo</a> 
+ 								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cuantos goles hace un equipo</a> 
  								
 								<c:url value="/ranking?filtro=Cantidad de goles en un partido" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Cantidad de goles en un partido</a>
+ 								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cantidad de goles en un partido</a>
  								
 								<c:url value="/ranking?filtro=Cantidad de goles par o impar" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default b">Cantidad de goles par o impar</a> 								
+ 								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cantidad de goles par o impar</a> 								
 								 								 								 																 																 	          				
-	          			</li>
+	          			
 
 					
 	     			</div>

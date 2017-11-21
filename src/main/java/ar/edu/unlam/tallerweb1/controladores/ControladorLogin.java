@@ -59,7 +59,7 @@ public class ControladorLogin {
 		}
 		else
 		{
-			modelo.put("errorLogin","Usuario inexistente");
+			modelo.put("aviso","Usuario inexistente");
 			return new ModelAndView("index",modelo);
 		}
 			
@@ -100,12 +100,12 @@ public class ControladorLogin {
 			
 			modelo.put("usuario",usuario);
 			modelo.put("nombre",usuario.getNombreYApellido());
-			modelo.put("registro","Registro exitoso");
+			modelo.put("aviso","Registro exitoso");
 		
 		}
 		else
 		{
-			modelo.put("error","El E-mail ya se encuentra en uso");
+			modelo.put("aviso","El E-mail ya se encuentra en uso");
 			modelo.put("usuario",usuarioDefault);
 			return new ModelAndView("index",modelo);
 		}

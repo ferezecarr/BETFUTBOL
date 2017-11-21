@@ -28,7 +28,7 @@ height:20px;
 }
 
 
-.rc
+.contenedorCentarl
 {
 	display:flex;
 	flex-direction:row;
@@ -39,16 +39,17 @@ height:20px;
 {
 	display:flex;
 	flex-direction:column;
-	width:210px;	
-	min-width: 210px;
+	width:217px;	
+	min-width: 217px;
+	justify-content:space-around;
 }
 .recuadro2
 {
 	width:700px;
-		min-width: 300px;
+	min-width: 300px;
 }
 
-.b
+.botonesFiltro
 {
 	margin-bottom:3%;
 }

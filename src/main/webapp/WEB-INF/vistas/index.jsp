@@ -17,23 +17,9 @@
 		
 	   	
 				<div class="col-md-8 col-md-offset-2">
-				<c:if test="${not empty registro}">
+				<c:if test="${not empty aviso}">
 				<ol class="breadcrumb text-center ">				
-	          			<li class="breadcrumb-item text-success "><h2>${registro}</h2></li>
-	          			
-	     			</ol>
-				</c:if>
-			
-					<c:if test="${not empty errorLogin}">
-				<ol class="breadcrumb text-center ">				
-	          			<li class="breadcrumb-item text-success "><h2>${errorLogin}</h2></li>
-	          			
-	     			</ol>
-				</c:if>
-				
-				<c:if test="${not empty error}">
-				<ol class="breadcrumb text-center ">				
-	          			<li class="breadcrumb-item text-success "><h2>${error}</h2></li>
+	          			<li class="breadcrumb-item text-success "><h2>${aviso}</h2></li>
 	          			
 	     			</ol>
 				</c:if>
