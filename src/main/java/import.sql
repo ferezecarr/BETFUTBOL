@@ -120,7 +120,10 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (45, 13, 
 
 -- Hardcodeando apuestas
 INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (1, 1, 3, 20.50, 1.44, "Gana Argentina", TRUE);
-INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (2, 2, 1, 100.00, 1.44, "Gana Argentina", FALSE);
+INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (2, 1, 4, 1500.00, 4.90, "Gana China", FALSE);
+INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (3, 1, 5, 5.00, 1.36, "Gana Argentina", TRUE);
+INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (4, 2, 6, 900.00, 1.44, "Gana Argentina", FALSE);
+INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (5, 2, 7, 2.33, 1.40, "Gana Argentina", FALSE);
 
 -- Evento que setea los partidos finalizados (hay que dropear, no lo maneja Hibernate)
 DROP EVENT IF EXISTS TERMINAR_PARTIDO;
