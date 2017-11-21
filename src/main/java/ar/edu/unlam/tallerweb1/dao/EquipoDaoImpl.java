@@ -47,4 +47,10 @@ public class EquipoDaoImpl implements EquipoDao{
 		sessionFactory.getCurrentSession().delete(equipo);		
 	}
 
+	@Override
+	public void update(Equipo equipo) {
+		sessionFactory.getCurrentSession().update(equipo);
+		
+	}
+
 }
