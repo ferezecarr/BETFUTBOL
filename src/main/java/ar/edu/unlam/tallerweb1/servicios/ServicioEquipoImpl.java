@@ -49,4 +49,11 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 		equipoDao.delete(equipo);	
 	}
 
+	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})
+	@Override
+	public void actualizarEquipo(Equipo equipo) {
+		equipoDao.update(equipo);
+		
+	}
+
 }
