@@ -53,4 +53,5 @@ public class EquipoDaoImpl implements EquipoDao{
 		
 	}
 
+
 }
