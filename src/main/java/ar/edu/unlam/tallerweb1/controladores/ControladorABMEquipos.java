@@ -33,7 +33,7 @@ public class ControladorABMEquipos {
 
 
 	
-	@RequestMapping(path = "ABM-Equipo")
+	@RequestMapping(path = "añadir-equipo" , method = RequestMethod.POST)
 	public ModelAndView añadirEquipo(@ModelAttribute("equipo") Equipo equipo , HttpServletRequest request) {
 
 		
