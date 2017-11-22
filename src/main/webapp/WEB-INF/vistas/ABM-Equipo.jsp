@@ -62,7 +62,7 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action="" method="post">
+								<form:form class="form-horizontal" role="form" action="añadir-equipo" modelAttribute="equipo" method="post">
 
 									<div class="form-group"></div>
 
@@ -120,7 +120,7 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action="" method="post">
+								<form:form class="form-horizontal" role="form" action="actualizar-equipo" modelAttribute="equipo" method="post">
 
 									<div class="form-group"></div>
 
@@ -197,7 +197,7 @@
 								<h3 class="panel-title">Eliminación de equipos:</h3>
 							</div>
 							<div class="container-fluid">
-							<form:form class="form-horizontal" role="form" action="" method="post">
+							<form:form class="form-horizontal" role="form" action="eliminar-equipo" modelAttribute="equipo" method="post">
 
 									<div class="form-group"></div>
 
