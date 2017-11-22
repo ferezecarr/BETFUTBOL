@@ -59,6 +59,8 @@ public class ControladorABMEquipos {
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
 		
 		return new ModelAndView("ABM-Equipo",modelo);
 	}
