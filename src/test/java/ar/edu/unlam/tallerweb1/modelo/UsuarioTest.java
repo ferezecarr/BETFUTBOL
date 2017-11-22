@@ -47,7 +47,8 @@ public class UsuarioTest extends SpringTest {
 		
 		assertThat(controladorLogin.inicio().equals(primerUsuario)).isNotNull();
 		
-		verify(servicioLogin.consultarUsuario(primerUsuario) , times(1));
+//		verify(servicioLogin.consultarUsuario(primerUsuario) , times(1));
+//		verify(primerUsuario.getRol(), times(1));
 	}
 	
 	@SuppressWarnings("unchecked")
