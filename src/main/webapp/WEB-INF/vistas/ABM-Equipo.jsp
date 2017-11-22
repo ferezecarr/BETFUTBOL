@@ -17,18 +17,18 @@
 			<div class="row">
 
 				<div class="col-md-8 col-md-offset-2">
-					<ol class="breadcrumb text-center">
-						<li class="breadcrumb-item active">vista encargada de abm de
-							equipo</li>
-					</ol>
+<!-- 					<ol class="breadcrumb text-center"> -->
+<!-- 						<li class="breadcrumb-item active">vista encargada de abm de -->
+<!-- 							equipo</li> -->
+<!-- 					</ol> -->
 
 					<div class="col-md-8 col-md-offset-2">
 
-						<div class="form-group">
-							<a href="" class="btn btn-default">Listado</a> 
-							<a href="" class="btn btn-success active">Añadir equipo</a>
-							<a href=""class="btn btn-warning active">Modificar equipo</a>
-						</div>
+<!-- 						<div class="form-group"> -->
+<!-- 							<a href="" class="btn btn-default">Listado</a>  -->
+<!-- 							<a href="" class="btn btn-success active">Añadir equipo</a> -->
+<!-- 							<a href=""class="btn btn-warning active">Modificar equipo</a> -->
+<!-- 						</div> -->
 
 
 						<div class="panel panel-primary">
@@ -58,7 +58,7 @@
 
 						<div class="panel panel-success">
 							<div class="panel-heading">
-								<h3 class="panel-title">Complete el campo para añadir un nuevo equipo:</h3>
+								<h3 class="panel-title">Creación de un nuevo equipo:</h3>
 							</div>
 							<div class="container-fluid">
 
@@ -77,7 +77,7 @@
 
 							<div class="form-group">
 							<div class="col-md-offset-4 col-md-8">
-								<a type="submit" data-toggle="modal" data-target="#confirmar" class="btn btn-success">Crear nuevo equipo</a>
+								<a type="submit" data-toggle="modal" data-target="#add" class="btn btn-success">Crear nuevo equipo</a>
 							</div>
 						</div>
 
@@ -85,7 +85,7 @@
 					</div>
 
 	
-					<div class="modal fade in" id="confirmar" role="dialog">
+					<div class="modal fade in" id="add" role="dialog">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 
@@ -116,13 +116,11 @@
 
 						<div class="panel panel-warning">
 							<div class="panel-heading">
-								<h3 class="panel-title">Complete el campo para añadir un
-									nuevo equipo:</h3>
+								<h3 class="panel-title">Modificación de equipos:</h3>
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action=""
-									method="post">
+								<form:form class="form-horizontal" role="form" action="" method="post">
 
 									<div class="form-group"></div>
 
@@ -193,6 +191,74 @@
 					</div>
 
 					</form:form>
+					
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+								<h3 class="panel-title">Eliminación de equipos:</h3>
+							</div>
+							<div class="container-fluid">
+							<form:form class="form-horizontal" role="form" action="" method="post">
+
+									<div class="form-group"></div>
+
+									<div class="form-group">
+										<div class="col-md-10 col-md-offset-1">
+											<div class="input-group center">
+												<span class="input-group-addon">Equipo a eliminar:</span> <select
+													name="empleado" class="form-control" required>
+
+													<c:forEach items="${equipos}" var="e">
+														<option value="" selected hidden>Elegir:</option>
+
+														<option value="${e.id}">${e.id} - ${e.nombre}</option>
+													</c:forEach>
+
+												</select>
+											</div>
+										</div>
+									</div>
+
+							
+
+							<div class="form-group">
+								<div class="col-md-offset-4 col-md-8">
+									<a type="submit" data-toggle="modal" data-target="#delete" class="btn btn-danger">Eliminar equipo seleccionado</a>
+								</div>
+							</div>
+							
+							</div>
+						</div>
+
+
+
+
+						<div class="modal fade in" id="delete" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<a class="btn pull-right" data-dismiss="modal"><span
+										class="glyphicon glyphicon-remove"></span></a>
+									<h3 class="modal-title">Eliminar equipo seleccionado:</h3>
+								</div>
+								<div class="modal-body">
+									<h4>¿Está seguro que desea eliminar el equipo? Se perderán todos sus datos.</h4>
+								</div>
+								<div class="modal-footer">
+									<div class="form-group text-center">
+
+										<button type="submit" name="enviar" class="btn btn-danger">
+											<span class="glyphicon glyphicon-trash"></span> Eliminar
+										</button>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					</form:form>s
 						
 				</div>		
 						
