@@ -18,21 +18,19 @@
 			
 				
 				<div class="col-md-8 col-md-offset-2">
-		 			<ol class="breadcrumb">
+		 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Mis Apuestas realizadas</li>
 	     			</ol>
 					<c:forEach items="${apuestas}" var="a">
- 			         <div class="panel panel-primary"> 
-			            <div class="panel-heading text-center"></div>
+ 			         <div class="panel panel-primary">
+			            <div class="panel-heading text-center">Evento apostado: ${a.evento.partido.local.nombre} - ${a.evento.partido.visitante.nombre} </div>
 			            <div class="panel-body text-center"> 
-			             <p id="descripcion"> Apostó por: ${a.cuotaNombre}</p>
-			             <p id="descripcion"> Cantidad apostada: $ ${a.cantidadApostada}</p>
-			             <p id="descripcion"> Valor de cuota: ${a.cuotaValor}</p>
-			             
-<%-- 			             <p id="descripcion"> Evento: ${a.evento}</p> Comentado porque tira problemas con el Lazy  --%>
+			             <h4 id="descripcion"> ${a.evento.descripcion}</h4>
+			             <p id="descripcion"> Tipo de apuesta: ${a.evento.nombre}</p>
+			             <p id="descripcion"> Usted apostó por: ${a.cuotaNombre}</p>
+			             <p id="descripcion"> Dinero apostado: $${a.cantidadApostada}</p>
+			             <p id="descripcion"> Valor de la cuota: ${a.cuotaValor}</p>
 
-
-			     
  			          </div> 
  			        </div> 
 					</c:forEach>
