@@ -142,10 +142,81 @@
 							</div>
 						</div>
 					</div>
-
 					</form:form>
 
-										<div class="panel panel-danger">
+							<div class="panel panel-warning">
+							<div class="panel-heading">
+								<h3 class="panel-title">Modificación de partidos:</h3>
+							</div>
+							<div class="container-fluid">
+							<form:form class="form-horizontal" role="form" action="" method="post">
+
+									<div class="form-group"></div>
+
+									<div class="form-group">
+										<div class="col-md-10 col-md-offset-1">
+											<div class="input-group center">
+												<span class="input-group-addon">Partido a eliminar:</span>
+												 <select name="empleado" class="form-control" required>
+													<c:forEach items="${partidos}" var="p">
+														<option value="" selected hidden>Elegir:</option>
+
+														<option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+									</div>
+									
+								<div class="form-group">
+									<div class="col-md-8 col-md-offset-2">
+										<div class="input-group">
+											<span class="input-group-addon">Nueva fecha</span> 
+											<input type="date" class="form-control" name="fechaPartido "placeholder="Ingrese la fecha del partido a disputar." required>
+										</div>
+									</div>
+								</div>
+									
+
+							<div class="form-group">
+								<div class="col-md-offset-4 col-md-8">
+									<a type="submit" data-toggle="modal" data-target="#update" class="btn btn-warning">Modificar partido seleccionado</a>
+								</div>
+							</div>
+							
+							</div>
+						</div>
+
+						<div class="modal fade in" id="update" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<a class="btn pull-right" data-dismiss="modal"><span
+										class="glyphicon glyphicon-remove"></span></a>
+									<h3 class="modal-title">Modificar partido seleccionado:</h3>
+								</div>
+								<div class="modal-body">
+									<h4>¿Está seguro que desea modificar este partido?</h4>
+									<h4>Los eventos y cuotas que contengan este partido podran ser afectados por el cambio.</h4>
+								</div>
+								<div class="modal-footer">
+									<div class="form-group text-center">
+
+										<button type="submit" name="enviar" class="btn btn-warning">
+											<span class="glyphicon glyphicon-check"></span> Confirmar
+										</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					</form:form>
+				
+				
+							<div class="panel panel-danger">
 							<div class="panel-heading">
 								<h3 class="panel-title">Eliminación de partidos:</h3>
 							</div>
@@ -171,19 +242,14 @@
 										</div>
 									</div>
 
-							
-
 							<div class="form-group">
 								<div class="col-md-offset-4 col-md-8">
-									<a type="submit" data-toggle="modal" data-target="#delete" class="btn btn-danger">Eliminar partidos seleccionado</a>
+									<a type="submit" data-toggle="modal" data-target="#delete" class="btn btn-danger">Eliminar partido seleccionado</a>
 								</div>
 							</div>
 							
 							</div>
 						</div>
-
-
-
 
 						<div class="modal fade in" id="delete" role="dialog">
 						<div class="modal-dialog" role="document">
@@ -207,7 +273,6 @@
 
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
