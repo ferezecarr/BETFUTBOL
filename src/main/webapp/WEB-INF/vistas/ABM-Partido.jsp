@@ -16,7 +16,7 @@
 		
 				<div class="col-md-8 col-md-offset-2">
 		 			<ol class="breadcrumb text-center">
-	          			<li class="breadcrumb-item active">vista encargada de abm de partido</li>
+	          			<li class="breadcrumb-item active">Administración de partidos - Desde aquí los podrá visualizar, crear, modificar o eliminar.</li>
 	     			</ol>
 	     			
 	     			
@@ -145,7 +145,74 @@
 
 					</form:form>
 
-				
+										<div class="panel panel-danger">
+							<div class="panel-heading">
+								<h3 class="panel-title">Eliminación de partidos:</h3>
+							</div>
+							<div class="container-fluid">
+							<form:form class="form-horizontal" role="form" action="" method="post">
+
+									<div class="form-group"></div>
+
+									<div class="form-group">
+										<div class="col-md-10 col-md-offset-1">
+											<div class="input-group center">
+												<span class="input-group-addon">Partido a eliminar:</span> <select
+													name="empleado" class="form-control" required>
+
+													<c:forEach items="${partidos}" var="p">
+														<option value="" selected hidden>Elegir:</option>
+
+														<option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</option>
+													</c:forEach>
+
+												</select>
+											</div>
+										</div>
+									</div>
+
+							
+
+							<div class="form-group">
+								<div class="col-md-offset-4 col-md-8">
+									<a type="submit" data-toggle="modal" data-target="#delete" class="btn btn-danger">Eliminar partidos seleccionado</a>
+								</div>
+							</div>
+							
+							</div>
+						</div>
+
+
+
+
+						<div class="modal fade in" id="delete" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<a class="btn pull-right" data-dismiss="modal"><span
+										class="glyphicon glyphicon-remove"></span></a>
+									<h3 class="modal-title">Eliminar partido seleccionado:</h3>
+								</div>
+								<div class="modal-body">
+									<h4>¿Está seguro que desea eliminar este partido?</h4>
+									<h4>Los eventos y cuotas que contengan este partido tambien serán eliminados.</h4>
+								</div>
+								<div class="modal-footer">
+									<div class="form-group text-center">
+
+										<button type="submit" name="enviar" class="btn btn-danger">
+											<span class="glyphicon glyphicon-trash"></span> Eliminar
+										</button>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					</form:form>
 				
 					
 				</div>
