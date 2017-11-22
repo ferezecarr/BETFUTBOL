@@ -49,7 +49,7 @@
 						</div>
 	     			
 	     			
-	     			
+	     		<!--  Empieza panel para crear partido -->
 	     			<div class="panel panel-success">
 							<div class="panel-heading">
 								<h3 class="panel-title">Crear nuevo partido:</h3>
@@ -109,7 +109,7 @@
 
 								<div class="form-group">
 							<div class="col-md-8 col-md-offset-4">
-								<a type="submit" data-toggle="modal" data-target="#add" class="btn btn-success">Crear nuevo partido</a>
+								<a data-toggle="modal" data-target="#add" class="btn btn-success">Crear nuevo partido</a>
 							</div>
 						</div>
 
@@ -143,7 +143,9 @@
 						</div>
 					</div>
 					</form:form>
-
+	<!--  Termina panel para crear partido -->
+	
+	<!--  Empieza panel para modificar partido -->
 							<div class="panel panel-warning">
 							<div class="panel-heading">
 								<h3 class="panel-title">Modificación de partidos:</h3>
@@ -156,8 +158,8 @@
 									<div class="form-group">
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
-												<span class="input-group-addon">Partido a eliminar:</span>
-												 <select name="empleado" class="form-control" required>
+												<span class="input-group-addon">Partido a modificar:</span>
+												 <select name="partidoParaModificar" class="form-control" required>
 													<c:forEach items="${partidos}" var="p">
 														<option value="" selected hidden>Elegir:</option>
 
@@ -180,7 +182,7 @@
 
 							<div class="form-group">
 								<div class="col-md-offset-4 col-md-8">
-									<a type="submit" data-toggle="modal" data-target="#update" class="btn btn-warning">Modificar partido seleccionado</a>
+									<a data-toggle="modal" data-target="#update" class="btn btn-warning">Modificar partido seleccionado</a>
 								</div>
 							</div>
 							
@@ -212,15 +214,16 @@
 							</div>
 						</div>
 					</div>
-
 					</form:form>
+			<!--  Termina panel para modificar partido -->	
 				
-				
+			<!--  Empieza panel para eliminar partido -->	
 							<div class="panel panel-danger">
 							<div class="panel-heading">
 								<h3 class="panel-title">Eliminación de partidos:</h3>
 							</div>
 							<div class="container-fluid">
+							
 							<form:form class="form-horizontal" role="form" action="" method="post">
 
 									<div class="form-group"></div>
@@ -228,8 +231,8 @@
 									<div class="form-group">
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
-												<span class="input-group-addon">Partido a eliminar:</span> <select
-													name="empleado" class="form-control" required>
+												<span class="input-group-addon">Partido a eliminar:
+												</span> <select name="partidoParaEliminar" class="form-control" required>
 
 													<c:forEach items="${partidos}" var="p">
 														<option value="" selected hidden>Elegir:</option>
@@ -244,7 +247,7 @@
 
 							<div class="form-group">
 								<div class="col-md-offset-4 col-md-8">
-									<a type="submit" data-toggle="modal" data-target="#delete" class="btn btn-danger">Eliminar partido seleccionado</a>
+									<a data-toggle="modal" data-target="#delete" class="btn btn-danger">Eliminar partido seleccionado</a>
 								</div>
 							</div>
 							
@@ -276,9 +279,8 @@
 							</div>
 						</div>
 					</div>
-
 					</form:form>
-				
+				<!--  Termina panel para eliminar partido -->
 					
 				</div>
 			</div>

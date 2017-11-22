@@ -17,20 +17,19 @@
 			<div class="row">
 
 				<div class="col-md-8 col-md-offset-2">
-<!-- 					<ol class="breadcrumb text-center"> -->
-<!-- 						<li class="breadcrumb-item active">vista encargada de abm de -->
-<!-- 							equipo</li> -->
-<!-- 					</ol> -->
-
-					<div class="col-md-8 col-md-offset-2">
+				
+	 			<ol class="breadcrumb text-center">
+	          			<li class="breadcrumb-item active">Administración de equipos - Desde aquí los podrá visualizar, crear, modificar o eliminar.</li>
+	     			</ol>
 
 <!-- 						<div class="form-group"> -->
 <!-- 							<a href="" class="btn btn-default">Listado</a>  -->
-<!-- 							<a href="" class="btn btn-success active">Añadir equipo</a> -->
+<!-- 							<a href="" class="btn btn-success active">Crear equipo</a> -->
 <!-- 							<a href=""class="btn btn-warning active">Modificar equipo</a> -->
+<!-- 							<a href=""class="btn btn-warning active">Eliminar equipo</a> -->
 <!-- 						</div> -->
 
-
+<!--  Empieza panel para crear equipo -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">Listado de Equipos</div>
 							<div class="container-fluid">
@@ -112,8 +111,10 @@
 					</div>
 
 					</form:form>
+<!--  Termina panel para crear equipo -->
 
 
+<!--  Empieza panel para modificar equipo -->
 						<div class="panel panel-warning">
 							<div class="panel-heading">
 								<h3 class="panel-title">Modificación de equipos:</h3>
@@ -128,7 +129,7 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
 												<span class="input-group-addon">Equipo a modificar:</span> <select
-													name="empleado" class="form-control" required>
+													name="equipoParaModificar" class="form-control" required>
 
 													<c:forEach items="${equipos}" var="e">
 														<option value="" selected hidden>Elegir:</option>
@@ -189,9 +190,10 @@
 							</div>
 						</div>
 					</div>
-
 					</form:form>
-					
+<!--  Termina panel para modificar equipo -->	
+
+<!--  Empieza panel para eliminar equipo -->	
 						<div class="panel panel-danger">
 							<div class="panel-heading">
 								<h3 class="panel-title">Eliminación de equipos:</h3>
@@ -205,7 +207,7 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
 												<span class="input-group-addon">Equipo a eliminar:</span> <select
-													name="empleado" class="form-control" required>
+													name="equipoParaEliminar" class="form-control" required>
 
 													<c:forEach items="${equipos}" var="e">
 														<option value="" selected hidden>Elegir:</option>
@@ -253,20 +255,17 @@
 
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
 
-					</form:form>s
-						
+					</form:form>
+<!--  Termina panel para eliminar equipo -->	
+			
 				</div>		
 						
-
 				</div>
 			</div>
-
-
 
 		</div>
 	</div>
