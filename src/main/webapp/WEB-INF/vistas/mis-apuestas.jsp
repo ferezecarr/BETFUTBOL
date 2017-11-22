@@ -23,7 +23,7 @@
 	     			</ol>
 					<c:forEach items="${apuestas}" var="a">
  			         <div class="panel panel-primary"> 
-			            <div class="panel-heading text-center">// Datos del evento //</div>
+			            <div class="panel-heading text-center"></div>
 			            <div class="panel-body text-center"> 
 			             <p id="descripcion"> Apostó por: ${a.cuotaNombre}</p>
 			             <p id="descripcion"> Cantidad apostada: $ ${a.cantidadApostada}</p>

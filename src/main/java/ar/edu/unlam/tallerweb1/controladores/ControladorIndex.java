@@ -32,7 +32,7 @@ public class ControladorIndex {
 	@Inject	private ServicioLogin servicioLogin;
 	
 	@RequestMapping("/index")
-	public ModelAndView index(HttpServletRequest request) {		
+	public ModelAndView index(@RequestParam(value = "filtro", required = false) String filtro, HttpServletRequest request) {		
 		ModelMap modelo = new ModelMap();
 		
 		/*
@@ -42,10 +42,8 @@ public class ControladorIndex {
 		/*aunque al no estar terminado lo de unir al usuario loguado con la apuesta y el evento, 
 		 * no puedo sacar el evento y la apuesta de acá, por eso lo dejé*/
 		
-		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
-		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
-		List<Evento> misEventos2 = servicioEvento.listarEventosPorNombre("Cuantos goles hace un equipo");
-		modelo.put("evento_apostarPorGoles", misEventos2);
+		List<Evento> misEventos = servicioEvento.listarEventosPorNombre(filtro);
+		modelo.put("eventos", misEventos);	
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);
 		

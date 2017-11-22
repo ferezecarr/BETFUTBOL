@@ -49,8 +49,10 @@ public class ControladorMisApuestas {
 		modelo.put("nombre",usuario.getNombreYApellido());
 		
 		List<Apuesta> apuestas = servicioApuesta.buscarPorApuesta(usuario);
+		List<Evento> eventos = servicioEvento.listarEventos();
 
 		modelo.put("apuestas", apuestas);
+		modelo.put("eventos", eventos);
 
 		return new ModelAndView("mis-apuestas", modelo);
 	}
