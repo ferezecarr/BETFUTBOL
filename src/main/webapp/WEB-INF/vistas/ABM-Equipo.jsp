@@ -69,7 +69,7 @@
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="input-group">
-												<span class="input-group-addon">Nombre</span> <input type="text" class="form-control" name="nombreEquipo" placeholder="Ingrese nombre." required>
+												<span class="input-group-addon">Nombre</span> <input type="text" class="form-control" path="nombre" name="nombreEquipo" placeholder="Ingrese nombre." required>
 											</div>
 										</div>
 									</div>

@@ -49,7 +49,7 @@ public class ControladorABMEquipos {
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
 		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-		modelo.put("equipos", equipos);
+		modelo.put("equipos", equipo.getNombre());
 		
 		if(servicioEquipo.consultarEquipo(equipo) == null) {
 			servicioEquipo.guardarEquipo(equipo);
