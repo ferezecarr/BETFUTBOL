@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Partido;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPartido;
 
 @Controller
 public class ControladorABMPartido {
@@ -26,6 +28,8 @@ public class ControladorABMPartido {
 	@Inject
 	private ServicioLogin servicioLogin;
 	
+	@Inject
+	private ServicioPartido servicioPartido;
 
 	
 
@@ -44,6 +48,12 @@ public class ControladorABMPartido {
 		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
+		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
+		
+		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
+		modelo.put("partidos", partidos);
 		
 		
 		return new ModelAndView("ABM-Partido",modelo);
