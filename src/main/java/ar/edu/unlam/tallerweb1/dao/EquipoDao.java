@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.Equipo;
 public interface EquipoDao {
 	
 	List<Equipo> findAll();
+	List<Equipo> add(Equipo equipo);
 	void save(Equipo equipo);
 	void delete(Equipo equipo);
 	void update(Equipo equipo);

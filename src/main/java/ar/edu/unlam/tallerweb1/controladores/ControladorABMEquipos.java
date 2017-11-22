@@ -48,11 +48,8 @@ public class ControladorABMEquipos {
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
-		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-		modelo.put("equipos", equipo.getNombre());
-		
 		if(servicioEquipo.consultarEquipo(equipo) == null) {
-			servicioEquipo.guardarEquipo(equipo);
+			servicioEquipo.insertarEquipo(equipo);
 			request.getSession().setAttribute("userAdmin", equipo.getId());
 			modelo.put("equipo", equipo);
 			modelo.put("nombre", equipo.getNombre());
@@ -60,6 +57,11 @@ public class ControladorABMEquipos {
 		} else {
 			modelo.put("aviso-error-añadir-equipo", "No se pudo añadir el equipo");
 		}
+		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipo.getNombre());
+		
+		
 		
 		return new ModelAndView("ABM-Equipo",modelo);
 	}
@@ -80,6 +82,7 @@ public class ControladorABMEquipos {
 			servicioEquipo.actualizarEquipo(equipo);
 			request.getSession().setAttribute("userAdmin", equipo.getId());
 			modelo.put("equipo", equipo);
+			modelo.put("id", equipo.getId());
 			modelo.put("nombre", equipo.getNombre());
 			modelo.put("aviso-actualizar-equipo", "Se actualizo correctamente");
 		} else {

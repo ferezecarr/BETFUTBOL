@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,6 +52,16 @@ public class EquipoDaoImpl implements EquipoDao{
 	public void update(Equipo equipo) {
 		sessionFactory.getCurrentSession().update(equipo);
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Equipo> add(Equipo equipo) {
+		List<Equipo> equipos = sessionFactory.getCurrentSession().createCriteria(Equipo.class)
+				.add(Restrictions.eq("id", equipo.getId()))
+				.add(Restrictions.eq("nombre", equipo.getNombre()))
+				.list();
+		return equipos;
 	}
 
 

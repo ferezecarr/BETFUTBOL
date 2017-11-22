@@ -40,7 +40,7 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 
 	@Override
 	public Equipo consultarEquipo(Equipo equipo) {
-		return null;
+		return equipoDao.findByMatch(equipo);
 	}
 
 	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})	
@@ -54,6 +54,12 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 	public void actualizarEquipo(Equipo equipo) {
 		equipoDao.update(equipo);
 		
+	}
+
+	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})
+	@Override
+	public List<Equipo> insertarEquipo(Equipo equipo) {
+		return equipoDao.add(equipo);
 	}
 
 }
