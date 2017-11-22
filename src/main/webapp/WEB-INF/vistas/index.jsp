@@ -42,7 +42,7 @@
 					<c:url value="/index?filtro=Cantidad de goles en un partido" var="url" />
 					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Goles por partido</a>
 
-					<c:url value="/index?filtro=Cantidad de goles en un partido" var="url" />
+					<c:url value="/index?filtro=Cantidad de goles par o impar" var="url" />
 					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Goles del partido (Par o Impar)</a>
 
 		

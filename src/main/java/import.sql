@@ -34,6 +34,7 @@ INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal
 INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isTerminado, isResultadoFinal) VALUES (5,7,8,'2017-12-02 13:00:00', 0, 0, FALSE, FALSE);
 INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isTerminado, isResultadoFinal) VALUES (6,9,10,'2017-12-02 19:15:00', 0, 0, FALSE, FALSE);
 INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isTerminado, isResultadoFinal) VALUES (7,11,12,'2017-12-03 21:30:00', 0, 0, FALSE, FALSE);
+INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isTerminado, isResultadoFinal) VALUES (8,10,11,'2017-12-03 20:30:00', 0, 0, FALSE, FALSE);
 
 -- Creando siete eventos de tipo "Resultado" (Gana, empate, derrota)
 INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado, cuotaGanadora) VALUES (1, 1, "Resultado", "| China Vs Argentina | 01/11 - 15:30hs", TRUE, "Gana Argentina");
@@ -55,6 +56,7 @@ INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (12
 
 -- Creando un evento de tipo "Cantidad de goles par o impar" (Par, Impar)
 INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (13, 7, "Cantidad de goles par o impar", "| Primera División Argentina | 02/12 - 19:15hs", FALSE);
+INSERT INTO Evento (id, id_partido, nombre, descripcion, isTerminado) VALUES (14, 8, "Cantidad de goles par o impar", "| Primera División Argentina | 03/12 - 20:30hs", FALSE);
 
 -- Creando cuotas que son asignadas a los eventos de tipo "Resultado"
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (1, 1, "Gana China", 4.90, 0);
@@ -117,6 +119,9 @@ INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (43, 12, 
 -- Creando cuotas que son asignadas a los eventos de tipo "Cantidad de goles par o impar"
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (44, 13, "Par", 2.00, 0);
 INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (45, 13, "Impar", 2.00, 0);
+
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (46, 14, "Par", 2.00, 0);
+INSERT INTO Cuota (id, evento_id, nombre, valor, cantidadVotos) VALUES (47, 14, "Impar", 2.00, 0);
 
 -- Hardcodeando apuestas
 INSERT INTO Apuesta(id, evento_id, apostador_id, cantidadApostada, cuotaValor, cuotaNombre, isGanadora) VALUES (1, 1, 3, 20.50, 1.44, "Gana Argentina", TRUE);
