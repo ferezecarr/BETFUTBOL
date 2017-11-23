@@ -39,13 +39,17 @@ public class EquipoDaoImpl implements EquipoDao{
 
 	@Override
 	public Equipo findByMatch(Equipo equipo) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Equipo) sessionFactory.getCurrentSession().createCriteria(Equipo.class)
+				.add(Restrictions.eq("nombre", equipo.getNombre()))
+				.uniqueResult();
 	}
 
 	@Override
 	public void delete(Equipo equipo) {
-		sessionFactory.getCurrentSession().delete(equipo);		
+		Equipo e = (Equipo)sessionFactory.getCurrentSession().createCriteria(Equipo.class)
+				.add(Restrictions.eq("nombre", equipo.getNombre()))
+				.uniqueResult();
+		sessionFactory.getCurrentSession().delete(e);		
 	}
 
 	@Override

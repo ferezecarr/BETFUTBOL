@@ -145,9 +145,8 @@ public class ControladorABMEquipos {
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
 		
-		
 		if(servicioEquipo.consultarEquipo(equipo) != null) {
-			
+
 			servicioEquipo.eliminarEquipo(equipo);
 		
 			modelo.put("aviso-eliminar-equipo", "Se elimino correctamente");

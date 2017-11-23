@@ -169,16 +169,18 @@
 									<div class="form-group">
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
-												<span class="input-group-addon">Equipo a eliminar:</span> <select
-													name="equipoParaEliminar" class="form-control" required="required">
+												<span class="input-group-addon">Equipo a eliminar:</span> 
 
+													<form:select path="nombre" class="form-control">
 													<c:forEach items="${equipos}" var="e">
+														<form:option value="${e.nombre}"></form:option>
+														<!-- 
 														<option value="" selected hidden>Elegir:</option>
 
 														<option value="${e.id}">${e.id} - ${e.nombre}</option>
+														-->
 													</c:forEach>
-
-												</select>
+													</form:select>												
 											</div>
 										</div>
 									</div>
