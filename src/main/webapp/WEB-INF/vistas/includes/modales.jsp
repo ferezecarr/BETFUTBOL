@@ -5,7 +5,7 @@
    
    
    
-    <form:form action="registro-usuario" method="POST" modelAttribute="usuario"  name="formulario1">
+    <form:form action="registro-usuario" method="POST" modelAttribute="usuario"  name="formulario1" onsubmit="return validarRegistro()">
 	<div class="modal fade" data-backdrop="static" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content col-sm-12">
@@ -16,8 +16,8 @@
 	      <div class="modal-body col-sm-12">
    	        <form:input path="nombreYApellido" type="text" class="col-sm-6 form-control" placeholder="Nombre y Apellido" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
 	        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
-	        <form:input path="password" type="password" class="col-sm-6 form-control" name="clave1" placeholder="Password" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
-	      <!-- <form:input path="password" type="password" class="col-sm-6 form-control" name="clave2" placeholder="Repita Password"/><br> -->  
+	        <form:input path="password" type="password" class="col-sm-6 form-control" name="clave1" id="clave1" placeholder="Password" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
+	        <form:input path="" type="password" class="col-sm-6 form-control" name="clave2" id="clave2" placeholder="Repita Password"/><br>
 	      </div>
 	      <div class="modal-footer col-sm-12">
 	        
