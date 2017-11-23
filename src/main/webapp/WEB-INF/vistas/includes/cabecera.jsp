@@ -11,6 +11,7 @@
 	<!-- ACÁ DEBERÍA IR CSS Y JS PROPIOS -->
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	<script src="js/seleccionApuesta.js"></script>
+	<script src="js/js.js"></script>
 	
 	<!-- TÍTULO DEL PROYECTO -->
 	<title>BetFutbol.com - Home</title>

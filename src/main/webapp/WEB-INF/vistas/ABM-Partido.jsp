@@ -9,6 +9,7 @@
 <body>
 <%@ include file="includes/navegador.jsp"%>
 <%@ include file="includes/modales.jsp"%>
+<%@ include file="includes/modalesABMpartido.jsp"%>
 	
 		<div class="container-fluid">
 		<div class="col-md-12 main">
@@ -56,7 +57,7 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action="" method="post">
+								<form:form class="form-horizontal" role="form" action="crear-Partido" method="post" name="crearPartido" modelAttribute="partido">
 
 									<div class="form-group"></div>
 
@@ -67,7 +68,7 @@
       									<div class="col-md-6">
 											<div class="input-group">
 												<span class="input-group-addon">Local</span>
-												<select name="equipoLocal" class="form-control" required>
+												<select name="equipoLocal" class="form-control" required="required">
 
 													<c:forEach items="${equipos}" var="e">
 														<option value="" selected hidden>Elegir equipo:</option>
@@ -82,7 +83,7 @@
 											<div class="input-group">
 												<span class="input-group-addon">Visitante</span>
 												
-												<select name="equipoVisitante" class="form-control" required>
+												<select name="equipoVisitante" class="form-control" required="required">
 
 													<c:forEach items="${equipos}" var="e">
 														<option value="" selected hidden>Elegir equipo:</option>
@@ -101,7 +102,7 @@
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
 											<span class="input-group-addon">Fecha</span> 
-											<input type="date" class="form-control" name="fechaPartido "placeholder="Ingrese la fecha del partido a disputar." required>
+											<form:input path="fecha" type="date" class="form-control"  name="fechaPartido"  placeholder="Ingrese la fecha del partido a disputar." required="required" />
 										</div>
 									</div>
 								</div>
@@ -113,36 +114,13 @@
 							</div>
 						</div>
 
+						</form:form>
 					</div>
 					</div>
 
 	
-					<div class="modal fade in" id="add" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<a class="btn pull-right" data-dismiss="modal"><span
-										class="glyphicon glyphicon-remove"></span></a>
-									<h3 class="modal-title">Crear nuevo partido:</h3>
-								</div>
-								<div class="modal-body">
-									<h4>¿Está seguro que sea crear un nuevo partido? Se guardarán los datos ingresados.</h4>
-								</div>
-								<div class="modal-footer">
-									<div class="form-group text-center">
-
-										<button type="submit" name="enviar" class="btn btn-success">
-											<span class="glyphicon glyphicon-check"></span> Confirmar
-										</button>
-
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					</form:form>
+					
+					
 	<!--  Termina panel para crear partido -->
 	
 	<!--  Empieza panel para modificar partido -->
@@ -151,7 +129,7 @@
 								<h3 class="panel-title">Modificación de partidos:</h3>
 							</div>
 							<div class="container-fluid">
-							<form:form class="form-horizontal" role="form" action="" method="post">
+							<form:form class="form-horizontal" role="form" action="editar-Partido" method="post" name="modificarPartido" modelAttribute="partido">
 
 									<div class="form-group"></div>
 
@@ -159,7 +137,7 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
 												<span class="input-group-addon">Partido a modificar:</span>
-												 <select name="partidoParaModificar" class="form-control" required>
+												 <select name="partidoParaModificar" class="form-control" required="required">
 													<c:forEach items="${partidos}" var="p">
 														<option value="" selected hidden>Elegir:</option>
 
@@ -174,7 +152,7 @@
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
 											<span class="input-group-addon">Nueva fecha</span> 
-											<input type="date" class="form-control" name="fechaPartido "placeholder="Ingrese la fecha del partido a disputar." required>
+											<form:input path="fecha" type="date" class="form-control" name="fechaPartido" placeholder="Ingrese la fecha del partido a disputar." required="required"/>
 										</div>
 									</div>
 								</div>
@@ -183,38 +161,17 @@
 							<div class="form-group">
 								<div class="col-md-offset-4 col-md-8">
 									<a data-toggle="modal" data-target="#update" class="btn btn-warning">Modificar partido seleccionado</a>
+								
 								</div>
 							</div>
 							
+							
+							</form:form>
 							</div>
 						</div>
 
-						<div class="modal fade in" id="update" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<a class="btn pull-right" data-dismiss="modal"><span
-										class="glyphicon glyphicon-remove"></span></a>
-									<h3 class="modal-title">Modificar partido seleccionado:</h3>
-								</div>
-								<div class="modal-body">
-									<h4>¿Está seguro que desea modificar este partido?</h4>
-									<h4>Los eventos y cuotas que contengan este partido podran ser afectados por el cambio.</h4>
-								</div>
-								<div class="modal-footer">
-									<div class="form-group text-center">
-
-										<button type="submit" name="enviar" class="btn btn-warning">
-											<span class="glyphicon glyphicon-check"></span> Confirmar
-										</button>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					</form:form>
+						
+					
 			<!--  Termina panel para modificar partido -->	
 				
 			<!--  Empieza panel para eliminar partido -->	
@@ -224,7 +181,7 @@
 							</div>
 							<div class="container-fluid">
 							
-							<form:form class="form-horizontal" role="form" action="" method="post">
+							<form:form class="form-horizontal" role="form" action="eliminar-Partido" method="post" name="eliminarPartido" modelAttribute="partido">
 
 									<div class="form-group"></div>
 
@@ -232,7 +189,7 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
 												<span class="input-group-addon">Partido a eliminar:
-												</span> <select name="partidoParaEliminar" class="form-control" required>
+												</span> <select name="partidoParaEliminar" class="form-control" required="required">
 
 													<c:forEach items="${partidos}" var="p">
 														<option value="" selected hidden>Elegir:</option>
@@ -250,36 +207,12 @@
 									<a data-toggle="modal" data-target="#delete" class="btn btn-danger">Eliminar partido seleccionado</a>
 								</div>
 							</div>
-							
+							</form:form>
 							</div>
 						</div>
 
-						<div class="modal fade in" id="delete" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<a class="btn pull-right" data-dismiss="modal"><span
-										class="glyphicon glyphicon-remove"></span></a>
-									<h3 class="modal-title">Eliminar partido seleccionado:</h3>
-								</div>
-								<div class="modal-body">
-									<h4>¿Está seguro que desea eliminar este partido?</h4>
-									<h4>Los eventos y cuotas que contengan este partido tambien serán eliminados.</h4>
-								</div>
-								<div class="modal-footer">
-									<div class="form-group text-center">
-
-										<button type="submit" name="enviar" class="btn btn-danger">
-											<span class="glyphicon glyphicon-trash"></span> Eliminar
-										</button>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					</form:form>
+					
+					
 				<!--  Termina panel para eliminar partido -->
 					
 				</div>

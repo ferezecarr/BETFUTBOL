@@ -30,7 +30,30 @@ public class ControladorABMEquipos {
 	@Inject
 	private ServicioLogin servicioLogin;
 	
+	@RequestMapping(path = "ABM-Equipo")
+	public ModelAndView mostrarEquipo(HttpServletRequest request) {
 
+		
+		if(request.getSession().getAttribute("AdminId") == null) {
+			return new ModelAndView("redirect:/");
+			
+		}
+		
+		ModelMap modelo = new ModelMap();
+		
+		Equipo equipo= new Equipo();
+		modelo.put("equipo",equipo);
+		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
+		
+		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		modelo.put("usuario",usuarioLogeado);
+		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
+		
+		
+		return new ModelAndView("ABM-Equipo",modelo);
+	}
 
 	
 	@RequestMapping(path = "añadir-equipo" , method = RequestMethod.POST)
@@ -48,18 +71,24 @@ public class ControladorABMEquipos {
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
+		
+		
 		if(servicioEquipo.consultarEquipo(equipo) == null) {
+			
 			servicioEquipo.insertarEquipo(equipo);
-			request.getSession().setAttribute("userAdmin", equipo.getId());
-			modelo.put("equipo", equipo);
-			modelo.put("nombre", equipo.getNombre());
-			modelo.put("aviso-añadir-equipo", "Se añadio el equipo correctamente");
+			modelo.put("aviso", "Se añadio el equipo correctamente");
+		
 		} else {
-			modelo.put("aviso-error-añadir-equipo", "No se pudo añadir el equipo");
+			modelo.put("aviso", "No se pudo añadir el equipo");
+			
 		}
 		
+		Equipo equipoNuevo= new Equipo();
+		modelo.put("equipo", equipoNuevo);
+		
+		
 		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-		modelo.put("equipos", equipo.getNombre());
+		modelo.put("equipos", equipos);
 		
 		
 		
@@ -75,22 +104,32 @@ public class ControladorABMEquipos {
 		
 		ModelMap modelo = new ModelMap();
 		
-		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-		modelo.put("equipos", equipos);
+		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		modelo.put("usuario",usuarioLogeado);
+		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
 		if(servicioEquipo.consultarEquipo(equipo) != null) {
+			
 			servicioEquipo.actualizarEquipo(equipo);
-			request.getSession().setAttribute("userAdmin", equipo.getId());
-			modelo.put("equipo", equipo);
-			modelo.put("id", equipo.getId());
-			modelo.put("nombre", equipo.getNombre());
+		
 			modelo.put("aviso-actualizar-equipo", "Se actualizo correctamente");
+			
 		} else {
 			modelo.put("aviso-error-actualizar-equipo", "No se pudo actualizar");
 		}
 		
+		Equipo equipoCreado = new Equipo();
+		modelo.put("equipo",equipoCreado);
+
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
 		return new ModelAndView("ABM-Equipo" , modelo);
 	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping(path = "eliminar-equipo" , method = RequestMethod.POST)
 	public ModelAndView eliminarEquipo(@ModelAttribute("equipo") Equipo equipo , HttpServletRequest request) {
@@ -101,18 +140,27 @@ public class ControladorABMEquipos {
 		
 		ModelMap modelo = new ModelMap();
 		
-		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-		modelo.put("equipos", equipos);
+		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		modelo.put("usuario",usuarioLogeado);
+		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
+		
+		
 		
 		if(servicioEquipo.consultarEquipo(equipo) != null) {
+			
 			servicioEquipo.eliminarEquipo(equipo);
-			request.getSession().setAttribute("userAdmin", equipo.getId());
-			modelo.put("equipo", equipo);
-			modelo.put("nombre", equipo.getNombre());
+		
 			modelo.put("aviso-eliminar-equipo", "Se elimino correctamente");
 		} else {
 			modelo.put("aviso-error-eliminar-equipo", "No se pudo eliminar");
 		}
+		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
+		
+		Equipo equipoCreado = new Equipo();
+		modelo.put("equipo",equipoCreado);
+
 		
 		return new ModelAndView("ABM-Equipo" , modelo);
 		

@@ -11,6 +11,7 @@
 <body>
 	<%@ include file="includes/navegador.jsp"%>
 	<%@ include file="includes/modales.jsp"%>
+	<%@ include file="includes/modalesABMequipo.jsp"%>
 
 	<div class="container-fluid">
 		<div class="col-md-12 main">
@@ -21,6 +22,12 @@
 	 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Administración de equipos - Desde aquí los podrá visualizar, crear, modificar o eliminar.</li>
 	     			</ol>
+	     			
+	     			<c:if test="${aviso != null}">
+	     			<ol class="breadcrumb text-center">
+	          			<li class="breadcrumb-item active">${aviso}</li>
+	     			</ol>
+	     			</c:if>
 
 <!-- 						<div class="form-group"> -->
 <!-- 							<a href="" class="btn btn-default">Listado</a>  -->
@@ -29,7 +36,7 @@
 <!-- 							<a href=""class="btn btn-warning active">Eliminar equipo</a> -->
 <!-- 						</div> -->
 
-<!--  Empieza panel para crear equipo -->
+<!-- lisar equipos -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">Listado de Equipos</div>
 							<div class="container-fluid">
@@ -54,6 +61,7 @@
 							</div>
 						</div>
 
+<!--  Empieza panel para crear equipo -->
 
 						<div class="panel panel-success">
 							<div class="panel-heading">
@@ -61,14 +69,16 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action="añadir-equipo" modelAttribute="equipo" method="post">
+								<form:form class="form-horizontal" role="form" action="añadir-equipo" modelAttribute="equipo" method="post" name="crearEquipo">
 
 									<div class="form-group"></div>
 
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="input-group">
-												<span class="input-group-addon">Nombre</span> <input type="text" class="form-control" path="nombre" name="nombreEquipo" placeholder="Ingrese nombre." required>
+												<span class="input-group-addon">Nombre</span> 
+												
+												<form:input type="text" class="form-control" path="nombre" name="nombreEquipo" placeholder="Ingrese nombre." required="required"/>
 											</div>
 										</div>
 									</div>
@@ -80,38 +90,14 @@
 							</div>
 						</div>
 
-					</div>
-					</div>
-
-	
-					<div class="modal fade in" id="add" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<a class="btn pull-right" data-dismiss="modal"><span
-										class="glyphicon glyphicon-remove"></span></a>
-									<h3 class="modal-title">Crear nuevo equipo:</h3>
-								</div>
-								<div class="modal-body">
-									<h4>¿Está seguro que sea añadir un nuevo equipo? Se guardarán los datos ingresados.</h4>
-								</div>
-								<div class="modal-footer">
-									<div class="form-group text-center">
-
-										<button type="submit" name="enviar" class="btn btn-success">
-											<span class="glyphicon glyphicon-check"></span> Confirmar
-										</button>
-
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
 					</form:form>
+					</div>
+					
+					</div>
+
 <!--  Termina panel para crear equipo -->
+
+
 
 
 <!--  Empieza panel para modificar equipo -->
@@ -121,7 +107,7 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action="actualizar-equipo" modelAttribute="equipo" method="post">
+								<form:form class="form-horizontal" role="form" action="actualizar-equipo" modelAttribute="equipo" method="post" name="modificarEquipo">
 
 									<div class="form-group"></div>
 
@@ -129,7 +115,7 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
 												<span class="input-group-addon">Equipo a modificar:</span> <select
-													name="equipoParaModificar" class="form-control" required>
+													name="equipoParaModificar" class="form-control" required="required">
 
 													<c:forEach items="${equipos}" var="e">
 														<option value="" selected hidden>Elegir:</option>
@@ -145,9 +131,8 @@
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="input-group">
-												<span class="input-group-addon">Nombre</span> <input
-													type="text" class="form-control" name="nombreEquipo"
-													placeholder="Ingrese nuevo nombre." required>
+												<span class="input-group-addon">Nombre</span> 
+												<form:input path="nombre" type="text" class="form-control" name="nombreEquipo" placeholder="Ingrese nuevo nombre." required="required"/>
 											</div>
 										</div>
 									</div>
@@ -159,38 +144,16 @@
 								</div>
 							</div>
 							
+							
+								</form:form>
 							</div>
 						</div>
 
 
 
 
-						<div class="modal fade in" id="update" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<a class="btn pull-right" data-dismiss="modal"><span
-										class="glyphicon glyphicon-remove"></span></a>
-									<h3 class="modal-title">Modicar equipo existente:</h3>
-								</div>
-								<div class="modal-body">
-									<h4>¿Está seguro que modificar el equipo? Se perderán datos anteriores.</h4>
-								</div>
-								<div class="modal-footer">
-									<div class="form-group text-center">
-
-										<button type="submit" name="enviar" class="btn btn-warning">
-											<span class="glyphicon glyphicon-check"></span> Confirmar
-										</button>
-
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					</form:form>
+						
+				
 <!--  Termina panel para modificar equipo -->	
 
 <!--  Empieza panel para eliminar equipo -->	
@@ -199,7 +162,7 @@
 								<h3 class="panel-title">Eliminación de equipos:</h3>
 							</div>
 							<div class="container-fluid">
-							<form:form class="form-horizontal" role="form" action="eliminar-equipo" modelAttribute="equipo" method="post">
+							<form:form class="form-horizontal" role="form" action="eliminar-equipo" modelAttribute="equipo" method="post" name="eliminarEquipo">
 
 									<div class="form-group"></div>
 
@@ -207,7 +170,7 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
 												<span class="input-group-addon">Equipo a eliminar:</span> <select
-													name="equipoParaEliminar" class="form-control" required>
+													name="equipoParaEliminar" class="form-control" required="required">
 
 													<c:forEach items="${equipos}" var="e">
 														<option value="" selected hidden>Elegir:</option>
@@ -228,38 +191,12 @@
 								</div>
 							</div>
 							
+								</form:form>
 							</div>
 						</div>
+				
 
-
-
-
-						<div class="modal fade in" id="delete" role="dialog">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<a class="btn pull-right" data-dismiss="modal"><span
-										class="glyphicon glyphicon-remove"></span></a>
-									<h3 class="modal-title">Eliminar equipo seleccionado:</h3>
-								</div>
-								<div class="modal-body">
-									<h4>¿Está seguro que desea eliminar el equipo? Se perderán todos sus datos.</h4>
-								</div>
-								<div class="modal-footer">
-									<div class="form-group text-center">
-
-										<button type="submit" name="enviar" class="btn btn-danger">
-											<span class="glyphicon glyphicon-trash"></span> Eliminar
-										</button>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					</form:form>
+				
 <!--  Termina panel para eliminar equipo -->	
 			
 				</div>		

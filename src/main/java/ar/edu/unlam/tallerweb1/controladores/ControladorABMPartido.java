@@ -35,7 +35,7 @@ public class ControladorABMPartido {
 
 	
 	@RequestMapping(path = "ABM-Partido")
-	public ModelAndView añadirEquipo(HttpServletRequest request) {
+	public ModelAndView mostrarPartido(HttpServletRequest request) {
 
 		
 		if(request.getSession().getAttribute("AdminId") == null) {
@@ -49,8 +49,12 @@ public class ControladorABMPartido {
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
+		
 		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
 		modelo.put("equipos", equipos);
+		
+		Partido partidoNuevo = new Partido();
+		modelo.put("partido", partidoNuevo);
 		
 		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
 		modelo.put("partidos", partidos);
@@ -60,5 +64,119 @@ public class ControladorABMPartido {
 	}
 	
 	
+	
+	
+
+	@RequestMapping(path = "crear-Partido", method = RequestMethod.POST)
+	public ModelAndView crearPartido(@ModelAttribute("partido") Partido partido,HttpServletRequest request) {
+
+		
+		if(request.getSession().getAttribute("AdminId") == null) {
+			return new ModelAndView("redirect:/");
+			
+		}
+		
+		ModelMap modelo = new ModelMap();
+		
+		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		modelo.put("usuario",usuarioLogeado);
+		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
+		
+		
+		if(servicioPartido.consultarPartido(partido)==null)
+		{
+			servicioPartido.guardarPartido(partido);
+		}
+		
+		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
+		
+		Partido partidoNuevo = new Partido();
+		modelo.put("partido", partidoNuevo);
+		
+		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
+		modelo.put("partidos", partidos);
+		
+		
+		return new ModelAndView("ABM-Partido",modelo);
+	}
+	
+	
+	
+	
+
+	@RequestMapping(path ="editar-Partido", method = RequestMethod.POST)
+	public ModelAndView editarPartido(@ModelAttribute("partido")Partido partido,HttpServletRequest request) {
+
+		if(request.getSession().getAttribute("AdminId") == null) {
+			return new ModelAndView("redirect:/");
+			
+		}
+		
+		ModelMap modelo = new ModelMap();
+		
+		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		modelo.put("usuario",usuarioLogeado);
+		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
+		
+		
+		if(servicioPartido.consultarPartido(partido)!=null)
+		{
+			servicioPartido.actualizarPartido(partido);
+		}
+		
+		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
+		
+		Partido partidoNuevo = new Partido();
+		modelo.put("partido", partidoNuevo);
+		
+		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
+		modelo.put("partidos", partidos);
+		
+		
+		return new ModelAndView("ABM-Partido",modelo);
+	}
+	
+	
+
+	
+	
+	@RequestMapping(path ="eliminar-Partido", method = RequestMethod.POST)
+	public ModelAndView eliminarPartido(@ModelAttribute("partido")Partido partido, HttpServletRequest request) {
+
+		
+		if(request.getSession().getAttribute("AdminId") == null) {
+			return new ModelAndView("redirect:/");
+			
+		}
+		
+		ModelMap modelo = new ModelMap();
+		
+		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		modelo.put("usuario",usuarioLogeado);
+		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
+		
+		
+		if(servicioPartido.consultarPartido(partido)!=null)
+		{
+			servicioPartido.eliminarPartido(partido);
+		}
+		
+		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
+		
+		Partido partidoNuevo = new Partido();
+		modelo.put("partido", partidoNuevo);
+		
+		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
+		modelo.put("partidos", partidos);
+		
+		
+		return new ModelAndView("ABM-Partido",modelo);
+	}
 	
 }

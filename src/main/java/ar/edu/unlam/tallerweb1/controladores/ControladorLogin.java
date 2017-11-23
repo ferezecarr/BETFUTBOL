@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Apuesta;
+import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
@@ -29,7 +31,8 @@ public class ControladorLogin {
 	@Inject
 	private ServicioEvento servicioEvento;
 	
-	
+	@Inject
+	private ServicioEquipo servicioEquipo;
 	
 	
 	@RequestMapping(path="/login", method = RequestMethod.POST)
@@ -58,6 +61,14 @@ public class ControladorLogin {
 			if(usuarioBuscado.getRol().equals("ADMIN"))
 			{	
 				request.getSession().setAttribute("AdminId", usuarioBuscado.getId());
+				
+				Equipo equipo= new Equipo();
+				modelo.put("equipo",equipo);
+				
+				List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+				modelo.put("equipos", equipos);
+				
+				
 				return new ModelAndView("ABM-Equipo",modelo);
 			}
 			
