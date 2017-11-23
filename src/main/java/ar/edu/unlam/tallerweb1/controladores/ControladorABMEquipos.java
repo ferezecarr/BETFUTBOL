@@ -75,7 +75,7 @@ public class ControladorABMEquipos {
 		
 		if(servicioEquipo.consultarEquipo(equipo) == null) {
 			
-			servicioEquipo.insertarEquipo(equipo);
+			servicioEquipo.guardarEquipo(equipo);
 			modelo.put("aviso", "Se añadio el equipo correctamente");
 		
 		} else {
