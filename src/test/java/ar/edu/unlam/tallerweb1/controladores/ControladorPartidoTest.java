@@ -47,25 +47,65 @@ public class ControladorPartidoTest {
 		when(servicioPartido.consultarPartido(any(Partido.class))).thenReturn(partido);
 		when(partido.getLocal()).thenCallRealMethod();
 		when(partido.getVisitante()).thenCallRealMethod();
+		when(partido.getFecha()).thenCallRealMethod();
 		
 		ModelAndView modelo = controladorPartido.validarPartido(partido);
 		
 		assertThat(modelo.getViewName()).isEqualTo("redirect:/partido");
 		assertThat(modelo.getModel()).isEmpty();
-		verify(session , times(1)).setAttribute("LOCAL", "PARTIDO");
+		
+		verify(session , times(0)).setAttribute("LOCAL", "PARTIDO");
+		verify(session , times(0)).setAttribute("VISITANTE", "PARTIDO");
+		verify(session , times(0)).setAttribute("FECHA", "PARTIDO");
 		
 	}
 	
 	@Test
-	public void testQuePuedaCrearUnEquipoValido() {
+	public void testQuePuedaCrearUnPartidoValido() {
 		when(request.getSession()).thenReturn(session);
 		when(servicioPartido.consultarPartido(any(Partido.class))).thenReturn(partido);
+		when(partido.getLocal()).thenCallRealMethod();
+		when(partido.getVisitante()).thenCallRealMethod();
+		when(partido.getFecha()).thenCallRealMethod();
 		
 		ModelAndView modelo = controladorABMPartido.crearPartido(partido, request);
 		
 		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
 		assertThat(modelo.getModel()).isEmpty();
-		verify(session , times(1));
+		
+		verify(session , times(0)).setAttribute("LOCAL", "PARTIDO");
+		verify(session , times(0)).setAttribute("VISITANTE", "PARTIDO");
+		verify(session , times(0)).setAttribute("FECHA", "PARTIDO");
+	}
+	
+	@Test
+	public void testQuePuedaActualizarUnPartidoValido() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioPartido.consultarPartido(any(Partido.class))).thenReturn(partido);
+		
+		ModelAndView modelo = controladorABMPartido.editarPartido(partido, request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
+		assertThat(modelo.getModel()).isEmpty();
+		
+		verify(session , times(0)).setAttribute("LOCAL", "PARTIDO");
+		verify(session , times(0)).setAttribute("VISITANTE", "PARTIDO");
+		verify(session , times(0)).setAttribute("FECHA", "PARTIDO");
+	}
+	
+	@Test
+	public void testQuePuedEliminarUnPartidoValido() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioPartido.consultarPartido(any(Partido.class))).thenReturn(partido);
+		
+		ModelAndView modelo = controladorABMPartido.eliminarPartido(partido, request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
+		assertThat(modelo.getModel()).isEmpty();
+		
+		verify(session , times(0)).setAttribute("LOCAL", "PARTIDO");
+		verify(session , times(0)).setAttribute("VISITANTE", "PARTIDO");
+		verify(session , times(0)).setAttribute("FECHA", "PARTIDO");
 	}
 
 }
