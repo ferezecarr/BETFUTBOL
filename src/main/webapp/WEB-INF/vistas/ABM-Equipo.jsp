@@ -69,7 +69,7 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action="añadir-equipo" modelAttribute="equipo" method="post" name="crearEquipo">
+								<form:form class="form-horizontal" role="form" action="crear-equipo" modelAttribute="equipo" method="post" name="crearEquipo">
 
 									<div class="form-group"></div>
 

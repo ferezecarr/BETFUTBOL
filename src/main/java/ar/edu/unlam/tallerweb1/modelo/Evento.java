@@ -18,6 +18,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Evento {
 	@Id
@@ -29,6 +31,7 @@ public class Evento {
 	private Partido partido;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "evento", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Cuota> cuotas = new LinkedList<Cuota>();
 	
 	private String nombre;			//Resultado, Resultado Especifico, Jugador hace gol, etc..

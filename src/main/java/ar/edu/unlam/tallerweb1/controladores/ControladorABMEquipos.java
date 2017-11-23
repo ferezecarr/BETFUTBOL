@@ -56,8 +56,8 @@ public class ControladorABMEquipos {
 	}
 
 	
-	@RequestMapping(path = "añadir-equipo" , method = RequestMethod.POST)
-	public ModelAndView añadirEquipo(@ModelAttribute("equipo") Equipo equipo , HttpServletRequest request) {
+	@RequestMapping(path = "crear-equipo" , method = RequestMethod.POST)
+	public ModelAndView crearEquipo(@ModelAttribute("equipo") Equipo equipo , HttpServletRequest request) {
 
 		
 		if(request.getSession().getAttribute("AdminId") == null) {
@@ -76,10 +76,10 @@ public class ControladorABMEquipos {
 		if(servicioEquipo.consultarEquipo(equipo) == null) {
 			
 			servicioEquipo.guardarEquipo(equipo);
-			modelo.put("aviso", "Se añadio el equipo correctamente");
+			modelo.put("aviso", "Se creo el equipo correctamente");
 		
 		} else {
-			modelo.put("aviso", "No se pudo añadir el equipo");
+			modelo.put("aviso", "No se pudo crear el equipo");
 			
 		}
 		
