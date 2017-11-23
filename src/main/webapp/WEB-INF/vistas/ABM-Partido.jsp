@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -57,7 +58,7 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action="crear-Partido" method="post" name="crearPartido" modelAttribute="partido">
+								<form:form class="form-horizontal" role="form" action="crear-partido" method="post" name="crearPartido" modelAttribute="partido">
 
 									<div class="form-group"></div>
 
@@ -68,14 +69,14 @@
       									<div class="col-md-6">
 											<div class="input-group">
 												<span class="input-group-addon">Local</span>
-												<select name="equipoLocal" class="form-control" required="required">
+												<form:select class="form-control"  path="local">
 
 													<c:forEach items="${equipos}" var="e">
-														<option value="" selected hidden>Elegir equipo:</option>
-														<option value="${e.id}">${e.nombre}</option>
+<%-- 														<form:option value="NONE" selected hidden>Elegir equipo:</form:option> --%>
+														<form:option value="${e.nombre}"></form:option>
 													</c:forEach>
 
-												</select>
+												</form:select>
 											</div>
 										</div>
 										
@@ -83,14 +84,14 @@
 											<div class="input-group">
 												<span class="input-group-addon">Visitante</span>
 												
-												<select name="equipoVisitante" class="form-control" required="required">
+												<form:select class="form-control" path="visitante">
 
 													<c:forEach items="${equipos}" var="e">
-														<option value="" selected hidden>Elegir equipo:</option>
-														<option value="${e.id}">${e.nombre}</option>
+<%-- 														<form:option value="NONE" selected hidden>Elegir equipo:</form:option> --%>
+														<form:option value="${e.nombre}"></form:option>
 													</c:forEach>
 
-												</select>
+												</form:select>
 											</div>
 										</div>
 										
@@ -98,30 +99,28 @@
 										</div>
 									</div>
 
-								<div class="form-group">
-									<div class="col-md-8 col-md-offset-2">
-										<div class="input-group">
-											<span class="input-group-addon">Fecha</span> 
-											<form:input path="fecha" type="date" class="form-control"  name="fechaPartido"  placeholder="Ingrese la fecha del partido a disputar." required="required" />
-										</div>
-									</div>
-								</div>
+								<!-- Tira un error 500 en type="date" Excepcion: se esperaba un simbolo igual-->
+<!-- 								<div class="form-group"> -->
+<!-- 									<div class="col-md-8 col-md-offset-2"> -->
+<!-- 										<div class="input-group"> -->
+<!-- 											<span class="input-group-addon">Fecha</span>  -->
+<%-- 											<form:input type="date" path="fecha" name="fecha" class="form-control" required /> --%>
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 
 
 								<div class="form-group">
 							<div class="col-md-8 col-md-offset-4">
-								<a data-toggle="modal" data-target="#add" class="btn btn-success">Crear nuevo partido</a>
+								<a type="submit" data-toggle="modal" data-target="#add" class="btn btn-success">Crear nuevo partido</a>
 							</div>
 						</div>
 
 						</form:form>
 					</div>
-					</div>
-
-	
-					
-					
+					</div>			
 	<!--  Termina panel para crear partido -->
+	
 	
 	<!--  Empieza panel para modificar partido -->
 							<div class="panel panel-warning">

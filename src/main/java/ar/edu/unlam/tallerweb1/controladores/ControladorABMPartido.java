@@ -67,8 +67,8 @@ public class ControladorABMPartido {
 	
 	
 
-	@RequestMapping(path = "crear-Partido", method = RequestMethod.POST)
-	public ModelAndView crearPartido(@ModelAttribute("partido") Partido partido,HttpServletRequest request) {
+	@RequestMapping(path = "crear-partido", method = RequestMethod.POST)
+	public ModelAndView crearPartido(@ModelAttribute("partido") Partido partido, HttpServletRequest request) {
 
 		
 		if(request.getSession().getAttribute("AdminId") == null) {
@@ -86,11 +86,15 @@ public class ControladorABMPartido {
 		if(servicioPartido.consultarPartido(partido)==null)
 		{
 			servicioPartido.guardarPartido(partido);
+			modelo.put("aviso", "Se añadio el partido correctamente");
+		}
+		else{
+			modelo.put("aviso", "No se pudo añadir el equipo");
 		}
 		
-		
+
 		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-		modelo.put("equipos", equipos);
+		modelo.put("equipos", equipos);		
 		
 		Partido partidoNuevo = new Partido();
 		modelo.put("partido", partidoNuevo);
