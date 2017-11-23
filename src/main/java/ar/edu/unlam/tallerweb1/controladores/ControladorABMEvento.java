@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPartido;
 
 @Controller
 public class ControladorABMEvento {
@@ -26,7 +29,11 @@ public class ControladorABMEvento {
 	@Inject
 	private ServicioLogin servicioLogin;
 	
-
+	@Inject
+	private ServicioPartido servicioPartido;
+	
+	@Inject
+	private ServicioEvento servicioEvento;
 	
 	
 
@@ -46,6 +53,8 @@ public class ControladorABMEvento {
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
+		List<Evento> eventos = servicioEvento.listarEventos();
+		modelo.put("eventos", eventos);
 		
 		return new ModelAndView("ABM-Evento",modelo);
 	}
