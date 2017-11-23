@@ -1,4 +1,4 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -72,7 +72,7 @@
 											<div class="input-group">
 												<span class="input-group-addon">Local</span>
 												
-												<form:select class="form-control"  path="local">
+												<form:select class="form-control"  path="local.id">
 													<c:forEach items="${equipos}" var="e">
 <%-- 														<form:option value="NONE" selected hidden>Elegir equipo:</form:option>  --%>
 														<form:option value="${e.id}">${e.nombre}</form:option>
@@ -87,7 +87,7 @@
 											<div class="input-group">
 												<span class="input-group-addon">Visitante</span>
 												
-												<form:select class="form-control" path="visitante">
+												<form:select class="form-control" path="visitante.id">
 
 													<c:forEach items="${equipos}" var="e">
 <%-- 														<form:option value="NONE" selected hidden>Elegir equipo:</form:option> --%>
@@ -111,7 +111,7 @@
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
 											<span class="input-group-addon">Fecha</span> 
-											<form:input type="date" path="fecha" class="form-control" />
+											<form:input type="text" path="fecha" class="form-control" />
 											
 										</div>
 									</div>
@@ -159,7 +159,7 @@
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
 											<span class="input-group-addon">Nueva fecha</span> 
-											<form:input path="fecha" type="date" class="form-control" name="fechaPartido" placeholder="Ingrese la fecha del partido a disputar." required="required"/>
+											<form:input path="fecha" type="text" class="form-control" name="fechaPartido" placeholder="Ingrese la fecha del partido a disputar." required="required"/>
 										</div>
 									</div>
 								</div>
