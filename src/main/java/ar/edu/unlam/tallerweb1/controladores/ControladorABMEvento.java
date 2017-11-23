@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
+import ar.edu.unlam.tallerweb1.modelo.Partido;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
@@ -55,6 +56,9 @@ public class ControladorABMEvento {
 		
 		List<Evento> eventos = servicioEvento.listarEventos();
 		modelo.put("eventos", eventos);
+		
+		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
+		modelo.put("partidos", partidos);
 		
 		return new ModelAndView("ABM-Evento",modelo);
 	}
