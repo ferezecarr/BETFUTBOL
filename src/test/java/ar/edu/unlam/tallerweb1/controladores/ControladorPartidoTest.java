@@ -33,6 +33,9 @@ public class ControladorPartidoTest {
 	@InjectMocks
 	private ControladorPartido controladorPartido;
 	
+	@InjectMocks
+	private ControladorABMPartido controladorABMPartido;
+	
 	@Before
 	public void inyeccionMocksInicializada() {
 		MockitoAnnotations.initMocks(this);
@@ -51,6 +54,18 @@ public class ControladorPartidoTest {
 		assertThat(modelo.getModel()).isEmpty();
 		verify(session , times(1)).setAttribute("LOCAL", "PARTIDO");
 		
+	}
+	
+	@Test
+	public void testQuePuedaCrearUnEquipoValido() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioPartido.consultarPartido(any(Partido.class))).thenReturn(partido);
+		
+		ModelAndView modelo = controladorABMPartido.crearPartido(partido, request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
+		assertThat(modelo.getModel()).isEmpty();
+		verify(session , times(1));
 	}
 
 }
