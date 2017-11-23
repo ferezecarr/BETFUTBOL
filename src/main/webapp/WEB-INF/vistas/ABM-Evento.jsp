@@ -104,9 +104,10 @@
 								<a data-toggle="modal" data-target="#add" class="btn btn-success">Crear nuevo evento</a>
 							</div>
 						</div>
+						</form:form>
 						</div>
 
-						</form:form>
+						
 					</div>
 					
 					<!--  Termina panel para crear evento -->
@@ -149,14 +150,6 @@
 							</div>
 						</div>
 				<!--  Termina panel para eliminar evento -->
-				
-				
-				
-				
-				
-				
-				
-				
 				
 				
 				

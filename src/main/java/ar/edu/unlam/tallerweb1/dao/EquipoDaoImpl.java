@@ -33,8 +33,11 @@ public class EquipoDaoImpl implements EquipoDao{
 
 	@Override
 	public Equipo findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Equipo) sessionFactory.getCurrentSession().createCriteria(Equipo.class)
+				.add(Restrictions.eq("id",id)).uniqueResult();
+		
+	
 	}
 
 	@Override
@@ -54,6 +57,8 @@ public class EquipoDaoImpl implements EquipoDao{
 
 	@Override
 	public void update(Equipo equipo) {
+		
+		
 		sessionFactory.getCurrentSession().update(equipo);
 		
 	}

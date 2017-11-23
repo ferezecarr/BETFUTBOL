@@ -101,6 +101,8 @@ public class ControladorABMEquipos {
 		if(request.getSession().getAttribute("AdminId") == null) {
 			return new ModelAndView("redirect:/");
 		}
+		//para ver si trae el usuario editado, y lo trae
+		
 		
 		ModelMap modelo = new ModelMap();
 		
@@ -108,7 +110,10 @@ public class ControladorABMEquipos {
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
-		if(servicioEquipo.consultarEquipo(equipo) != null) {
+		
+		//como estoy actializando el nombre pero no el id, lo tengo que buscar por este ultimo
+		if(servicioEquipo.buscarPorId(equipo.getId()) != null) {
+	
 			
 			servicioEquipo.actualizarEquipo(equipo);
 		

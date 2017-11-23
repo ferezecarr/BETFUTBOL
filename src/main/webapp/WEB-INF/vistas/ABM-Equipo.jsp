@@ -114,26 +114,27 @@
 									<div class="form-group">
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
-												<span class="input-group-addon">Equipo a modificar:</span> <select
-													name="equipoParaModificar" class="form-control" required="required">
+												<span class="input-group-addon">Equipo a modificar:</span>
+												
+												
+												 <form:select path="id" class="form-control" required="required">
 
 													<c:forEach items="${equipos}" var="e">
-														<option value="" selected hidden>Elegir:</option>
+														
 
-														<option value="${e.id}">${e.nombre}</option>
+														<form:option value="${e.id}">${e.nombre}</form:option>
 													</c:forEach>
 
-												</select>
+												</form:select>
 											</div>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div class="col-md-12">
-											<div class="input-group">
-												<span class="input-group-addon">Nombre</span> 
-												<form:input path="nombre" type="text" class="form-control" name="nombreEquipo" placeholder="Ingrese nuevo nombre." required="required"/>
-											</div>
+											
+										<form:input path="nombre"  type="text" class="form-control" name="nombreEquipo" placeholder="Ingrese nuevo nombre." required="required"/>
+											
 										</div>
 									</div>
 							
@@ -174,11 +175,7 @@
 													<form:select path="nombre" class="form-control">
 													<c:forEach items="${equipos}" var="e">
 														<form:option value="${e.nombre}"></form:option>
-														<!-- 
-														<option value="" selected hidden>Elegir:</option>
-
-														<option value="${e.id}">${e.id} - ${e.nombre}</option>
-														-->
+														
 													</c:forEach>
 													</form:select>												
 											</div>

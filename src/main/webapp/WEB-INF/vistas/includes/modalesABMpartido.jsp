@@ -16,7 +16,7 @@
 								<div class="modal-footer">
 									<div class="form-group text-center">
 
-										<button type="submit" name="enviar" class="btn btn-success" onclick="CrearPartido()">
+										<button name="enviar" class="btn btn-success" onclick="CrearPartido()">
 											<span class="glyphicon glyphicon-check"></span> Confirmar
 										</button>
 
@@ -46,7 +46,7 @@
 								<div class="modal-footer">
 									<div class="form-group text-center">
 
-										<button type="submit" name="enviar" class="btn btn-warning" onclick="ModificarPartido()">
+										<button name="enviar" class="btn btn-warning" onclick="ModificarPartido()">
 											<span class="glyphicon glyphicon-check"></span> Confirmar
 										</button>
 
