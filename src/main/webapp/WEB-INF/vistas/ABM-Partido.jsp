@@ -59,24 +59,27 @@
 							<div class="container-fluid">
 
 								<form:form class="form-horizontal" role="form" action="crear-partido" method="post" name="crearPartido" modelAttribute="partido">
-
+	
 									<div class="form-group"></div>
 
 									<div class="form-group">
 										<div class="col-md-12">
 										<div class="row">
 										
+										
+										
       									<div class="col-md-6">
 											<div class="input-group">
 												<span class="input-group-addon">Local</span>
+												
 												<form:select class="form-control"  path="local">
-
 													<c:forEach items="${equipos}" var="e">
-<%-- 														<form:option value="NONE" selected hidden>Elegir equipo:</form:option> --%>
-														<form:option value="${e.nombre}"></form:option>
-													</c:forEach>
-
+<%-- 														<form:option value="NONE" selected hidden>Elegir equipo:</form:option>  --%>
+														<form:option value="${e.id}">${e.nombre}</form:option>
+													</c:forEach>	
 												</form:select>
+												
+<%-- 									<form:input type="text" path="local" class="form-control" /> --%>
 											</div>
 										</div>
 										
@@ -88,10 +91,15 @@
 
 													<c:forEach items="${equipos}" var="e">
 <%-- 														<form:option value="NONE" selected hidden>Elegir equipo:</form:option> --%>
-														<form:option value="${e.nombre}"></form:option>
+														<form:option value="${e.id}">${e.nombre}</form:option>
 													</c:forEach>
 
 												</form:select>
+
+												
+<%-- 												<form:input type="text" path="visitante" class="form-control" /> --%>
+
+
 											</div>
 										</div>
 										
@@ -99,16 +107,16 @@
 										</div>
 									</div>
 
-								<!-- Tira un error 500 en type="date" Excepcion: se esperaba un simbolo igual-->
-<!-- 								<div class="form-group"> -->
-<!-- 									<div class="col-md-8 col-md-offset-2"> -->
-<!-- 										<div class="input-group"> -->
-<!-- 											<span class="input-group-addon">Fecha</span>  -->
-<%-- 											<form:input type="date" path="fecha" name="fecha" class="form-control" required /> --%>
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
+								<div class="form-group">
+									<div class="col-md-8 col-md-offset-2">
+										<div class="input-group">
+											<span class="input-group-addon">Fecha</span> 
+											<form:input type="date" path="fecha" class="form-control" />
+											
+										</div>
+									</div>
+								</div>
+								
 
 								<div class="form-group">
 							<div class="col-md-8 col-md-offset-4">

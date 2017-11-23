@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Partido {	
 	@Id
@@ -27,9 +29,11 @@ public class Partido {
 	@ManyToOne
 	@JoinColumn(name = "id_equipo_visitante")
 	private Equipo visitante;	
-	
+		
 	private Integer golesLocal = 0;	
-	private Integer golesVisitante = 0;	
+	private Integer golesVisitante = 0;
+	
+	@DateTimeFormat (pattern = "yyyy-MM-dd HH:mm")
 	private Date fecha;
 	
 	/*Esto se setea automaticamente a TRUE cuando pasan dos horas de la fecha del 
