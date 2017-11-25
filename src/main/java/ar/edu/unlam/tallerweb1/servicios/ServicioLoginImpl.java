@@ -44,4 +44,10 @@ public class ServicioLoginImpl implements ServicioLogin {
 		return servicioLoginDao.findById(id);
 	}
 
+	@Override
+	public void actualizar(Usuario usuario) {
+		servicioLoginDao.update(usuario);
+		
+	}
+
 }

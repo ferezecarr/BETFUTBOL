@@ -49,6 +49,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public Usuario findById(Long id) {
 		return sessionFactory.getCurrentSession().get(Usuario.class, id);
 	}
+	@Override
+	public void update(Usuario usuario) {
+		usuario.setRol("USER");
+		sessionFactory.getCurrentSession().update(usuario);
+		
+	}
 
 
 
