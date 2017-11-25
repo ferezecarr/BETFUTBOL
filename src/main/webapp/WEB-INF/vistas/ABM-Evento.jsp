@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -9,7 +10,7 @@
 <body>
 <%@ include file="includes/navegador.jsp"%>
 <%@ include file="includes/modales.jsp"%>
-<%@ include file="includes/modalesABMevento.jsp"%>
+<%-- <%@ include file="includes/modalesABMevento.jsp"%> --%>
 	
 		<div class="container-fluid">
 		<div class="col-md-12 main">
@@ -60,7 +61,7 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" action="crear-Evento" method="post" name="crearEvento" modelAttribute="evento">
+								<form:form class="form-horizontal" role="form" method="post" action="crear-evento" name="crearEvento" modelAttribute="evento">
 
 									<div class="form-group"></div>
 
@@ -71,43 +72,90 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group">
 												<span class="input-group-addon">Partido</span>
-												<select name="partidos" class="form-control" required="required">
+												<form:select path="partido.id" class="form-control" required="required">
 
-													<c:forEach items="${partidos}" var="e">
-														<option value="" selected hidden>Elegir partido:</option>
- 														<option value="${e.id}">${e.id} -  [${e.local.nombre} vs ${e.visitante.nombre}] - ${e.fecha}</option> 
-													</c:forEach>
+													<c:forEach items="${partidos}" var="p">
+														
+ 														<form:option value="${p.id}">${p.id} -  [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</form:option>													</c:forEach>
 
-												</select>
+												</form:select>
 											</div>
 											</div>
 											</div>
-							
-				
-									<div class="col-md-8 col-md-offset-2">
+											
+									<div class="form-group">		
+									<div class="col-md-10 col-md-offset-1">
 										<div class="input-group">
-											<span class="input-group-addon">Tipo</span> 
-												<select name="tipoEvento" class="form-control" required="required">
-														<option value="" selected hidden>Elegir tipo de evento:</option> 
-												</select>
+											<span class="input-group-addon">Descripcion</span>
+																											
+												<form:input type="text" path="descripcion" class="form-control" />
+										
 										</div>
 									</div>
-				
-
+									</div>
+									
+									<div class="form-group">
+									<div class="col-md-10 col-md-offset-1">
+										<div class="input-group">
+											<span class="input-group-addon">Tipo de evento</span>
+											
+											<form:select path="nombre" class="form-control" required="required"> 																							
+												<form:option value="Resultado" type="text">Resultado</form:option> 
+												<form:option value="Cuantos goles hace un equipo" type="text">Cuantos goles hace un equipo</form:option> 
+												<form:option value="Cantidad de goles en un partido" type="text">Cantidad de goles en un partido</form:option>
+												<form:option value="Cantidad de goles par o impar" type="text">Cantidad de goles par o impar</form:option>    
+											</form:select>
+											
 										</div>
 									</div>
-
-
-
-								<div class="form-group">
-							<div class="col-md-8 col-md-offset-4">
-								<a data-toggle="modal" data-target="#add" class="btn btn-success">Crear nuevo evento</a>
+									</div>
+						
+					
+									<div class="col-md-8 col-md-offset-2">
+										<div class="input-group hidden" >
+											<span class="input-group-addon">isTerminado</span> 																							
+												<form:input path="isTerminado" class="form-control" />
+										</div>
+									</div>
+		
 							</div>
 						</div>
+							
+						<div class="form-group">
+							<div class="col-md-8 col-md-offset-4">
+								<a data-toggle="modal" type="submit" data-target="#add" class="btn btn-success">Crear nuevo evento</a>
+							</div>
+						</div>
+						
+							<div class="modal fade in" id="add" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<a class="btn pull-right" data-dismiss="modal"><span
+										class="glyphicon glyphicon-remove"></span></a>
+									<h3 class="modal-title">Crear nuevo evento:</h3>
+								</div>
+								<div class="modal-body">
+									<h4>¿Está seguro que sea añadir un nuevo evento?</h4>
+									<h4> Se guardarán los datos ingresados.</h4>
+								</div>
+								<div class="modal-footer">
+									<div class="form-group text-center">
+
+										<button name="enviar" class="btn btn-success" onclick="CrearEvento()">
+											<span class="glyphicon glyphicon-check"></span> Confirmar
+										</button>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+						
 						</form:form>
 						</div>
-
-						
 					</div>
 					
 					<!--  Termina panel para crear evento -->
@@ -158,7 +206,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+
 	
 
 
