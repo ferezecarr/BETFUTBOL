@@ -16,6 +16,9 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<!--Para separar en varias lineas las instrucciones del import.sql-->
+				<prop key="hibernate.hbm2ddl.import_files_sql_extractor">org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor</prop>
+				
 			</props>
 		</property>
 		<!-- Mappings -->
