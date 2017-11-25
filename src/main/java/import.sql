@@ -144,9 +144,10 @@ INSERT INTO Apuesta	(id, evento_id, apostador_id, cantidadApostada, cuotaValor, 
  					(5, 2, 7, 2.33, 1.40, "Gana Argentina", FALSE);
 
 -- Evento que setea los partidos finalizados (hay que dropear, no lo maneja Hibernate)
+-- (Cada un minuto, comprueba si hay algun partido en que la fecha actual sea 2 horas 
+-- mayor o igual a la fecha seteada para el partido y lo da como terminado)
 DROP EVENT IF EXISTS TERMINAR_PARTIDO;
 SET GLOBAL event_scheduler = ON;
-
 CREATE EVENT TERMINAR_PARTIDO ON SCHEDULE EVERY 1 MINUTE DO
 	UPDATE Partido P
 	SET P.isTerminado=TRUE
@@ -154,8 +155,18 @@ CREATE EVENT TERMINAR_PARTIDO ON SCHEDULE EVERY 1 MINUTE DO
 		AND TIMESTAMPDIFF(MINUTE, P.fecha, NOW()) >= 120;
 
 -- Trigger que setea las apuestas que tienen premio (hay que dropear, no lo maneja Hibernate)
+-- (Actualiza el campo que define si una apuesta tiene premio o no. Esto va ocurrir siempre 
+-- y cuando el nombre de la cuota apostada coincida con el nombre de la cuota ganadora y el 
+-- evento modificado sea finalizado. Un trigger -para los que no cursaron BDD2- en pocas 
+-- palabras seria algo que se dispara cuando ocurre una accion. En este caso, el trigger se 
+-- dispara despues de un update -AFTER UPDATE- en la tabla Evento. El ultimo AND comprueba 
+-- que en el registro actualizado se diera por terminado el evento. En un trigger, en este 
+-- caso en MySQL, hay dos tabla llamadas 'NEW' y 'OLD'. Cuando el trigger se dispara por un 
+-- INSERT, la tabla 'NEW' va tener las filas insertadas. Cuando se dispara por un DELETE, 
+-- la tabla 'OLD' va tener las filas eliminadas. Cuando se realiza un UPDATE, como en este 
+-- caso, las dos tablas van a tener registros. 'NEW' tiene las filas actualiza y 'OLD' las 
+-- filas viejas).
 DROP TRIGGER IF EXISTS PREMIAR_APUESTAS;
-
 CREATE TRIGGER PREMIAR_APUESTAS AFTER UPDATE ON Evento
 FOR EACH ROW 
 	UPDATE Apuesta A
