@@ -24,8 +24,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioPartido;
 @Controller
 public class ControladorABMEvento {
 	
-	@Inject
-	private ServicioEquipo servicioEquipo;
+
 	
 	@Inject
 	private ServicioLogin servicioLogin;
@@ -40,7 +39,7 @@ public class ControladorABMEvento {
 
 	
 	@RequestMapping(path = "ABM-Evento")
-	public ModelAndView añadirEquipo(HttpServletRequest request) {
+	public ModelAndView agregarEquipo(HttpServletRequest request) {
 
 		
 		if(request.getSession().getAttribute("AdminId") == null) {

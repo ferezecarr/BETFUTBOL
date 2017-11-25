@@ -24,10 +24,8 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 public class ControladorMisApuestas {
 	
 	//Si no se lo injecta, no lo reconoce como servicio, sino como una clase normal
-	@Inject	private ServicioEvento servicioEvento;
+
 	@Inject	private ServicioApuesta servicioApuesta;
-	@Inject	private ServicioUsuario servicioUsuario;
-	@Inject	private ServicioCuota servicioCuota;
 	@Inject	private ServicioLogin servicioLogin;
 	
 	

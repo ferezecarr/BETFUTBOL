@@ -86,10 +86,6 @@ public class ControladorABMPartido {
 		if(servicioPartido.consultarPartido(partido)==null)
 		{
 			servicioPartido.guardarPartido(partido);
-			modelo.put("aviso", "Se añadio el partido correctamente");
-		}
-		else{
-			modelo.put("aviso", "No se pudo añadir el equipo");
 		}
 		
 

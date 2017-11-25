@@ -46,7 +46,7 @@ public class Partido {
 	 * otorgados cuando se escribe el resultado. Sin esto, se asumiria que el resultado 
 	 * de todos los partidos es 0-0. En el AMB de partidos, el admin pondra el resultado  
 	 * y al pulsar confirmar, se seteen 'golesLocal', 'golesVisitante' y este 
-	 * booleano en TRUE. Entonces después se puede traer una lista ya filtrada de partidos 
+	 * booleano en TRUE. Entonces despues se puede traer una lista ya filtrada de partidos 
 	 * con el resultado definido usando este atributo*/
 	private Boolean isResultadoFinal = false; 
 

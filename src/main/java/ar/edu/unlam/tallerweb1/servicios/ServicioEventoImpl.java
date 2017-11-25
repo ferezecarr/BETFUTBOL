@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.EventoDao;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
 
-//Para que Spring entienda que se está trabajando con servicio, tanto al serviceImpl como al DAOImpl hay que indicarle que 
+//Para que Spring entienda que se esta trabajando con servicio, tanto al serviceImpl como al DAOImpl hay que indicarle que 
 //que son servicios, en caso contrario, las implementaciones de las interfaces son tomadas por JAVA como una clase
 //normal, por lo que no va a funciona, por lo tanto no va a traer datos y va a dar nullPointerException
-//Además, siempre que se vaya a invocar un servicio, hay que injectarlo con @Inject, sea donde sea que se lo invoque.
+//Ademas, siempre que se vaya a invocar un servicio, hay que injectarlo con @Inject, sea donde sea que se lo invoque.
 @Service
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 public class ServicioEventoImpl implements ServicioEvento{

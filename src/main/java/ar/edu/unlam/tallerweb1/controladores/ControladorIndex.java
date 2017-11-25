@@ -27,7 +27,6 @@ public class ControladorIndex {
 	//Si no se lo injecta, no lo reconoce como servicio, sino como una clase normal
 	@Inject	private ServicioEvento servicioEvento;
 	@Inject	private ServicioApuesta servicioApuesta;
-	@Inject	private ServicioUsuario servicioUsuario;
 	@Inject	private ServicioCuota servicioCuota;
 	@Inject	private ServicioLogin servicioLogin;
 	
@@ -38,10 +37,13 @@ public class ControladorIndex {
 		/*
 		 * 
 		 * al ir a validar-login, solo retorna un usuario, y jode el campo apuesta (modales, linea 18)..,
-		 *  asique pasé la lista de evento y las apuestas a validar login para que retorne el usuario con la apuesta y el evento*/
+		 *  asique pase la lista de evento y las apuestas a validar login para que retorne el usuario con la apuesta y el evento*/
 		/*aunque al no estar terminado lo de unir al usuario loguado con la apuesta y el evento, 
-		 * no puedo sacar el evento y la apuesta de acá, por eso lo dejé*/
-		
+		 * no puedo sacar el evento y la apuesta de aca, por eso lo deje*/
+		if(filtro==null)
+		{
+			filtro="Resultado";
+		}
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre(filtro);
 		modelo.put("eventos", misEventos);	
 		Apuesta apuesta= new Apuesta();	
@@ -71,7 +73,7 @@ public class ControladorIndex {
 	public ModelAndView buscarUsuarioPorId(@ModelAttribute("apuesta")Apuesta apuesta,HttpServletRequest request){	
 	
 		
-		//con ésto evita que apueste sin loguearse
+		//con esto evita que apueste sin loguearse
 		if(request.getSession().getAttribute("userId") == null)
 		{
 			return new ModelAndView("Error");
@@ -97,10 +99,6 @@ public class ControladorIndex {
 		return new ModelAndView("redirect:/");
 	}
 	
-	@RequestMapping(path="/Error",method=RequestMethod.GET)
-	public ModelAndView pruebaError()
-	{
-		return new ModelAndView("Error");
-	}
+	
 	
 }

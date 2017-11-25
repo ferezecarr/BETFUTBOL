@@ -29,12 +29,7 @@
 	     			</ol>
 	     			</c:if>
 
-<!-- 						<div class="form-group"> -->
-<!-- 							<a href="" class="btn btn-default">Listado</a>  -->
-<!-- 							<a href="" class="btn btn-success active">Crear equipo</a> -->
-<!-- 							<a href=""class="btn btn-warning active">Modificar equipo</a> -->
-<!-- 							<a href=""class="btn btn-warning active">Eliminar equipo</a> -->
-<!-- 						</div> -->
+<!-- 					
 
 <!-- lisar equipos -->
 						<div class="panel panel-primary">
@@ -204,7 +199,7 @@
 			</div>
 
 		</div>
-	</div>
+	
 
 </body>
 </html>
