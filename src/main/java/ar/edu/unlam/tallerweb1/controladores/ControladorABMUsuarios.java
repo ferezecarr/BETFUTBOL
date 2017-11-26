@@ -55,22 +55,17 @@ public class ControladorABMUsuarios {
 		ModelMap modelo = new ModelMap();
 		
 		Usuario usuarioLogueado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
-		modelo.put("usuario", usuarioLogueado);
-		modelo.put("nombre", usuarioLogueado.getNombreYApellido());
 		
 		if(servicioLogin.buscarPorId(usuario.getId()) != null) {
 			servicioLogin.actualizar(usuario);
 			modelo.put("aviso", "Se actualizo correctamente");
+			modelo.put("usuario", usuario);
+			modelo.put("nombre", usuario.getNombreYApellido());
 		} else {
 			modelo.put("error", "No se pudo actualizar");
+			modelo.put("usuario", usuarioLogueado);
+			modelo.put("nombre", usuarioLogueado.getNombreYApellido());
 		}
-		
-		Usuario usuarioModificado = new Usuario();
-		modelo.put("usuario", usuarioModificado);
-		
-		List<Usuario> usuarios = servicioLogin.listarTodos();
-		modelo.put("usuarios", usuarios);
-		
-		return new ModelAndView("perfil" , modelo);
+		return new ModelAndView("perfil", modelo);
 	}
 }

@@ -22,15 +22,15 @@
 								
 							<div class="container-fluid">
 
-							<form class="form-horizontal" role="form" action="actualizar-perfil" method="post" modelAttribute="usuario">
-	
+							<form:form class="form-horizontal" role="form" action="actualizar-perfil" method="post" modelAttribute="usuario">
+							<form:input type="hidden" value="${id}" path="id" class="form-control" />	
 								<div class="form-group"></div>
 							
 								<div class="form-group">
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
 											<span class="input-group-addon">Nombre</span> 
-											<form:input type="text" value="${nombre}" path="nombre" class="form-control" />				
+											<form:input type="text" value="${nombreYApellido}" path="nombreYApellido" class="form-control" />				
 										</div>
 									</div>
 								</div>
@@ -55,11 +55,11 @@
 								
 							<div class="form-group">
 							<div class="col-md-8 col-md-offset-2">
-								<a type="submit" data-toggle="modal" data-target="#cambiarDatos" class="btn btn-success">Guardar cambios</a>
+								<button type="submit" data-toggle="modal" data-target="#cambiarDatos" class="btn btn-success">Guardar cambios</button>
 							</div>
 						</div>
 
-						</form>
+						</form:form>
 						 
 							</div>
 							
