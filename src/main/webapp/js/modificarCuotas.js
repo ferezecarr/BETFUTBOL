@@ -11,7 +11,10 @@ $( document ).ready(function() {
 		//Mostrandolo en el HTML
 		var info = document.getElementById("infoEvento");
 		if(id != ""){
-			$("#infoEvento").html("<h3>Informaci&oacute;n del evento seleccionado</h3>"
+			$("#infoEvento").html(
+					"<ol class='breadcrumb text-center'>"
+					+"<li class='breadcrumb-item active'>Informaci&oacute;n del evento seleccionado:</li>"
+					+"</ol>"
 					+ "<br/>Id: " + id
 					+ "<br/>Descripci&oacute;n: " + desc
 					+ "<br/>Nombre: " + nombre);
@@ -28,15 +31,30 @@ $( document ).ready(function() {
 					$('#cuotasAModificar').text('');	//Vaciando el div en cada cambio
 					
 					//Generando el form y poniendolo en el div
-					var form = "<h3>Cuotas</h3>";
-					form += '<p><form action="actualizar-cuotas" id="evento" method="POST">';
-					form += '<br/><input type="hidden" id="id" name="id" value="'+id+'"/>';
+					
+					var form = "<h3></h3>";
+					form += '<ol class="breadcrumb text-center">';
+					form += '<li class="breadcrumb-item active">Cuotas:</li>';
+					form += '</ol>';
+		
+					form += '<form action="actualizar-cuotas" id="evento" method="POST">';
+					form += '<input type="hidden" id="id" name="id" value="'+id+'"/>';
 					for(let [index, key] of data.entries()){
-						form += '<br/><input type="hidden" id="cuotas['+index+'].id" name="cuotas['+index+'].id" value="'+key.id+'" />';
-					    form += '<br/>'+key.nombre+'<input type="text" id="cuotas['+index+'].valor" name="cuotas['+index+'].valor" value="'+key.valor+'" />';
+						
+						form += '<div class="form-group">';
+						form += '<div class="input-group center">';
+						form += '<span class="input-group-addon">'+key.nombre+'</span>';
+						form += '<input type="hidden" id="cuotas['+index+'].id" name="cuotas['+index+'].id" value="'+key.id+'" />';
+					    form += '<input class="form-control" type="text" id="cuotas['+index+'].valor" name="cuotas['+index+'].valor" value="'+key.valor+'" />';
+					    form += '</div>';
+					    form += '</div>';
 					}
-					form += '<br/><input type="submit" id="Actualizar" value="Actualizar"></input>';
-					form += '<br/></form></p>';
+
+					form += '<input type="submit" id="Actualizar" class="btn btn-warning center-block" value="Modificar cuotas"></input>';
+
+
+					form += '</form></p>';
+
 					$("#cuotasAModificar").append(form);
 			},
 			error: msjError		        
