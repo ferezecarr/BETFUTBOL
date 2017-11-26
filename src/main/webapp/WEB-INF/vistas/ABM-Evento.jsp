@@ -20,8 +20,7 @@
 		 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Administración de eventos - Desde aquí los podrá visualizar, crear, modificar o eliminar.</li>
 	     			</ol>
-	     			
-	     			
+	     				     			
 	     	<!-- Se listan los eventos -->	     			
 						<div class="panel panel-primary">
 							<div class="panel-heading">Listado de eventos</div>
@@ -160,6 +159,62 @@
 					
 					<!--  Termina panel para crear evento -->
 				
+
+					<!--  Empieza panel para modificar evento -->
+															
+		<%-- 		Notese que este form no tiene un boton de submit. Cada vez que se  --%>
+		<%-- 		seleccione una opcion, Javascript se encarga de mandar el form usando ajax.  --%>
+		<%-- 		La respuesta es la descripcion del evento y el formulario para modificar las cuotas. --%>
+		<%-- 		Estas se colocan en los divs 'infoEvento' y 'cuotasAModificar. Abajo estoy trayendo  --%>
+		<%-- 		el 'modificarCuotas.js' que tiene el codigo que hace esto. Ver los comentarios ahi para  --%>
+		<%-- 		entender que esta pasando.' --%>
+		
+						<div class="panel panel-warning">
+						<div class="panel-heading">
+							<h3 class="panel-title">Modificar eventos:</h3>
+						</div>
+						<div class="container-fluid">
+							
+						<div class="form-horizontal">
+							
+							<div class="form-group"></div>
+							<div class="form-group">	
+								<div class="col-md-10 col-md-offset-1">
+								<div class="input-group center">
+									<span class="input-group-addon">Seleccione un evento:</span>
+									
+							<form:select path="eventos" id="eventos" class="form-control">
+								<form:option value="" >Elegir:</form:option>
+								<c:forEach var="evento" items="${eventos}">
+								<form:option value="${evento.id}" desc="${evento.descripcion}" tipo="${evento.nombre}">
+										<c:out value="[${evento.id}]" />
+			        					<c:out value="${evento.descripcion}" />
+										<c:out value="(${evento.nombre})" />
+									</form:option>
+								</c:forEach>	
+							</form:select>	
+								
+								</div>
+							</div>
+								</div>
+							</div>	
+
+							<div class="form-group">	
+							<div class="col-md-10 col-md-offset-1">
+								<div id="infoEvento"></div>
+							</div>
+							</div>	
+							
+							<div class="form-group">	
+							<div class="col-md-10 col-md-offset-1">	
+								<div id="cuotasAModificar"></div>
+							</div>
+							</div>
+
+						</div>
+						</div>
+				<!--  Termina panel para modificar evento -->
+				
 				
 				<!--  Empieza panel para eliminar evento -->	
 							<div class="panel panel-danger">
@@ -198,17 +253,15 @@
 							</div>
 						</div>
 				<!--  Termina panel para eliminar evento -->
-				
-				
-				
-				
+
 				</div>
 				</div>
 			</div>
 		</div>
 
-	
-
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+		<script src="js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="js/modificarCuotas.js" type="text/javascript"></script>
 </body>
 </html>
