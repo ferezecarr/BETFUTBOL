@@ -150,10 +150,11 @@
 											<div class="input-group center">
 												<span class="input-group-addon">Partido a modificar:</span>
 												 <form:select name="partidoParaModificar" class="form-control" required="required" path="id">
+													
 													<c:forEach items="${partidos}" var="p">
-														<option value="" selected hidden>Elegir:</option>
-
-														<option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</option>
+													
+														<form:option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</form:option>
+ 													
 													</c:forEach>
 												</form:select>
 											</div>

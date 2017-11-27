@@ -124,9 +124,12 @@ public class ControladorABMPartido {
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
 		
-		if(servicioPartido.consultarPartido(partido)==null)
+		if(servicioPartido.buscarPorId(partido.getId())!=null)
 		{
-			servicioPartido.actualizarPartido(partido);
+			
+			Partido partidoNuevo=servicioPartido.buscarPorId(partido.getId());
+			partidoNuevo.setFecha(partido.getFecha());
+			servicioPartido.actualizarPartido(partidoNuevo);
 		}
 		
 		

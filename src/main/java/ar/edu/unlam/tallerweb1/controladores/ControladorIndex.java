@@ -97,25 +97,6 @@ public class ControladorIndex {
 	}
 	
 	
-@RequestMapping("/eventos-terminados")
-public ModelAndView listarEventosTerminados(HttpServletRequest request)
-{
-	ModelMap modelo= new ModelMap();
-	
-	Usuario usuarioNuevo= new Usuario();
-	
-	if(request.getSession().getAttribute("userId") != null) {
-		
-		usuarioNuevo = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
-		
-	}
-	
-	modelo.put("usuario",usuarioNuevo);
-	modelo.put("nombre",usuarioNuevo.getNombreYApellido());
-	List<Evento> misEventos = servicioEvento.listarEventosFinalizados();
-	modelo.put("eventos", misEventos);	
-	
-	return new ModelAndView("eventos-terminados",modelo);
-}
+
 	
 }
