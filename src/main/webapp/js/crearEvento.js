@@ -15,14 +15,20 @@ $(document).ready(function() {
 	function agregarInputs(opcion, nombreCuota) {
 		limpiarInputs();
 		for (i = 0; i < cantidadInputs; i++) {
-			$("#contenedorInputs").append("<br/>" + nombreCuota[i] + ": ");
-			$("#contenedorInputs").append('<input type="hidden" tipo="'+opcion+'" id="cuotas['+i+'].nombre" name="cuotas['+i+'].nombre" value="'+nombreCuota[i]+'"/>');
-			$("#contenedorInputs").append('<input type="text" tipo="'+opcion+'" id="cuotas['+i+'].valor" name="cuotas['+i+'].valor" value="1.0"/>');
-		}
+			$("#contenedorInputs").append(
+			'<div class="form-group">',
+			'<div class="input-group center">',
+			'<span class="input-group-addon">'+ nombreCuota[i]+'</span>',			
+			'<input class="form-control" type="hidden" tipo="'+opcion+'" id="cuotas['+i+'].nombre" name="cuotas['+i+'].nombre" value="'+nombreCuota[i]+'"/>',								
+			'<input class="form-control" type="text" tipo="'+opcion+'" id="cuotas['+i+'].valor" name="cuotas['+i+'].valor" value="1.0"/>',
+			'</div>',
+			'</div>'
+			);
+		}		
 	}
 
-	// Funcion que en cada cambio del select, define la cantidad
-	// de inputs
+	// Funcion que en cada cambio del select, define la cantidad de inputs
+	var info = document.getElementById("infoEvento");
 	$(".selectNuevoEvento").on('change', function() {
 		var opt = this;
 		var opcion = opt.options[opt.selectedIndex].getAttribute('value');

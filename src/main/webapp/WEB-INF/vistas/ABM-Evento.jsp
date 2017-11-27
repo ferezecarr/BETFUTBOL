@@ -60,7 +60,7 @@
 							</div>
 							<div class="container-fluid">
 
-								<form:form class="form-horizontal" role="form" method="post" action="crear-evento" name="crearEvento" modelAttribute="evento">
+								<form:form class="form-horizontal" role="form" method="post" action="crear-evento" name="crearEvento" modelAttribute="eventoDTO">
 
 									<div class="form-group"></div>
 
@@ -71,7 +71,7 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group">
 												<span class="input-group-addon">Partido</span>
-												<form:select path="partido.id" class="form-control" required="required">
+												<form:select path="evento.partido.id" class="form-control" required="required">
 
 													<c:forEach items="${partidos}" var="p">
 														
@@ -87,7 +87,7 @@
 										<div class="input-group">
 											<span class="input-group-addon">Descripcion</span>
 																											
-												<form:input type="text" path="descripcion" class="form-control" />
+												<form:input type="text" path="evento.descripcion" class="form-control" />
 										
 										</div>
 									</div>
@@ -97,25 +97,31 @@
 									<div class="col-md-10 col-md-offset-1">
 										<div class="input-group">
 											<span class="input-group-addon">Tipo de evento</span>
-											
-											<form:select path="nombre" class="form-control" required="required"> 																							
-												<form:option value="Resultado" type="text">Resultado</form:option> 
-												<form:option value="Cuantos goles hace un equipo" type="text">Cuantos goles hace un equipo</form:option> 
-												<form:option value="Cantidad de goles en un partido" type="text">Cantidad de goles en un partido</form:option>
-												<form:option value="Cantidad de goles par o impar" type="text">Cantidad de goles par o impar</form:option>    
-											</form:select>
-											
+
+												<form:select path="evento.nombre" class=" form-control selectNuevoEvento"> 
+													<form:option value="Resultado"></form:option> 
+													<form:option value="Cuantos goles hace un equipo"></form:option> 
+													<form:option value="Cantidad de goles en un partido"></form:option> 
+ 													<form:option value="Cantidad de goles par o impar"></form:option> 
+ 												</form:select> 																												
 										</div>
 									</div>
 									</div>
-						
-					
-									<div class="col-md-8 col-md-offset-2">
-										<div class="input-group hidden" >
-											<span class="input-group-addon">isTerminado</span> 																							
-												<form:input path="isTerminado" class="form-control" />
+									
+									<div class="form-group">
+										<div class="col-md-10 col-md-offset-1">																			
+											<div id="contenedorInputs"></div>										
 										</div>
 									</div>
+
+									
+											
+								<div class="col-md-8 col-md-offset-2">
+									<div class="input-group hidden" >
+										<span class="input-group-addon">isTerminado</span> 																							
+										<form:input path="evento.isTerminado" class="form-control" />
+									</div>
+								</div>
 		
 							</div>
 						</div>
@@ -148,20 +154,17 @@
 
 									</div>
 								</div>
-
 							</div>
 						</div>
-					</div>
-						
-						</form:form>
-						</div>
-					</div>
-					
+					</div>						
+				</form:form>
+			  </div>
+			</div>				
 					<!--  Termina panel para crear evento -->
 				
 
-					<!--  Empieza panel para modificar evento -->
-															
+
+					<!--  Empieza panel para modificar evento -->															
 		<%-- 		Notese que este form no tiene un boton de submit. Cada vez que se  --%>
 		<%-- 		seleccione una opcion, Javascript se encarga de mandar el form usando ajax.  --%>
 		<%-- 		La respuesta es la descripcion del evento y el formulario para modificar las cuotas. --%>
@@ -263,5 +266,7 @@
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="js/modificarCuotas.js" type="text/javascript"></script>
+				<script src="js/crearEvento.js" type="text/javascript"></script>
+		
 </body>
 </html>
