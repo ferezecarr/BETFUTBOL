@@ -51,25 +51,34 @@ public class EventoDaoImpl implements EventoDao{
 		return evento;
 	}
 
-	//Intente usar @PrePersist, pero nunca llamaba al metodo (esta fue la solucion)
-	private static Evento generarDescripcion(Evento evento){
+	/*INTENTE USAR @PrePersist, PERO NUNCA LLAMABA AL METODO (Aca vienen las negradas)*/
+	private static Evento dinamizarInformacion(Evento evento){
+		//Edito la descripcion usando el nombre de los equipos y la fecha de partido
 		String descripcionSimple = evento.getDescripcion();
 		String descripcion = "(L) " + evento.getPartido().getLocal().getNombre() + " Vs " + 
 				evento.getPartido().getVisitante().getNombre() + " (V) |" + 
 				descripcionSimple + "| - " + evento.getPartido().getFecha();
 		evento.setDescripcion(descripcion);
+		
+		//Si alguien tiene una mejor idea que avise. (Genero nombres de cuotas dinamicos)
+		if(evento.getNombre().equals("Resultado")){			
+			String local = evento.getPartido().getLocal().getNombre();
+			String visitante = evento.getPartido().getVisitante().getNombre();
+			evento.getCuotas().get(0).setNombre("Gana " + local);
+			evento.getCuotas().get(2).setNombre("Gana " + visitante);
+		}
 		return evento;
 	}
 
 	@Override
 	public void save(Evento evento) {
-		generarDescripcion(evento);
+		dinamizarInformacion(evento);
 		sessionFactory.getCurrentSession().save(evento);		
 	}	
 
 	@Override
 	public void update(Evento evento) {
-		generarDescripcion(evento);
+		dinamizarInformacion(evento);
 		sessionFactory.getCurrentSession().update(evento);
 	}
 
