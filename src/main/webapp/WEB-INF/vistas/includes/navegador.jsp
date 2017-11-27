@@ -66,7 +66,7 @@
 		  			
 		  			
 		  				<c:if test="${AdminId == null}">
-		   				<li class="hoverNav"><a href="eventos-terminados">eventos terminados</a></li>
+		   				<li class="hoverNav"><a href="eventos-terminados">Eventos terminados</a></li>
 		  			</c:if>
 		  			
 		  			

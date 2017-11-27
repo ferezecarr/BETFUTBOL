@@ -59,7 +59,6 @@ public class EventoDaoImpl implements EventoDao{
 
 	@Override
 	public void update(Evento evento) {
-		evento.generarDescripcionDinamica();
 		sessionFactory.getCurrentSession().update(evento);
 	}
 

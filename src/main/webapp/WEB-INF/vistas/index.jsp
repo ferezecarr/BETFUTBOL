@@ -59,7 +59,7 @@
 											<c:otherwise>
 												<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModalApostar" class="btn btn-success"> ${c.valor} </a>
 											</c:otherwise>
-										</c:choose> -
+										</c:choose> 
 									</a>
 								</c:forEach>
 							</div>

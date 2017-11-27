@@ -41,7 +41,7 @@ INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal
 -- Creando siete eventos de tipo "Resultado" (Gana, empate, derrota)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado, cuotaGanadora) VALUES 
 					(1, 1, "Resultado", "[Resultado] (L) China Vs Argentina (V) |Amistoso Internacional| - 01/11 15:30Hs", TRUE, "Gana Argentina"),
-					(2, 2, "Resultado", "[Resultado] (L) Argentina Vs China (V) |Amistoso Internacional| - 29/11 13:00Hs", FALSE, NULL),
+					(2, 2, "Resultado", "[Resultado] (L) Argentina Vs China (V) |Amistoso Internacional| - 15/11 13:00Hs", FALSE, NULL),
  					(3, 3, "Resultado", "[Resultado] (L) Napoli Vs Juventus (V) |Serie A| - 01/12 16:45Hs", FALSE, NULL),
  					(4, 4, "Resultado", "[Resultado] (L) Barcelona Vs Celta de Vigo (V) |Liga BBVA| - 02/12 09:00Hs", FALSE, NULL),
  					(5, 5, "Resultado", "[Resultado] (L) Racing de Estraburgo Vs PSG (V) |Ligue One| - 02/12 13:00Hs", FALSE, NULL),
