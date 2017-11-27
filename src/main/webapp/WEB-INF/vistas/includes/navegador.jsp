@@ -33,6 +33,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                 
+                
                 	<c:if test="${AdminId == null}">
 		   				<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/index">Inicio</a></li>
 		  			</c:if>
@@ -64,6 +65,9 @@
 		  			</c:if>
 		  			
 		  			
+		  				<c:if test="${AdminId == null}">
+		   				<li class="hoverNav"><a href="eventos-terminados">eventos terminados</a></li>
+		  			</c:if>
 		  			
 		  			
                     

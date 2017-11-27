@@ -79,7 +79,7 @@ public class EventoDaoImpl implements EventoDao{
 	@Override
 	public List<Evento> findFinalizables() {
 		return sessionFactory.getCurrentSession().createCriteria(Evento.class)
-				.add(Restrictions.eq("isTerminado", false))
+				.add(Restrictions.eq("isTerminado", true))//estaba en false, por lo que no me traia el nombre del equipo ganador, ya que nunca se le daba por terminado
 				.createAlias("partido", "p")
 				.add(Restrictions.eq("p.isTerminado", true))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
