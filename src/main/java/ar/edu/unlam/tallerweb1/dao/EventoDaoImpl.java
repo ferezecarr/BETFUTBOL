@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
@@ -54,10 +56,13 @@ public class EventoDaoImpl implements EventoDao{
 	/*INTENTE USAR @PrePersist, PERO NUNCA LLAMABA AL METODO (Aca vienen las negradas)*/
 	private static Evento dinamizarInformacion(Evento evento){
 		//Edito la descripcion usando el nombre de los equipos y la fecha de partido
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		String fechaSimple = dateFormat.format(evento.getPartido().getFecha());
 		String descripcionSimple = evento.getDescripcion();
+		
 		String descripcion = "(L) " + evento.getPartido().getLocal().getNombre() + " Vs " + 
 				evento.getPartido().getVisitante().getNombre() + " (V) |" + 
-				descripcionSimple + "| - " + evento.getPartido().getFecha();
+				descripcionSimple + "| - " + fechaSimple + "Hs";
 		evento.setDescripcion(descripcion);
 		
 		//Si alguien tiene una mejor idea que avise. (Genero nombres de cuotas dinamicos)
