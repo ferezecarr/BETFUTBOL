@@ -92,9 +92,7 @@ public class ControladorLogin {
 		ModelMap modelo= new ModelMap();
 		
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
-		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
-		List<Evento> misEventos2 = servicioEvento.listarEventosPorNombre("Cuantos goles hace un equipo");
-		modelo.put("evento_apostarPorGoles", misEventos2);
+		modelo.put("evento_apostarPorGanadorEmpate", misEventos);
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);	
 		
