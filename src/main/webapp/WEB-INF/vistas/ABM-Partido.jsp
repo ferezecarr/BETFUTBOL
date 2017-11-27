@@ -17,6 +17,11 @@
 			<div class="row">
 		
 				<div class="col-md-8 col-md-offset-2">
+				<c:if test="${not empty aviso}">
+					<ol class="breadcrumb text-center ">
+						<li class="breadcrumb-item text-success "><h2>${aviso}</h2></li>
+					</ol>
+				</c:if>
 		 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Administración de partidos - Desde aquí los podrá visualizar, crear, modificar o eliminar.</li>
 	     			</ol>
@@ -144,13 +149,13 @@
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
 												<span class="input-group-addon">Partido a modificar:</span>
-												 <select name="partidoParaModificar" class="form-control" required="required">
+												 <form:select name="partidoParaModificar" class="form-control" required="required" path="id">
 													<c:forEach items="${partidos}" var="p">
 														<option value="" selected hidden>Elegir:</option>
 
 														<option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</option>
 													</c:forEach>
-												</select>
+												</form:select>
 											</div>
 										</div>
 									</div>

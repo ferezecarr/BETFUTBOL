@@ -13,9 +13,14 @@
 	<%@ include file="includes/modales.jsp"%>
 	
 
-		<div class="col-md-6 col-md-offset-3">
+		
 			<div class="row">
-			
+			<div class="col-md-6 col-md-offset-3">
+			<c:if test="${not empty aviso}">
+				<ol class="breadcrumb text-center ">
+						<li class="breadcrumb-item text-success "><h2>${aviso}</h2></li>
+					</ol>
+			</c:if>
 							<div class="panel panel-primary">
 							<div class="panel-heading text-center">Mi perfil</div>
 							<div class="panel-body text-center">

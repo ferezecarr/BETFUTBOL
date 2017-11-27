@@ -73,7 +73,6 @@ public class ControladorABMPartido {
 		
 		if(request.getSession().getAttribute("AdminId") == null) {
 			return new ModelAndView("redirect:/");
-			
 		}
 		
 		ModelMap modelo = new ModelMap();
@@ -86,18 +85,22 @@ public class ControladorABMPartido {
 		if(servicioPartido.consultarPartido(partido)==null)
 		{
 			servicioPartido.guardarPartido(partido);
+			modelo.put("aviso","Se creo el partido correctamente");
+		}
+		else
+		{
+			modelo.put("aviso","No se pudo crear el partido");
 		}
 		
-
+		
 		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-		modelo.put("equipos", equipos);		
+		modelo.put("equipos", equipos);
 		
 		Partido partidoNuevo = new Partido();
 		modelo.put("partido", partidoNuevo);
 		
 		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
 		modelo.put("partidos", partidos);
-		
 		
 		return new ModelAndView("ABM-Partido",modelo);
 	}
@@ -121,7 +124,7 @@ public class ControladorABMPartido {
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
 		
-		if(servicioPartido.consultarPartido(partido)!=null)
+		if(servicioPartido.consultarPartido(partido)==null)
 		{
 			servicioPartido.actualizarPartido(partido);
 		}

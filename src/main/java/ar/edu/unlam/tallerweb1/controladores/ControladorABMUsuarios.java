@@ -62,7 +62,7 @@ public class ControladorABMUsuarios {
 			modelo.put("usuario", usuario);
 			modelo.put("nombre", usuario.getNombreYApellido());
 		} else {
-			modelo.put("error", "No se pudo actualizar");
+			modelo.put("aviso", "No se pudo actualizar");
 			modelo.put("usuario", usuarioLogueado);
 			modelo.put("nombre", usuarioLogueado.getNombreYApellido());
 		}

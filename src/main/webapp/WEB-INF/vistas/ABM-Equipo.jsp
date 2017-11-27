@@ -19,6 +19,11 @@
 
 				<div class="col-md-8 col-md-offset-2">
 				
+				<c:if test="${not empty aviso}">
+					<ol class="breadcrumb text-center ">
+						<li class="breadcrumb-item text-success "><h2>${aviso}</h2></li>
+					</ol>
+				</c:if>
 	 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Administración de equipos - Desde aquí los podrá visualizar, crear, modificar o eliminar.</li>
 	     			</ol>
