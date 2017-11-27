@@ -9,6 +9,7 @@ public interface EventoDao {
 	List<Evento> findByNombre(String nombreDado);
 	List<Evento> findModificables();
 	List<Evento> findFinalizables();
+	List<Evento> findFinalizados();
 	void save(Evento evento);
 	void update(Evento evento);
 	Evento findById(Long id);

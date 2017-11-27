@@ -60,4 +60,9 @@ public class ServicioEventoImpl implements ServicioEvento{
 	public List<Evento> listarEventosFinalizables() {
 		return eventoServicioDao.findFinalizables();
 	}
+	
+	@Override
+	public List<Evento> listarEventosFinalizados(){
+		return eventoServicioDao.findFinalizados();
+	}
 }

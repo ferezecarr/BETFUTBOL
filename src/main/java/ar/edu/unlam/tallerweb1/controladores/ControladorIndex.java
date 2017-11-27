@@ -3,9 +3,6 @@ package ar.edu.unlam.tallerweb1.controladores;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +17,6 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioApuesta;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
-import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorIndex {	
@@ -116,7 +112,7 @@ public ModelAndView listarEventosTerminados(HttpServletRequest request)
 	
 	modelo.put("usuario",usuarioNuevo);
 	modelo.put("nombre",usuarioNuevo.getNombreYApellido());
-	List<Evento> misEventos = servicioEvento.listarEventosFinalizables();
+	List<Evento> misEventos = servicioEvento.listarEventosFinalizados();
 	modelo.put("eventos", misEventos);	
 	
 	return new ModelAndView("eventos-terminados",modelo);
