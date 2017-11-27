@@ -44,6 +44,7 @@ public class ControladorIndex {
 		{
 			filtro="Resultado";
 		}
+		
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre(filtro);
 		modelo.put("eventos", misEventos);	
 		Apuesta apuesta= new Apuesta();	
@@ -76,7 +77,7 @@ public class ControladorIndex {
 		//con esto evita que apueste sin loguearse
 		if(request.getSession().getAttribute("userId") == null)
 		{
-			return new ModelAndView("Error");
+			return new ModelAndView("redirect:/");
 		}
 		
 		Usuario usuarioDefault = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
@@ -100,5 +101,25 @@ public class ControladorIndex {
 	}
 	
 	
+@RequestMapping("/eventos-terminados")
+public ModelAndView listarEventosTerminados(HttpServletRequest request)
+{
+	ModelMap modelo= new ModelMap();
+	
+	Usuario usuarioNuevo= new Usuario();
+	
+	if(request.getSession().getAttribute("userId") != null) {
+		
+		usuarioNuevo = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+		
+	}
+	
+	modelo.put("usuario",usuarioNuevo);
+	modelo.put("nombre",usuarioNuevo.getNombreYApellido());
+	List<Evento> misEventos = servicioEvento.listarEventosFinalizables();
+	modelo.put("eventos", misEventos);	
+	
+	return new ModelAndView("eventos-terminados",modelo);
+}
 	
 }
