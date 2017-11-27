@@ -111,11 +111,11 @@ public class Evento {
 	/*INTENTE USAR @PrePersist, PERO NUNCA LLAMABA AL METODO (Aca vienen las negradas)*/
 	public void generarDescripcionDinamica(){
 		//Edito la descripcion usando el nombre de los equipos y la fecha de partido
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
 		String fechaSimple = dateFormat.format(this.getPartido().getFecha());
 		String descripcionSimple = this.getDescripcion();
 		
-		String descripcion = "|" + this.getNombre() + "| (L) " + 
+		String descripcion = "[" + this.getNombre() + "] (L) " + 
 				this.getPartido().getLocal().getNombre() + " Vs " + 
 				this.getPartido().getVisitante().getNombre() + " (V) |" + 
 				descripcionSimple + "| - " + fechaSimple + "Hs";
