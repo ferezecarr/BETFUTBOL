@@ -106,6 +106,7 @@ public class EventoDaoImpl implements EventoDao{
 	public List<Evento> findFinalizados(){
 		return sessionFactory.getCurrentSession().createCriteria(Evento.class)
 				.add(Restrictions.eq("isTerminado", true))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
 	}
 }

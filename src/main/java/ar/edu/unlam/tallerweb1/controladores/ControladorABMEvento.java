@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,15 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.modelo.Cuota;
-import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.NuevoEventoDTO;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
-import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPartido;
@@ -67,7 +63,7 @@ public class ControladorABMEvento {
 	}
 	
 	@RequestMapping(path = "/crear-evento", method = RequestMethod.POST)
-	public ModelAndView recibirEjemplo(@ModelAttribute("eventoDTO") NuevoEventoDTO eventoDTO){	
+	public ModelAndView crearEvento(@ModelAttribute("eventoDTO") NuevoEventoDTO eventoDTO){	
 		//Seteo el evento a cada cuota (si no hago esto el 'evento_id' queda en null en la bdd)
 		for (Cuota cuota : eventoDTO.getCuotas()) {
 			cuota.setEvento(eventoDTO.getEvento());
@@ -98,8 +94,8 @@ public class ControladorABMEvento {
 	//Aca se llega con el boton 'Actualizar' del formulario generado
 	@RequestMapping(value = "/actualizar-cuotas", method = RequestMethod.POST)
 	public ModelAndView actualizarCuotas(@ModelAttribute("evento") Evento eventoNuevo){		
-		/*Obtengo la id del evento que se quiere actualizar. Cuando mandas un form se crea 
-		 * una nueva instancia del objeto. Como yo no estoy pidiendo id de partido, 
+		/*Obtengo la id del evento que se quiere actualizar. Cuando mandas un form así,  
+		 * parece que se crea una nueva instancia del objeto. Al no pedir id de partido, 
 		 * tipo de evento y demas cosas (solo valores de las cuotas), el resto de cosas 
 		 * queda en NULL.
 		 * En la vista puse un input hidden con la id del evento para traerlo con todas las 
