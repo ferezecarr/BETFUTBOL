@@ -115,11 +115,21 @@ public class Evento {
 		String fechaSimple = dateFormat.format(this.getPartido().getFecha());
 		String descripcionSimple = this.getDescripcion();
 		
-		String descripcion = "[" + this.getNombre() + "] (L) " + 
-				this.getPartido().getLocal().getNombre() + " Vs " + 
-				this.getPartido().getVisitante().getNombre() + " (V) |" + 
-				descripcionSimple + "| - " + fechaSimple + "Hs";
-		this.setDescripcion(descripcion);
+		if(this.getNombre().equals("Resultado") || 
+				this.getNombre().equals("Cantidad de goles en un partido") ||
+				this.getNombre().equals("Cantidad de goles par o impar")){
+			String descripcion = "[" + this.getNombre() + "] (L) " + 
+					this.getPartido().getLocal().getNombre() + " Vs " + 
+					this.getPartido().getVisitante().getNombre() + " (V) |" + 
+					descripcionSimple + "| - " + fechaSimple + "Hs";
+			this.setDescripcion(descripcion);
+		}else if(this.getNombre().equals("Cuantos goles hace un equipo")){
+			String descripcion = "[" + this.getNombre() + "] " +
+					"Goles de " + this.getPartido().getLocal().getNombre() +
+					" ante " + this.getPartido().getVisitante() + "|" + 
+					descripcionSimple + "| - " + fechaSimple + "Hs";
+			this.setDescripcion(descripcion);
+		}		
 	}
 	
 	/*LO MISMO DEL METODO ANTERIOR*/
