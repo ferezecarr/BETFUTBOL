@@ -48,21 +48,13 @@ INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado, cuotaGana
  					(6, 6, "Resultado", "[Resultado] (L) Independiente Vs Rosario Central (V) |Primera División Argentina| - 02/12 19:15Hs", FALSE, NULL),
  					(7, 7, "Resultado", "[Resultado] (L) Gimnasia LP Vs River Plate (V) |Primera División Argentina| - 03/12 21:30Hs", FALSE, NULL);
 
--- Creando cuatro eventos de tipo "Equipo hace goles" (ninguno, uno, dos, mas de dos)
-
-INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado) VALUES
-					(8, 5, "Cuantos goles hace un equipo", "| Ligue One | Goles de Racing de Estraburgo ante PSG | 02/12 - 13:00hs", FALSE),
- 					(9, 5, "Cuantos goles hace un equipo", "| Ligue One | Goles de PSG ante Racing de Estraburgo | 02/12 - 13:00hs", FALSE),
- 					(10, 6, "Cuantos goles hace un equipo", "| Primera División Argentina | Goles de Independiente ante Rosario Central | 02/12 - 19:15hs", FALSE),
-					(11, 6, "Cuantos goles hace un equipo", "| Primera División Argentina | Goles de Rosario Central ante Independiente | 02/12 - 19:15hs", FALSE);
-
 -- Creando un evento de tipo "Cantidad de goles en un partido" (0, 1, 2, 3, 4, +4)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado) VALUES 
-					(12, 6, "Cantidad de goles en un partido", "[Cantidad de goles en un partido] (L) Independiente Vs Rosario Central (V) |Primera División Argentina| - 02/12 19:15Hs", FALSE);
+					(8, 6, "Cantidad de goles en un partido", "[Cantidad de goles en un partido] (L) Independiente Vs Rosario Central (V) |Primera División Argentina| - 02/12 19:15Hs", FALSE);
 
 -- Creando un evento de tipo "Cantidad de goles par o impar" (Par, Impar)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado) VALUES 
-					(13, 7, "Cantidad de goles par o impar", "[Cantidad de goles par o impar] (L) Gimnasia LP Vs River Plate (V) |Primera División Argentina| - 03/12 21:30Hs", FALSE);
+					(9, 7, "Cantidad de goles par o impar", "[Cantidad de goles par o impar] (L) Gimnasia LP Vs River Plate (V) |Primera División Argentina| - 03/12 21:30Hs", FALSE);
 
 
 -- Creando cuotas que son asignadas a los eventos de tipo "Resultado"
@@ -95,41 +87,19 @@ INSERT INTO Cuota 	(id, evento_id, nombre, valor, cantidadVotos) VALUES
  					(20, 7, "Empate", 1.64, 0),
  					(21, 7, "Gana River Plate", 1.87, 0);
 
--- Creando cuotas que son asignadas a los eventos de tipo "Equipo hace goles"
-INSERT INTO Cuota 	(id, evento_id, nombre, valor, cantidadVotos) VALUES
-					(22, 8, "0", 1.43, 0),
- 					(23, 8, "1", 1.99, 0),
-					(24, 8, "2", 2.50, 0),
- 					(25, 8, "+2", 3.01, 0),
-
-					(26, 9, "0", 3.01, 0),
- 					(27, 9, "1", 2.50, 0),
- 					(28, 9, "2", 1.99, 0),
- 					(29, 9, "+2", 1.43, 0),
-
-					(30, 10, "0", 2.00, 0),
- 					(31, 10, "1", 1.90, 0),
- 					(32, 10, "2", 2.13, 0),
- 					(33, 10, "+2", 2.26, 0),
-
-					(34, 11, "0", 1.70, 0),
- 					(35, 11, "1", 2.00, 0),
- 					(36, 11, "2", 2.65, 0),
- 					(37, 11, "+2", 3.43, 0);
-
 -- Creando cuotas que son asignadas a los eventos de tipo "Cantidad de goles en un partido"
 INSERT INTO Cuota 	(id, evento_id, nombre, valor, cantidadVotos) VALUES
-					(38, 12, "0", 1.65, 0),
- 					(39, 12, "1", 1.90, 0),
-					(40, 12, "2", 2.03, 0),
-					(41, 12, "3", 2.24, 0),
-					(42, 12, "4", 2.61, 0),
- 					(43, 12, "+4", 2.72, 0);
+					(38, 8, "0", 1.65, 0),
+ 					(39, 8, "1", 1.90, 0),
+					(40, 8, "2", 2.03, 0),
+					(41, 8, "3", 2.24, 0),
+					(42, 8, "4", 2.61, 0),
+ 					(43, 8, "+4", 2.72, 0);
 
 -- Creando cuotas que son asignadas a los eventos de tipo "Cantidad de goles par o impar"
 INSERT INTO Cuota 	(id, evento_id, nombre, valor, cantidadVotos) VALUES 
-					(44, 13, "Par", 2.00, 0),
-					(45, 13, "Impar", 2.00, 0);
+					(44, 9, "Par", 2.00, 0),
+					(45, 9, "Impar", 2.00, 0);
 
 
 -- Hardcodeando apuestas

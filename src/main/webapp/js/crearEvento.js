@@ -37,10 +37,6 @@ $(document).ready(function() {
 				cantidadInputs = 3;
 				nombreCuota = [ "Gana el local", "Empate", "Gana el visitante" ];
 				break;
-			case "Cuantos goles hace un equipo":
-				cantidadInputs = 4;
-				nombreCuota = [ "0", "1", "2", "+2" ];
-				break;
 			case "Cantidad de goles en un partido":
 				cantidadInputs = 6;
 				nombreCuota = [ "0", "1", "2", "3", "4", "+4" ];

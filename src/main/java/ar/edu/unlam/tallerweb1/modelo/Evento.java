@@ -1,5 +1,5 @@
 /*Esta clase modela un evento por el que se puede realizar una apuesta.
- * (Ganador, Un jugador que hace un gol, un expulsado, etc...)
+ * (Ganador, Cantidad de goles par o impar, etc...)
  * Existen las siguientes relaciones...
  * 		Partido(1) 	-(Corresponde a)- (N)Evento
  * 		Evento(1)	-(Tiene)-		  (N)Cuota 	
@@ -123,13 +123,7 @@ public class Evento {
 					this.getPartido().getVisitante().getNombre() + " (V) |" + 
 					descripcionSimple + "| - " + fechaSimple + "Hs";
 			this.setDescripcion(descripcion);
-		}else if(this.getNombre().equals("Cuantos goles hace un equipo")){
-			String descripcion = "[" + this.getNombre() + "] " +
-					"Goles de " + this.getPartido().getLocal().getNombre() +
-					" ante " + this.getPartido().getVisitante() + "|" + 
-					descripcionSimple + "| - " + fechaSimple + "Hs";
-			this.setDescripcion(descripcion);
-		}		
+		}	
 	}
 	
 	/*LO MISMO DEL METODO ANTERIOR*/

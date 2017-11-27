@@ -99,8 +99,7 @@
 											<span class="input-group-addon">Tipo de evento</span>
 
 												<form:select path="evento.nombre" class=" form-control selectNuevoEvento"> 
-													<form:option value="Resultado"></form:option> 
-													<form:option value="Cuantos goles hace un equipo"></form:option> 
+													<form:option value="Resultado"></form:option>
 													<form:option value="Cantidad de goles en un partido"></form:option> 
  													<form:option value="Cantidad de goles par o impar"></form:option> 
  												</form:select> 																												

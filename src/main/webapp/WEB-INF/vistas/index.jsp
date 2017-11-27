@@ -36,9 +36,6 @@
 					<c:url value="/index?filtro=Resultado" var="url" />
 					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Resultado específico</a>
 
-					<c:url value="/index?filtro=Cuantos goles hace un equipo" var="url" />
-					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Goles anotado por equipo</a>
-
 					<c:url value="/index?filtro=Cantidad de goles en un partido" var="url" />
 					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Goles por partido</a>
 

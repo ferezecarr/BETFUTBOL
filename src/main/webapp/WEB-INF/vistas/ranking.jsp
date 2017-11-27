@@ -29,9 +29,6 @@
 								<c:url value="/ranking?filtro=Resultado" var="url"/>
  								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Resultado</a>
  								
-								<c:url value="/ranking?filtro=Cuantos goles hace un equipo" var="url"/>
- 								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cuantos goles hace un equipo</a> 
- 								
 								<c:url value="/ranking?filtro=Cantidad de goles en un partido" var="url"/>
  								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cantidad de goles en un partido</a>
  								
