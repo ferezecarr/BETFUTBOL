@@ -34,8 +34,8 @@
 								<div class="form-group">
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
-											<span class="input-group-addon">Nombre</span> 
-											<form:input type="text" value="${nombreYApellido}" path="nombreYApellido" class="form-control" />				
+											<span class="input-group-addon">Nombre y Apellido</span> 
+											<form:input type="text" value="${nombreYApellido}" path="nombreYApellido" class="form-control" required="required" placeholder="Ingrese su nombre y apellido." />				
 										</div>
 									</div>
 								</div>
@@ -44,7 +44,7 @@
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
 											<span class="input-group-addon">Email</span> 
-											<form:input type="text" value="${email}" path="email" class="form-control" />				
+											<form:input type="email" value="${email}" path="email" class="form-control" required="required" placeholder="Ingrese su email. Por ejemplo: (usuario@correo.com)"/>				
 										</div>
 									</div>
 								</div>
@@ -53,7 +53,7 @@
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
 											<span class="input-group-addon">Contraseña</span> 
-											<form:input type="password" value="${password}" path="password" class="form-control" />				
+											<form:input type="password" value="${password}" path="password" class="form-control" required="required" placeholder="Ingrese su contraseña."/>				
 										</div>
 									</div>
 								</div>
