@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Cuota;
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
+import ar.edu.unlam.tallerweb1.modelo.NuevoEventoDTO;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
@@ -60,37 +61,24 @@ public class ControladorABMEvento {
 		List<Evento> eventos = servicioEvento.listarEventos();
 		modelo.put("eventos", eventos);
 		
+		modelo.put("eventoDTO", new NuevoEventoDTO());
+		
 		return new ModelAndView("ABM-Evento",modelo);
 	}
 	
-	@RequestMapping(path = "crear-evento")
-	public ModelAndView crearEvento (@ModelAttribute("evento") Evento evento, HttpServletRequest request){
-		
-		if(request.getSession().getAttribute("AdminId") == null) {
-			return new ModelAndView("redirect:/");			
+	@RequestMapping(path = "/crear-evento", method = RequestMethod.POST)
+	public ModelAndView recibirEjemplo(@ModelAttribute("eventoDTO") NuevoEventoDTO eventoDTO){	
+		//Seteo el evento a cada cuota (si no hago esto el 'evento_id' queda en null en la bdd)
+		for (Cuota cuota : eventoDTO.getCuotas()) {
+			cuota.setEvento(eventoDTO.getEvento());
 		}
 		
-		ModelMap modelo = new ModelMap();
+		//Agrego las cuotas del DTO al evento del mismo
+		eventoDTO.getEvento().setCuotas(eventoDTO.getCuotas());
 		
-		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
-		modelo.put("usuario",usuarioLogeado);
-		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
-				
-		servicioEvento.guardar(evento);
-					
-		List<Cuota> cuotas = servicioCuota.traerCuotasSegunEvento(evento);
-		modelo.put("cuotas", cuotas);
-		
-		Evento eventoNuevo = new Evento();
-		modelo.put("evento", eventoNuevo);
-		
-		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
-		modelo.put("partidos", partidos);
-		
-		List<Evento> eventos = servicioEvento.listarEventos();
-		modelo.put("eventos", eventos);
-		
-		return new ModelAndView("ABM-Evento", modelo);
+		//Guardo el evento y, por la cascada, las cuotas
+		servicioEvento.guardar(eventoDTO.getEvento());		
+		return new ModelAndView("redirect:/ABM-Evento");
 	}
 	
 	/*Esta URL es a la que accede Ajax para obtener el listado de cuotas segun el evento 
