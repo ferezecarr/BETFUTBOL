@@ -51,18 +51,25 @@ public class EventoDaoImpl implements EventoDao{
 		return evento;
 	}
 
-
+	//Intente usar @PrePersist, pero nunca llamaba al metodo (esta fue la solucion)
+	private static Evento generarDescripcion(Evento evento){
+		String descripcionSimple = evento.getDescripcion();
+		String descripcion = "(L) " + evento.getPartido().getLocal().getNombre() + " Vs " + 
+				evento.getPartido().getVisitante().getNombre() + " (V) |" + 
+				descripcionSimple + "| - " + evento.getPartido().getFecha();
+		evento.setDescripcion(descripcion);
+		return evento;
+	}
 
 	@Override
 	public void save(Evento evento) {
-		sessionFactory.getCurrentSession().save(evento);
-		
-	}
-
-
+		generarDescripcion(evento);
+		sessionFactory.getCurrentSession().save(evento);		
+	}	
 
 	@Override
 	public void update(Evento evento) {
+		generarDescripcion(evento);
 		sessionFactory.getCurrentSession().update(evento);
 	}
 

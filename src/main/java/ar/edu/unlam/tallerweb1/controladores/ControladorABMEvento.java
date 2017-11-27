@@ -73,6 +73,10 @@ public class ControladorABMEvento {
 			cuota.setEvento(eventoDTO.getEvento());
 		}
 		
+		//Asigno el partido al evento (Ya que solo capture la id)
+		Long idPartido = eventoDTO.getEvento().getPartido().getId();
+		eventoDTO.getEvento().setPartido(servicioPartido.buscarPorId(idPartido));
+		
 		//Agrego las cuotas del DTO al evento del mismo
 		eventoDTO.getEvento().setCuotas(eventoDTO.getCuotas());
 		
