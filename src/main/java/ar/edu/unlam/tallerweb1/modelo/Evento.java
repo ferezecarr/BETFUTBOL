@@ -115,7 +115,8 @@ public class Evento {
 		String fechaSimple = dateFormat.format(this.getPartido().getFecha());
 		String descripcionSimple = this.getDescripcion();
 		
-		String descripcion = "(L) " + this.getPartido().getLocal().getNombre() + " Vs " + 
+		String descripcion = "|" + this.getNombre() + "| (L) " + 
+				this.getPartido().getLocal().getNombre() + " Vs " + 
 				this.getPartido().getVisitante().getNombre() + " (V) |" + 
 				descripcionSimple + "| - " + fechaSimple + "Hs";
 		this.setDescripcion(descripcion);
