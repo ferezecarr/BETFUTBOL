@@ -54,7 +54,7 @@ public class EventoDaoImpl implements EventoDao{
 	}
 
 	/*INTENTE USAR @PrePersist, PERO NUNCA LLAMABA AL METODO (Aca vienen las negradas)*/
-	private static Evento dinamizarInformacion(Evento evento){
+	private static Evento generarDescripcionDinamica(Evento evento){
 		//Edito la descripcion usando el nombre de los equipos y la fecha de partido
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 		String fechaSimple = dateFormat.format(evento.getPartido().getFecha());
@@ -63,27 +63,33 @@ public class EventoDaoImpl implements EventoDao{
 		String descripcion = "(L) " + evento.getPartido().getLocal().getNombre() + " Vs " + 
 				evento.getPartido().getVisitante().getNombre() + " (V) |" + 
 				descripcionSimple + "| - " + fechaSimple + "Hs";
-		evento.setDescripcion(descripcion);
-		
+		evento.setDescripcion(descripcion);		
+
+		return evento;
+	}
+	
+	/*LO MISMO DEL METODO ANTERIOR*/
+	private static Evento generarNombresDeCuotasDinamicos(Evento evento){
 		//Si alguien tiene una mejor idea que avise. (Genero nombres de cuotas dinamicos)
 		if(evento.getNombre().equals("Resultado")){			
 			String local = evento.getPartido().getLocal().getNombre();
 			String visitante = evento.getPartido().getVisitante().getNombre();
 			evento.getCuotas().get(0).setNombre("Gana " + local);
 			evento.getCuotas().get(2).setNombre("Gana " + visitante);
-		}
+		}		
 		return evento;
 	}
 
 	@Override
 	public void save(Evento evento) {
-		dinamizarInformacion(evento);
+		generarDescripcionDinamica(evento);
+		generarNombresDeCuotasDinamicos(evento);
 		sessionFactory.getCurrentSession().save(evento);		
 	}	
 
 	@Override
 	public void update(Evento evento) {
-		dinamizarInformacion(evento);
+		generarDescripcionDinamica(evento);
 		sessionFactory.getCurrentSession().update(evento);
 	}
 
