@@ -1,11 +1,8 @@
 package ar.edu.unlam.tallerweb1.dao;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
-
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -53,43 +50,16 @@ public class EventoDaoImpl implements EventoDao{
 		return evento;
 	}
 
-	/*INTENTE USAR @PrePersist, PERO NUNCA LLAMABA AL METODO (Aca vienen las negradas)*/
-	private static Evento generarDescripcionDinamica(Evento evento){
-		//Edito la descripcion usando el nombre de los equipos y la fecha de partido
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-		String fechaSimple = dateFormat.format(evento.getPartido().getFecha());
-		String descripcionSimple = evento.getDescripcion();
-		
-		String descripcion = "(L) " + evento.getPartido().getLocal().getNombre() + " Vs " + 
-				evento.getPartido().getVisitante().getNombre() + " (V) |" + 
-				descripcionSimple + "| - " + fechaSimple + "Hs";
-		evento.setDescripcion(descripcion);		
-
-		return evento;
-	}
-	
-	/*LO MISMO DEL METODO ANTERIOR*/
-	private static Evento generarNombresDeCuotasDinamicos(Evento evento){
-		//Si alguien tiene una mejor idea que avise. (Genero nombres de cuotas dinamicos)
-		if(evento.getNombre().equals("Resultado")){			
-			String local = evento.getPartido().getLocal().getNombre();
-			String visitante = evento.getPartido().getVisitante().getNombre();
-			evento.getCuotas().get(0).setNombre("Gana " + local);
-			evento.getCuotas().get(2).setNombre("Gana " + visitante);
-		}		
-		return evento;
-	}
-
 	@Override
 	public void save(Evento evento) {
-		generarDescripcionDinamica(evento);
-		generarNombresDeCuotasDinamicos(evento);
+		evento.generarDescripcionDinamica();
+		evento.generarNombresDeCuotasDinamicos();
 		sessionFactory.getCurrentSession().save(evento);		
 	}	
 
 	@Override
 	public void update(Evento evento) {
-		generarDescripcionDinamica(evento);
+		evento.generarDescripcionDinamica();
 		sessionFactory.getCurrentSession().update(evento);
 	}
 

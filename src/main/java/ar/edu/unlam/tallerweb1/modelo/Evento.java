@@ -6,6 +6,8 @@
  * */
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -105,6 +107,30 @@ public class Evento {
 	public void setCuotaGanadora(String cuotaGanadora) {
 		this.cuotaGanadora = cuotaGanadora;
 	}
+	
+	/*INTENTE USAR @PrePersist, PERO NUNCA LLAMABA AL METODO (Aca vienen las negradas)*/
+	public void generarDescripcionDinamica(){
+		//Edito la descripcion usando el nombre de los equipos y la fecha de partido
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+		String fechaSimple = dateFormat.format(this.getPartido().getFecha());
+		String descripcionSimple = this.getDescripcion();
+		
+		String descripcion = "(L) " + this.getPartido().getLocal().getNombre() + " Vs " + 
+				this.getPartido().getVisitante().getNombre() + " (V) |" + 
+				descripcionSimple + "| - " + fechaSimple + "Hs";
+		this.setDescripcion(descripcion);
+	}
+	
+	/*LO MISMO DEL METODO ANTERIOR*/
+	public void generarNombresDeCuotasDinamicos(){
+		//Si alguien tiene una mejor idea que avise. (Genero nombres de cuotas dinamicos)
+		if(this.getNombre().equals("Resultado")){			
+			String local = this.getPartido().getLocal().getNombre();
+			String visitante = this.getPartido().getVisitante().getNombre();
+			this.getCuotas().get(0).setNombre("Gana " + local);
+			this.getCuotas().get(2).setNombre("Gana " + visitante);
+		}
+	}	
 
 	@Override
 	public int hashCode() {

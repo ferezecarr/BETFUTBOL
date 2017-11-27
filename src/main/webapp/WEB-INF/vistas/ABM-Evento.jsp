@@ -87,7 +87,7 @@
 										<div class="input-group">
 											<span class="input-group-addon">Descripcion</span>
 																											
-												<form:input type="text" path="evento.descripcion" class="form-control" />
+												<form:input type="text" placeholder="(Ej. Premier League)" path="evento.descripcion" class="form-control" />
 										
 										</div>
 									</div>
