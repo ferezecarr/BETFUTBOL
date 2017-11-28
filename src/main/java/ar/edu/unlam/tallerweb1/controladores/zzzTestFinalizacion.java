@@ -53,7 +53,7 @@ public class zzzTestFinalizacion {
 		
 		//La misma idea de arriba, pero con el evento
 		Evento eventoOriginal = servicioEvento.consultarEvento(eventoAFinalizar.getId());
-		//eventoOriginal.setCuotaGanadora("");	//(PENDIENTE)
+		eventoOriginal.setCuotaGanadora(eventoAFinalizar.getCuotaGanadora());
 		eventoOriginal.setIsTerminado(true);
 		servicioEvento.actualizar(eventoOriginal);
 		
