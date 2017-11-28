@@ -82,5 +82,24 @@ public class ControladorLoginTest {
 		assertThat(modelo.getModel().get("aviso")).isEqualTo("Usuario inexistente");
 		verify(session , never()).setAttribute("ROL", "ADMIN");
 	}
+	
+	@Test
+	public void testQueVerificaQueHayaCerradoSesionCorrectamente() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(usuario);
+		when(servicioEquipo.listarTodosLosEquipos()).thenReturn(new LinkedList<Equipo>());
+		when(usuario.getId()).thenReturn(91L);
+		when(usuario.getEmail()).thenReturn("admin@betfutbol.com");
+		when(usuario.getPassword()).thenReturn("admin");
+		when(usuario.getRol()).thenReturn("ADMIN");
+		
+		ModelAndView modelo = controladorLogin.cerrarSession(request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
+		assertThat(modelo.getModel()).isEmpty();
+		
+		verify(session , times(0)).setAttribute("AdminId", 91L);
+	
+	}
 
 }
