@@ -198,7 +198,8 @@
 							
 
 								<h3 class="panel-title">Terminar partidos:</h3>
-<div class="centrar_derecha" aria-label="top Align" data-placement="rigth" data-toggle="tooltip" data-html="true" title="En esta seccion Puede Terminar un partido abruptamente">
+<div class="centrar_derecha" aria-label="top Align" data-placement="rigth" data-toggle="tooltip" data-html="true" title="Los partidos se dan por finalizados dos horas después de la fecha de inicio automaticamente,
+pero pueden ser terminados abruptamente utilizando esta opción, dejandolos invisibles para los usuarios">
   <div class="glyphicon glyphicon-question-sign" aria-hidden="true"></div>
 </div>
 							</div>

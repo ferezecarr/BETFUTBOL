@@ -220,7 +220,12 @@
 				<!--  Empieza panel para finalizar evento -->	
 							<div class="panel panel-danger">
 							<div class="panel-heading">
-								<h3 class="panel-title">Finalizar eventos:</h3>
+								<div class="panel-heading acomodar">
+									<h3 class="panel-title">Finalizar eventos:</h3>
+<div class="centrar_derecha" aria-label="top Align" data-placement="rigth" data-toggle="tooltip" data-html="true" title="Esta lista solo contiene partidos terminados. Esta opción permite configurar el resultado final del partido seleccionado y elegir la cuota que otorga premio.">
+  <div class="glyphicon glyphicon-question-sign" aria-hidden="true"></div>
+</div>									
+								</div>
 							</div>
 							<ol class="breadcrumb text-center">
 	          					<li class="breadcrumb-item active">Desde aquí podrá cargar el resultado de un partido terminado y la cuota ganadora del evento.</li>

@@ -36,7 +36,7 @@
 
 <!-- 					
 
-<!-- lisar equipos -->
+<!-- listar equipos -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">Listado de Equipos</div>
 							<div class="container-fluid">
@@ -103,7 +103,12 @@
 <!--  Empieza panel para modificar equipo -->
 						<div class="panel panel-warning">
 							<div class="panel-heading">
-								<h3 class="panel-title">Modificación de equipos:</h3>
+								<div class="panel-heading acomodar">
+									<h3 class="panel-title">Modificación de equipos:</h3>
+<div class="centrar_derecha" aria-label="top Align" data-placement="rigth" data-toggle="tooltip" data-html="true" title="Por el momento, solo se pueden modificar equipos que no participen de ningún partido">
+  <div class="glyphicon glyphicon-question-sign" aria-hidden="true"></div>
+</div>									
+								</div>	
 							</div>
 							<div class="container-fluid">
 
