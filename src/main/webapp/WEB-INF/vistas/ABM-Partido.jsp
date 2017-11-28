@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head><%@ include file="includes/cabecera.jsp"%>
+<script>$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})</script>
 </head>
 <body>
 <%@ include file="includes/navegador.jsp"%>
@@ -25,7 +28,8 @@
 		 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Administración de partidos - Desde aquí los podrá visualizar, crear, modificar o eliminar.</li>
 	     			</ol>
-	     			
+
+
 	     			
 						<div class="panel panel-primary">
 							<div class="panel-heading">Listado de partidos</div>
@@ -189,8 +193,14 @@
 						
 						
 						<div class="panel panel-warning">
-							<div class="panel-heading">
+				
+							<div class="panel-heading acomodar">
+							
+
 								<h3 class="panel-title">Terminar partidos:</h3>
+<div class="centrar_derecha" aria-label="top Align" data-placement="rigth" data-toggle="tooltip" data-html="true" title="En esta seccion Puede Terminar un partido abruptamente">
+  <div class="glyphicon glyphicon-question-sign" aria-hidden="true"></div>
+</div>
 							</div>
 							<div class="container-fluid">
 							<form:form class="form-horizontal" role="form" action="terminar-partido" method="post" name="terminarPartido" modelAttribute="partido">

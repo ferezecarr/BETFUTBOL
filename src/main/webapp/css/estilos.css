@@ -103,3 +103,9 @@ height:20px;
 }
 
 }
+.acomodar
+{
+	display:flex;
+	justity-content:space-around !important;
+	
+}
