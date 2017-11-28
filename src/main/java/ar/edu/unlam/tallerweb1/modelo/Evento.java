@@ -109,9 +109,8 @@ public class Evento {
 	
 	/*INTENTE USAR @PrePersist, PERO NUNCA LLAMABA AL METODO (Aca vienen las negradas)*/
 	public void generarDescripcionDinamica(){
-		String descripcionSimple = descripcion;
 		String descripcion = "[" + this.getNombre() + "] " + 
-				this.getPartido().getInformacion() + descripcionSimple;
+				this.getPartido().getInformacion();
 		this.setDescripcion(descripcion);
 	}
 	
