@@ -59,6 +59,10 @@ public class ControladorABMEvento {
 		
 		modelo.put("eventoDTO", new NuevoEventoDTO());
 		
+		List<Evento> eventosFinalizables = servicioEvento.listarEventosFinalizables();
+		modelo.put("eventosFinalizables", eventosFinalizables);
+
+		
 		return new ModelAndView("ABM-Evento",modelo);
 	}
 	
@@ -117,6 +121,33 @@ public class ControladorABMEvento {
 		}
 		
 		//Actualizando el evento con los valores nuevos ya seteados
+		servicioEvento.actualizar(eventoOriginal);
+		
+		return new ModelAndView("redirect:/ABM-Evento");
+	}
+	
+	@RequestMapping(value = "/traerEvento", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody Evento traerEvento(@RequestParam("id") String id) {
+		return servicioEvento.consultarEvento(Long.parseLong(id)); 
+	}
+	
+	@RequestMapping(path="/finalizar-evento", method = RequestMethod.POST)
+	public ModelAndView finalizarEvento(@ModelAttribute("eventoAFinalizar")Evento eventoAFinalizar){		
+		/*Se recupera el partido original, porque el que viene del form, solo tiene seteado lo 
+		 * que se le paso (id, golesLocal y golesVisitante)*/
+		Partido partidoConDatosNuevos = eventoAFinalizar.getPartido();
+		Partido partidoOriginal = servicioPartido.consultarPartido(partidoConDatosNuevos);		
+
+		//Una vez el partido recuperado, le agrego los nuevos datos y lo actualizo
+		partidoOriginal.setGolesLocal(partidoConDatosNuevos.getGolesLocal());
+		partidoOriginal.setGolesVisitante(partidoConDatosNuevos.getGolesVisitante());
+		partidoOriginal.setIsResultadoFinal(true);
+		servicioPartido.actualizarPartido(partidoOriginal);
+		
+		//La misma idea de arriba, pero con el evento
+		Evento eventoOriginal = servicioEvento.consultarEvento(eventoAFinalizar.getId());
+		eventoOriginal.setCuotaGanadora(eventoAFinalizar.getCuotaGanadora());
+		eventoOriginal.setIsTerminado(true);
 		servicioEvento.actualizar(eventoOriginal);
 		
 		return new ModelAndView("redirect:/ABM-Evento");

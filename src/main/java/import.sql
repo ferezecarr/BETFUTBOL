@@ -26,7 +26,15 @@ INSERT INTO Equipo 	(id, nombre) VALUES
  					(9, "Independiente"),
 					(10, "Rosario Central"),
  					(11, "Gimnasia LP"),
- 					(12, "River Plate");
+ 					(12, "River Plate"),
+ 					(13, "Boca Juniors"),
+ 					(14, "Real Madrid"),
+ 					(15, "Deportivo Morón"), 
+ 					(16, "Deportivo Laferrere"), 
+ 					(17, "Almirante Brown"),
+ 					(18, "Nueva Chicago"), 
+ 					(19, "Velez Sarfield"),
+ 					(20, "San Lorenzo");
 
 -- Creando siete partidos
 INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal, golesVisitante, isTerminado, isResultadoFinal) VALUES 
@@ -36,7 +44,8 @@ INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal
  					(4,5,6,'2017-12-02 09:00:00', 0, 0, FALSE, FALSE),
  					(5,7,8,'2017-12-02 13:00:00', 0, 0, FALSE, FALSE),
  					(6,9,10,'2017-12-02 19:15:00', 0, 0, FALSE, FALSE),
- 					(7,11,12,'2017-12-03 21:30:00', 0, 0, FALSE, FALSE);
+ 					(7,11,12,'2017-12-03 21:30:00', 0, 0, FALSE, FALSE),
+ 					(8,17,15,'2016-04-06 17:00:00', 0, 0, TRUE, FALSE);
 
 -- Creando siete eventos de tipo "Resultado" (Gana, empate, derrota)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado, cuotaGanadora) VALUES 
@@ -50,7 +59,8 @@ INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado, cuotaGana
 
 -- Creando un evento de tipo "Cantidad de goles en un partido" (0, 1, 2, 3, 4, +4)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado) VALUES 
-					(8, 6, "Cantidad de goles en un partido", "[Cantidad de goles en un partido] Independiente Vs Rosario Central - 02/12 19:15Hs", FALSE);
+					(8, 6, "Cantidad de goles en un partido", "[Cantidad de goles en un partido] Independiente Vs Rosario Central - 02/12 19:15Hs", FALSE),
+					(10, 8, "Cantidad de goles en un partido", "[Cantidad de goles en un partido] Almirante Brown Vs Deportivo Morón - 06/04 17:00Hs", FALSE);
 
 -- Creando un evento de tipo "Cantidad de goles par o impar" (Par, Impar)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado) VALUES 
@@ -89,17 +99,24 @@ INSERT INTO Cuota 	(id, evento_id, nombre, valor, cantidadVotos) VALUES
 
 -- Creando cuotas que son asignadas a los eventos de tipo "Cantidad de goles en un partido"
 INSERT INTO Cuota 	(id, evento_id, nombre, valor, cantidadVotos) VALUES
-					(38, 8, "0", 1.65, 0),
- 					(39, 8, "1", 1.90, 0),
-					(40, 8, "2", 2.03, 0),
-					(41, 8, "3", 2.24, 0),
-					(42, 8, "4", 2.61, 0),
- 					(43, 8, "+4", 2.72, 0);
+					(22, 8, "0", 1.65, 0),
+ 					(23, 8, "1", 1.90, 0),
+					(24, 8, "2", 2.03, 0),
+					(25, 8, "3", 2.24, 0),
+					(26, 8, "4", 2.61, 0),
+ 					(27, 8, "+4", 2.72, 0),
+ 					
+ 					(28, 10, "0", 1.8, 0),
+ 					(29, 10, "1", 1.8, 0),
+ 					(30, 10, "2", 1.8, 0),
+ 					(31, 10, "3", 1.8, 0),
+ 					(32, 10, "4", 1.8, 0),
+ 					(33, 10, "+4", 1.8, 0);
 
 -- Creando cuotas que son asignadas a los eventos de tipo "Cantidad de goles par o impar"
 INSERT INTO Cuota 	(id, evento_id, nombre, valor, cantidadVotos) VALUES 
-					(44, 9, "Par", 2.00, 0),
-					(45, 9, "Impar", 2.00, 0);
+					(34, 9, "Par", 2.00, 0),
+					(35, 9, "Impar", 2.00, 0);
 
 
 -- Hardcodeando apuestas
