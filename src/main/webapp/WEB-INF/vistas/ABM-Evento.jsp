@@ -84,12 +84,6 @@
 											
 									<div class="form-group">		
 									<div class="col-md-10 col-md-offset-1">
-										<div class="input-group">
-											<span class="input-group-addon">Descripcion</span>
-																											
-												<form:input type="text" placeholder="(Ej. Premier League)" path="evento.descripcion" class="form-control" />
-										
-										</div>
 									</div>
 									</div>
 									

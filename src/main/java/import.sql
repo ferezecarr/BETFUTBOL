@@ -40,21 +40,21 @@ INSERT INTO Partido (id, id_equipo_local, id_equipo_visitante, fecha, golesLocal
 
 -- Creando siete eventos de tipo "Resultado" (Gana, empate, derrota)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado, cuotaGanadora) VALUES 
-					(1, 1, "Resultado", "[Resultado] (L) China Vs Argentina (V) |Amistoso Internacional| - 01/11 15:30Hs", TRUE, "Gana Argentina"),
-					(2, 2, "Resultado", "[Resultado] (L) Argentina Vs China (V) |Amistoso Internacional| - 15/11 13:00Hs", FALSE, NULL),
- 					(3, 3, "Resultado", "[Resultado] (L) Napoli Vs Juventus (V) |Serie A| - 01/12 16:45Hs", FALSE, NULL),
- 					(4, 4, "Resultado", "[Resultado] (L) Barcelona Vs Celta de Vigo (V) |Liga BBVA| - 02/12 09:00Hs", FALSE, NULL),
- 					(5, 5, "Resultado", "[Resultado] (L) Racing de Estraburgo Vs PSG (V) |Ligue One| - 02/12 13:00Hs", FALSE, NULL),
- 					(6, 6, "Resultado", "[Resultado] (L) Independiente Vs Rosario Central (V) |Primera División Argentina| - 02/12 19:15Hs", FALSE, NULL),
- 					(7, 7, "Resultado", "[Resultado] (L) Gimnasia LP Vs River Plate (V) |Primera División Argentina| - 03/12 21:30Hs", FALSE, NULL);
+					(1, 1, "Resultado", "[Resultado] China Vs Argentina - 01/11 15:30Hs", TRUE, "Gana Argentina"),
+					(2, 2, "Resultado", "[Resultado] Argentina Vs China - 15/11 13:00Hs", FALSE, NULL),
+ 					(3, 3, "Resultado", "[Resultado] Napoli Vs Juventus - 01/12 16:45Hs", FALSE, NULL),
+ 					(4, 4, "Resultado", "[Resultado] Barcelona Vs Celta de Vigo - 02/12 09:00Hs", FALSE, NULL),
+ 					(5, 5, "Resultado", "[Resultado] Racing de Estraburgo Vs PSG - 02/12 13:00Hs", FALSE, NULL),
+ 					(6, 6, "Resultado", "[Resultado] Independiente Vs Rosario Central - 02/12 19:15Hs", FALSE, NULL),
+ 					(7, 7, "Resultado", "[Resultado] Gimnasia LP Vs River Plate - 03/12 21:30Hs", FALSE, NULL);
 
 -- Creando un evento de tipo "Cantidad de goles en un partido" (0, 1, 2, 3, 4, +4)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado) VALUES 
-					(8, 6, "Cantidad de goles en un partido", "[Cantidad de goles en un partido] (L) Independiente Vs Rosario Central (V) |Primera División Argentina| - 02/12 19:15Hs", FALSE);
+					(8, 6, "Cantidad de goles en un partido", "[Cantidad de goles en un partido] Independiente Vs Rosario Central - 02/12 19:15Hs", FALSE);
 
 -- Creando un evento de tipo "Cantidad de goles par o impar" (Par, Impar)
 INSERT INTO Evento 	(id, id_partido, nombre, descripcion, isTerminado) VALUES 
-					(9, 7, "Cantidad de goles par o impar", "[Cantidad de goles par o impar] (L) Gimnasia LP Vs River Plate (V) |Primera División Argentina| - 03/12 21:30Hs", FALSE);
+					(9, 7, "Cantidad de goles par o impar", "[Cantidad de goles par o impar] Gimnasia LP Vs River Plate - 03/12 21:30Hs", FALSE);
 
 
 -- Creando cuotas que son asignadas a los eventos de tipo "Resultado"
