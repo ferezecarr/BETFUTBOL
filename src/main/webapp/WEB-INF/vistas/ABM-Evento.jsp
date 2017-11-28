@@ -211,43 +211,44 @@
 				<!--  Termina panel para modificar evento -->
 				
 				
-				<!--  Empieza panel para eliminar evento -->	
+				<!--  Empieza panel para finalizar evento -->	
 							<div class="panel panel-danger">
 							<div class="panel-heading">
-								<h3 class="panel-title">Eliminación de eventos:</h3>
+								<h3 class="panel-title">Finalizar eventos:</h3>
 							</div>
 							<div class="container-fluid">
 							
-							<form:form class="form-horizontal" role="form" action="eliminar-Evento" method="post" name="eliminarEvento" modelAttribute="evento">
-
 									<div class="form-group"></div>
 
 									<div class="form-group">
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
 												<span class="input-group-addon">Evento a eliminar:
-												</span> <select name="eventoParaEliminar" class="form-control" required="required">
-
-													<c:forEach items="${eventos}" var="e">
-														<option value="" selected hidden>Elegir:</option>
-
-														<option value="${e.id}">${e.id} - [${e.partido.local.nombre} vs ${e.partido.visitante.nombre}] - ${e.partido.fecha} - ${e.nombre}</option>
-													</c:forEach>
-
-												</select>
+												</span>
+												<form:select path="eventosFinalizables" id="eventosFinalizables" class="form-control" required="required">
+													<form:option value="" >Elegir:</form:option>
+													<c:forEach items="${eventosFinalizables}" var="evento">
+													<form:option value="${evento.id}" desc="${evento.descripcion}" tipo="${evento.nombre}">
+														<c:out value="[${evento.id}]" />
+														<c:out value="${evento.descripcion}" />
+													</form:option>
+												</c:forEach>
+											</form:select>
 											</div>
 										</div>
+								<div id="infoEventosFinalizables"></div>
+								<div id="formFinalizarEvento"></div>
 									</div>
 
 							<div class="form-group">
 								<div class="col-md-offset-4 col-md-8">
-									<a data-toggle="modal" data-target="#delete" class="btn btn-danger">Eliminar evento seleccionado</a>
+								<button type="submit" class="btn btn-danger">Finalizar evento</button>
 								</div>
 							</div>
-							</form:form>
+
 							</div>
 						</div>
-				<!--  Termina panel para eliminar evento -->
+				<!--  Termina panel para finalizar evento -->
 
 				</div>
 				</div>
@@ -258,7 +259,8 @@
 		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="js/modificarCuotas.js" type="text/javascript"></script>
-				<script src="js/crearEvento.js" type="text/javascript"></script>
-		
+		<script src="js/crearEvento.js" type="text/javascript"></script>
+		<!-- JS para manejar el form dinamico de finalizacion -->
+		<script src="js/finalizarEvento.js" type="text/javascript"></script>		
 </body>
 </html>
