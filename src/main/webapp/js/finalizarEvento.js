@@ -14,9 +14,10 @@ $( document ).ready(function() {
 		var info = document.getElementById("infoEventosFinalizables");
 		if(id != ""){
 			$("#infoEventosFinalizables").html(
-					"<ol class='breadcrumb text-center'>"
-					+"<li class='breadcrumb-item active'>Informaci&oacute;n del evento seleccionado:</li>"
-					+"</ol>"
+					  "<br>"
+					+ "<ol class='breadcrumb text-center'>"
+					+ "<li class='breadcrumb-item active'>Informaci&oacute;n del evento seleccionado:</li>"
+					+ "</ol>"
 					+ "<br/>Id: " + id
 					+ "<br/>Descripci&oacute;n: " + desc
 					+ "<br/>Nombre: " + nombre);
@@ -34,12 +35,30 @@ $( document ).ready(function() {
 				contentType: "application/json; charset=utf-8",
 				success: function(data){
 					var form = "";
-					form += '<br/><form action="finalizar-evento" id="eventoAFinalizar" method="POST" autocomplete="off">';
-					form += '<br/><input type="hidden" id="id" name="id" value="'+id+'"/>';
-					form += '<br/><input type="hidden" id="partido.id" name="partido.id" value="'+data.partido.id+'"/>';
-					form += '<h3>Resultado final</h3>';
-					form += '<br/>'+data.partido.local.nombre+': <input type="text" id="partido.golesLocal" name="partido.golesLocal" value="'+data.partido.golesLocal+'"/>';
-					form += '<br/>'+data.partido.visitante.nombre+': <input type="text" id="partido.golesVisitante+" name="partido.golesVisitante" value="'+data.partido.golesVisitante+'"/>';
+					form += '<br>';
+					form += '<ol class="breadcrumb text-center">';
+					form += '<li class="breadcrumb-item active">Resultado final del partido '+data.partido.local.nombre+ ' vs ' +data.partido.visitante.nombre+ ':</li>';
+					form += '</ol>';
+					form += '<form action="finalizar-evento" id="eventoAFinalizar" method="POST" autocomplete="off">';
+					form += '<input type="hidden" id="id" name="id" value="'+id+'"/>';
+					form += '<input type="hidden" id="partido.id" name="partido.id" value="'+data.partido.id+'"/>';
+					
+					form += '<div class="form-group">';
+					form += '<div class="input-group center">';
+					form += '<span class="input-group-addon">'+data.partido.local.nombre+':</span>';
+					form += '<input type="text" class="form-control" id="partido.golesLocal" name="partido.golesLocal" value="'+data.partido.golesLocal+'"/>';
+					form += '<span class="input-group-addon">Goles</span>';
+				    form += '</div>';
+				    form += '</div>';
+				    
+					form += '<div class="form-group">';
+					form += '<div class="input-group center">';
+					form += '<span class="input-group-addon">'+data.partido.visitante.nombre+':</span>';
+					form += '<input type="text" class="form-control" id="partido.golesVisitante+" name="partido.golesVisitante" value="'+data.partido.golesVisitante+'"/>';
+					form += '<span class="input-group-addon">Goles</span>';
+				    form += '</div>';
+				    form += '</div>';
+				    
 					$("#formFinalizarEvento").append(form);	
 					traerCuotas(id);
 				}		        
@@ -65,14 +84,29 @@ $( document ).ready(function() {
 			data: JSON.stringify(id),
 			contentType: "application/json; charset=utf-8",
 			success: function(data2){
-				var form = '<p><h3>Cuota ganadora</h3></p>';
-				form += '<br/><select id="cuotaGanadora" name="cuotaGanadora">';
-				form += '<br/><option value="" >Elegir:</option>';
+				
+				var form = '<br>';
+				form += '<ol class="breadcrumb text-center">';
+				form += '<li class="breadcrumb-item active">Cuota ganadora:</li>';
+				form += '</ol>';
+				
+				form += '<div class="form-group">';
+				form += '<div class="input-group center">';				
+				form += '<span class="input-group-addon">Seleccione cuota: </span>';
+				form += '<select class="form-control" id="cuotaGanadora" name="cuotaGanadora" required="required">';
+				form += '<option value="" >Elegir:</option>';
+			
 				for(let [index, key] of data2.entries()){
-					form += '<br/><option value="'+key.nombre+'" name="'+key.nombre+'">'+key.nombre+'</option>';
+					form += '<option value="'+key.nombre+'" name="'+key.nombre+'">'+key.nombre+'</option>';
 				}
-				form += '<br/></select>';
-				form += '<br/><input type="submit" id="Finalizar" value="Finalizar Evento"></input>';								
+				form += '</select>';
+				form += '</div>';
+				form += '</div>';
+				
+				form += '<div class="form-group">';
+				form += '<br><input type="submit" id="Finalizar" class="btn btn-danger center-block" value="Finalizar evento"></input>';		
+				form += '</div>';
+				
 				form += '<br/></form></p>';							
 				$("#eventoAFinalizar").append(form);	
 			},

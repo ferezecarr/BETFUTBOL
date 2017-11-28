@@ -18,7 +18,7 @@
 		
 				<div class="col-md-8 col-md-offset-2">
 		 			<ol class="breadcrumb text-center">
-	          			<li class="breadcrumb-item active">Administración de eventos - Desde aquí los podrá visualizar, crear, modificar o eliminar.</li>
+	          			<li class="breadcrumb-item active">Administración de eventos - Desde aquí los podrá visualizar, crear, modificar y finalizar.</li>
 	     			</ol>
 	     				     			
 	     	<!-- Se listan los eventos -->	     			
@@ -58,6 +58,9 @@
 							<div class="panel-heading">
 								<h3 class="panel-title">Crear nuevo evento:</h3>
 							</div>
+							<ol class="breadcrumb text-center">
+	          					<li class="breadcrumb-item active">Desde aquí podrá crear un nuevo evento, seleccionando un partido, el tipo de evento y asignado los valores iniciales de las cuotas correspondientes.</li>
+	     					</ol>
 							<div class="container-fluid">
 
 								<form:form class="form-horizontal" role="form" method="post" action="crear-evento" name="crearEvento" modelAttribute="eventoDTO">
@@ -169,8 +172,11 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">Modificar eventos:</h3>
 						</div>
+							<ol class="breadcrumb text-center">
+	          					<li class="breadcrumb-item active">Desde aquí podrá modificar los valores de la cuotas de un evento ya creado.</li>
+	     					</ol>
 						<div class="container-fluid">
-							
+
 						<div class="form-horizontal">
 							
 							<div class="form-group"></div>
@@ -216,15 +222,18 @@
 							<div class="panel-heading">
 								<h3 class="panel-title">Finalizar eventos:</h3>
 							</div>
+							<ol class="breadcrumb text-center">
+	          					<li class="breadcrumb-item active">Desde aquí podrá cargar el resultado de un partido terminado y la cuota ganadora del evento.</li>
+	     					</ol>
 							<div class="container-fluid">
 							
-									<div class="form-group"></div>
+								<div class="form-group"></div>
 
+								<div class="form-horizontal">
 									<div class="form-group">
 										<div class="col-md-10 col-md-offset-1">
 											<div class="input-group center">
-												<span class="input-group-addon">Evento a eliminar:
-												</span>
+												<span class="input-group-addon">Seleccione un evento: </span>
 												<form:select path="eventosFinalizables" id="eventosFinalizables" class="form-control" required="required">
 													<form:option value="" >Elegir:</form:option>
 													<c:forEach items="${eventosFinalizables}" var="evento">
@@ -236,15 +245,20 @@
 											</form:select>
 											</div>
 										</div>
-								<div id="infoEventosFinalizables"></div>
-								<div id="formFinalizarEvento"></div>
 									</div>
-
-							<div class="form-group">
-								<div class="col-md-offset-4 col-md-8">
-								<button type="submit" class="btn btn-danger">Finalizar evento</button>
 								</div>
-							</div>
+										
+								<div class="form-group">	
+								<div class="col-md-10 col-md-offset-1">		
+									<div id="infoEventosFinalizables"></div>
+								</div>
+								</div>
+								
+								<div class="form-group">	
+								<div class="col-md-10 col-md-offset-1">		
+									<div id="formFinalizarEvento"></div>
+								</div>
+								</div>
 
 							</div>
 						</div>

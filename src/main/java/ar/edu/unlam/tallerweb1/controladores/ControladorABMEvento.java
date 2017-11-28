@@ -150,7 +150,7 @@ public class ControladorABMEvento {
 		eventoOriginal.setIsTerminado(true);
 		servicioEvento.actualizar(eventoOriginal);
 		
-		return new ModelAndView("redirect:/test-finalizacion");
+		return new ModelAndView("redirect:/ABM-Evento");
 	}
 	
 	
