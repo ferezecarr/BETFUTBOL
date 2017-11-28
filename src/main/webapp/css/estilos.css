@@ -2,11 +2,30 @@
 
 body{
     background:#515352;
-   	
-   	background: url('../img/cancha.jpg') no-repeat center  fixed;	
-   	background-size:1600px 1200px; 
+   	animation: cambioFondo 60s infinite;
+   	width: 100%;
+   	height: 100%;
   }
   
+@keyframes cambioFondo{
+    0% {
+	   	background: url('../img/cancha.jpg') no-repeat center  fixed;	
+    }
+    25% {
+	   	background: url('../img/cancha2.jpg') no-repeat center  fixed;	
+    }
+    50% {
+	   	background: url('../img/cancha3.jpg') no-repeat center  fixed;	
+    }
+    75% {
+	   	background: url('../img/cancha4.jpg') no-repeat center  fixed;	
+    }
+    100% {
+	   	background: url('../img/cancha.jpg') no-repeat center  fixed;	
+    }
+}
+
+
   .modal-title
   {
   text-align: center;
