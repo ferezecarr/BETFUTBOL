@@ -24,20 +24,38 @@
 			</div>	
 					
 					<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-primary">
+					<div class="panel-body text-center">
+					<div class="table-responsive">
+										<table class="table table-hover">
+											<thead>		
+											<tr>
+												<th class="text-center">local</th>
+												<th class="text-center">visitante</th>
+													<th class="text-center">descripcion</th>
+														<th class="text-center">ganador</th>
+															<th class="text-center">goles locales</th>
+																<th class="text-center">goles visitantes</th>
+												
+											</tr>
+											</thead>
+											<c:forEach  items="${eventos}" var="e">
+											
+											<tbody class="text-center">
+												<td>${e.partido.local.nombre} </td>
+												<td>${e.partido.visitante.nombre}</td>
+												<td>${e.descripcion}</td>
+												<td>${e.cuotaGanadora}</td>
+												<td>${e.partido.golesLocal}</td>
+												<td>${e.partido.golesVisitante}</td>
+											</tbody>
+											
+											</c:forEach>
+										</table>
+									</div>
+									</div>
+									</div>
 					
-				
-
-					<c:forEach items="${eventos}" var="e">
-						<div class="panel panel-primary">
-							<div class="panel-heading text-center">
-							${e.partido.local.nombre} - ${e.partido.visitante.nombre}
-							</div>
-							<div class="panel-body text-center">
-								<p id="descripcion">${e.descripcion}</p>
-								<p>${e.cuotaGanadora} por: ${e.partido.golesLocal} -  ${e.partido.golesVisitante}</p>
-							</div>
-						</div>
-					</c:forEach>
 			</div>
 			</div>
 	</div>

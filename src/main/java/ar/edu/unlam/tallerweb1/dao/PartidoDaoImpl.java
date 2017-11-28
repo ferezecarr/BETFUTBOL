@@ -33,7 +33,8 @@ public class PartidoDaoImpl implements PartidoDao {
 
 	@Override
 	public Partido findById(Long id) {
-		return sessionFactory.getCurrentSession().get(Partido.class, id);
+		return (Partido) sessionFactory.getCurrentSession().createCriteria(Partido.class)
+				.add(Restrictions.eq("id",id)).uniqueResult();
 	}
 
 	@Override

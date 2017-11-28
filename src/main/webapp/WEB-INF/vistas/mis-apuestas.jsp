@@ -18,29 +18,49 @@
 			
 				
 				<div class="col-md-8 col-md-offset-2">
+				
+				
 		 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Mis Apuestas realizadas</li>
 	     			</ol>
-					<c:forEach items="${apuestas}" var="a">
- 			         <div class="panel panel-primary">
-			            <div class="panel-heading text-center">Evento apostado: ${a.evento.partido.local.nombre} - ${a.evento.partido.visitante.nombre} </div>
-			            <div class="panel-body text-center"> 
-			             <h4 id="descripcion"> ${a.evento.descripcion}</h4>
-			             <p id="descripcion"> Tipo de apuesta: ${a.evento.nombre}</p>
-			             <p id="descripcion"> Usted apostó por: ${a.cuotaNombre}</p>
-			             <p id="descripcion"> Dinero apostado: $${a.cantidadApostada}</p>
-			             <p id="descripcion"> Valor de la cuota: ${a.cuotaValor}</p>
-
- 			          </div> 
- 			        </div> 
-					</c:forEach>
+			
+					<div class="panel panel-primary">
+					<div class="panel-body text-center">
+					<div class="table-responsive">
+										<table class="table table-hover">
+											<thead>		
+											<tr>
+												<th class="text-center">Local</th>
+												<th class="text-center">Visitante</th>
+													<th class="text-center">Evento</th>
+														<th class="text-center">Tipo de apuesta</th>
+															<th class="text-center">Cantidad apostada</th>
+																<th class="text-center">Valor de cuota</th>
+												
+											</tr>
+											</thead>
+											<c:forEach  items="${apuestas}" var="a">
+											
+											<tbody class="text-center">
+											
+												<td>  ${a.evento.partido.local.nombre}</td>
+												<td> ${a.evento.partido.visitante.nombre} </td>
+												<td> ${a.evento.nombre}</td>
+												<td>${a.cuotaNombre}</td>
+												<td>$${a.cantidadApostada}</td>
+												<td>${a.cuotaValor}</td>
+											</tbody>
+											
+											</c:forEach>
+										</table>
+									</div>
+									</div>
+									</div>
+					
+					
 				</div>
-				
 			</div>
 		</div>	
 		</div>
-	
-
-
 </body>
 </html>

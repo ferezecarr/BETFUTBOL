@@ -45,7 +45,7 @@
 		
 				
 					<c:forEach items="${eventos}" var="e">
-						<div class="panel panel-primary">
+						<div class="panel panel-primary primario">
 							<div class="panel-heading text-center">${e.partido.local.nombre}
 								- ${e.partido.visitante.nombre}</div>
 							<div class="panel-body text-center">
