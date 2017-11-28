@@ -26,6 +26,15 @@ body{
     }
 }
 
+.primario:hover{
+	animation: cambioColor 1s infinite;
+}
+
+@keyframes cambioColor{
+    0%   {background-color:white;}
+    50%  {background-color: #CFE8FF; opacity: 0.9;}
+    100% {background-color:white;}
+}
 
   .modal-title
   {
