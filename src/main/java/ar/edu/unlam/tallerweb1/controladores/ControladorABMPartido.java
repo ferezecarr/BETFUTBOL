@@ -1,21 +1,19 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
 import ar.edu.unlam.tallerweb1.modelo.Partido;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPartido;
 
@@ -27,6 +25,9 @@ public class ControladorABMPartido {
 	
 	@Inject
 	private ServicioLogin servicioLogin;
+	
+	@Inject
+	private ServicioEvento servicioEvento;
 	
 	@Inject
 	private ServicioPartido servicioPartido;
@@ -130,6 +131,7 @@ public class ControladorABMPartido {
 			Partido partidoNuevo=servicioPartido.buscarPorId(partido.getId());
 			partidoNuevo.setFecha(partido.getFecha());
 			servicioPartido.actualizarPartido(partidoNuevo);
+			servicioEvento.actualizarDescripcionesDeEventos(partidoNuevo);
 		}
 		
 		

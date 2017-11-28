@@ -111,8 +111,7 @@ public class Evento {
 	public void generarDescripcionDinamica(){
 		String descripcionSimple = descripcion;
 		String descripcion = "[" + this.getNombre() + "] " + 
-				this.getPartido().getInformacion() + " |" + 
-				descripcionSimple + "|";
+				this.getPartido().getInformacion() + descripcionSimple;
 		this.setDescripcion(descripcion);
 	}
 	

@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
+import ar.edu.unlam.tallerweb1.modelo.Partido;
 
 
 @Service("EventoDao")
@@ -88,5 +89,18 @@ public class EventoDaoImpl implements EventoDao{
 				.add(Restrictions.eq("isTerminado", true))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
+	}
+
+	@Override
+	public void updateMatchDescriptions(Partido partido) {
+		List<Evento> eventosParaActualizar = sessionFactory.getCurrentSession().createCriteria(Evento.class)
+				.add(Restrictions.eq("partido", partido))
+				.list();
+		for (Evento evento : eventosParaActualizar) {
+			evento.setDescripcion("");
+			evento.setPartido(partido);
+			evento.generarDescripcionDinamica();
+			sessionFactory.getCurrentSession().save(evento);
+		}
 	}
 }

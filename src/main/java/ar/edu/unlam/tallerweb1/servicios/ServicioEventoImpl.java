@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.dao.EventoDao;
 import ar.edu.unlam.tallerweb1.modelo.Evento;
+import ar.edu.unlam.tallerweb1.modelo.Partido;
 
 //Para que Spring entienda que se esta trabajando con servicio, tanto al serviceImpl como al DAOImpl hay que indicarle que 
 //que son servicios, en caso contrario, las implementaciones de las interfaces son tomadas por JAVA como una clase
@@ -64,5 +65,11 @@ public class ServicioEventoImpl implements ServicioEvento{
 	@Override
 	public List<Evento> listarEventosFinalizados(){
 		return eventoServicioDao.findFinalizados();
+	}
+
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})	
+	public void actualizarDescripcionesDeEventos(Partido partido) {
+		eventoServicioDao.updateMatchDescriptions(partido);	
 	}
 }
