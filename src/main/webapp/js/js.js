@@ -31,7 +31,9 @@ function CrearPartido(){
 function ModificarPartido(){
 	   document.modificarPartido.submit()
 	}
-
+function TerminarPartido(){
+	   document.terminarPartido.submit()
+	}
 function EliminarPartido(){
 	   document.eliminarPartido.submit()
 	}

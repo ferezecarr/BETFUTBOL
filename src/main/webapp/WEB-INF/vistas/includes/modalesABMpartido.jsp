@@ -55,6 +55,36 @@
 							</div>
 						</div>
 					</div>		
+					
+					
+					
+					
+		<div class="modal fade in" id="finish" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<a class="btn pull-right" data-dismiss="modal"><span
+										class="glyphicon glyphicon-remove"></span></a>
+									<h3 class="modal-title">Terminar partido seleccionado:</h3>
+								</div>
+								<div class="modal-body">
+									<h4>¿Está seguro que desea Terminar este partido?</h4>
+									<h4>Los eventos y cuotas que contengan este partido podran ser afectados por el cambio.</h4>
+								</div>
+								<div class="modal-footer">
+									<div class="form-group text-center">
+
+										<button name="enviar" class="btn btn-warning" onclick="TerminarPartido()">
+											<span class="glyphicon glyphicon-check"></span> Confirmar
+										</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>			
+					
 
 					
 					

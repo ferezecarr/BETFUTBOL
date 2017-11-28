@@ -60,6 +60,8 @@ public class ControladorABMPartido {
 		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
 		modelo.put("partidos", partidos);
 		
+		List<Partido> partidosSinTerminar = servicioPartido.listarTodosLosPartidosSinTerminar();
+		modelo.put("partidosSinTerminar", partidosSinTerminar);
 		
 		return new ModelAndView("ABM-Partido",modelo);
 	}
@@ -102,6 +104,8 @@ public class ControladorABMPartido {
 		
 		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
 		modelo.put("partidos", partidos);
+		List<Partido> partidosSinTerminar = servicioPartido.listarTodosLosPartidosSinTerminar();
+		modelo.put("partidosSinTerminar", partidosSinTerminar);
 		
 		return new ModelAndView("ABM-Partido",modelo);
 	}
@@ -144,10 +148,54 @@ public class ControladorABMPartido {
 		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
 		modelo.put("partidos", partidos);
 		
+		List<Partido> partidosSinTerminar = servicioPartido.listarTodosLosPartidosSinTerminar();
+		modelo.put("partidosSinTerminar", partidosSinTerminar);
 		
 		return new ModelAndView("ABM-Partido",modelo);
 	}
 	
+	
+	
+	
+	@RequestMapping(path ="terminar-partido", method = RequestMethod.POST)
+	public ModelAndView TerminarPArtido(@ModelAttribute("partido")Partido partido,HttpServletRequest request) {
+
+		if(request.getSession().getAttribute("AdminId") == null) {
+			return new ModelAndView("redirect:/");
+			
+		}
+		
+		ModelMap modelo = new ModelMap();
+		
+		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		modelo.put("usuario",usuarioLogeado);
+		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
+		
+		
+		if(servicioPartido.buscarPorId(partido.getId())!=null)
+		{
+			
+			Partido partidoNuevo=servicioPartido.buscarPorId(partido.getId());
+			partidoNuevo.setIsTerminado(true);
+			servicioPartido.actualizarPartido(partidoNuevo);
+			servicioEvento.actualizarDescripcionesDeEventos(partidoNuevo);
+		}
+		
+		
+		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+		modelo.put("equipos", equipos);
+		
+		Partido partidoNuevo = new Partido();
+		modelo.put("partido", partidoNuevo);
+		
+		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
+		modelo.put("partidos", partidos);
+		
+		List<Partido> partidosSinTerminar = servicioPartido.listarTodosLosPartidosSinTerminar();
+		modelo.put("partidosSinTerminar", partidosSinTerminar);
+		
+		return new ModelAndView("ABM-Partido",modelo);
+	}
 	
 
 	

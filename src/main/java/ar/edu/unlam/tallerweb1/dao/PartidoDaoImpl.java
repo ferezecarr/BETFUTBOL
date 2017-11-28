@@ -54,4 +54,11 @@ public class PartidoDaoImpl implements PartidoDao {
 		sessionFactory.getCurrentSession().delete(partido);		
 	}
 
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Partido> findUnfinishedMatch()
+	{
+		return (List<Partido>) sessionFactory.getCurrentSession().createCriteria(Partido.class).add(Restrictions.eq("isTerminado", false)).list();
+	}
 }

@@ -54,5 +54,9 @@ public class ServicioPartidoImpl implements ServicioPartido {
 	}
 
 
-
+	@Override
+	public List<Partido> listarTodosLosPartidosSinTerminar()
+	{
+		return partidoDao.findUnfinishedMatch();
+	}
 }
