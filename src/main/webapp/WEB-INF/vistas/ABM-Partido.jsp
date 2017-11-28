@@ -6,9 +6,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head><%@ include file="includes/cabecera.jsp"%>
-<script>$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})</script>
+
 </head>
 <body>
 <%@ include file="includes/navegador.jsp"%>

@@ -81,3 +81,8 @@ function validarEmail(){
         }
 	});
 }
+
+
+$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
