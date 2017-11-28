@@ -94,21 +94,6 @@ public class ControladorPartidoTest {
 	}
 	
 	@Test
-	public void testQuePuedaEliminarUnPartidoValido() {
-		when(request.getSession()).thenReturn(session);
-		when(servicioPartido.consultarPartido(any(Partido.class))).thenReturn(partido);
-		
-		ModelAndView modelo = controladorABMPartido.eliminarPartido(partido, request);
-		
-		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
-		assertThat(modelo.getModel()).isEmpty();
-		
-		verify(session , times(0)).setAttribute("LOCAL", "PARTIDO");
-		verify(session , times(0)).setAttribute("VISITANTE", "PARTIDO");
-		verify(session , times(0)).setAttribute("FECHA", "PARTIDO");
-	}
-	
-	@Test
 	public void testQueSePuedaDarPorTerminadoUnPartido() {
 		when(request.getSession()).thenReturn(session);
 		when(servicioPartido.consultarPartido(any(Partido.class))).thenReturn(partido);
