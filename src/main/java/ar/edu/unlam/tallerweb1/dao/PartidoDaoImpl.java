@@ -31,12 +31,16 @@ public class PartidoDaoImpl implements PartidoDao {
 		
 	}
 
+	
+	
 	@Override
 	public Partido findById(Long id) {
 		return (Partido) sessionFactory.getCurrentSession().createCriteria(Partido.class)
 				.add(Restrictions.eq("id",id)).uniqueResult();
 	}
 
+	
+	
 	@Override
 	public Partido findByMatch(Partido partido) {
 		final Session session = sessionFactory.openSession();
