@@ -122,5 +122,20 @@ public class ControladorPartidoTest {
 		verify(session , times(0)).setAttribute("VISITANTE", "PARTIDO");
 		verify(session , times(0)).setAttribute("FECHA", "PARTIDO");
 	}
+	
+	@Test
+	public void testQueMuestreTodosLosPartidos() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioPartido.consultarPartido(any(Partido.class))).thenReturn(partido);
+		
+		ModelAndView modelo = controladorABMPartido.mostrarPartido(request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
+		assertThat(modelo.getModel()).isEmpty();
+		
+		verify(session , times(0)).setAttribute("LOCAL", "PARTIDO");
+		verify(session , times(0)).setAttribute("VISITANTE", "PARTIDO");
+		verify(session , times(0)).setAttribute("FECHA", "PARTIDO");
+	}
 
 }
