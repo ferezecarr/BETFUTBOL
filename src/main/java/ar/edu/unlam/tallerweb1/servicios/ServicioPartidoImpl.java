@@ -38,7 +38,7 @@ public class ServicioPartidoImpl implements ServicioPartido {
 
 	@Override
 	public Partido consultarPartido(Partido partido) {
-		return null;
+		return partidoDao.findById(partido.getId());
 	}
 
 	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})	
