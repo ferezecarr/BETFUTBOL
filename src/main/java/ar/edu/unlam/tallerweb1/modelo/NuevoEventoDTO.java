@@ -1,9 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class NuevoEventoDTO {
 	private Evento evento;

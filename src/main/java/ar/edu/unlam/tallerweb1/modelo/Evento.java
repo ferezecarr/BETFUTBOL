@@ -6,8 +6,6 @@
  * */
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -37,6 +35,7 @@ public class Evento {
 	private List<Cuota> cuotas = new LinkedList<Cuota>();
 	
 	private String nombre;			//Resultado, Resultado Especifico, Jugador hace gol, etc..
+	
 	private String descripcion;		//"Boca Vs River - Domingo - 18.00hs"
 	
 	/*Indica si el evento esta terminado. Esto se setea automaticamente por el evento 
@@ -110,20 +109,11 @@ public class Evento {
 	
 	/*INTENTE USAR @PrePersist, PERO NUNCA LLAMABA AL METODO (Aca vienen las negradas)*/
 	public void generarDescripcionDinamica(){
-		//Edito la descripcion usando el nombre de los equipos y la fecha de partido
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
-		String fechaSimple = dateFormat.format(this.getPartido().getFecha());
-		String descripcionSimple = this.getDescripcion();
-		
-		if(this.getNombre().equals("Resultado") || 
-				this.getNombre().equals("Cantidad de goles en un partido") ||
-				this.getNombre().equals("Cantidad de goles par o impar")){
-			String descripcion = "[" + this.getNombre() + "] (L) " + 
-					this.getPartido().getLocal().getNombre() + " Vs " + 
-					this.getPartido().getVisitante().getNombre() + " (V) |" + 
-					descripcionSimple + "| - " + fechaSimple + "Hs";
-			this.setDescripcion(descripcion);
-		}	
+		String descripcionSimple = descripcion;
+		String descripcion = "[" + this.getNombre() + "] " + 
+				this.getPartido().getInformacion() + " |" + 
+				descripcionSimple + "|";
+		this.setDescripcion(descripcion);
 	}
 	
 	/*LO MISMO DEL METODO ANTERIOR*/

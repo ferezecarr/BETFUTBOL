@@ -191,7 +191,6 @@
 								<form:option value="${evento.id}" desc="${evento.descripcion}" tipo="${evento.nombre}">
 										<c:out value="[${evento.id}]" />
 			        					<c:out value="${evento.descripcion}" />
-										<c:out value="(${evento.nombre})" />
 									</form:option>
 								</c:forEach>	
 							</form:select>	

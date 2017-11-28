@@ -6,6 +6,8 @@
  * */
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -109,6 +111,12 @@ public class Partido {
 	public String mostrarResultado(){
 		return local.getNombre() + " " + golesLocal + " - " + golesVisitante + 
 				" " + visitante.getNombre();
+	}
+	
+	public String getInformacion(){
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM HH:mm");
+		String fechaSimple = dateFormat.format(fecha);		
+		return local.getNombre() + " Vs " + visitante.getNombre() + " - " + fechaSimple + "Hs";
 	}
 
 	public Boolean getIsResultadoFinal() {
