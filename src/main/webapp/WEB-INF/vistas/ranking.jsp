@@ -14,8 +14,8 @@
 	<div class="container-fluid">
 		<div class="col-md-12 main">
 			<div class="row">				
-				<div class="col-md-6 col-md-offset-3">
-		 			<ol class="breadcrumb">
+				<div class="col-md-12">
+		 			<ol class="breadcrumb text-center">
 	          			<li class="breadcrumb-item active">Ranking de Apostadores - Seleccione el ranking que desea ver:</li>
 	     			</ol>
 	     			</div>		
@@ -34,10 +34,7 @@
  								
 								<c:url value="/ranking?filtro=Cantidad de goles par o impar" var="url"/>
  								<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cantidad de goles par o impar</a> 								
-								 								 								 																 																 	          				
-	          			
-
-					
+								
 	     			</div>
 	     			<div class="recuadro2">
 	     				<div class="panel panel-primary">
@@ -45,13 +42,29 @@
 							Top 5<br/>														
 						</div>
 						<div class="panel-body text-center">
-	     				<c:forEach items="${ranking}" var="r">
-								<p class="text-info">
-									Usuario: <c:out value="${r.usuario}"/>, 
-									Cantidad ganada: <c:out value="${r.ganancia}"/>
-								</p>
 						
-					</c:forEach>
+						
+							<div class="table-responsive">
+										<table class="table table-hover">
+											<thead>		
+											<tr>
+												<th class="text-center">Usuario</th>
+												<th class="text-center">Ganancia</th>
+												
+											</tr>
+											</thead>
+											<c:forEach  items="${ranking}" var="r">
+											<tbody class="text-center">
+												<td>${r.usuario}</td>
+												<td>${r.ganancia}</td>
+												
+											</tbody>
+											</c:forEach>
+										</table>
+									</div>
+						
+	     				
+					
 						</div>
 					</div>
 	     			</div>					
