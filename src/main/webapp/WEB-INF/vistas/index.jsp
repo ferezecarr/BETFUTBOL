@@ -57,7 +57,7 @@
 												<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModal" class="btn btn-success"> ${c.valor} </a>
 											</c:when>
 											<c:otherwise>
-												<a data-toggle="modal" onclick="pickOption(this)" eventoId="${e.id}" name="${c.nombre}" value="${c.valor}" href="#myModalApostar" class="btn btn-success"> ${c.valor} </a>
+												<a data-toggle="modal" onclick="pickOption(this)"  href="#myModalApostar" class="btn btn-success"> ${c.valor} </a>
 											</c:otherwise>
 										</c:choose> 
 									</a>

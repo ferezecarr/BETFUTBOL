@@ -184,6 +184,59 @@
 						</div>
 
 						
+						
+						<!-- terminar partido -->
+						
+						
+						<div class="panel panel-warning">
+							<div class="panel-heading">
+								<h3 class="panel-title">Terminar partidos:</h3>
+							</div>
+							<div class="container-fluid">
+							<form:form class="form-horizontal" role="form" action="terminar-partido" method="post" name="terminarPartido" modelAttribute="partido">
+
+									<div class="form-group"></div>
+
+									<div class="form-group">
+										<div class="col-md-10 col-md-offset-1">
+											<div class="input-group center">
+												<span class="input-group-addon">Partido a modificar:</span>
+												 <form:select name="partidoParaModificar" class="form-control" required="required" path="id">
+													
+													<c:forEach items="${partidosSinTerminar}" var="p">
+													
+														<form:option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</form:option>
+ 													
+													</c:forEach>
+												</form:select>
+											</div>
+										</div>
+									</div>
+									
+							
+									
+
+							<div class="form-group">
+								<div class="col-md-offset-4 col-md-8">
+									<a data-toggle="modal" data-target="#finish" class="btn btn-warning">Terminar partido seleccionado</a>
+								
+								</div>
+							</div>
+							
+							
+							</form:form>
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						
+						<!-- --------------- -->
+						
+						
+						
 					
 			<!--  Termina panel para modificar partido -->	
 				

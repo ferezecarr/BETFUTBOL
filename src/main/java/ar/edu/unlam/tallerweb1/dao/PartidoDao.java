@@ -12,4 +12,5 @@ public interface PartidoDao {
 	void delete(Partido partido);
 	Partido findById(Long id);
 	Partido findByMatch(Partido partido);
+	List<Partido> findUnfinishedMatch();
 }

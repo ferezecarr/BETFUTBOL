@@ -12,4 +12,5 @@ public interface ServicioPartido {
 	void eliminarPartido(Partido partido);
 	Partido buscarPorId(Long id);
 	Partido consultarPartido(Partido partido);
+	List<Partido> listarTodosLosPartidosSinTerminar();
 }
