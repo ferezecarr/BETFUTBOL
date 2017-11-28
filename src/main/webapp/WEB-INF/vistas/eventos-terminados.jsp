@@ -30,12 +30,12 @@
 										<table class="table table-hover">
 											<thead>		
 											<tr>
-												<th class="text-center">local</th>
-												<th class="text-center">visitante</th>
-													<th class="text-center">descripcion</th>
-														<th class="text-center">ganador</th>
-															<th class="text-center">goles locales</th>
-																<th class="text-center">goles visitantes</th>
+												<th class="text-center">Local</th>
+												<th class="text-center">Visitante</th>
+													<th class="text-center">Descripcion</th>
+														<th class="text-center">Cuota con premio</th>
+															<th class="text-center">Goles del local</th>
+																<th class="text-center">Goles del visitante</th>
 												
 											</tr>
 											</thead>
