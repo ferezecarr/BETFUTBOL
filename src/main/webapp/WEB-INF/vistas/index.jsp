@@ -23,16 +23,13 @@
 				<div class="col-md-8 col-md-offset-2">
 					<ol class="breadcrumb text-center">
 						<li class="breadcrumb-item active">Partidos disponibles para apostar - Seleccione la categoría que desea ver:</li>
-					</ol>
-										
+					</ol>										
 					<c:url value="/index?filtro=Resultado" var="url" />
-					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Resultado específico (Ganador o empate)</a>
-
+					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Resultado (Ganador o empate)</a>
 					<c:url value="/index?filtro=Cantidad de goles en un partido" var="url" />
-					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cantidad de goles en un partido (0 a +4)</a>
-					
+					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cantidad de goles del partido (0 a +4)</a>				
 					<c:url value="/index?filtro=Cantidad de goles par o impar" var="url" />
-					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cantidad de goles en un partido (Par o Impar)</a>
+					<a href="<c:out value='${url}'/>" class="btn btn-default botonesFiltro">Cantidad de goles del partido (Par o Impar)</a>
 					
 					<c:forEach items="${eventos}" var="e">
 						<div class="panel panel-primary primario">
