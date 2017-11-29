@@ -47,12 +47,6 @@ public class ServicioPartidoImpl implements ServicioPartido {
 		partidoDao.update(partido);		
 	}
 
-	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})	
-	@Override
-	public void eliminarPartido(Partido partido) {
-		partidoDao.delete(partido);	
-	}
-
 
 	@Override
 	public List<Partido> listarTodosLosPartidosSinTerminar()

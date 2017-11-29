@@ -18,7 +18,6 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioApuesta;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCuota;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
-import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorMisApuestas {

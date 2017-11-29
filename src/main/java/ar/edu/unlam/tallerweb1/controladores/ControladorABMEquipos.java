@@ -131,46 +131,4 @@ public class ControladorABMEquipos {
 		
 		return new ModelAndView("ABM-Equipo" , modelo);
 	}
-	
-	
-	
-	
-	
-	
-	@RequestMapping(path = "eliminar-equipo" , method = RequestMethod.POST)
-	public ModelAndView eliminarEquipo(@ModelAttribute("equipo") Equipo equipo , HttpServletRequest request) {
-		
-		if(request.getSession().getAttribute("AdminId") == null) {
-			return new ModelAndView("redirect:/");
-		}
-		
-		ModelMap modelo = new ModelMap();
-		
-		Usuario usuarioLogeado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("AdminId"));
-		modelo.put("usuario",usuarioLogeado);
-		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
-		
-		
-		if(servicioEquipo.consultarEquipo(equipo) != null) {
-
-			servicioEquipo.eliminarEquipo(equipo);
-		
-			modelo.put("aviso-eliminar-equipo", "Se elimino correctamente");
-		} else {
-			modelo.put("aviso-error-eliminar-equipo", "No se pudo eliminar");
-		}
-		
-		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-		modelo.put("equipos", equipos);
-		
-		Equipo equipoCreado = new Equipo();
-		modelo.put("equipo",equipoCreado);
-
-		
-		return new ModelAndView("ABM-Equipo" , modelo);
-		
-	}
-	
-	
-	
 }

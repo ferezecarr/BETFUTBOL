@@ -53,12 +53,6 @@ public class PartidoDaoImpl implements PartidoDao {
 	public void update(Partido partido) {
 		sessionFactory.getCurrentSession().update(partido);		
 	}
-
-	@Override
-	public void delete(Partido partido) {
-		sessionFactory.getCurrentSession().delete(partido);		
-	}
-
 	
 	@SuppressWarnings("unchecked")
 	@Override

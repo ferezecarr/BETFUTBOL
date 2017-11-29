@@ -39,12 +39,6 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 		return equipoDao.findByMatch(equipo);
 	}
 
-	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})	
-	@Override
-	public void eliminarEquipo(Equipo equipo) {
-		equipoDao.delete(equipo);	
-	}
-
 	@Transactional(readOnly = false , propagation = Propagation.REQUIRED , rollbackFor = {Exception.class})
 	@Override
 	public void actualizarEquipo(Equipo equipo) {

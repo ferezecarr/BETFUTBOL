@@ -52,14 +52,6 @@ public class EquipoDaoImpl implements EquipoDao{
 	}
 
 	@Override
-	public void delete(Equipo equipo) {
-		Equipo e = (Equipo)sessionFactory.getCurrentSession().createCriteria(Equipo.class)
-				.add(Restrictions.eq("nombre", equipo.getNombre()))
-				.uniqueResult();
-		sessionFactory.getCurrentSession().delete(e);		
-	}
-
-	@Override
 	public void update(Equipo equipo) {
 		
 		

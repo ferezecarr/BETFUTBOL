@@ -8,7 +8,6 @@ public interface EquipoDao {
 	List<Equipo> findAll();
 	List<Equipo> add(Equipo equipo);
 	void save(Equipo equipo);
-	void delete(Equipo equipo);
 	void update(Equipo equipo);
 	Equipo findById(Long id);
 	Equipo findByMatch(Equipo equipo);
