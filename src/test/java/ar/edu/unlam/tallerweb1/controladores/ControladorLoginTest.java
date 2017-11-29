@@ -102,6 +102,20 @@ public class ControladorLoginTest {
 	}
 	
 	@Test
+	public void testQueVerificaQueHayaCerradoSesionIncorrectamente() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(usuario);
+		when(servicioEquipo.listarTodosLosEquipos()).thenReturn(new LinkedList<Equipo>());
+		
+		ModelAndView modelo = controladorLogin.cerrarSession(request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
+		assertThat(modelo.getModel().get("aviso")).isEqualTo(null);
+		
+		verify(session , never()).setAttribute("ROL", "USER");
+	}
+	
+	@Test
 	public void testQueVerificaQueSePuedaRegistrarUnUsuarioCorrectamente() {
 		when(request.getSession()).thenReturn(session);
 		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(usuario);
