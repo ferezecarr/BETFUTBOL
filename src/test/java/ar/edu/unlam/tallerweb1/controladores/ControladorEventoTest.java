@@ -45,6 +45,12 @@ public class ControladorEventoTest {
 		
 		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
 		assertThat(modelo.getModel()).isEmpty();
+		
+		verify(servicioLogin, never()).buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		verify(usuario, never()).getNombreYApellido();
+		verify(servicioPartido, never()).listarTodosLosPartidos();
+		verify(servicioEvento, never()).listarEventos();
+		verify(servicioEvento, never()).listarEventosFinalizables();		
 	}
 	
 	@Test
@@ -67,5 +73,11 @@ public class ControladorEventoTest {
 		assertThat(modelo.getModel().get("partidos")).isEqualTo(listaPartidos);
 		assertThat(modelo.getModel().get("eventos")).isEqualTo(listaEventos);
 		assertThat(modelo.getModel().get("eventosFinalizables")).isEqualTo(listaEventos);
+		
+		verify(servicioLogin, times(1)).buscarPorId((Long) request.getSession().getAttribute("AdminId"));
+		verify(usuario, times(1)).getNombreYApellido();
+		verify(servicioPartido, times(1)).listarTodosLosPartidos();
+		verify(servicioEvento, times(1)).listarEventos();
+		verify(servicioEvento, times(1)).listarEventosFinalizables();
 	}
 }
