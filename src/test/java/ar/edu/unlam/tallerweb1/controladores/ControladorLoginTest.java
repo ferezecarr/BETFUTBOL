@@ -101,5 +101,23 @@ public class ControladorLoginTest {
 		verify(session , times(0)).setAttribute("AdminId", 91L);
 	
 	}
+	
+	@Test
+	public void testQueVerificaQueSePuedaRegistrarUnUsuarioCorrectamente() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(usuario);
+		when(servicioEquipo.listarTodosLosEquipos()).thenReturn(new LinkedList<Equipo>());
+		when(usuario.getId()).thenReturn(91L);
+		when(usuario.getEmail()).thenReturn("usuario@betfutbol.com");
+		when(usuario.getPassword()).thenReturn("12345");
+		when(usuario.getRol()).thenReturn("USUARIO");
+		
+		ModelAndView modelo = controladorLogin.registrarUsuario(usuario, request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("index");
+		assertThat(modelo.getModel().get("aviso")).isEqualTo("Registro exitoso");
+		
+		verify(session , times(0)).setAttribute("UserId", 91L);
+	}
 
 }
