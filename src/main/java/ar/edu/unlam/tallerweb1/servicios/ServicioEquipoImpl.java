@@ -1,13 +1,10 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import ar.edu.unlam.tallerweb1.dao.EquipoDao;
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
 
@@ -16,7 +13,6 @@ import ar.edu.unlam.tallerweb1.modelo.Equipo;
 //Solo necesita leer , no escribir , y no tiene prioridad de generacion
 @Transactional(readOnly = true , propagation = Propagation.SUPPORTS)
 public class ServicioEquipoImpl implements ServicioEquipo{
-
 	
 	@Inject
 	private EquipoDao equipoDao;
@@ -61,5 +57,9 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 	public List<Equipo> insertarEquipo(Equipo equipo) {
 		return equipoDao.add(equipo);
 	}
-
+	
+	@Override
+	public List<Equipo> traerEquiposQueNoJueganPartidos(List<Equipo> equipos){
+		return equipoDao.findTeamsWithoutMatches(equipos);
+	}
 }

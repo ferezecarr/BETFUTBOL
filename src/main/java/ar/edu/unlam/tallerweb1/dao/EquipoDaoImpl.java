@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.dao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
+import ar.edu.unlam.tallerweb1.modelo.Partido;
 
 @Service("EquipoDao")
 @Transactional
@@ -73,5 +76,27 @@ public class EquipoDaoImpl implements EquipoDao{
 		return equipos;
 	}
 
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Equipo> findTeamsWithoutMatches(List<Equipo> equipos){
+		//Declaro un Set para evitar repetidos y traigo la lista de partidos
+		Set<Equipo> equiposConPartidos = new HashSet<Equipo>();
+		List<Partido> partidos = sessionFactory.getCurrentSession().createCriteria(Partido.class)
+				.list();
+		
+		//Agrego los equipos a la coleccion
+		for (Partido partido : partidos) {
+			equiposConPartidos.add(partido.getLocal());
+			equiposConPartidos.add(partido.getVisitante());
+		}
+		
+		//Quito los equipos que juegan algun partido y devuelvo la lista	
+		equipos.removeAll(equiposConPartidos);
+		
+		//Mostrando equipos sin partidos
+		for (Equipo e : equipos) {
+			System.out.println("==============="+e.getNombre());
+		}		
+		return equipos;
+	}	
 }
