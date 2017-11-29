@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="es">
 <head><%@ include file="includes/cabecera.jsp"%>
@@ -69,7 +70,7 @@
 											<form:select path="evento.partido.id" class="form-control" required="required">
 													<form:option value="" >Elegir:</form:option>											
 												<c:forEach items="${partidos}" var="p">														
- 													<form:option value="${p.id}">${p.id} -  [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</form:option>
+ 													<form:option value="${p.id}">${p.id} -  [${p.local.nombre} vs ${p.visitante.nombre}] - <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${p.fecha}"/></form:option>
  												</c:forEach>
 											</form:select>
 										</div>
