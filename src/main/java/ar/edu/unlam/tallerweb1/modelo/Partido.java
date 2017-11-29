@@ -35,7 +35,7 @@ public class Partido {
 	private Integer golesLocal = 0;	
 	private Integer golesVisitante = 0;
 	
-	@DateTimeFormat (pattern = "yyyy-MM-dd HH:mm")
+	@DateTimeFormat (pattern = "yyyy/MM/dd HH:mm")
 	private Date fecha;
 	
 	/*Esto se setea automaticamente a TRUE cuando pasan dos horas de la fecha del 

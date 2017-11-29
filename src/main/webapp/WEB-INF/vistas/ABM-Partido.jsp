@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head><%@ include file="includes/cabecera.jsp"%>
+	<link rel="stylesheet" type="text/css" href="js/datetimepicker/jquery.datetimepicker.css" />
+	<script src="js/datetimepicker/jquery.js"></script>
+	<script src="js/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 </head>
 <body>
 <%@ include file="includes/navegador.jsp"%>
@@ -101,7 +104,7 @@
 								<div class="col-md-8 col-md-offset-2">
 									<div class="input-group">
 										<span class="input-group-addon">Fecha</span> 
-										<form:input type="text" path="fecha" class="form-control" />											
+										<form:input type="text" path="fecha" id="datetimepicker" placeholder="Ingrese la fecha del partido a disputar." class="form-control" />											
 									</div>
 								</div>
 							</div>
@@ -144,7 +147,7 @@
 									<div class="col-md-8 col-md-offset-2">
 										<div class="input-group">
 											<span class="input-group-addon">Nueva fecha</span> 
-											<form:input path="fecha" type="text" class="form-control" name="fechaPartido" placeholder="Ingrese la fecha del partido a disputar." required="required"/>
+											<form:input path="fecha" type="text" class="form-control" id="datetimepicker2"  placeholder="Ingrese la nueva fecha del partido seleccionado." />
 										</div>
 									</div>
 								</div>
@@ -200,5 +203,7 @@
 			</div>
 		</div>
 	</div>
+	
+
 </body>
 </html>
