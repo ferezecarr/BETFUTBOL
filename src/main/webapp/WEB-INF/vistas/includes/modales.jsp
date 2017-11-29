@@ -78,7 +78,7 @@
 	        <h2 class="modal-title" id="exampleModalLabel">Iniciar sesión:</h2>	        
 	      </div>	     
 	      <div class="modal-body text-center">
-	             <h4>¿Está seguro que desea salir de la sesión actual?.</h4>	      		      
+	            	      		      
 	        <div class="input-group">
 		      	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 		        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="Ingrese E-mail" id="email" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
