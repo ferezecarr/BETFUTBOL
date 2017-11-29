@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import static org.mockito.Mockito.*;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,6 +36,9 @@ public class ControladorLoginTest {
 
 	@Mock
 	private Usuario usuario;
+	
+	@Mock
+	private String json;
 	
 	@Mock
 	private HttpServletRequest request;
@@ -119,5 +121,6 @@ public class ControladorLoginTest {
 		
 		verify(session , times(0)).setAttribute("UserId", 91L);
 	}
+	
 
 }
