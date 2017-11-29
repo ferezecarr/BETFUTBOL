@@ -14,4 +14,7 @@
 	<script src="js/js.js"></script>
 	
 	<!-- TÍTULO DEL PROYECTO -->
-	<title>BetFutbol.com - Home</title>
+	<title>BetFutbol.com</title>
+
+	<!-- ICONO DEL SITIO -->
+	<link rel="icon" href="https://icon-icons.com/icons2/861/PNG/512/Soccer_icon-icons.com_67819.png">

@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
  <nav class="navbar navbar-default navegador navbar-fixed-top">
@@ -12,8 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                
+                </button>               
                 
 		  		 <c:choose>
                     	<c:when test="${AdminId != null}">
@@ -22,24 +20,17 @@
 	                	<c:otherwise>
 	   						<a class="navbar-brand hoverNav" href="http://localhost:8080/proyecto-limpio-spring/index"><img src="img/bf.png" class="logo">
 	   					</c:otherwise>
-                    </c:choose>
-		  		
-		  		
-                </a>
-
+                    </c:choose>		  		
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                
-                
+                                
                 	<c:if test="${AdminId == null}">
 		   				<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/index">Inicio</a></li>
 		  			</c:if>
 		  				
-		   			
-
                 	<c:if test="${userId != null}">
 		   				 <li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/mis-apuestas">Mis Apuestas</a></li>
 		  			</c:if>
@@ -63,14 +54,11 @@
                     <c:if test="${userId != null}">
 		  				<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/perfil">Mi Perfil</a></li>
 		  			</c:if>
-		  			
-		  			
-		  				<c:if test="${AdminId == null}">
+		  					  			
+		  			<c:if test="${AdminId == null}">
 		   				<li class="hoverNav"><a href="eventos-terminados">Eventos terminados</a></li>
 		  			</c:if>
-		  			
-		  			
-                    
+		  					  			                  
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -104,14 +92,13 @@
 		   					</c:when>	   						
 	                    
                             <c:otherwise>
-                            	<li><a href="#" data-toggle="modal" data-target="#modalLogin">Login</a></li>
+                            	<li><a href="#" data-toggle="modal" data-target="#modalLogin">Iniciar sesión</a></li>
 	                            <li><a href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a></li>
                             </c:otherwise>                            
 	                    </c:choose>
                         </ul>
                     </li>
-                </ul>
-                
+                </ul>               
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
