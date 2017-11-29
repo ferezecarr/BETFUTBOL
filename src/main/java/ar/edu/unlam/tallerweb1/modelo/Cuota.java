@@ -20,7 +20,7 @@ public class Cuota {
 	@JoinColumn(name = "evento_id")
 	private Evento evento;
 	
-	private Double valor = 1.00d;	
+	private Double valor = 2.00d;	
 	private Long cantidadVotos = 0L;	
 	private String nombre;
 	

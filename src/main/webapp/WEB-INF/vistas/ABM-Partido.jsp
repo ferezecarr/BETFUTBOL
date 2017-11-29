@@ -89,8 +89,8 @@
 											<div class="input-group">
 												<span class="input-group-addon">Visitante</span>												
 												<form:select class="form-control" path="visitante.id">
-													<c:forEach items="${equipos}" var="e">
-														<form:option value="" >Elegir:</form:option>
+													<form:option value="" >Elegir:</form:option>
+													<c:forEach items="${equipos}" var="e">														
 														<form:option value="${e.id}">${e.nombre}</form:option>
 													</c:forEach>
 												</form:select>

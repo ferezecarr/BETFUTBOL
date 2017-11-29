@@ -20,7 +20,7 @@ $(document).ready(function() {
 			'<div class="input-group center">',
 			'<span class="input-group-addon">'+ nombreCuota[i]+'</span>',			
 			'<input class="form-control" type="hidden" tipo="'+opcion+'" id="cuotas['+i+'].nombre" name="cuotas['+i+'].nombre" value="'+nombreCuota[i]+'"/>',								
-			'<input class="form-control" type="text" tipo="'+opcion+'" id="cuotas['+i+'].valor" name="cuotas['+i+'].valor" value="1.0"/>',
+			'<input class="form-control" type="text" tipo="'+opcion+'" id="cuotas['+i+'].valor" name="cuotas['+i+'].valor" value="2.0"/>',
 			'</div>',
 			'</div>'
 			);

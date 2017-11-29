@@ -33,7 +33,7 @@
 												<th class="text-center">Local</th>
 												<th class="text-center">Visitante</th>
 													<th class="text-center">Evento</th>
-														<th class="text-center">Tipo de apuesta</th>
+														<th class="text-center">Cuota Apostada</th>
 															<th class="text-center">Cantidad apostada</th>
 																<th class="text-center">Valor de cuota</th>
 												
