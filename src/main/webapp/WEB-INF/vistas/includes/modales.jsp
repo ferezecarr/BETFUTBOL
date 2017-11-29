@@ -40,26 +40,28 @@
    	
    	 	
     <form:form action="login" method="POST" modelAttribute="usuario" name="formulario1">
-	<div class="modal fade" data-backdrop="static" id="myModalApostar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+	<div class="modal fade" id="myModalApostar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 	  <div class="modal-dialog" role="document">
-	    <div class="modal-content col-sm-12">
+	    <div class="modal-content">
+	    	   <a class="btn pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>	    
 	      <div class="modal-header">
-	        <h2 class="modal-title" id="exampleModalLabel">Para poder apostar primero debe iniciar sesión</h2>	        
+	        <h2 class="modal-title" id="exampleModalLabel">Apuesta en curso:</h2>	        
 	      </div>     
-	      <div class="modal-body col-sm-12">	      
+	      <div class="modal-body text-center">
+	      	        <h4>Para apostar primero debe iniciar sesión.</h4>	      		      	      	      
 	        <div class="input-group">
 		      	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-		        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="E-mail" id="email" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
+		        <form:input path="email" type="email" class="form-control" placeholder="Ingrese E-mail" id="email" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
 	        </div>
 	        <div class="input-group">
 		        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-		        <form:input path="password" type="password" class="col-sm-6 form-control" placeholder="Password" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
+		        <form:input path="password" type="password" class="form-control" placeholder="Ingrese contraseña" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>
 		    </div>
-	      </div>
-	      
-	      <div class="modal-footer col-sm-12">	       
-	          <button type="submit" class="btn btn-success" value="Enviar"  >Enviar</button>
-	          <button class="btn btn-primary" data-dismiss="modal" value="Cancelar">Cancelar</button>	       
+	      </div>	      
+	      <div class="modal-footer">
+	      	<div class="form-group text-center">	       
+	          <button type="submit" class="btn btn-primary" value="enviar">Iniciar sesión</button>
+	      	</div>
 	      </div>
 	    </div>
 	  </div>
@@ -75,7 +77,8 @@
 	      <div class="modal-header">
 	        <h2 class="modal-title" id="exampleModalLabel">Iniciar sesión:</h2>	        
 	      </div>	     
-	      <div class="modal-body">	      
+	      <div class="modal-body text-center">
+	             <h4>¿Está seguro que desea salir de la sesión actual?.</h4>	      		      
 	        <div class="input-group">
 		      	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 		        <form:input path="email" type="email" class="col-sm-6 form-control" placeholder="Ingrese E-mail" id="email" required="required" onkeypress="if (event.keyCode == 13) enviar_formulario()"/><br>

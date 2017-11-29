@@ -15,10 +15,10 @@
                 
 		  		 <c:choose>
                     	<c:when test="${AdminId != null}">
-		   					<a class="navbar-brand hoverNav" href="http://localhost:8080/proyecto-limpio-spring/ABM-Equipo"><img src="img/bf.png" class="logo">
+		   					<a class="navbar-brand hoverNav" href="http://localhost:8080/proyecto-limpio-spring/ABM-Equipo"><img src="img/bf.png" class="logo"></a>
 		  				</c:when>
 	                	<c:otherwise>
-	   						<a class="navbar-brand hoverNav" href="http://localhost:8080/proyecto-limpio-spring/index"><img src="img/bf.png" class="logo">
+	   						<a class="navbar-brand hoverNav" href="http://localhost:8080/proyecto-limpio-spring/index"><img src="img/bf.png" class="logo"></a>
 	   					</c:otherwise>
                     </c:choose>		  		
             </div>
@@ -36,7 +36,7 @@
 		  			</c:if>
 		  				
 		  			 <c:if test="${AdminId == null }">
-                    	<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/ranking">Ranking de Apostadores</a></li>
+                    	<li class="hoverNav"><a href="http://localhost:8080/proyecto-limpio-spring/ranking">Ranking de apostadores</a></li>
                     </c:if>
                     
                     <c:if test="${AdminId != null }">
@@ -56,7 +56,7 @@
 		  			</c:if>
 		  					  			
 		  			<c:if test="${AdminId == null}">
-		   				<li class="hoverNav"><a href="eventos-terminados">Eventos terminados</a></li>
+		   				<li class="hoverNav"><a href="eventos-terminados">Eventos finalizados</a></li>
 		  			</c:if>
 		  					  			                  
                 </ul>
@@ -77,8 +77,8 @@
                         
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-
-                        <c:choose>
+                        
+                      <c:choose>
                             <c:when test="${userId != null}">
                             
 		   						<li>
@@ -89,8 +89,7 @@
 		   						<li>
 		   						<a href="#" data-toggle="modal" data-target="#logout">Salir</a>
 		   						</li>
-		   					</c:when>	   						
-	                    
+		   					</c:when>	   							                    
                             <c:otherwise>
                             	<li><a href="#" data-toggle="modal" data-target="#modalLogin">Iniciar sesión</a></li>
 	                            <li><a href="#" data-toggle="modal" data-target="#modalRegistro">Registrarse</a></li>
