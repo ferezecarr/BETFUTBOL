@@ -86,7 +86,8 @@ public class ControladorABMEquipos {
 		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
 		modelo.put("equipos", equipos);
 		
-		
+		List<Equipo> equiposSinEncuentros = servicioEquipo.traerEquiposQueNoJueganPartidos(equipos);
+		modelo.put("equiposSinPartidos", equiposSinEncuentros);
 		
 		return new ModelAndView("ABM-Equipo",modelo);
 	}
@@ -124,6 +125,10 @@ public class ControladorABMEquipos {
 
 		List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
 		modelo.put("equipos", equipos);
+		
+		List<Equipo> equiposSinEncuentros = servicioEquipo.traerEquiposQueNoJueganPartidos(equipos);
+		modelo.put("equiposSinPartidos", equiposSinEncuentros);
+		
 		return new ModelAndView("ABM-Equipo" , modelo);
 	}
 	
