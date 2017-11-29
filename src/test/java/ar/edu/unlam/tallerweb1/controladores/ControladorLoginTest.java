@@ -38,9 +38,6 @@ public class ControladorLoginTest {
 	private Usuario usuario;
 	
 	@Mock
-	private String json;
-	
-	@Mock
 	private HttpServletRequest request;
 	
 	@Mock
