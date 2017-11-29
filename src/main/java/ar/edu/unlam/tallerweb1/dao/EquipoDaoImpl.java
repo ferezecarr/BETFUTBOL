@@ -35,14 +35,6 @@ public class EquipoDaoImpl implements EquipoDao{
 		sessionFactory.getCurrentSession().save(equipo);		
 	}
 
-	@Override
-	public Equipo findById(Long id) {
-		
-		return (Equipo) sessionFactory.getCurrentSession().createCriteria(Equipo.class)
-				.add(Restrictions.eq("id",id)).uniqueResult();
-		
-	
-	}
 
 	@Override
 	public Equipo findByMatch(Equipo equipo) {

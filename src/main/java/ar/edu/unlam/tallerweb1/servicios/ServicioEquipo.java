@@ -8,7 +8,6 @@ public interface ServicioEquipo {
 	List<Equipo> insertarEquipo(Equipo equipo);
 	void guardarEquipo(Equipo equipo);
 	void actualizarEquipo(Equipo equipo);
-	Equipo buscarPorId(Long id);
 	Equipo consultarEquipo(Equipo equipo);
 	List<Equipo> traerEquiposQueNoJueganPartidos(List<Equipo> equipos);
 }

@@ -30,11 +30,6 @@ public class ServicioEquipoImpl implements ServicioEquipo{
 	}
 
 	@Override
-	public Equipo buscarPorId(Long id) {
-		return equipoDao.findById(id);
-	}
-
-	@Override
 	public Equipo consultarEquipo(Equipo equipo) {
 		return equipoDao.findByMatch(equipo);
 	}

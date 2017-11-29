@@ -9,7 +9,6 @@ public interface EquipoDao {
 	List<Equipo> add(Equipo equipo);
 	void save(Equipo equipo);
 	void update(Equipo equipo);
-	Equipo findById(Long id);
 	Equipo findByMatch(Equipo equipo);
 	List<Equipo> findTeamsWithoutMatches(List<Equipo> equipos);
 }

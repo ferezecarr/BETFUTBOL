@@ -109,15 +109,15 @@ public class ControladorABMEquipos {
 		
 		
 		//como estoy actializando el nombre pero no el id, lo tengo que buscar por este ultimo
-		if(servicioEquipo.buscarPorId(equipo.getId()) != null) {
+		if(servicioEquipo.consultarEquipo(equipo) == null) {
 	
 			
 			servicioEquipo.actualizarEquipo(equipo);
 		
-			modelo.put("aviso-actualizar-equipo", "Se actualizo correctamente");
+			modelo.put("aviso", "Se actualizo correctamente");
 			
 		} else {
-			modelo.put("aviso-error-actualizar-equipo", "No se pudo actualizar");
+			modelo.put("aviso", "El nombre se encuentra en uso");
 		}
 		
 		Equipo equipoCreado = new Equipo();
