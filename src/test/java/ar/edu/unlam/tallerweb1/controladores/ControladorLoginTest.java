@@ -65,6 +65,7 @@ public class ControladorLoginTest {
 
 		assertThat(modelo.getViewName()).isEqualTo("ABM-Equipo");
 		assertThat(modelo.getModel()).isNotEmpty();
+		
 		verify(session, times(1)).setAttribute("AdminId", 91L);
 		
 	}
@@ -79,6 +80,7 @@ public class ControladorLoginTest {
 		
 		assertThat(modelo.getViewName()).isEqualTo("index");
 		assertThat(modelo.getModel().get("aviso")).isEqualTo("Usuario inexistente");
+		
 		verify(session , never()).setAttribute("ROL", "ADMIN");
 	}
 	
@@ -102,6 +104,20 @@ public class ControladorLoginTest {
 	}
 	
 	@Test
+	public void testQueVerificaQueHayaCerradoSesionIncorrectamente() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(usuario);
+		when(servicioEquipo.listarTodosLosEquipos()).thenReturn(new LinkedList<Equipo>());
+		
+		ModelAndView modelo = controladorLogin.cerrarSession(request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("redirect:/");
+		assertThat(modelo.getModel().get("aviso")).isEqualTo(null);
+		
+		verify(session , never()).setAttribute("ROL", "USER");
+	}
+	
+	@Test
 	public void testQueVerificaQueSePuedaRegistrarUnUsuarioCorrectamente() {
 		when(request.getSession()).thenReturn(session);
 		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(usuario);
@@ -119,5 +135,21 @@ public class ControladorLoginTest {
 		verify(session , times(0)).setAttribute("UserId", 91L);
 	}
 	
+	@Test
+	public void testQueVerificaQueSePuedaRegistrarUnUsuarioIncorrectamente() {
+		when(request.getSession()).thenReturn(session);
+		when(servicioLogin.consultarUsuario(any(Usuario.class))).thenReturn(usuario);
+		when(servicioEquipo.listarTodosLosEquipos()).thenReturn(new LinkedList<Equipo>());
+		when(usuario.getEmail()).thenReturn("ferezecarr@gmail.com");
+		when(usuario.getPassword()).thenReturn("12345");
+		when(usuario.getRol()).thenReturn("USUARIO");
+		
+		ModelAndView modelo = controladorLogin.registrarUsuario(usuario, request);
+		
+		assertThat(modelo.getViewName()).isEqualTo("index");
+		assertThat(modelo.getModel().get("error")).isEqualTo(null);
+		
+		verify(session , times(0)).setAttribute("ROL", "USER");
+	}
 
 }
