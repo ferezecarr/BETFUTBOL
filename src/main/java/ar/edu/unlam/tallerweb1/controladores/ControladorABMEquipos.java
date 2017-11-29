@@ -1,25 +1,18 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import ar.edu.unlam.tallerweb1.modelo.Apuesta;
 import ar.edu.unlam.tallerweb1.modelo.Equipo;
-import ar.edu.unlam.tallerweb1.modelo.Evento;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioEquipo;
-import ar.edu.unlam.tallerweb1.servicios.ServicioEvento;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
-import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 
 @Controller
 public class ControladorABMEquipos {
@@ -51,6 +44,9 @@ public class ControladorABMEquipos {
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
+		//Agrego equipos que no juegan ningun partido
+		List<Equipo> equiposSinEncuentros = servicioEquipo.traerEquiposQueNoJueganPartidos(equipos);
+		modelo.put("equiposSinPartidos", equiposSinEncuentros);
 		
 		return new ModelAndView("ABM-Equipo",modelo);
 	}

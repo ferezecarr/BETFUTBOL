@@ -107,7 +107,7 @@
 									<div class="input-group center">
 										<span class="input-group-addon">Equipo a modificar:</span>																								
 											<form:select path="id" class="form-control" required="required">
-											<c:forEach items="${equipos}" var="e">														
+											<c:forEach items="${equiposSinPartidos}" var="e">														
 												<form:option value="${e.id}">${e.nombre}</form:option>
 											</c:forEach>
 											</form:select>

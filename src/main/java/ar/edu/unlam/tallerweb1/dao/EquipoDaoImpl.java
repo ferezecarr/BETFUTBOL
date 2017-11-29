@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.dao;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -80,6 +81,8 @@ public class EquipoDaoImpl implements EquipoDao{
 	@Override
 	public List<Equipo> findTeamsWithoutMatches(List<Equipo> equipos){
 		//Declaro un Set para evitar repetidos y traigo la lista de partidos
+		List<Equipo> equiposSinPartidos = new LinkedList<Equipo>();
+		equiposSinPartidos.addAll(equipos);
 		Set<Equipo> equiposConPartidos = new HashSet<Equipo>();
 		List<Partido> partidos = sessionFactory.getCurrentSession().createCriteria(Partido.class)
 				.list();
@@ -91,12 +94,8 @@ public class EquipoDaoImpl implements EquipoDao{
 		}
 		
 		//Quito los equipos que juegan algun partido y devuelvo la lista	
-		equipos.removeAll(equiposConPartidos);
-		
-		//Mostrando equipos sin partidos
-		for (Equipo e : equipos) {
-			System.out.println("==============="+e.getNombre());
-		}		
-		return equipos;
+		equiposSinPartidos.removeAll(equiposConPartidos);
+	
+		return equiposSinPartidos;
 	}	
 }
