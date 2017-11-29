@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
@@ -48,7 +49,9 @@
 												<td>${p.id}</td>
 												<td>${p.local.nombre}</td>
 												<td>${p.visitante.nombre}</td>
-												<td>${p.fecha}</td>
+												<td>
+													<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${p.fecha}"/>
+												</td>
 											</tbody>
 											</c:forEach>
 										</table>
@@ -136,7 +139,7 @@
 												<span class="input-group-addon">Partido a modificar:</span>
 												 <form:select name="partidoParaModificar" class="form-control" required="required" path="id">										
 													<c:forEach items="${partidos}" var="p">													
-														<form:option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</form:option>												
+														<form:option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${p.fecha}"/></form:option>												
 													</c:forEach>
 												</form:select>
 											</div>
@@ -182,7 +185,7 @@
 												<span class="input-group-addon">Seleccione partido:</span>
 												 <form:select name="partidoParaModificar" class="form-control" required="required" path="id">													
 													<c:forEach items="${partidosSinTerminar}" var="p">													
-														<form:option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - ${p.fecha}</form:option>												
+														<form:option value="${p.id}">${p.id} - [${p.local.nombre} vs ${p.visitante.nombre}] - <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${p.fecha}"/></form:option>												
 													</c:forEach>
 												</form:select>
 											</div>
