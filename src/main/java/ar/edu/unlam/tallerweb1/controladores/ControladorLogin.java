@@ -43,7 +43,7 @@ public class ControladorLogin {
 		ModelMap modelo = new ModelMap();
 		
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
-		modelo.put("evento_apostarPorGanadorEmpate", misEventos);	
+		modelo.put("eventos", misEventos);	
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);	
 		
@@ -99,7 +99,7 @@ public class ControladorLogin {
 		ModelMap modelo= new ModelMap();
 		
 		List<Evento> misEventos = servicioEvento.listarEventosPorNombre("Resultado");
-		modelo.put("evento_apostarPorGanadorEmpate", misEventos);
+		modelo.put("eventos", misEventos);
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);	
 		
