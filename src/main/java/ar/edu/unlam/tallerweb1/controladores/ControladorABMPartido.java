@@ -141,6 +141,7 @@ public class ControladorABMPartido {
 			partidoNuevo.setFecha(partido.getFecha());
 			servicioPartido.actualizarPartido(partidoNuevo);
 			servicioEvento.actualizarDescripcionesDeEventos(partidoNuevo);
+			modelo.put("aviso","fecha cambiada correctamente");
 			
 		}
 		
@@ -185,6 +186,7 @@ public class ControladorABMPartido {
 			partidoNuevo.setIsTerminado(true);
 			servicioPartido.actualizarPartido(partidoNuevo);
 			servicioEvento.actualizarDescripcionesDeEventos(partidoNuevo);
+			modelo.put("aviso","Partido finalizado correctamente");
 		}
 		
 		
