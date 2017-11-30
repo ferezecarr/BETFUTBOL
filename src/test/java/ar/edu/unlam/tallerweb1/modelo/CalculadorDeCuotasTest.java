@@ -77,7 +77,7 @@ public class CalculadorDeCuotasTest extends SpringTest{
 	}
 	
 	@Test
-	public void testQueNoGeneraNuevasCuotasSiLaOpcionVotadaEstaEnElLimiteDeValorMinimo(){
+	public void testQueGeneraNuevasCuotasPeroMantieneLaMasVotadaSiEstaEnElValorMinimo(){
 		cuota1.setCantidadVotos(10L);
 		cuota2.setCantidadVotos(2L);
 		cuota3.setCantidadVotos(9L);		
@@ -87,8 +87,8 @@ public class CalculadorDeCuotasTest extends SpringTest{
 		cuotasDevueltas = CalculadorDeCuotas.calcular(evento.getCuotas(), "Cuota 1");
 		
 		assertThat(cuotasDevueltas.get(0).getValor()).isEqualTo(1.26d);
-		assertThat(cuotasDevueltas.get(1).getValor()).isEqualTo(2.99d);
-		assertThat(cuotasDevueltas.get(2).getValor()).isEqualTo(1.89d);			
+		assertThat(cuotasDevueltas.get(1).getValor()).isNotEqualTo(2.99d);
+		assertThat(cuotasDevueltas.get(2).getValor()).isNotEqualTo(1.89d);			
 	}
 	
 	@Test
