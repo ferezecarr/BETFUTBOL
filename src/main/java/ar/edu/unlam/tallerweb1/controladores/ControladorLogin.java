@@ -47,37 +47,42 @@ public class ControladorLogin {
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);	
 		
-		
-		if(servicioLogin.consultarUsuario(usuario) != null)
-		{	
-			Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
-		
+		try {
 			
-			modelo.put("usuario",usuarioBuscado);
-			modelo.put("nombre",usuarioBuscado.getNombreYApellido());
-			
-			
-			/*al ser un rol: admin, le redirije a otra vista, y cambia los botones en la barra de navegacion */
-			if(usuarioBuscado.getRol().equals("ADMIN"))
+			if(servicioLogin.consultarUsuario(usuario) != null)
 			{	
-				request.getSession().setAttribute("AdminId", usuarioBuscado.getId());
-				
-				Equipo equipo= new Equipo();
-				modelo.put("equipo",equipo);
-				
-				List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
-				modelo.put("equipos", equipos);
-				
-				
-				return new ModelAndView("ABM-Equipo",modelo);
-			}
+				Usuario usuarioBuscado= servicioLogin.consultarUsuario(usuario);
 			
-			request.getSession().setAttribute("userId", usuarioBuscado.getId());
+				
+				modelo.put("usuario",usuarioBuscado);
+				modelo.put("nombre",usuarioBuscado.getNombreYApellido());
+				
+				
+				/*al ser un rol: admin, le redirije a otra vista, y cambia los botones en la barra de navegacion */
+				if(usuarioBuscado.getRol().equals("ADMIN"))
+				{	
+					request.getSession().setAttribute("AdminId", usuarioBuscado.getId());
+					
+					Equipo equipo= new Equipo();
+					modelo.put("equipo",equipo);
+					
+					List<Equipo> equipos = servicioEquipo.listarTodosLosEquipos();
+					modelo.put("equipos", equipos);
+					
+					
+					return new ModelAndView("ABM-Equipo",modelo);
+				}
+				
+				request.getSession().setAttribute("userId", usuarioBuscado.getId());
+			}
+			else
+			{
+				modelo.put("aviso","Usuario inexistente");
+				return new ModelAndView("index",modelo);
+			}
 		}
-		else
-		{
-			modelo.put("aviso","Usuario inexistente");
-			return new ModelAndView("index",modelo);
+		catch(NullPointerException e) {
+			modelo.put("aviso", e.getMessage());
 		}
 			
 		return new ModelAndView("index",modelo);
@@ -103,26 +108,31 @@ public class ControladorLogin {
 		Apuesta apuesta= new Apuesta();	
 		modelo.put("apuesta",apuesta);	
 		
-		
 		Usuario usuarioDefault= new Usuario();
-		if(servicioLogin.consultarUsuarioPorMail(usuario)==null)
-		{
+		try {
+			if(servicioLogin.consultarUsuarioPorMail(usuario)==null)
+			{
+				
+				servicioLogin.guardar(usuario);
+				
+				request.getSession().setAttribute("userId", usuario.getId());
+				
+				modelo.put("usuario",usuario);
+				modelo.put("nombre",usuario.getNombreYApellido());
+				modelo.put("aviso","Registro exitoso");
+				enviarMail(usuario);
 			
-			servicioLogin.guardar(usuario);
-			
-			request.getSession().setAttribute("userId", usuario.getId());
-			
-			modelo.put("usuario",usuario);
-			modelo.put("nombre",usuario.getNombreYApellido());
-			modelo.put("aviso","Registro exitoso");
-			enviarMail(usuario);
-		
+			}
+			else
+			{
+				modelo.put("aviso","El E-mail ya se encuentra en uso");
+				modelo.put("usuario",usuarioDefault);
+				return new ModelAndView("index",modelo);
+			}
 		}
-		else
-		{
-			modelo.put("aviso","El E-mail ya se encuentra en uso");
+		catch(NullPointerException e) {
+			modelo.put("aviso", e.getMessage());
 			modelo.put("usuario",usuarioDefault);
-			return new ModelAndView("index",modelo);
 		}
 		
 		return new ModelAndView("index",modelo);
