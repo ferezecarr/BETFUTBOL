@@ -5,7 +5,6 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
