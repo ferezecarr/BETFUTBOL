@@ -109,7 +109,16 @@ public class ControladorLogin {
 		modelo.put("apuesta",apuesta);	
 		
 		Usuario usuarioDefault= new Usuario();
-		try {
+	try {
+			if(usuario.getNombreYApellido().isEmpty()) {
+				throw new NullPointerException("No puede dejar el campo 'Nombre' vacío");
+			}
+			if(usuario.getEmail().isEmpty())
+				throw new NullPointerException("No puede dejar el campo 'E-Mail' vacío");
+			if(usuario.getPassword().isEmpty()){
+				throw new NullPointerException("No puede dejar el campo 'Password' vacío");
+			}
+			
 			if(servicioLogin.consultarUsuarioPorMail(usuario)==null)
 			{
 				
@@ -130,7 +139,7 @@ public class ControladorLogin {
 				return new ModelAndView("index",modelo);
 			}
 		}
-		catch(NullPointerException e) {
+	catch(NullPointerException e) {
 			modelo.put("aviso", e.getMessage());
 			modelo.put("usuario",usuarioDefault);
 		}
