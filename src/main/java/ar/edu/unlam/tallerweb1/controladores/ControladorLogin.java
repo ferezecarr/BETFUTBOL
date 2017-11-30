@@ -111,12 +111,12 @@ public class ControladorLogin {
 		Usuario usuarioDefault= new Usuario();
 	try {
 			if(usuario.getNombreYApellido().isEmpty()) {
-				throw new NullPointerException("No puede dejar el campo 'Nombre' vacío");
+				throw new NullPointerException("No puede dejar el campo 'Nombre' vacio");
 			}
 			if(usuario.getEmail().isEmpty())
-				throw new NullPointerException("No puede dejar el campo 'E-Mail' vacío");
+				throw new NullPointerException("No puede dejar el campo 'E-Mail' vacio");
 			if(usuario.getPassword().isEmpty()){
-				throw new NullPointerException("No puede dejar el campo 'Password' vacío");
+				throw new NullPointerException("No puede dejar el campo 'Password' vacio");
 			}
 			
 			if(servicioLogin.consultarUsuarioPorMail(usuario)==null)
