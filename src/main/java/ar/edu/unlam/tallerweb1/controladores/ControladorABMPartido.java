@@ -91,26 +91,26 @@ public class ControladorABMPartido {
 		Partido partidoNuevo = new Partido();
 		modelo.put("partido", partidoNuevo);
 		
+	
+		
+		if(partido.getLocal().getId()==partido.getVisitante().getId())
+		{
+			modelo.put("aviso","No se pudo crear el partido");
+		
+		}
+		else
+		{
+
+			servicioPartido.guardarPartido(partido);
+			modelo.put("aviso","Se creo el partido correctamente");
+		}
+		
+		
 		List<Partido> partidos = servicioPartido.listarTodosLosPartidos();
 		modelo.put("partidos", partidos);
 		
 		List<Partido> partidosSinTerminar = servicioPartido.listarTodosLosPartidosSinTerminar();
 		modelo.put("partidosSinTerminar", partidosSinTerminar);
-		
-		if(partido.getLocal().getId()==partido.getVisitante().getId())
-		{
-			modelo.put("aviso","No se pudo crear el partido");
-			return new ModelAndView("ABM-Partido",modelo);
-		}
-		
-		
-		if(servicioPartido.consultarPartido(partido)==null)
-		{
-			
-			servicioPartido.guardarPartido(partido);
-			modelo.put("aviso","Se creo el partido correctamente");
-		}
-
 		
 		return new ModelAndView("ABM-Partido",modelo);
 	}
@@ -141,6 +141,7 @@ public class ControladorABMPartido {
 			partidoNuevo.setFecha(partido.getFecha());
 			servicioPartido.actualizarPartido(partidoNuevo);
 			servicioEvento.actualizarDescripcionesDeEventos(partidoNuevo);
+			
 		}
 		
 		
