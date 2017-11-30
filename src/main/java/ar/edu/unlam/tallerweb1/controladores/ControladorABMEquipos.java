@@ -67,8 +67,6 @@ public class ControladorABMEquipos {
 		modelo.put("usuario",usuarioLogeado);
 		modelo.put("nombre",usuarioLogeado.getNombreYApellido());
 		
-		
-		
 		if(servicioEquipo.consultarEquipo(equipo) == null) {
 			
 			servicioEquipo.guardarEquipo(equipo);
