@@ -11,4 +11,5 @@ public interface ServicioLogin {
 	void actualizar(Usuario usuario);
 	List<Usuario> listarTodos();
 	Usuario buscarPorId(Long id);
+	void enviarMail (Usuario usuario);
 }
